@@ -67,6 +67,9 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // Enhanced Popup Notice V3 - Carousel with Auto-Rotate
+    document.querySelectorAll('#noticePopup').forEach(function (popup, index) {
+        if (index > 0) popup.remove();
+    });
     const noticePopup = document.getElementById('noticePopup');
     const popupClose = document.getElementById('popupClose');
     const popupOverlay = noticePopup ? noticePopup.querySelector('.popup-overlay') : null;
@@ -89,16 +92,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const autoRotateDelay = 5000; // 5 seconds
         const progressStep = 50; // Update every 50ms
 
-        // Check if already seen in localStorage
-        const alreadySeen = localStorage.getItem(storageKey);
+        // Check if already seen in this browser session only.
+        // Old localStorage values no longer suppress the desktop popup forever.
+        const alreadySeen = sessionStorage.getItem(storageKey);
 
         // Function to update PDF button based on current slide
         function updateDocButton() {
             if (!docActions) return;
             const activeSlide = slides[currentSlide];
             const attachment = activeSlide ? activeSlide.getAttribute('data-attachment') : '';
+            const photoOnly = activeSlide ? activeSlide.getAttribute('data-photo-only') === '1' : false;
 
-            if (attachment) {
+            if (attachment && !photoOnly) {
                 const siteUrl = window.SITE_URL || '/';
                 docActions.innerHTML = `<a href="${siteUrl}${attachment}" target="_blank" class="popup-doc-btn" title="View PDF"><i class="fas fa-file-pdf"></i></a>`;
             } else {
@@ -166,13 +171,15 @@ document.addEventListener('DOMContentLoaded', function() {
         function closePopup() {
             noticePopup.classList.remove('show');
             stopAutoRotate();
-            localStorage.setItem(storageKey, 'true');
+            document.body.classList.remove('notice-popup-open');
+            sessionStorage.setItem(storageKey, 'true');
         }
 
         // Only show if not already seen
         if (!alreadySeen) {
             setTimeout(function() {
                 noticePopup.classList.add('show');
+                document.body.classList.add('notice-popup-open');
                 updateDocButton();
                 startAutoRotate();
             }, 800);

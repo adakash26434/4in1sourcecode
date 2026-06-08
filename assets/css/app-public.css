@@ -11973,6 +11973,36 @@ input[readonly].nepali-datepicker:hover,
     box-shadow: 0 25px 80px rgba(0,0,0,0.25);
 }
 
+body.notice-popup-open {
+    overflow: hidden !important;
+}
+
+.notice-popup-enhanced .popup-photo-only-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px 16px;
+    min-height: 160px;
+}
+
+.notice-popup-enhanced .popup-photo-only-wrap img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: min(72vh, 560px);
+    border-radius: 10px;
+    object-fit: contain;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+}
+
+.notice-popup-enhanced .popup-slide[data-photo-only="1"] {
+    text-align: center;
+}
+
+.notice-popup-enhanced .popup-slide[data-photo-only="1"] .popup-photo-only-wrap {
+    background: #fff;
+}
+
 .notice-popup-enhanced .popup-v3 .popup-top-accent {
     height: 6px;
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-light), var(--primary-color));
@@ -12173,6 +12203,8 @@ input[readonly].nepali-datepicker:hover,
 }
 
 .notice-popup-enhanced .popup-dot {
+    border: 0;
+    padding: 0;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -12227,6 +12259,14 @@ input[readonly].nepali-datepicker:hover,
 
     .notice-popup-enhanced .popup-carousel {
         min-height: 250px;
+    }
+
+    .notice-popup-enhanced .popup-photo-only-wrap {
+        padding: 8px 10px 14px;
+    }
+
+    .notice-popup-enhanced .popup-photo-only-wrap img {
+        max-height: 68vh;
     }
 }
 

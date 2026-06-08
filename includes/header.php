@@ -1423,15 +1423,15 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
     $noticeIds = implode(',', array_column($popupNotices, 'id'));
     ?>
     <!-- Popup Notice Modal - Enhanced V3 with Carousel -->
-    <div class="notice-popup-enhanced" id="noticePopup" data-notice-ids="<?php echo $noticeIds; ?>">
-        <div class="popup-overlay"></div>
+    <div class="notice-popup-enhanced" id="noticePopup" data-notice-ids="<?php echo $noticeIds; ?>" data-testid="notice-popup-modal">
+        <div class="popup-overlay" data-testid="notice-popup-overlay"></div>
         <div class="popup-dialog popup-v3">
             <div class="popup-top-accent"></div>
             <div class="popup-actions-top">
                 <div class="popup-doc-actions" id="popupDocActions">
                     <!-- Dynamic PDF button will be shown here -->
                 </div>
-                <button class="popup-close-btn" id="popupClose" title="<?php echo isEnglish() ? 'Close' : 'बन्द गर्नुहोस्'; ?>">
+                <button type="button" class="popup-close-btn" id="popupClose" title="<?php echo isEnglish() ? 'Close' : 'बन्द गर्नुहोस्'; ?>" data-testid="notice-popup-close-button">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -1460,10 +1460,10 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 <div class="popup-slide <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" data-attachment="<?php echo $attachPath; ?>" data-photo-only="<?php echo $isPhotoOnly ? '1' : '0'; ?>">
                     <?php if ($isPhotoOnly && $photoOnlySrc): ?>
                     <!-- Photo-only popup mode -->
-                    <div class="popup-photo-only-wrap" style="display:flex;align-items:center;justify-content:center;padding:12px;min-height:160px;">
+                    <div class="popup-photo-only-wrap">
                         <img src="<?php echo htmlspecialchars(SITE_URL . ltrim($photoOnlySrc, '/'), ENT_QUOTES, 'UTF-8'); ?>"
                              alt="<?php echo htmlspecialchars(isEnglish() ? ($notice['title'] ?: '') : ($notice['title_np'] ?: ''), ENT_QUOTES, 'UTF-8'); ?>"
-                             style="max-width:100%;max-height:440px;border-radius:8px;object-fit:contain;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+                             data-testid="notice-popup-photo-only-image">
                     </div>
                     <?php else: ?>
                     <div class="popup-header-text">
@@ -1489,15 +1489,15 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             <?php if (count($popupNotices) > 1): ?>
             <!-- Navigation Controls -->
             <div class="popup-nav">
-                <button class="popup-nav-btn popup-prev" id="popupPrev" title="<?php echo isEnglish() ? 'Previous' : 'अघिल्लो'; ?>">
+                <button type="button" class="popup-nav-btn popup-prev" id="popupPrev" title="<?php echo isEnglish() ? 'Previous' : 'अघिल्लो'; ?>" data-testid="notice-popup-prev-button">
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 <div class="popup-dots" id="popupDots">
                     <?php foreach ($popupNotices as $index => $notice): ?>
-                    <span class="popup-dot <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>"></span>
+                    <button type="button" class="popup-dot <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" data-testid="notice-popup-dot-<?php echo $index + 1; ?>" aria-label="Notice <?php echo $index + 1; ?>"></button>
                     <?php endforeach; ?>
                 </div>
-                <button class="popup-nav-btn popup-next" id="popupNext" title="<?php echo isEnglish() ? 'Next' : 'अर्को'; ?>">
+                <button type="button" class="popup-nav-btn popup-next" id="popupNext" title="<?php echo isEnglish() ? 'Next' : 'अर्को'; ?>" data-testid="notice-popup-next-button">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
