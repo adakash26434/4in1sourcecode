@@ -82,74 +82,57 @@ function ipNepaliNumber(int $number): string {
     <div class="ip-card-header">
         <div class="ip-card-title-wrap">
             <div class="ip-fy-badge"><i class="fas fa-table me-2"></i> Month-wise आर्थिक विवरण</div>
-            <div class="ip-date-info"><span>प्रत्येक महिना/रिपोर्ट एउटा row मा</span></div>
+            <div class="ip-date-info"><span>Desktop मा एक row मा २ month/report</span></div>
         </div>
     </div>
 
-    <div class="ip-month-table-wrap" data-testid="institutional-profile-month-wise-table">
-        <table class="ip-month-table">
-            <thead>
-                <tr>
-                    <th>मिति / आ.व.</th>
-                    <th class="text-end">सदस्य</th>
-                    <th class="text-end">शेयर पूँजी</th>
-                    <th class="text-end">जगेडा / अन्य कोष</th>
-                    <th class="text-end">बचत</th>
-                    <th class="text-end">ऋण</th>
-                    <th class="text-end">बैंक/नगद</th>
-                    <th class="text-end">स्थिर सम्पत्ति</th>
-                    <th class="text-end">कुल सम्पत्ति</th>
-                    <th class="text-end">सूचक</th>
-                    <th class="text-center">कागजात</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($profiles as $idx => $p): ?>
-                <?php
-                    $rowNo = $idx + 1;
-                    $totalLoanMembers = (int)($p['total_loan_members'] ?? 0);
-                    $otherFund = (float)($p['other_fund'] ?? 0);
-                    $bankCashBalance = (float)($p['bank_cash_balance'] ?? 0);
-                    $fixedAssets = (float)($p['fixed_assets'] ?? 0);
-                    $_ipDocUrl  = !empty($p['attachment_path']) ? htmlspecialchars(SITE_URL . ltrim($p['attachment_path'], '/'), ENT_QUOTES, 'UTF-8') : '';
-                    $_ipDocExt  = !empty($p['attachment_path']) ? strtolower(pathinfo($p['attachment_path'], PATHINFO_EXTENSION)) : '';
-                ?>
-                <tr data-testid="institutional-profile-month-row-<?php echo $rowNo; ?>">
-                    <td class="ip-month-date">
-                        <strong data-testid="institutional-profile-fiscal-year-<?php echo $rowNo; ?>">आ.व. <?php echo htmlspecialchars($p['fiscal_year']); ?></strong>
-                        <?php if (!empty($p['report_date_bs'])): ?>
-                        <span data-testid="institutional-profile-published-date-<?php echo $rowNo; ?>"><?php echo htmlspecialchars($p['report_date_bs']); ?><?php if (!empty($p['report_date_ad'])): ?> / <?php echo date('d M Y', strtotime($p['report_date_ad'])); ?><?php endif; ?></span>
-                        <?php endif; ?>
-                    </td>
-                    <td class="text-end"><strong data-testid="institutional-profile-total-members-value-<?php echo $rowNo; ?>"><?php echo number_format((int)$p['total_members']); ?></strong><?php if (!empty($p['total_balance_member'])): ?><span class="ip-mini-chip"><?php echo number_format((int)$p['total_balance_member']); ?> शेष</span><?php endif; ?></td>
-                    <td class="text-end"><strong data-testid="institutional-profile-share-capital-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['share_capital']); ?></strong><?php if (!empty($p['share_capital_percent'])): ?><span class="ip-mini-chip"><?php echo htmlspecialchars((string)$p['share_capital_percent']); ?>%</span><?php endif; ?></td>
-                    <td class="text-end"><strong data-testid="institutional-profile-reserved-fund-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)($p['reserved_fund'] ?? 0)); ?></strong><?php if ($otherFund > 0): ?><span class="ip-mini-chip">अन्य <?php echo ipShortAmt($otherFund); ?></span><?php endif; ?></td>
-                    <td class="text-end"><strong data-testid="institutional-profile-deposit-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['deposit']); ?></strong><?php if (!empty($p['deposit_percent'])): ?><span class="ip-mini-chip"><?php echo htmlspecialchars((string)$p['deposit_percent']); ?>%</span><?php endif; ?></td>
-                    <td class="text-end"><strong data-testid="institutional-profile-loan-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['loan']); ?></strong><?php if ($totalLoanMembers > 0): ?><span class="ip-mini-chip"><?php echo number_format($totalLoanMembers); ?> ऋणी</span><?php endif; ?></td>
-                    <td class="text-end"><strong data-testid="institutional-profile-bank-cash-balance-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($bankCashBalance); ?></strong></td>
-                    <td class="text-end"><strong data-testid="institutional-profile-fixed-assets-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($fixedAssets); ?></strong></td>
-                    <td class="text-end ip-month-total"><strong data-testid="institutional-profile-total-assets-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['total_assets']); ?></strong></td>
-                    <td class="text-end ip-month-indicators">
-                        <?php if (!empty($p['npa_percent'])): ?><span class="ip-mini-chip">NPA <?php echo (float)$p['npa_percent']; ?>%</span><?php endif; ?>
-                        <?php if (!empty($p['npl_percent'])): ?><span class="ip-mini-chip">NPL <?php echo (float)$p['npl_percent']; ?>%</span><?php endif; ?>
-                        <?php if (!empty($p['liquidity_percent'])): ?><span class="ip-mini-chip">Liq <?php echo (float)$p['liquidity_percent']; ?>%</span><?php endif; ?>
-                    </td>
-                    <td class="text-center">
-                        <?php if (!empty($p['attachment_path'])): ?>
-                        <button type="button" class="ip-row-doc-btn"
-                                onclick="ipOpenDoc('<?php echo $_ipDocUrl; ?>','<?php echo $_ipDocExt; ?>')"
-                                data-testid="institutional-profile-document-button-<?php echo $rowNo; ?>"
-                                title="कागजात हेर्नुहोस्">
-                            <i class="fas <?php echo $_ipDocExt === 'pdf' ? 'fa-file-pdf' : 'fa-file-image'; ?>"></i>
-                        </button>
-                        <?php else: ?>
-                        <span class="ip-muted-dash">—</span>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    <div class="ip-month-grid" data-testid="institutional-profile-month-wise-grid">
+        <?php foreach ($profiles as $idx => $p): ?>
+        <?php
+            $rowNo = $idx + 1;
+            $totalLoanMembers = (int)($p['total_loan_members'] ?? 0);
+            $otherFund = (float)($p['other_fund'] ?? 0);
+            $bankCashBalance = (float)($p['bank_cash_balance'] ?? 0);
+            $fixedAssets = (float)($p['fixed_assets'] ?? 0);
+            $_ipDocUrl  = !empty($p['attachment_path']) ? htmlspecialchars(SITE_URL . ltrim($p['attachment_path'], '/'), ENT_QUOTES, 'UTF-8') : '';
+            $_ipDocExt  = !empty($p['attachment_path']) ? strtolower(pathinfo($p['attachment_path'], PATHINFO_EXTENSION)) : '';
+        ?>
+        <article class="ip-month-tile" data-testid="institutional-profile-month-card-<?php echo $rowNo; ?>">
+            <div class="ip-month-tile-head">
+                <div>
+                    <strong data-testid="institutional-profile-fiscal-year-<?php echo $rowNo; ?>">आ.व. <?php echo htmlspecialchars($p['fiscal_year']); ?></strong>
+                    <?php if (!empty($p['report_date_bs'])): ?>
+                    <span data-testid="institutional-profile-published-date-<?php echo $rowNo; ?>"><?php echo htmlspecialchars($p['report_date_bs']); ?><?php if (!empty($p['report_date_ad'])): ?> / <?php echo date('d M Y', strtotime($p['report_date_ad'])); ?><?php endif; ?></span>
+                    <?php endif; ?>
+                </div>
+                <?php if (!empty($p['attachment_path'])): ?>
+                <button type="button" class="ip-row-doc-btn"
+                        onclick="ipOpenDoc('<?php echo $_ipDocUrl; ?>','<?php echo $_ipDocExt; ?>')"
+                        data-testid="institutional-profile-document-button-<?php echo $rowNo; ?>"
+                        title="कागजात हेर्नुहोस्">
+                    <i class="fas <?php echo $_ipDocExt === 'pdf' ? 'fa-file-pdf' : 'fa-file-image'; ?>"></i>
+                </button>
+                <?php endif; ?>
+            </div>
+
+            <div class="ip-month-metrics">
+                <div><span>सदस्य</span><strong data-testid="institutional-profile-total-members-value-<?php echo $rowNo; ?>"><?php echo number_format((int)$p['total_members']); ?></strong><?php if (!empty($p['total_balance_member'])): ?><em><?php echo number_format((int)$p['total_balance_member']); ?> शेष</em><?php endif; ?></div>
+                <div><span>शेयर पूँजी</span><strong data-testid="institutional-profile-share-capital-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['share_capital']); ?></strong><?php if (!empty($p['share_capital_percent'])): ?><em><?php echo htmlspecialchars((string)$p['share_capital_percent']); ?>%</em><?php endif; ?></div>
+                <div><span>जगेडा / अन्य</span><strong data-testid="institutional-profile-reserved-fund-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)($p['reserved_fund'] ?? 0)); ?></strong><?php if ($otherFund > 0): ?><em>अन्य <?php echo ipShortAmt($otherFund); ?></em><?php endif; ?></div>
+                <div><span>बचत</span><strong data-testid="institutional-profile-deposit-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['deposit']); ?></strong><?php if (!empty($p['deposit_percent'])): ?><em><?php echo htmlspecialchars((string)$p['deposit_percent']); ?>%</em><?php endif; ?></div>
+                <div><span>ऋण</span><strong data-testid="institutional-profile-loan-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['loan']); ?></strong><?php if ($totalLoanMembers > 0): ?><em><?php echo number_format($totalLoanMembers); ?> ऋणी</em><?php endif; ?></div>
+                <div><span>बैंक/नगद</span><strong data-testid="institutional-profile-bank-cash-balance-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($bankCashBalance); ?></strong></div>
+                <div><span>स्थिर सम्पत्ति</span><strong data-testid="institutional-profile-fixed-assets-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($fixedAssets); ?></strong></div>
+                <div class="ip-month-total"><span>कुल सम्पत्ति</span><strong data-testid="institutional-profile-total-assets-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['total_assets']); ?></strong></div>
+            </div>
+
+            <div class="ip-month-tile-foot">
+                <?php if (!empty($p['npa_percent'])): ?><span class="ip-mini-chip">NPA <?php echo (float)$p['npa_percent']; ?>%</span><?php endif; ?>
+                <?php if (!empty($p['npl_percent'])): ?><span class="ip-mini-chip">NPL <?php echo (float)$p['npl_percent']; ?>%</span><?php endif; ?>
+                <?php if (!empty($p['liquidity_percent'])): ?><span class="ip-mini-chip">Liq <?php echo (float)$p['liquidity_percent']; ?>%</span><?php endif; ?>
+            </div>
+        </article>
+        <?php endforeach; ?>
     </div>
 </div><!-- .ip-profile-card -->
 

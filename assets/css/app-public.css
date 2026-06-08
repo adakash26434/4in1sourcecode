@@ -18648,6 +18648,135 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     font-weight: 800;
 }
 
+.ip-month-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 10px;
+    background: #f7faf8;
+}
+
+.ip-month-tile {
+    border: 1px solid rgba(var(--primary-rgb,26,95,42),.12);
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, .04);
+}
+
+.ip-month-tile-head {
+    min-height: 42px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: rgba(var(--primary-rgb,26,95,42),.07);
+    border-bottom: 1px solid rgba(var(--primary-rgb,26,95,42),.1);
+}
+
+.ip-month-tile-head strong,
+.ip-month-tile-head span {
+    display: block;
+}
+
+.ip-month-tile-head strong {
+    color: #17251b;
+    font-size: .82rem;
+    font-weight: 900;
+}
+
+.ip-month-tile-head span {
+    margin-top: 1px;
+    color: #64748b;
+    font-size: .66rem;
+    line-height: 1.25;
+}
+
+.ip-month-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(15, 23, 42, .04);
+}
+
+.ip-month-metrics > div {
+    min-width: 0;
+    padding: 7px 9px;
+    border-right: 1px solid rgba(15, 23, 42, .07);
+    border-bottom: 1px solid rgba(15, 23, 42, .07);
+}
+
+.ip-month-metrics > div:nth-child(2n) {
+    border-right: 0;
+}
+
+.ip-month-metrics span,
+.ip-month-metrics strong,
+.ip-month-metrics em {
+    display: block;
+}
+
+.ip-month-metrics span {
+    color: #64748b;
+    font-size: .64rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+}
+
+.ip-month-metrics strong {
+    color: #111827;
+    font-size: .82rem;
+    font-weight: 900;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ip-month-metrics em {
+    margin-top: 2px;
+    color: var(--primary-dark,#14532d);
+    font-size: .62rem;
+    font-style: normal;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ip-month-metrics .ip-month-total {
+    background: rgba(var(--primary-rgb,26,95,42),.055);
+}
+
+.ip-month-tile-foot {
+    min-height: 28px;
+    padding: 5px 8px 7px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+    .ip-month-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 575px) {
+    .ip-month-grid {
+        padding: 8px;
+        gap: 8px;
+    }
+    .ip-month-metrics {
+        grid-template-columns: 1fr;
+    }
+    .ip-month-metrics > div,
+    .ip-month-metrics > div:nth-child(2n) {
+        border-right: 0;
+    }
+}
+
 .ip-mini-chip {
     display: inline-flex;
     align-items: center;
