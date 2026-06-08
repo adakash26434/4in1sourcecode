@@ -983,13 +983,13 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
         <!-- RIGHT: Navigation (reuses existing nav styles) -->
         <div class="pfl-nav-area">
             <!-- Mobile Toggle (visible < lg) -->
-            <button class="pfl-mobile-toggle d-lg-none" id="mobileMenuToggle2" aria-label="Menu" aria-controls="mainNavV2" aria-expanded="false" data-testid="public-mobile-menu-toggle-button">
+            <button type="button" class="pfl-mobile-toggle d-lg-none" id="mobileMenuToggle2" aria-label="Menu" aria-controls="mainNavV2" aria-expanded="false" data-testid="public-mobile-menu-toggle-button">
                 <i class="fas fa-bars"></i>
             </button>
 
             <!-- Navigation — same structure as original -->
             <nav class="main-nav" id="mainNavV2" aria-hidden="true" data-mobile-drawer="public">
-                <button class="close-menu d-lg-none" id="closeMenuV2" data-testid="public-mobile-menu-close-button">
+                <button type="button" class="close-menu d-lg-none" id="closeMenuV2" data-testid="public-mobile-menu-close-button">
                     <span class="close-menu-label"><i class="fas fa-bars me-2"></i><?php echo isEnglish() ? 'Navigation' : 'मेनु'; ?></span>
                     <i class="fas fa-times"></i>
                 </button>

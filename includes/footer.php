@@ -883,7 +883,7 @@ try {
     <a href="<?php echo SITE_URL; ?>member/" class="mob-bn-item"><i class="fas fa-user"></i><span><?php echo isEnglish()?'Member':'सदस्य'; ?></span></a>
 </nav>
 <script>document.body.classList.add('has-bottomnav');</script>
-    <script src="<?php echo SITE_URL; ?>assets/js/v9-mobile-fix.js?v=9.7" defer></script>
+    <script src="<?php echo SITE_URL; ?>assets/js/v9-mobile-fix.js?v=9.11" defer></script>
 <script>
 function copyTrk(id,btn){
     var el=document.getElementById(id);

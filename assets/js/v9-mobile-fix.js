@@ -1,5 +1,5 @@
 /* ============================================================
- * v9.8 — Mobile menu (stable drawer + dedicated dropdown chevrons)
+ * v9.11 — Mobile menu (stable drawer + dropdowns never navigate on mobile)
  * Public + Admin drawers. Plain delegation, no z-index wars.
  * Submenus toggle on parent-link tap (mobile only) when href === '#' or 'javascript:'
  * Otherwise the link navigates.
@@ -44,19 +44,29 @@
     var overlays = ['menuOverlay', 'pflMobileBackdrop']
       .map(function (id) { return document.getElementById(id); })
       .filter(Boolean);
+    var savedScrollY = 0;
 
     function openNav() {
+      savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
       nav.classList.add('nav-open', 'open', 'active');
       overlays.forEach(function (el) { el.classList.add('active'); });
       document.body.classList.add('mobile-nav-open');
+      document.documentElement.classList.add('mobile-nav-open');
+      document.body.style.top = '-' + savedScrollY + 'px';
       document.body.style.overflow = 'hidden';
       toggle.setAttribute('aria-expanded', 'true');
       nav.setAttribute('aria-hidden', 'false');
+      setTimeout(function () {
+        var first = nav.querySelector('#' + closeId + ', a, button');
+        if (first && typeof first.focus === 'function') first.focus({ preventScroll: true });
+      }, 30);
     }
     function closeNav() {
       nav.classList.remove('nav-open', 'open', 'active');
       overlays.forEach(function (el) { el.classList.remove('active'); });
       document.body.classList.remove('mobile-nav-open');
+      document.documentElement.classList.remove('mobile-nav-open');
+      document.body.style.top = '';
       document.body.style.overflow = '';
       toggle.setAttribute('aria-expanded', 'false');
       nav.setAttribute('aria-hidden', 'true');
@@ -66,6 +76,7 @@
       nav.querySelectorAll('.dd-chevron-btn[aria-expanded="true"]').forEach(function (btn) {
         btn.setAttribute('aria-expanded', 'false');
       });
+      if (savedScrollY) window.scrollTo(0, savedScrollY);
     }
 
     toggle.addEventListener('click', function (e) {
@@ -85,8 +96,27 @@
         closeNav();
       });
     }
-    overlays.forEach(function (el) { el.addEventListener('click', closeNav); });
+    overlays.forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeNav();
+      });
+    });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
+
+    /* Dedicated delegated chevron handler — robust on iOS/Safari overlays */
+    nav.addEventListener('click', function (e) {
+      if (window.innerWidth >= 992) return;
+      var chev = e.target.closest('.dd-chevron-btn');
+      if (!chev || !nav.contains(chev)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var li = chev.closest('.has-dropdown, .has-sub');
+      if (!li) return;
+      li.classList.toggle('open');
+      chev.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
+    }, true);
 
     /* ── Single delegated click handler on the nav ── */
     nav.addEventListener('click', function (e) {
@@ -96,32 +126,13 @@
       if (!link || !nav.contains(link)) return;
       var li      = link.parentElement;
       var hasSub  = li && (li.classList.contains('has-dropdown') || li.classList.contains('has-sub'));
-      var href    = (link.getAttribute('href') || '').trim();
-      var isToggle = !href || href === '#' || href.indexOf('javascript:') === 0;
-
-      if (hasSub && isToggle) {
-        /* Pure dropdown parent (no destination) → toggle submenu */
+      if (hasSub) {
+        /* Mobile UX: parent rows with submenu ALWAYS toggle; child links navigate. */
         e.preventDefault();
         e.stopPropagation();
         li.classList.toggle('open');
         var directBtn = li.querySelector(':scope > .dd-chevron-btn');
         if (directBtn) directBtn.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
-        return;
-      }
-      if (hasSub && !isToggle) {
-        /* Parent with real destination — first tap opens submenu, second tap navigates */
-        if (!li.classList.contains('open') && !link.dataset.tapped) {
-          e.preventDefault();
-          e.stopPropagation();
-          li.classList.add('open');
-          var btn = li.querySelector(':scope > .dd-chevron-btn');
-          if (btn) btn.setAttribute('aria-expanded', 'true');
-          link.dataset.tapped = '1';
-          setTimeout(function () { delete link.dataset.tapped; }, 4000);
-          return;
-        }
-        /* Second tap → let it navigate, close drawer */
-        setTimeout(closeNav, 50);
         return;
       }
       /* Leaf link → navigate, close drawer */
@@ -220,6 +231,7 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
         li.classList.toggle('open');
         btn.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
       });
