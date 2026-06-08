@@ -18,6 +18,7 @@ User later asked to start, selected a specific issue category, and prioritized f
 - 2026-06-08: Fixed KYC Nepal address dataset in `/app/includes/nepal-address.php` to 7 provinces, 77 districts, 753 unique local levels, with no duplicate municipality entries. Corrected known bad entries such as duplicate Rasuwa records, duplicate Rautahat record, invalid ward count for Dordi, typo in Pachaaljharana, and Kanchanpur Dodhara Chandani naming.
 - 2026-06-08: Fixed public mobile menu interaction by stabilizing `assets/js/v9-mobile-fix.js`, adding dedicated dropdown chevron toggles, aria-expanded updates, close-state cleanup, and matching mobile CSS/test IDs in `/app/includes/header.php` and `/app/assets/css/app-public.css`.
 - 2026-06-08: Added institutional profile fields in admin/public flow: other fund (`other_fund`), bank/cash balance (`bank_cash_balance`), fixed assets (`fixed_assets`), and total loan members (`total_loan_members`). Updated admin form, POST save/update logic, auto schema alters, fresh install SQL, ensure-admin-tables schema, and public display with null-safe fallbacks.
+- 2026-06-08: Fixed KYC province dropdown duplication caused by repeated `initAllKYCCapture()` calls. Made `setupAddressDropdowns()` and same-address listener idempotent in `/app/assets/js/kyc-capture.js`, added cache-busting script version `v=10.9` in `/app/online-kyc.php`, and cleaned JS lint issues in the same file.
 
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.
@@ -48,3 +49,4 @@ User later asked to start, selected a specific issue category, and prioritized f
 - 2026-06-08: JS lint passed for `/app/assets/js/v9-mobile-fix.js`.
 - 2026-06-08: Isolated Playwright DOM smoke confirmed mobile drawer open/close, chevron injection, submenu toggle, and aria-expanded update.
 - 2026-06-08: Testing agent iteration 2 initially found null-safe public profile issue; fixed it and reran `/app/tests/test_php_feature_regression.py`: 7 passed.
+- 2026-06-08: Verified KYC province dropdown repeated initialization in Playwright isolated DOM: after 5 manual re-inits, permanent province select stayed at 8 options total (placeholder + 7 provinces), with no duplicate province list.

@@ -1,7 +1,7 @@
-if (window._kycCaptureInited) { /* skip */ } else {
+if (window._kycCaptureInited) { window._kycCaptureSkipped = true; } else {
 window._kycCaptureInited = true;
 /* ===========================================================
-   KYC Capture v10.4
+   KYC Capture v10.9
    - Live camera (getUserMedia) सहित pan/zoom/rotate crop
    - Signature pad (canvas, finger/pen)
    - Fingerprint photo capture with line-density quality check
@@ -331,7 +331,7 @@ window._kycCaptureInited = true;
 
       // Field-specific post-process (e.g., fingerprint quality check)
       if (opts.afterConfirm) {
-        try { opts.afterConfirm(dataUrl, this.targetField); } catch (e) {}
+        try { opts.afterConfirm(dataUrl, this.targetField); } catch (e) { if (window.console) console.warn('KYC post-process skipped', e); }
       }
       this.close();
     },
@@ -445,7 +445,7 @@ window._kycCaptureInited = true;
       }
       const field = { fieldEl: el, hidden: hidden, preview: preview, options: opts };
       const existing = (hidden && hidden.value) ? String(hidden.value).trim() : '';
-      if (existing) renderPreview(field, existing);
+      if (existing) CamCrop.renderPreview(field, existing);
       else renderEmpty(field);
     });
   }
@@ -749,18 +749,26 @@ window._kycCaptureInited = true;
     const data = window.NEPAL_ADDRESS;
 
     document.querySelectorAll('[data-kyc-address]').forEach((wrap) => {
+      if (wrap.dataset.kycAddressBound === '1') return;
       const prefix = wrap.dataset.kycAddress; // 'permanent' or 'temporary'
       const provSel = wrap.querySelector(`[name="${prefix}_province"]`);
       const distSel = wrap.querySelector(`[name="${prefix}_district"]`);
       const muniSel = wrap.querySelector(`[name="${prefix}_municipality"]`);
       const wardSel = wrap.querySelector(`[name="${prefix}_ward"]`);
+      if (!provSel || !distSel || !muniSel || !wardSel) return;
 
-      // Populate provinces
+      wrap.dataset.kycAddressBound = '1';
+
+      const previousProvince = provSel.value;
+      provSel.innerHTML = '<option value="">— छान्नुहोस् —</option>';
+
+      // Populate provinces once only; initAllKYCCapture can run many times when wizard steps change.
       Object.keys(data).forEach((prov) => {
         const o = document.createElement('option');
         o.value = prov; o.textContent = prov;
         provSel.appendChild(o);
       });
+      if (previousProvince && data[previousProvince]) provSel.value = previousProvince;
 
       provSel.addEventListener('change', () => {
         distSel.innerHTML = '<option value="">— जिल्ला छान्नुहोस् —</option>';
@@ -796,26 +804,28 @@ window._kycCaptureInited = true;
 
     // "Same as permanent" toggle
     const sameToggle = document.getElementById('kycSameAddress');
-    if (sameToggle) {
+    if (sameToggle && sameToggle.dataset.kycSameBound !== '1') {
+      sameToggle.dataset.kycSameBound = '1';
       const tempWrap = document.querySelector('[data-kyc-address="temporary"]');
       const permWrap = document.querySelector('[data-kyc-address="permanent"]');
+      const syncWhenSame = () => sameToggle.checked && syncSameAddress(permWrap, tempWrap);
       sameToggle.addEventListener('change', () => {
         if (sameToggle.checked) {
           tempWrap.style.opacity = '.5';
           tempWrap.querySelectorAll('select,input').forEach(el => el.disabled = true);
           // Mirror values via hidden inputs in form submission
           syncSameAddress(permWrap, tempWrap);
-          // Re-sync on every permanent change
-          permWrap.addEventListener('change', () => sameToggle.checked && syncSameAddress(permWrap, tempWrap));
         } else {
           tempWrap.style.opacity = '';
           tempWrap.querySelectorAll('select,input').forEach(el => el.disabled = false);
         }
       });
+      if (permWrap) permWrap.addEventListener('change', syncWhenSame);
     }
   }
 
   function syncSameAddress(perm, temp) {
+    if (!perm || !temp) return;
     ['province', 'district', 'municipality', 'ward', 'tole'].forEach((k) => {
       const p = perm.querySelector(`[name="permanent_${k}"]`);
       const t = temp.querySelector(`[name="temporary_${k}"]`);
@@ -851,10 +861,10 @@ window._kycCaptureInited = true;
   }
 
   function initAllKYCCapture() {
-    try { setupCaptureFields(); } catch (e) {}
-    try { setupSignaturePads(); } catch (e) {}
-    try { setupAddressDropdowns(); } catch (e) {}
-    try { bindSubmitValidation(); } catch (e) {}
+    try { setupCaptureFields(); } catch (e) { if (window.console) console.warn('KYC capture init skipped', e); }
+    try { setupSignaturePads(); } catch (e) { if (window.console) console.warn('KYC signature init skipped', e); }
+    try { setupAddressDropdowns(); } catch (e) { if (window.console) console.warn('KYC address init skipped', e); }
+    try { bindSubmitValidation(); } catch (e) { if (window.console) console.warn('KYC validation init skipped', e); }
   }
 
   if (document.readyState === 'loading') {

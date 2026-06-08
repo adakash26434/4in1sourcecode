@@ -756,7 +756,7 @@ try {
 <!-- v10.4: KYC capture assets (camera/crop/signature/fingerprint) -->
 <link rel="stylesheet" href="<?php echo SITE_URL; ?>assets/css/kyc-capture.css?v=10.6">
 <?php printNepalAddressJs(); ?>
-<script defer src="<?php echo SITE_URL; ?>assets/js/kyc-capture.js?v=10.8"></script>
+<script defer src="<?php echo SITE_URL; ?>assets/js/kyc-capture.js?v=10.9"></script>
 
 <!-- KYC Form Section -->
 <section class="kyc-form-section section-padding">
