@@ -22190,9 +22190,9 @@ body.auth-page,
 .pfl-pwa-wrap a.pwa-install-btn:hover,
 .topbar-pwa-btn a.pwa-install-btn:hover { opacity: .75; }
 
-/* ── Mobile nav dropdown chevron button (v9.6) ─── */
+/* ── Mobile nav dropdown chevron button (v9.8) ─── */
 .main-nav .dd-chevron-btn {
-    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    position: absolute; right: 10px; top: 8px; transform: none;
     background: rgba(0,0,0,.06); border: none; border-radius: 6px;
     width: 30px; height: 30px; cursor: pointer; color: var(--text-primary, #1f2937);
     display: flex; align-items: center; justify-content: center;
@@ -22202,7 +22202,8 @@ body.auth-page,
 .main-nav .dd-chevron-btn:hover { background: rgba(0,0,0,.12); }
 .main-nav .has-dropdown { position: relative; }
 .main-nav .has-dropdown > a { padding-right: 46px !important; }
-.main-nav .has-dropdown.open > .dd-chevron-btn .fa-chevron-down {
+.main-nav .has-dropdown.open > .dd-chevron-btn .fa-chevron-down,
+.main-nav .has-sub.open > .dd-chevron-btn .fa-chevron-down {
     transform: rotate(180deg);
 }
 .main-nav .dd-chevron-btn .fa-chevron-down { transition: transform .22s; }

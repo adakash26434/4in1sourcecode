@@ -915,28 +915,28 @@ try {
                                     <label class="form-label fw-semibold"><i class="fas fa-map-marker-alt text-success me-1"></i><?php echo isEnglish() ? 'Permanent Address' : 'स्थायी ठेगाना'; ?> <span class="text-danger">*</span></label>
                                     <div class="kyc-addr-grid" data-kyc-address="permanent">
                                         <div class="kyc-addr-cell"><label>प्रदेश</label>
-                                            <select name="permanent_province" class="form-select form-select-sm" required>
+                                            <select name="permanent_province" class="form-select form-select-sm" required data-testid="kyc-permanent-province-select">
                                                 <option value="">— छान्नुहोस् —</option>
                                             </select>
                                         </div>
                                         <div class="kyc-addr-cell"><label>जिल्ला</label>
-                                            <select name="permanent_district" class="form-select form-select-sm" required>
+                                            <select name="permanent_district" class="form-select form-select-sm" required data-testid="kyc-permanent-district-select">
                                                 <option value="">— छान्नुहोस् —</option>
                                             </select>
                                         </div>
                                         <div class="kyc-addr-cell"><label>नगर/गाउँपालिका</label>
-                                            <select name="permanent_municipality" class="form-select form-select-sm" required>
+                                            <select name="permanent_municipality" class="form-select form-select-sm" required data-testid="kyc-permanent-municipality-select">
                                                 <option value="">— छान्नुहोस् —</option>
                                             </select>
                                         </div>
                                         <div class="kyc-addr-cell"><label>वडा नं.</label>
-                                            <select name="permanent_ward" class="form-select form-select-sm" required>
+                                            <select name="permanent_ward" class="form-select form-select-sm" required data-testid="kyc-permanent-ward-select">
                                                 <option value="">— वडा —</option>
                                             </select>
                                         </div>
                                         <div class="kyc-addr-cell" style="grid-column:1/-1;">
                                             <label>टोल / गाउँ (Tole)</label>
-                                            <input type="text" name="permanent_tole" class="form-control form-control-sm" placeholder="जस्तै: नयाँ बानेश्वर">
+                                            <input type="text" name="permanent_tole" class="form-control form-control-sm" placeholder="जस्तै: नयाँ बानेश्वर" data-testid="kyc-permanent-tole-input">
                                         </div>
                                     </div>
                                 </div>
@@ -944,7 +944,7 @@ try {
                                 <!-- "Same as permanent" toggle -->
                                 <div class="col-12">
                                     <label class="kyc-same-toggle">
-                                        <input type="checkbox" name="same_as_permanent" id="kycSameAddress" value="1">
+                                        <input type="checkbox" name="same_as_permanent" id="kycSameAddress" value="1" data-testid="kyc-same-as-permanent-checkbox">
                                         <span><i class="fas fa-copy text-success me-1"></i><strong>अस्थायी ठेगाना स्थायी ठेगाना जस्तै हो</strong> (Same as Permanent)</span>
                                     </label>
                                 </div>
@@ -955,22 +955,22 @@ try {
                                     <div class="small text-muted mb-2"><?php echo isEnglish() ? 'Fill this only if temporary address is different.' : 'अस्थायी ठेगाना फरक भएमा मात्र भर्नुहोस्।'; ?></div>
                                     <div class="kyc-addr-grid" data-kyc-address="temporary">
                                         <div class="kyc-addr-cell"><label>प्रदेश</label>
-                                            <select name="temporary_province" class="form-select form-select-sm">
+                                            <select name="temporary_province" class="form-select form-select-sm" data-testid="kyc-temporary-province-select">
                                                 <option value="">— छान्नुहोस् —</option>
                                             </select>
                                         </div>
                                         <div class="kyc-addr-cell"><label>जिल्ला</label>
-                                            <select name="temporary_district" class="form-select form-select-sm">
+                                            <select name="temporary_district" class="form-select form-select-sm" data-testid="kyc-temporary-district-select">
                                                 <option value="">— छान्नुहोस् —</option>
                                             </select>
                                         </div>
                                         <div class="kyc-addr-cell"><label>नगर/गाउँपालिका</label>
-                                            <select name="temporary_municipality" class="form-select form-select-sm">
+                                            <select name="temporary_municipality" class="form-select form-select-sm" data-testid="kyc-temporary-municipality-select">
                                                 <option value="">— छान्नुहोस् —</option>
                                             </select>
                                         </div>
                                         <div class="kyc-addr-cell"><label>वडा नं.</label>
-                                            <select name="temporary_ward" class="form-select form-select-sm">
+                                            <select name="temporary_ward" class="form-select form-select-sm" data-testid="kyc-temporary-ward-select">
                                                 <option value="">— वडा —</option>
                                             </select>
                                         </div>

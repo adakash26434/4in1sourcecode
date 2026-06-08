@@ -1004,6 +1004,10 @@ CREATE TABLE IF NOT EXISTS app_features (
     deposit DECIMAL(18,2) DEFAULT 0,
     loan DECIMAL(18,2) DEFAULT 0,
     total_assets DECIMAL(18,2) DEFAULT 0,
+    other_fund DECIMAL(18,2) DEFAULT 0,
+    bank_cash_balance DECIMAL(18,2) DEFAULT 0,
+    fixed_assets DECIMAL(18,2) DEFAULT 0,
+    total_loan_members INT DEFAULT 0,
     npa_percent DECIMAL(5,2) DEFAULT 0,
     profit_loss DECIMAL(18,2) DEFAULT 0,
     is_active TINYINT(1) DEFAULT 1,
@@ -1015,6 +1019,10 @@ CREATE TABLE IF NOT EXISTS app_features (
 
 -- Upgrade-safe: पुरानो DB मा यदि profit_loss column छैन भने थप्ने
 ALTER TABLE institutional_profile ADD COLUMN IF NOT EXISTS profit_loss DECIMAL(18,2) DEFAULT 0 AFTER npa_percent;
+ALTER TABLE institutional_profile ADD COLUMN IF NOT EXISTS other_fund DECIMAL(18,2) DEFAULT 0 AFTER total_assets;
+ALTER TABLE institutional_profile ADD COLUMN IF NOT EXISTS bank_cash_balance DECIMAL(18,2) DEFAULT 0 AFTER other_fund;
+ALTER TABLE institutional_profile ADD COLUMN IF NOT EXISTS fixed_assets DECIMAL(18,2) DEFAULT 0 AFTER bank_cash_balance;
+ALTER TABLE institutional_profile ADD COLUMN IF NOT EXISTS total_loan_members INT DEFAULT 0 AFTER loan;
 -- =====================================================
 -- 39. JOB APPLICATIONS TABLE
 -- =====================================================

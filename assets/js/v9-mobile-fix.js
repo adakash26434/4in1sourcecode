@@ -1,5 +1,5 @@
 /* ============================================================
- * v9.6 — Mobile menu (clean, no chevron-button hack)
+ * v9.8 — Mobile menu (stable drawer + dedicated dropdown chevrons)
  * Public + Admin drawers. Plain delegation, no z-index wars.
  * Submenus toggle on parent-link tap (mobile only) when href === '#' or 'javascript:'
  * Otherwise the link navigates.
@@ -63,6 +63,9 @@
       nav.querySelectorAll('.has-dropdown.open, .has-sub.open').forEach(function (el) {
         el.classList.remove('open');
       });
+      nav.querySelectorAll('.dd-chevron-btn[aria-expanded="true"]').forEach(function (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+      });
     }
 
     toggle.addEventListener('click', function (e) {
@@ -88,6 +91,7 @@
     /* ── Single delegated click handler on the nav ── */
     nav.addEventListener('click', function (e) {
       if (window.innerWidth >= 992) return;
+      if (e.target.closest('.dd-chevron-btn')) return;
       var link = e.target.closest('a');
       if (!link || !nav.contains(link)) return;
       var li      = link.parentElement;
@@ -100,6 +104,8 @@
         e.preventDefault();
         e.stopPropagation();
         li.classList.toggle('open');
+        var directBtn = li.querySelector(':scope > .dd-chevron-btn');
+        if (directBtn) directBtn.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
         return;
       }
       if (hasSub && !isToggle) {
@@ -108,6 +114,8 @@
           e.preventDefault();
           e.stopPropagation();
           li.classList.add('open');
+          var btn = li.querySelector(':scope > .dd-chevron-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'true');
           link.dataset.tapped = '1';
           setTimeout(function () { delete link.dataset.tapped; }, 4000);
           return;
@@ -206,6 +214,8 @@
       btn.className = 'dd-chevron-btn';
       btn.setAttribute('aria-label', 'Toggle submenu');
       btn.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
+      var label = (link.textContent || 'submenu').trim().toLowerCase().replace(/[^a-z0-9\u0900-\u097f]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48) || 'submenu';
+      btn.setAttribute('data-testid', 'public-mobile-submenu-toggle-' + label);
       btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
       btn.addEventListener('click', function (e) {
         e.preventDefault();

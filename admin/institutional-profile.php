@@ -9,7 +9,8 @@
  *   — Full-page Edit form (URL: institutional-profile.php?action=edit&id=N)
  *
  * FIELDS: आर्थिक वर्ष, मिति (BS+AD), सदस्य, शेयर, बचत, ऋण,
- *         सम्पत्ति, जगेडा, Loan Reserve, NPA, NPL, Liquidity
+ *         सम्पत्ति, जगेडा, अन्य कोष, बैंक/नगद, स्थिर सम्पत्ति,
+ *         ऋणी सदस्य, Loan Reserve, NPA, NPL, Liquidity
  */
 
 /* ─── 1. Config + session + DB ─── */
@@ -47,6 +48,10 @@ if ($tableExists) {
         "ALTER TABLE institutional_profile ADD COLUMN liquidity_percent DECIMAL(8,2) DEFAULT 0 COMMENT 'तरलता अनुपात'",
         "ALTER TABLE institutional_profile ADD COLUMN npl_percent DECIMAL(5,2) DEFAULT 0 COMMENT 'NPL %'",
         "ALTER TABLE institutional_profile ADD COLUMN attachment_path VARCHAR(255) DEFAULT '' COMMENT 'PDF/photo attachment'",
+        "ALTER TABLE institutional_profile ADD COLUMN other_fund DECIMAL(18,2) DEFAULT 0 COMMENT 'अन्य कोष'",
+        "ALTER TABLE institutional_profile ADD COLUMN bank_cash_balance DECIMAL(18,2) DEFAULT 0 COMMENT 'बैंक तथा नगद मौज्दात'",
+        "ALTER TABLE institutional_profile ADD COLUMN fixed_assets DECIMAL(18,2) DEFAULT 0 COMMENT 'स्थिर सम्पत्ति'",
+        "ALTER TABLE institutional_profile ADD COLUMN total_loan_members INT DEFAULT 0 COMMENT 'कुल ऋणी सदस्य'",
     ];
     foreach ($alters as $sql) {
         try { $db->exec($sql); } catch (Exception $e) { /* Column exists or other ignorable error */ }
@@ -82,10 +87,14 @@ if ($tableExists && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $share_capital_percent      = (float)($_POST['share_capital_percent']      ?? 0);
         $reserved_fund              = (float)($_POST['reserved_fund']              ?? 0);
         $reserved_fund_percent      = (float)($_POST['reserved_fund_percent']      ?? 0);
+        $other_fund                 = (float)($_POST['other_fund']                 ?? 0);
+        $bank_cash_balance          = (float)($_POST['bank_cash_balance']          ?? 0);
+        $fixed_assets               = (float)($_POST['fixed_assets']               ?? 0);
         $deposit                    = (float)($_POST['deposit']                    ?? 0);
         $deposit_percent            = (float)($_POST['deposit_percent']            ?? 0);
         $loan                       = (float)($_POST['loan']                       ?? 0);
         $loan_percent               = (float)($_POST['loan_percent']               ?? 0);
+        $total_loan_members         = (int)($_POST['total_loan_members']           ?? 0);
         $total_loan_reserve_fund    = (float)($_POST['total_loan_reserve_fund']    ?? 0);
         $total_loan_reserve_percent = (float)($_POST['total_loan_reserve_percent'] ?? 0);
         $npa_percent                = (float)($_POST['npa_percent']                ?? 0);
@@ -115,9 +124,10 @@ if ($tableExists && $_SERVER['REQUEST_METHOD'] === 'POST') {
             'fiscal_year','report_date_bs','report_date_ad',
             'total_members','total_balance_member','total_assets',
             'share_capital','share_capital_percent',
-            'reserved_fund','reserved_fund_percent',
+            'reserved_fund','reserved_fund_percent','other_fund',
+            'bank_cash_balance','fixed_assets',
             'deposit','deposit_percent',
-            'loan','loan_percent',
+            'loan','loan_percent','total_loan_members',
             'total_loan_reserve_fund','total_loan_reserve_percent',
             'npa_percent','liquidity_percent','npl_percent',
             'report_note','attachment_path','is_active'
@@ -492,33 +502,48 @@ echo adminPageHeader(
         '); ?>
 
         <!-- ── SECTION 3: शेयर पूँजी + जगेडा ── -->
-        <?php echo adminSectionCard('शेयर पूँजी र जगेडा कोष', 'fa-coins', 'warning', '
+        <?php echo adminSectionCard('शेयर पूँजी, कोष र सम्पत्ति', 'fa-coins', 'warning', '
           <div class="row g-3">
             <div class="col-md-3">
               <label class="form-label">शेयर पूँजी (रू.)</label>
-              <input type="number" name="share_capital" class="form-control"
+              <input type="number" name="share_capital" class="form-control" data-testid="institutional-profile-share-capital-input"
                      step="0.01" min="0" value="' . (float)$v('share_capital', 0) . '">
             </div>
             <div class="col-md-3">
               <label class="form-label">शेयर पूँजी % वृद्धि</label>
               <div class="input-group">
-                <input type="number" name="share_capital_percent" class="form-control"
+                <input type="number" name="share_capital_percent" class="form-control" data-testid="institutional-profile-share-capital-percent-input"
                        step="0.01" value="' . (float)$v('share_capital_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
             </div>
             <div class="col-md-3">
               <label class="form-label">जगेडा कोष (रू.)</label>
-              <input type="number" name="reserved_fund" class="form-control"
+              <input type="number" name="reserved_fund" class="form-control" data-testid="institutional-profile-reserved-fund-input"
                      step="0.01" min="0" value="' . (float)$v('reserved_fund', 0) . '">
             </div>
             <div class="col-md-3">
               <label class="form-label">जगेडा कोष % वृद्धि</label>
               <div class="input-group">
-                <input type="number" name="reserved_fund_percent" class="form-control"
+                <input type="number" name="reserved_fund_percent" class="form-control" data-testid="institutional-profile-reserved-fund-percent-input"
                        step="0.01" value="' . (float)$v('reserved_fund_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">अन्य कोष (रू.)</label>
+              <input type="number" name="other_fund" class="form-control" data-testid="institutional-profile-other-fund-input"
+                     step="0.01" min="0" value="' . (float)$v('other_fund', 0) . '">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">बैंक तथा नगद मौज्दात (रू.)</label>
+              <input type="number" name="bank_cash_balance" class="form-control" data-testid="institutional-profile-bank-cash-balance-input"
+                     step="0.01" min="0" value="' . (float)$v('bank_cash_balance', 0) . '">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">स्थिर सम्पत्ति (रू.)</label>
+              <input type="number" name="fixed_assets" class="form-control" data-testid="institutional-profile-fixed-assets-input"
+                     step="0.01" min="0" value="' . (float)$v('fixed_assets', 0) . '">
             </div>
           </div>
         '); ?>
@@ -541,7 +566,7 @@ echo adminPageHeader(
             </div>
             <div class="col-md-3">
               <label class="form-label">कुल ऋण लगानी (रू.)</label>
-              <input type="number" name="loan" class="form-control"
+              <input type="number" name="loan" class="form-control" data-testid="institutional-profile-loan-input"
                      step="0.01" min="0" value="' . (float)$v('loan', 0) . '">
             </div>
             <div class="col-md-3">
@@ -551,6 +576,11 @@ echo adminPageHeader(
                        step="0.01" value="' . (float)$v('loan_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">कुल ऋणी सदस्य</label>
+              <input type="number" name="total_loan_members" class="form-control" data-testid="institutional-profile-total-loan-members-input"
+                     min="0" value="' . (int)$v('total_loan_members', 0) . '">
             </div>
           </div>
         '); ?>
@@ -681,7 +711,7 @@ echo adminPageHeader(
 
     <!-- form-footer: main form बाहिर — delete button nested form को bug नआओस् भनेर -->
     <div class="form-footer">
-        <button type="submit" form="profileMainForm" class="btn btn-primary px-4">
+        <button type="submit" form="profileMainForm" class="btn btn-primary px-4" data-testid="institutional-profile-save-button">
           <i class="fas fa-save me-2"></i><?php echo $isEdit ? 'अपडेट गर्नुहोस्' : 'सेभ गर्नुहोस्'; ?>
         </button>
         <a href="<?php echo $selfUrl; ?>" class="btn btn-outline-secondary">
