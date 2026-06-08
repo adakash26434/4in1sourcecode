@@ -1,0 +1,76 @@
+{
+  "project_context": {
+    "app_type": "legacy_php_public_website",
+    "domain": "Finance / Cooperative Institution",
+    "goal": "Improve UI/UX of a sparse, stretched data view without framework migration. Preserve cooperative green branding."
+  },
+  "theme_and_archetype": {
+    "theme": "LIGHT",
+    "archetype": "1 (Organic & Earthy)",
+    "justification": "Trust, stability, and direct alignment with the existing cooperative green branding."
+  },
+  "colors": {
+    "primary": "#047857",
+    "primary_hover": "#064e3b",
+    "background_page": "#f8fafc",
+    "surface_card": "#ffffff",
+    "text_main": "#0f172a",
+    "text_secondary": "#475569",
+    "border_light": "#e2e8f0",
+    "indicator_safe_bg": "#dcfce7",
+    "indicator_safe_text": "#166534",
+    "indicator_warn_bg": "#fef08a",
+    "indicator_warn_text": "#854d0e",
+    "indicator_danger_bg": "#fee2e2",
+    "indicator_danger_text": "#991b1b"
+  },
+  "typography": {
+    "headings": "'Work Sans', sans-serif",
+    "body": "'IBM Plex Sans', sans-serif",
+    "rules": [
+      "Use 'tabular-nums' CSS property for all financial figures to ensure alignment.",
+      "Never use Inter or generic sans for headings.",
+      "Headings should use tracking-tight for a professional feel.",
+      "Labels should be uppercase, small, and wide (tracking-[0.1em])."
+    ]
+  },
+  "layout_strategy": {
+    "pattern": "Mode B: Control Room Grid (Bento Grid)",
+    "mobile": "grid-cols-1 gap-4",
+    "tablet": "grid-cols-2 gap-4",
+    "desktop": "grid-cols-3 lg:grid-cols-4 gap-6",
+    "alignment_rules": "Left-align dense data. Use generous internal padding inside cards (p-6) to fix the 'stretched/sparse' feel."
+  },
+  "component_guidelines": {
+    "page_header": {
+      "structure": "Flexbox row (desktop) / column (mobile). Space-between alignment.",
+      "content": "Institution Name/Fiscal Year on left. Published Date and 'Document' button on right."
+    },
+    "stat_card": {
+      "container": "bg-white rounded-xl border border-slate-200 shadow-sm p-6 hover:-translate-y-1 hover:shadow-md transition-all duration-200",
+      "label": "text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2",
+      "value": "text-2xl sm:text-3xl font-bold text-slate-900 tabular-nums",
+      "subtext_or_badge": "mt-3"
+    },
+    "indicator_badge": {
+      "style": "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider",
+      "logic": "Apply green/yellow/red color classes based on the health of NPA/NPL/Liquidity indicators."
+    },
+    "document_button": {
+      "style": "inline-flex items-center justify-center rounded-lg bg-[#047857] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#064e3b] transition-colors",
+      "icon": "Add a document/download SVG icon next to the text."
+    },
+    "report_note": {
+      "style": "col-span-full mt-6 bg-slate-50 rounded-lg p-4 border border-slate-200 text-sm text-slate-600"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Inject Tailwind CSS via CDN (`<script src='https://cdn.tailwindcss.com'></script>`) into the legacy PHP file if a build system is not present.",
+    "Inject Google Fonts for 'Work Sans' and 'IBM Plex Sans' in the `<head>`.",
+    "Refactor the existing sparse data layout into a CSS Grid (`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6`).",
+    "Group related financial stats (Assets, Deposits, Loans) into prominent `stat_card` designs.",
+    "Use distinct visual badges for NPA/NPL/Liquidity to make them scannable.",
+    "Ensure all data points and interactive elements include a `data-testid` attribute (e.g., `data-testid='total-assets-value'`).",
+    "Maintain the existing PHP variables and logic; strictly update the HTML structure and CSS classes."
+  ]
+}
