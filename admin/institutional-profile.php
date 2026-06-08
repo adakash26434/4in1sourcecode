@@ -436,10 +436,17 @@ echo adminPageHeader(
 );
 ?>
 
-<div class="admin-form-page">
-  <div class="card mb-3">
-    <div class="card-header">
-      <h5><?php echo $formTitle; ?></h5>
+<div class="admin-form-page ip-admin-form-page">
+  <div class="card mb-3 ip-admin-form-card">
+    <div class="card-header ip-admin-form-hero">
+      <div>
+        <span class="ip-admin-kicker"><i class="fas fa-chart-line"></i> आर्थिक विवरण</span>
+        <h5><?php echo $formTitle; ?></h5>
+        <p><?php echo $isEdit ? 'सार्वजनिक प्रोफाइलमा देखिने वार्षिक विवरण यहाँबाट अद्यावधिक गर्नुहोस्।' : 'नयाँ आर्थिक वर्षको प्रोफाइल compact रूपमा भर्नुहोस्।'; ?></p>
+      </div>
+      <a href="<?php echo $selfUrl; ?>" class="btn btn-light btn-sm ip-admin-list-link" data-testid="institutional-profile-back-to-list-link">
+        <i class="fas fa-list me-1"></i>सूची
+      </a>
     </div>
 
     <form id="profileMainForm" method="POST" action="<?php echo $selfUrl; ?>" class="needs-validation" novalidate enctype="multipart/form-data">
@@ -454,7 +461,7 @@ echo adminPageHeader(
           <div class="row g-3">
             <div class="col-md-4">
               <label class="form-label">आर्थिक वर्ष <span class="text-danger">*</span></label>
-              ' . adminFiscalYearSelect('fiscal_year', (string)$v('fiscal_year'), true, 'fieldFiscalYear') . '
+              ' . str_replace('<select ', '<select data-testid="institutional-profile-fiscal-year-select" ', adminFiscalYearSelect('fiscal_year', (string)$v('fiscal_year'), true, 'fieldFiscalYear')) . '
               <small class="text-muted">उदाहरण: 2080/81</small>
             </div>
             <div class="col-md-4">
@@ -462,9 +469,10 @@ echo adminPageHeader(
               <div class="input-group">
                 <input type="text" name="report_date_bs" id="fieldDateBs"
                        class="form-control nepali-datepicker"
+                       data-testid="institutional-profile-report-date-bs-input"
                        value="' . htmlspecialchars((string)$v('report_date_bs')) . '"
                        placeholder="YYYY-MM-DD" autocomplete="off">
-                <span class="input-group-text bg-success text-white border-success ndp-trigger ip-pointer" title="क्यालेन्डर खोल्नुहोस्">
+                <span class="input-group-text bg-success text-white border-success ndp-trigger ip-pointer" title="क्यालेन्डर खोल्नुहोस्" data-testid="institutional-profile-report-date-bs-calendar-button">
                   <i class="fas fa-calendar-alt"></i>
                 </span>
               </div>
@@ -474,6 +482,7 @@ echo adminPageHeader(
               <label class="form-label">मिति (A.D.) <small class="text-muted">(optional)</small></label>
               <input type="date" name="report_date_ad" id="fieldDateAd"
                      class="form-control"
+                     data-testid="institutional-profile-report-date-ad-input"
                      value="' . htmlspecialchars((string)$v('report_date_ad')) . '">
               <small class="text-muted">Same मिति — Gregorian format</small>
             </div>
@@ -485,17 +494,17 @@ echo adminPageHeader(
           <div class="row g-3">
             <div class="col-md-4">
               <label class="form-label">कुल सदस्य संख्या</label>
-              <input type="number" name="total_members" class="form-control"
+              <input type="number" name="total_members" class="form-control" data-testid="institutional-profile-total-members-input"
                      min="0" value="' . (int)$v('total_members', 0) . '">
             </div>
             <div class="col-md-4">
               <label class="form-label">शेष सदस्य संख्या</label>
-              <input type="number" name="total_balance_member" class="form-control"
+              <input type="number" name="total_balance_member" class="form-control" data-testid="institutional-profile-total-balance-member-input"
                      min="0" value="' . (int)$v('total_balance_member', 0) . '">
             </div>
             <div class="col-md-4">
               <label class="form-label">कुल सम्पत्ति (रू.)</label>
-              <input type="number" name="total_assets" class="form-control"
+              <input type="number" name="total_assets" class="form-control" data-testid="institutional-profile-total-assets-input"
                      step="0.01" min="0" value="' . (float)$v('total_assets', 0) . '">
             </div>
           </div>
@@ -553,13 +562,13 @@ echo adminPageHeader(
           <div class="row g-3">
             <div class="col-md-3">
               <label class="form-label">कुल बचत (रू.)</label>
-              <input type="number" name="deposit" class="form-control"
+              <input type="number" name="deposit" class="form-control" data-testid="institutional-profile-deposit-input"
                      step="0.01" min="0" value="' . (float)$v('deposit', 0) . '">
             </div>
             <div class="col-md-3">
               <label class="form-label">बचत % वृद्धि</label>
               <div class="input-group">
-                <input type="number" name="deposit_percent" class="form-control"
+                <input type="number" name="deposit_percent" class="form-control" data-testid="institutional-profile-deposit-percent-input"
                        step="0.01" value="' . (float)$v('deposit_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
@@ -572,7 +581,7 @@ echo adminPageHeader(
             <div class="col-md-3">
               <label class="form-label">ऋण % वृद्धि</label>
               <div class="input-group">
-                <input type="number" name="loan_percent" class="form-control"
+                <input type="number" name="loan_percent" class="form-control" data-testid="institutional-profile-loan-percent-input"
                        step="0.01" value="' . (float)$v('loan_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
@@ -590,13 +599,13 @@ echo adminPageHeader(
           <div class="row g-3">
             <div class="col-md-4">
               <label class="form-label">ऋण जोखिम कोष (रू.)</label>
-              <input type="number" name="total_loan_reserve_fund" class="form-control"
+              <input type="number" name="total_loan_reserve_fund" class="form-control" data-testid="institutional-profile-loan-reserve-fund-input"
                      step="0.01" min="0" value="' . (float)$v('total_loan_reserve_fund', 0) . '">
             </div>
             <div class="col-md-2">
               <label class="form-label">Loan Reserve %</label>
               <div class="input-group">
-                <input type="number" name="total_loan_reserve_percent" class="form-control"
+                <input type="number" name="total_loan_reserve_percent" class="form-control" data-testid="institutional-profile-loan-reserve-percent-input"
                        step="0.01" value="' . (float)$v('total_loan_reserve_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
@@ -607,7 +616,7 @@ echo adminPageHeader(
                    title="Non-Performing Assets — कम राम्रो (अधिकतम 5%)"></i>
               </label>
               <div class="input-group">
-                <input type="number" name="npa_percent" class="form-control"
+                <input type="number" name="npa_percent" class="form-control" data-testid="institutional-profile-npa-percent-input"
                        step="0.01" min="0" max="100" value="' . (float)$v('npa_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
@@ -616,7 +625,7 @@ echo adminPageHeader(
             <div class="col-md-2">
               <label class="form-label">Liquidity %</label>
               <div class="input-group">
-                <input type="number" name="liquidity_percent" class="form-control"
+                <input type="number" name="liquidity_percent" class="form-control" data-testid="institutional-profile-liquidity-percent-input"
                        step="0.01" min="0" max="100" value="' . (float)$v('liquidity_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
@@ -624,7 +633,7 @@ echo adminPageHeader(
             <div class="col-md-2">
               <label class="form-label">NPL %</label>
               <div class="input-group">
-                <input type="number" name="npl_percent" class="form-control"
+                <input type="number" name="npl_percent" class="form-control" data-testid="institutional-profile-npl-percent-input"
                        step="0.01" min="0" max="100" value="' . (float)$v('npl_percent', 0) . '">
                 <span class="input-group-text">%</span>
               </div>
@@ -652,7 +661,7 @@ echo adminPageHeader(
                 . '<a href="' . $_attachUrl . '" target="_blank" class="btn btn-sm btn-outline-success">'
                 . '<i class="fas fa-eye me-1"></i>हेर्नुहोस् / डाउनलोड</a>'
                 . '<div class="form-check mb-0 ms-2">'
-                . '<input type="checkbox" class="form-check-input" name="remove_attachment" id="removeAttachment" value="1">'
+                . '<input type="checkbox" class="form-check-input" name="remove_attachment" id="removeAttachment" value="1" data-testid="institutional-profile-remove-attachment-checkbox">'
                 . '<label class="form-check-label small text-danger" for="removeAttachment">'
                 . '<i class="fas fa-trash-can me-1"></i>यो कागजात हटाउने</label></div></div>';
             $_existAttachHtml = '<input type="hidden" name="existing_attachment_path" value="' . htmlspecialchars($r['attachment_path'], ENT_QUOTES) . '">';
@@ -667,7 +676,7 @@ echo adminPageHeader(
                 <div class="col-md-8">
                   <label class="form-label">नयाँ कागजात अपलोड गर्नुहोस् <span class="text-muted fw-normal">(optional)</span></label>
                   <input type="file" name="attachment_file" id="fieldAttachment"
-                         class="form-control" accept=".pdf,.jpg,.jpeg"
+                         class="form-control" accept=".pdf,.jpg,.jpeg" data-testid="institutional-profile-attachment-file-input"
                          onchange="(function(i){var w=document.getElementById(\'ipFpWrap\'),n=document.getElementById(\'ipFpName\');if(i.files.length){w.style.display=\'\';n.textContent=i.files[0].name;}else{w.style.display=\'none\';}})(this)">
                   <small class="text-muted d-block mt-1">
                     <i class="fas fa-circle-info me-1"></i>PDF, JPG वा JPEG — अधिकतम 10MB।
@@ -688,13 +697,13 @@ echo adminPageHeader(
           <div class="row g-3">
             <div class="col-md-8">
               <label class="form-label">थप टिप्पणी <small class="text-muted">(optional)</small></label>
-              <textarea name="report_note" class="form-control" rows="3"
+              <textarea name="report_note" class="form-control" rows="3" data-testid="institutional-profile-report-note-textarea"
                         placeholder="रिपोर्टको बारेमा कुनै विशेष टिप्पणी...">'. htmlspecialchars((string)$v('report_note')) .'</textarea>
             </div>
             <div class="col-md-4">
               <label class="form-label">Website मा देखाउने?</label>
               <div class="form-check form-switch mt-2">
-                <input class="form-check-input" type="checkbox" name="is_active" id="fieldIsActive"
+                <input class="form-check-input" type="checkbox" name="is_active" id="fieldIsActive" data-testid="institutional-profile-is-active-switch"
                        ' . ((int)$v('is_active', 1) ? 'checked' : '') . '>
                 <label class="form-check-label" for="fieldIsActive">
                   Website मा Active राख्नुहोस्
@@ -710,11 +719,11 @@ echo adminPageHeader(
     </form>
 
     <!-- form-footer: main form बाहिर — delete button nested form को bug नआओस् भनेर -->
-    <div class="form-footer">
+    <div class="form-footer ip-admin-sticky-footer">
         <button type="submit" form="profileMainForm" class="btn btn-primary px-4" data-testid="institutional-profile-save-button">
           <i class="fas fa-save me-2"></i><?php echo $isEdit ? 'अपडेट गर्नुहोस्' : 'सेभ गर्नुहोस्'; ?>
         </button>
-        <a href="<?php echo $selfUrl; ?>" class="btn btn-outline-secondary">
+        <a href="<?php echo $selfUrl; ?>" class="btn btn-outline-secondary" data-testid="institutional-profile-cancel-link">
           <i class="fas fa-times me-1"></i>रद्द गर्नुहोस्
         </a>
         <?php if ($isEdit): ?>
