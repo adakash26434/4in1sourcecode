@@ -104,46 +104,9 @@ if (!defined('CORE_DIR')) {
     define('CORE_DIR', BASEDIR . '/core');
 }
 
-// Helper functions - check both locations for compatibility
-$helperFiles = [
-    CORE_DIR . '/helpers.php',
-    INCLUDES_DIR . '/helpers.php'
-];
-
-foreach ($helperFiles as $helperFile) {
-    if (file_exists($helperFile)) {
-        require_once $helperFile;
-        break;
-    }
-}
-
-// Authentication
-$authFiles = [
-    CORE_DIR . '/auth.php',
-    INCLUDES_DIR . '/auth.php'
-];
-
-foreach ($authFiles as $authFile) {
-    if (file_exists($authFile)) {
-        require_once $authFile;
-        break;
-    }
-}
-
-// Validation
-$validationFiles = [
-    CORE_DIR . '/validation.php',
-    INCLUDES_DIR . '/validation.php'
-];
-
-foreach ($validationFiles as $validationFile) {
-    if (file_exists($validationFile)) {
-        require_once $validationFile;
-        break;
-    }
-}
-
-// Config (contains requireAdminLogin and other auth functions)
+// Config contains the production helpers/auth functions used by this project.
+// Load it before any legacy core helper files to avoid duplicate function fatals
+// (sanitize(), clean_text(), redirect(), formatDate(), etc.).
 $configFiles = [
     BASEDIR . '/includes/config.php',
     BASEDIR . '/config/config.php',
@@ -153,6 +116,23 @@ foreach ($configFiles as $configFile) {
     if (file_exists($configFile)) {
         require_once $configFile;
         break;
+    }
+}
+
+// Optional legacy core files: load only when their primary functions were not
+// already provided by includes/config.php. This keeps older installs compatible
+// without breaking current pages.
+$optionalCoreFiles = [
+    CORE_DIR . '/helpers.php' => 'clean_int',
+    CORE_DIR . '/auth.php' => 'requireLogin',
+    CORE_DIR . '/validation.php' => 'validateRequired',
+    INCLUDES_DIR . '/helpers.php' => 'clean_int',
+    INCLUDES_DIR . '/auth.php' => 'requireLogin',
+];
+
+foreach ($optionalCoreFiles as $optionalFile => $sentinelFunction) {
+    if (file_exists($optionalFile) && !function_exists($sentinelFunction)) {
+        require_once $optionalFile;
     }
 }
 
