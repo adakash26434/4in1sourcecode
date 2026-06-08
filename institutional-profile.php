@@ -81,8 +81,8 @@ function ipNepaliNumber(int $number): string {
 <div class="ip-profile-card mb-3 ip-month-card">
     <div class="ip-card-header">
         <div class="ip-card-title-wrap">
-            <div class="ip-fy-badge"><i class="fas fa-table me-2"></i> Month-wise आर्थिक विवरण</div>
-            <div class="ip-date-info"><span>Desktop मा एक row मा २ month/report</span></div>
+            <div class="ip-fy-badge"><i class="fas fa-table me-2"></i> महिनागत आर्थिक विवरण</div>
+            <div class="ip-date-info"><span>मुख्य आर्थिक सूचकहरू</span></div>
         </div>
     </div>
 
@@ -115,15 +115,52 @@ function ipNepaliNumber(int $number): string {
                 <?php endif; ?>
             </div>
 
-            <div class="ip-month-metrics">
-                <div><span>सदस्य</span><strong data-testid="institutional-profile-total-members-value-<?php echo $rowNo; ?>"><?php echo number_format((int)$p['total_members']); ?></strong><?php if (!empty($p['total_balance_member'])): ?><em><?php echo number_format((int)$p['total_balance_member']); ?> शेष</em><?php endif; ?></div>
-                <div><span>शेयर पूँजी</span><strong data-testid="institutional-profile-share-capital-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['share_capital']); ?></strong><?php if (!empty($p['share_capital_percent'])): ?><em><?php echo htmlspecialchars((string)$p['share_capital_percent']); ?>%</em><?php endif; ?></div>
-                <div><span>जगेडा / अन्य</span><strong data-testid="institutional-profile-reserved-fund-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)($p['reserved_fund'] ?? 0)); ?></strong><?php if ($otherFund > 0): ?><em>अन्य <?php echo ipShortAmt($otherFund); ?></em><?php endif; ?></div>
-                <div><span>बचत</span><strong data-testid="institutional-profile-deposit-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['deposit']); ?></strong><?php if (!empty($p['deposit_percent'])): ?><em><?php echo htmlspecialchars((string)$p['deposit_percent']); ?>%</em><?php endif; ?></div>
-                <div><span>ऋण</span><strong data-testid="institutional-profile-loan-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['loan']); ?></strong><?php if ($totalLoanMembers > 0): ?><em><?php echo number_format($totalLoanMembers); ?> ऋणी</em><?php endif; ?></div>
-                <div><span>बैंक/नगद</span><strong data-testid="institutional-profile-bank-cash-balance-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($bankCashBalance); ?></strong></div>
-                <div><span>स्थिर सम्पत्ति</span><strong data-testid="institutional-profile-fixed-assets-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($fixedAssets); ?></strong></div>
-                <div class="ip-month-total"><span>कुल सम्पत्ति</span><strong data-testid="institutional-profile-total-assets-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['total_assets']); ?></strong></div>
+            <div class="ip-month-ledger">
+                <div class="ip-month-ledger-row">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(1); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-users"></i> कुल सदस्य</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-total-members-value-<?php echo $rowNo; ?>"><?php echo number_format((int)$p['total_members']); ?></strong><?php if (!empty($p['total_balance_member'])): ?><em><?php echo number_format((int)$p['total_balance_member']); ?> शेष</em><?php endif; ?></span>
+                </div>
+                <div class="ip-month-ledger-row">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(2); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-coins"></i> शेयर पूँजी</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-share-capital-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['share_capital']); ?></strong><?php if (!empty($p['share_capital_percent'])): ?><em><?php echo htmlspecialchars((string)$p['share_capital_percent']); ?>% वृद्धि</em><?php endif; ?></span>
+                </div>
+                <div class="ip-month-ledger-row">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(3); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-shield-halved"></i> जगेडा कोष</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-reserved-fund-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)($p['reserved_fund'] ?? 0)); ?></strong><?php if (!empty($p['reserved_fund_percent'])): ?><em><?php echo htmlspecialchars((string)$p['reserved_fund_percent']); ?>% वृद्धि</em><?php endif; ?></span>
+                </div>
+                <div class="ip-month-ledger-row">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(4); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-layer-group"></i> अन्य कोष</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-other-fund-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($otherFund); ?></strong></span>
+                </div>
+                <div class="ip-month-ledger-row">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(5); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-piggy-bank"></i> कुल बचत</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-deposit-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['deposit']); ?></strong><?php if (!empty($p['deposit_percent'])): ?><em><?php echo htmlspecialchars((string)$p['deposit_percent']); ?>% वृद्धि</em><?php endif; ?></span>
+                </div>
+                <div class="ip-month-ledger-row">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(6); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-hand-holding-dollar"></i> ऋण लगानी</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-loan-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['loan']); ?></strong><?php if ($totalLoanMembers > 0): ?><em><?php echo number_format($totalLoanMembers); ?> ऋणी सदस्य</em><?php endif; ?></span>
+                </div>
+                <div class="ip-month-ledger-row">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(7); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-money-bill-transfer"></i> बैंक तथा नगद</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-bank-cash-balance-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($bankCashBalance); ?></strong></span>
+                </div>
+                <div class="ip-month-ledger-row">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(8); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-building-columns"></i> स्थिर सम्पत्ति</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-fixed-assets-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt($fixedAssets); ?></strong></span>
+                </div>
+                <div class="ip-month-ledger-row ip-month-total">
+                    <span class="ip-month-sn"><?php echo ipNepaliNumber(9); ?></span>
+                    <span class="ip-month-title"><i class="fas fa-landmark"></i> कुल सम्पत्ति</span>
+                    <span class="ip-month-value"><strong data-testid="institutional-profile-total-assets-value-<?php echo $rowNo; ?>"><?php echo ipShortAmt((float)$p['total_assets']); ?></strong></span>
+                </div>
             </div>
 
             <div class="ip-month-tile-foot">

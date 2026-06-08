@@ -18788,6 +18788,95 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     background: rgba(var(--primary-rgb,26,95,42),.055);
 }
 
+.ip-month-ledger {
+    display: block;
+    border-top: 1px solid rgba(15, 23, 42, .06);
+}
+
+.ip-month-ledger-row {
+    display: grid;
+    grid-template-columns: 34px minmax(120px, 1fr) minmax(120px, 1fr);
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid rgba(15, 23, 42, .07);
+    background: #fff;
+}
+
+.ip-month-ledger-row:last-child {
+    border-bottom: 0;
+}
+
+.ip-month-ledger-row:hover {
+    background: rgba(var(--primary-rgb,26,95,42),.025);
+}
+
+.ip-month-sn,
+.ip-month-title,
+.ip-month-value {
+    min-width: 0;
+    padding: 8px 9px;
+}
+
+.ip-month-sn {
+    color: #64748b;
+    font-size: .8rem;
+    font-weight: 900;
+    text-align: center;
+}
+
+.ip-month-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #27372d;
+    font-size: .82rem;
+    font-weight: 900;
+    line-height: 1.25;
+    border-left: 1px solid rgba(15, 23, 42, .06);
+}
+
+.ip-month-title i {
+    width: 18px;
+    flex: 0 0 18px;
+    color: var(--primary-color,#166534);
+    text-align: center;
+    font-size: .9rem;
+}
+
+.ip-month-value {
+    border-left: 1px solid rgba(15, 23, 42, .06);
+    text-align: left;
+}
+
+.ip-month-value strong,
+.ip-month-value em {
+    display: block;
+}
+
+.ip-month-value strong {
+    color: #111827;
+    font-size: .86rem;
+    font-weight: 950;
+    line-height: 1.28;
+}
+
+.ip-month-value em {
+    margin-top: 3px;
+    color: var(--primary-dark,#14532d);
+    font-size: .68rem;
+    font-style: normal;
+    font-weight: 850;
+}
+
+.ip-month-ledger-row.ip-month-total {
+    background: rgba(var(--primary-rgb,26,95,42),.055);
+}
+
+.ip-month-ledger-row.ip-month-total .ip-month-title,
+.ip-month-ledger-row.ip-month-total .ip-month-value strong {
+    color: #0f3f23;
+}
+
 .ip-month-tile-foot {
     min-height: 28px;
     padding: 5px 8px 7px;
@@ -18814,6 +18903,25 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     .ip-month-metrics > div,
     .ip-month-metrics > div:nth-child(2n) {
         border-right: 0;
+    }
+    .ip-month-ledger-row {
+        grid-template-columns: 30px minmax(108px, .9fr) minmax(105px, 1fr);
+        min-height: 44px;
+    }
+    .ip-month-sn,
+    .ip-month-title,
+    .ip-month-value {
+        padding: 7px 7px;
+    }
+    .ip-month-title {
+        gap: 6px;
+        font-size: .76rem;
+    }
+    .ip-month-value strong {
+        font-size: .78rem;
+    }
+    .ip-month-value em {
+        font-size: .62rem;
     }
 }
 
