@@ -993,10 +993,10 @@ CREATE TABLE IF NOT EXISTS app_features (
 -- =====================================================
 
 -- ─────────────────────────────────────────────────
-  -- SAFE MIGRATION: run once on existing databases
-  -- ALTER TABLE institutional_profile ADD UNIQUE KEY uniq_fiscal_year (fiscal_year);
-  -- ─────────────────────────────────────────────────
-  CREATE TABLE IF NOT EXISTS institutional_profile (
+-- SAFE MIGRATION: run once on existing databases
+-- ALTER TABLE institutional_profile ADD UNIQUE KEY uniq_fiscal_year (fiscal_year);
+-- ─────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS institutional_profile (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fiscal_year VARCHAR(20) NOT NULL,
     total_members INT DEFAULT 0,
@@ -1894,133 +1894,8 @@ CREATE TABLE IF NOT EXISTS election_milestones (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
--- HRM MODULE — सहकारी मानव संशाधन व्यवस्थापन
--- Merged from hrm_install.sql and hrm_messages.sql
--- =====================================================
-
--- 1) HRM DEPARTMENTS / BRANCHES (विभाग/शाखा)
-CREATE TABLE IF NOT EXISTS hrm_departments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name_np VARCHAR(160) NOT NULL,
-    name_en VARCHAR(160) DEFAULT NULL,
-    code VARCHAR(40) DEFAULT NULL,
-    parent_id INT DEFAULT NULL,
-    is_active TINYINT(1) DEFAULT 1,
-    sort_order INT DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_active (is_active),
-    INDEX idx_parent (parent_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- 2) HRM EMPLOYEE MASTER (कर्मचारी मास्टर)
-CREATE TABLE IF NOT EXISTS hrm_employees (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    employee_code VARCHAR(40) NOT NULL UNIQUE,
-    admin_user_id INT DEFAULT NULL,
-    full_name_np VARCHAR(160) NOT NULL,
-    full_name_en VARCHAR(160) DEFAULT NULL,
-    photo VARCHAR(255) DEFAULT NULL,
-    gender ENUM('male','female','other') DEFAULT 'male',
-    dob_bs VARCHAR(20) DEFAULT NULL,
-    dob_ad DATE DEFAULT NULL,
-    blood_group VARCHAR(10) DEFAULT NULL,
-    marital_status ENUM('single','married','widow','divorced') DEFAULT 'single',
-    nationality VARCHAR(60) DEFAULT 'Nepali',
-    religion VARCHAR(60) DEFAULT NULL,
-    ethnicity VARCHAR(60) DEFAULT NULL,
-    citizenship_no VARCHAR(60) DEFAULT NULL,
-    citizenship_issued_district VARCHAR(80) DEFAULT NULL,
-    citizenship_issued_date_bs VARCHAR(20) DEFAULT NULL,
-    pan_no VARCHAR(40) DEFAULT NULL,
-    nid_no VARCHAR(40) DEFAULT NULL,
-    passport_no VARCHAR(40) DEFAULT NULL,
-    driving_license_no VARCHAR(40) DEFAULT NULL,
-    mobile VARCHAR(20) DEFAULT NULL,
-    alt_mobile VARCHAR(20) DEFAULT NULL,
-    email VARCHAR(120) DEFAULT NULL,
-    perm_province VARCHAR(60) DEFAULT NULL,
-    perm_district VARCHAR(60) DEFAULT NULL,
-    perm_municipality VARCHAR(120) DEFAULT NULL,
-    perm_ward VARCHAR(10) DEFAULT NULL,
-    perm_tole VARCHAR(160) DEFAULT NULL,
-    temp_province VARCHAR(60) DEFAULT NULL,
-    temp_district VARCHAR(60) DEFAULT NULL,
-    temp_municipality VARCHAR(120) DEFAULT NULL,
-    temp_ward VARCHAR(10) DEFAULT NULL,
-    temp_tole VARCHAR(160) DEFAULT NULL,
-    designation VARCHAR(160) DEFAULT NULL,
-    department_id INT DEFAULT NULL,
-    branch_id INT DEFAULT NULL,
-    employment_type ENUM('permanent','contract','probation','temporary','intern','consultant') DEFAULT 'permanent',
-    grade VARCHAR(40) DEFAULT NULL,
-    level VARCHAR(40) DEFAULT NULL,
-    reporting_to INT DEFAULT NULL,
-    join_date_bs VARCHAR(20) DEFAULT NULL,
-    join_date_ad DATE DEFAULT NULL,
-    confirm_date_bs VARCHAR(20) DEFAULT NULL,
-    confirm_date_ad DATE DEFAULT NULL,
-    status ENUM('active','probation','on_leave','resigned','terminated','retired','suspended') DEFAULT 'active',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-    INDEX idx_emp_code (employee_code),
-    INDEX idx_dept (department_id),
-    INDEX idx_status (status),
-    INDEX idx_email (email)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- 3) HRM CONTRACTS (करार)
-CREATE TABLE IF NOT EXISTS hrm_employee_contracts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    employee_id INT NOT NULL,
-    contract_type VARCHAR(100) DEFAULT NULL,
-    start_date_bs VARCHAR(20) DEFAULT NULL,
-    start_date_ad DATE DEFAULT NULL,
-    end_date_bs VARCHAR(20) DEFAULT NULL,
-    end_date_ad DATE DEFAULT NULL,
-    document_path VARCHAR(500) DEFAULT NULL,
-    is_active TINYINT(1) DEFAULT 1,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_emp (employee_id),
-    INDEX idx_active (is_active),
-    INDEX idx_end_date (end_date_ad)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- 4) HRM DOCUMENTS (कागजात)
-CREATE TABLE IF NOT EXISTS hrm_employee_documents (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    employee_id INT NOT NULL,
-    doc_type VARCHAR(100) DEFAULT NULL,
-    doc_name VARCHAR(160) DEFAULT NULL,
-    document_path VARCHAR(500) DEFAULT NULL,
-    issue_date_bs VARCHAR(20) DEFAULT NULL,
-    issue_date_ad DATE DEFAULT NULL,
-    expiry_date_bs VARCHAR(20) DEFAULT NULL,
-    expiry_date_ad DATE DEFAULT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_emp (employee_id),
-    INDEX idx_expiry (expiry_date_ad)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- 5) HRM INTERNAL MESSENGER
-CREATE TABLE IF NOT EXISTS hrm_internal_messages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    sender_admin_id INT DEFAULT NULL,
-    sender_employee_id INT DEFAULT NULL,
-    receiver_employee_id INT NOT NULL,
-    subject VARCHAR(200) DEFAULT NULL,
-    body TEXT NOT NULL,
-    is_read TINYINT(1) NOT NULL DEFAULT 0,
-    read_at DATETIME DEFAULT NULL,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_receiver (receiver_employee_id, is_read),
-    INDEX idx_sender (sender_admin_id),
-    INDEX idx_created (created_at)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Re-enable foreign key checks
-
--- =====================================================
--- HRM MODULE (merged from hrm_install.sql)
+-- HRM MODULE (full schema — merged from hrm_install.sql)
+-- सहकारी मानव संशाधन व्यवस्थापन
 -- =====================================================
 SET FOREIGN_KEY_CHECKS = 0;
 

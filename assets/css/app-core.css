@@ -942,42 +942,18 @@ p {
 .btn {
     transition: all var(--anim-fast) var(--ease-out);
     position: relative;
-    overflow: hidden;
+    /* overflow:hidden removed — was clipping Devanagari text descenders and icon bottoms */
+    text-decoration: none !important;
 }
+a.btn, a.btn:hover, a.btn:focus { text-decoration: none !important; }
 
 .btn:not(:disabled):hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
 }
 
 .btn:not(:disabled):active {
     transform: translateY(0);
-}
-
-/* Ripple effect on click (using CSS) */
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-}
-
-.btn:active::before {
-    animation: ripple-effect var(--anim-slow) ease-out;
-}
-
-@keyframes ripple-effect {
-    to {
-        width: 300px;
-        height: 300px;
-        opacity: 0;
-    }
 }
 
 /* ────────────────────────────────────────────────────────────────────────────

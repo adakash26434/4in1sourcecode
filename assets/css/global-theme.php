@@ -1702,4 +1702,155 @@ body.verify-auth-page .vp-card                      {
     padding: 1.5rem !important;
 }
 
+/* ══════════════════════════════════════════════════════════════════════
+   FINAL UNIFORMITY PATCH — loaded LAST so it beats every earlier rule
+   ──────────────────────────────────────────────────────────────────────
+   Fixes consolidated from full-project deep review:
+   1. a.btn underlines (Devanagari + white-on-green hide)
+   2. .btn overflow:hidden clipping Devanagari descenders ँ ी ु etc.
+   3. Inactive tab pills inside green/primary strips (institutional profile)
+   4. Button icon visibility — icons always inherit button text color
+   5. Bottom mobile nav inactive icon visibility (admin/member/public)
+   6. stat-uniform-card / stat-card final canonical look
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. BUTTONS: kill underline + fix descender clipping ────────── */
+.btn, a.btn, button.btn,
+.btn:hover, .btn:focus, .btn:active,
+a.btn:hover, a.btn:focus, a.btn:active             {
+    text-decoration: none !important;
+}
+.btn                                               {
+    overflow: visible !important;          /* fix Devanagari descender clipping */
+    line-height: 1.45 !important;          /* breathing room for ँ ी ु */
+    text-decoration: none !important;
+}
+.btn:not(.btn-sm):not(.btn-xs)                     {
+    min-height: 38px;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+/* Icon inside any button inherits the button's text colour (no white-on-white) */
+.btn > i, .btn > svg, .btn i.fas, .btn i.fa, .btn i.far, .btn i.fab,
+a.btn i, button.btn i                              {
+    color: inherit !important;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+/* ── 2. INACTIVE TAB PILLS ON GREEN STRIP — readable white text ── */
+.admin-inner-tabstrip .nav-link:not(.active),
+.main-content ul.nav.admin-inner-tabstrip .nav-link:not(.active),
+ul.nav-pills.admin-inner-tabstrip .nav-link:not(.active) {
+    color: #ffffff !important;
+    opacity: 0.96 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,.25) !important;
+}
+.admin-inner-tabstrip .nav-link:not(.active) i,
+.main-content ul.nav.admin-inner-tabstrip .nav-link:not(.active) i {
+    color: #ffffff !important;
+    opacity: 0.96 !important;
+}
+.admin-inner-tabstrip .nav-link:not(.active):hover,
+.main-content ul.nav.admin-inner-tabstrip .nav-link:not(.active):hover {
+    background: rgba(255,255,255,.18) !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* ── 3. BUTTON ICON CONTRAST — primary-colored buttons keep icon visible ── */
+.btn-primary i, .btn-primary svg,
+.btn-success i, .btn-success svg,
+.btn-danger  i, .btn-danger  svg,
+.btn-secondary i, .btn-secondary svg,
+.btn-info i, .btn-info svg,
+.btn-warning i, .btn-warning svg                   {
+    color: inherit !important;
+}
+
+/* ── 4. PAGE HEADER ACTION BUTTONS — explicit visible padding so icon bottoms never clip ── */
+.admin-page-header .btn,
+.content-header .btn,
+.btn.adminAddBtn-like                              {
+    padding-top: 9px !important;
+    padding-bottom: 9px !important;
+    line-height: 1.4 !important;
+    text-decoration: none !important;
+}
+
+/* ── 5. ADMIN BOTTOM NAV ICONS — always visible at rest ────────── */
+.admin-bottom-nav .admin-nav-item                  {
+    color: #475569 !important;            /* darker default than #6b7280 */
+}
+.admin-bottom-nav .admin-nav-item i                {
+    color: inherit !important;
+    opacity: 1 !important;
+}
+.admin-bottom-nav .admin-nav-item.active,
+.admin-bottom-nav .admin-nav-item:hover            {
+    color: var(--primary-color, #1a5f2a) !important;
+    background: rgba(var(--primary-rgb, 26,95,42), .10) !important;
+}
+.admin-bottom-nav .admin-nav-item.active i,
+.admin-bottom-nav .admin-nav-item:hover i          {
+    color: var(--primary-color, #1a5f2a) !important;
+}
+
+/* ── 6. NAV-TABS ICONS visibility (Bootstrap default behaviour) ── */
+.nav-tabs .nav-link i, .nav-pills .nav-link i      {
+    color: inherit !important;
+    opacity: 1 !important;
+}
+
+/* ── 7. STAT-UNIFORM CARD — final visible icon + value ───────────── */
+.stat-uniform-card .stat-uniform-icon              {
+    color: var(--primary-color, #1a5f2a) !important;
+    font-size: 1.4rem !important;
+    margin-bottom: 4px !important;
+    opacity: 1 !important;
+}
+.stat-uniform-card[data-bg="danger"]  .stat-uniform-icon { color: var(--color-danger,  #dc2626) !important; }
+.stat-uniform-card[data-bg="warning"] .stat-uniform-icon { color: var(--color-warning, #d97706) !important; }
+.stat-uniform-card[data-bg="success"] .stat-uniform-icon { color: var(--color-success, #16a34a) !important; }
+.stat-uniform-card[data-bg="info"]    .stat-uniform-icon { color: var(--color-info,    #0891b2) !important; }
+.stat-uniform-card[data-bg="secondary"] .stat-uniform-icon { color: var(--secondary-color, #6b7280) !important; }
+
+/* ── 8. ICON-ONLY ACTION BUTTONS (table row edit/delete) — visible color ── */
+.admin-icon-btn i, .admin-action-group .btn i      {
+    color: inherit !important;
+    opacity: 1 !important;
+    font-size: 0.92em;
+}
+
+/* ── 9. PAGE BANNER ON SETUP — fonts uniform ──────────────────── */
+body, .admin-shell, .member-page                   {
+    font-family: var(--font-primary, 'Mukta', 'Noto Sans Devanagari', 'Segoe UI', sans-serif) !important;
+}
+
+/* ── 10. SIDEBAR HOVER + ACTIVE → icon contrast guaranteed ────── */
+.sidebar a:hover i, .sidebar a.active i,
+.admin-sidebar a:hover i, .admin-sidebar a.active i,
+.sidebar-nav a:hover i, .sidebar-nav a.active i    {
+    color: inherit !important;
+}
+
+/* ── 11. NAV-MENU (public) hover → icon visible ─────────────── */
+.nav-menu > li > a:hover i, .nav-menu > li.active > a i {
+    color: inherit !important;
+    opacity: 1 !important;
+}
+
+/* ── 12. CARD-HEADER GRADIENT — text/icon always white ────────── */
+.main-content .card-header.bg-gradient-primary,
+.admin-card .card-header                           {
+    color: var(--text-on-primary, #fff) !important;
+}
+.main-content .card-header.bg-gradient-primary *,
+.admin-card .card-header *                         {
+    color: var(--text-on-primary, #fff) !important;
+}
+.admin-card .card-header i, .main-content .card-header i {
+    opacity: 1 !important;
+}
+
 </style>

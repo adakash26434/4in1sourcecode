@@ -142,3 +142,66 @@ def test_public_profile_new_fields_are_missing_safe() -> None:
     ]
     for pattern in expected_safe_patterns:
         assert pattern in content, f"Missing null-safe access for: {pattern}"
+
+
+
+def test_btn_overflow_hidden_removed() -> None:
+    """The .btn { overflow:hidden } rule was clipping Devanagari text descenders / icon bottoms.
+    Must be removed from app-core.css and app-public.css."""
+    import re
+    for css_rel in ("assets/css/app-core.css", "assets/css/app-public.css"):
+        content = Path(f"/app/{css_rel}").read_text(encoding="utf-8")
+        # strip CSS comments first so we don't false-positive on removed-comment text
+        no_comments = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)
+        for m in re.finditer(r'^\.btn\s*\{[^}]*\}', no_comments, flags=re.MULTILINE):
+            body = m.group(0).replace(" ", "")
+            assert "overflow:hidden" not in body, (
+                f"Found overflow:hidden inside .btn block in {css_rel}: {m.group(0)[:200]}"
+            )
+
+
+def test_global_theme_has_final_patch() -> None:
+    """global-theme.php must end with the FINAL UNIFORMITY PATCH block that fixes
+    button underlines, inactive nav-tabs visibility on green strip, and bottom-nav icons."""
+    content = Path("/app/assets/css/global-theme.php").read_text(encoding="utf-8")
+    assert "FINAL UNIFORMITY PATCH" in content
+    # Anchor selectors that must be there
+    assert "a.btn, a.btn:hover" in content or "a.btn, button.btn" in content
+    assert ".admin-bottom-nav .admin-nav-item" in content
+    assert ".admin-inner-tabstrip .nav-link:not(.active)" in content
+
+
+def test_install_sql_no_duplicate_hrm_tables() -> None:
+    """install.sql must not duplicate HRM CREATE TABLE statements."""
+    content = Path("/app/database/install.sql").read_text(encoding="utf-8")
+    for tbl in (
+        "hrm_departments",
+        "hrm_employees",
+        "hrm_employee_contracts",
+        "hrm_employee_documents",
+        "hrm_internal_messages",
+    ):
+        count = content.count(f"CREATE TABLE IF NOT EXISTS {tbl} (")
+        assert count == 1, f"Table {tbl} has {count} CREATE statements, expected 1"
+
+
+def test_btn_neutralizer_block_removed() -> None:
+    """The harmful 'neutralize all colored buttons' block in app-admin.css must be removed —
+    it was forcing white bg + dark text on all .btn-success/.btn-info/.btn-warning/.btn-secondary/
+    .btn-outline-*, breaking colored buttons across all admin pages."""
+    content = Path("/app/assets/css/app-admin.css").read_text(encoding="utf-8")
+    # this exact aggressive selector chain was the problem
+    bad_pattern = (".btn-success,\n"
+                   ".btn-info,\n"
+                   ".btn-warning,\n"
+                   ".btn-secondary,\n"
+                   ".btn-outline-success,\n"
+                   ".btn-outline-info,\n"
+                   ".btn-outline-warning,\n"
+                   ".btn-outline-secondary,\n"
+                   ".btn-outline-primary {\n"
+                   "    background: #ffffff !important;")
+    assert bad_pattern not in content, (
+        "The 'neutralize buttons' block is still present in app-admin.css. "
+        "It forces white background on all colored buttons and hides icons."
+    )

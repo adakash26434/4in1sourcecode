@@ -10623,64 +10623,11 @@ form.kyc-form .row > [class*="col-"],
 }
 
 /* ─────────────────────────────────────────────────────────────
-   24. Neutral buttons:
-   keep only primary + danger color emphasis
+   24. Neutral buttons — REMOVED (was overriding all colored buttons)
+   पुरानो rule ले .btn-success/.btn-info/.btn-warning/.btn-secondary/
+   .btn-outline-* सबैलाई white-on-grey बनाएको थियो → रंगका button हराउँथे।
+   Now using individual btn-* rules from app-core.css / global-theme.php.
    ───────────────────────────────────────────────────────────── */
-.btn-success,
-.btn-info,
-.btn-warning,
-.btn-secondary,
-.btn-outline-success,
-.btn-outline-info,
-.btn-outline-warning,
-.btn-outline-secondary,
-.btn-outline-primary {
-    background: #ffffff !important;
-    color: #1f2937 !important;
-    border-color: #cfd8d3 !important;
-}
-
-.btn-success:hover,
-.btn-info:hover,
-.btn-warning:hover,
-.btn-secondary:hover,
-.btn-outline-success:hover,
-.btn-outline-info:hover,
-.btn-outline-warning:hover,
-.btn-outline-secondary:hover,
-.btn-outline-primary:hover {
-    background: #f3f6f4 !important;
-    color: #111827 !important;
-    border-color: #b8c7be !important;
-}
-
-.btn-primary {
-    background: #1f7a46 !important;
-    border-color: #1f7a46 !important;
-    color: #fff !important;
-}
-
-.btn-primary:hover {
-    background: #176238 !important;
-    border-color: #176238 !important;
-}
-
-.btn-danger,
-.btn-outline-danger {
-    color: #b42323 !important;
-    border-color: #e3aaaa !important;
-}
-
-.btn-danger {
-    background: #fbecec !important;
-}
-
-.btn-danger:hover,
-.btn-outline-danger:hover {
-    background: #f7dede !important;
-    border-color: #d99191 !important;
-    color: #962222 !important;
-}
 
 /* ─────────────────────────────────────────────────────────────
    25. Force plain table header colors (no gradients)
