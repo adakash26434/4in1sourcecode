@@ -18543,6 +18543,111 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     background: rgba(15, 23, 42, .015) !important;
 }
 
+.ip-month-card {
+    overflow: hidden;
+}
+
+.ip-month-table-wrap {
+    padding: 10px;
+    background: #f7faf8;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ip-month-table {
+    width: 100%;
+    min-width: 1180px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border: 1px solid rgba(var(--primary-rgb,26,95,42),.13);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: .78rem;
+}
+
+.ip-month-table th,
+.ip-month-table td {
+    padding: 8px 9px;
+    border-bottom: 1px solid rgba(15, 23, 42, .08);
+    vertical-align: middle;
+    line-height: 1.35;
+}
+
+.ip-month-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: rgba(var(--primary-rgb,26,95,42),.075);
+    color: #34423a;
+    font-size: .68rem;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.ip-month-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.ip-month-table tbody tr:hover td {
+    background: rgba(var(--primary-rgb,26,95,42),.025);
+}
+
+.ip-month-table td strong {
+    color: #111827;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.ip-month-date {
+    min-width: 150px;
+}
+
+.ip-month-date strong,
+.ip-month-date span {
+    display: block;
+}
+
+.ip-month-date span {
+    margin-top: 2px;
+    color: #64748b;
+    font-size: .68rem;
+    white-space: nowrap;
+}
+
+.ip-month-total {
+    background: rgba(var(--primary-rgb,26,95,42),.045);
+}
+
+.ip-month-indicators {
+    min-width: 120px;
+}
+
+.ip-row-doc-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    border: 1px solid rgba(var(--primary-rgb,26,95,42),.18);
+    background: rgba(var(--primary-rgb,26,95,42),.07);
+    color: var(--primary-dark,#14532d);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .16s ease, background-color .16s ease;
+}
+
+.ip-row-doc-btn:hover,
+.ip-row-doc-btn:focus-visible {
+    background: rgba(var(--primary-rgb,26,95,42),.13);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.ip-muted-dash {
+    color: #94a3b8;
+    font-weight: 800;
+}
+
 .ip-mini-chip {
     display: inline-flex;
     align-items: center;
