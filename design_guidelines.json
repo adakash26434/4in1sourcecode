@@ -1,76 +1,57 @@
 {
-  "project_context": {
-    "app_type": "legacy_php_public_website",
-    "domain": "Finance / Cooperative Institution",
-    "goal": "Improve UI/UX of a sparse, stretched data view without framework migration. Preserve cooperative green branding."
-  },
-  "theme_and_archetype": {
-    "theme": "LIGHT",
-    "archetype": "1 (Organic & Earthy)",
-    "justification": "Trust, stability, and direct alignment with the existing cooperative green branding."
+  "metadata": {
+    "archetype": "Archetype 1: Organic & Earthy",
+    "theme": "Light",
+    "vibe": "Trust, Stability, Dense but breathable data entry",
+    "domain": "Finance / Cooperative Admin"
   },
   "colors": {
-    "primary": "#047857",
-    "primary_hover": "#064e3b",
-    "background_page": "#f8fafc",
-    "surface_card": "#ffffff",
-    "text_main": "#0f172a",
-    "text_secondary": "#475569",
-    "border_light": "#e2e8f0",
-    "indicator_safe_bg": "#dcfce7",
-    "indicator_safe_text": "#166534",
-    "indicator_warn_bg": "#fef08a",
-    "indicator_warn_text": "#854d0e",
-    "indicator_danger_bg": "#fee2e2",
-    "indicator_danger_text": "#991b1b"
+    "brand_primary": "#166534",
+    "brand_hover": "#14532D",
+    "background_page": "#F4F5F4",
+    "background_card": "#FFFFFF",
+    "text_main": "#064E3B",
+    "text_muted": "#475569",
+    "border_subtle": "#E2E8F0",
+    "focus_ring": "#86EFAC"
   },
   "typography": {
-    "headings": "'Work Sans', sans-serif",
-    "body": "'IBM Plex Sans', sans-serif",
+    "headings": "Work Sans, sans-serif",
+    "data_body": "IBM Plex Sans, sans-serif",
     "rules": [
-      "Use 'tabular-nums' CSS property for all financial figures to ensure alignment.",
-      "Never use Inter or generic sans for headings.",
-      "Headings should use tracking-tight for a professional feel.",
-      "Labels should be uppercase, small, and wide (tracking-[0.1em])."
+      "Card Headings: font-weight 600, text-lg, tight tracking.",
+      "Labels: font-size 12px, uppercase, tracking-[0.05em], text_muted.",
+      "Values/Inputs: IBM Plex Sans for tabular/numeric clarity."
     ]
   },
-  "layout_strategy": {
-    "pattern": "Mode B: Control Room Grid (Bento Grid)",
-    "mobile": "grid-cols-1 gap-4",
-    "tablet": "grid-cols-2 gap-4",
-    "desktop": "grid-cols-3 lg:grid-cols-4 gap-6",
-    "alignment_rules": "Left-align dense data. Use generous internal padding inside cards (p-6) to fix the 'stretched/sparse' feel."
+  "layout": {
+    "strategy": "MODE B: Control Room Grid (Bento style).",
+    "implementation": "Translate to Bootstrap classes: Use .container-fluid, .row, and .col-md-6 .col-lg-4 to create a dense grid of cards.",
+    "spacing": "Page background should be #F4F5F4. Cards get .p-3 or .p-4 with .mb-4 to allow visual breathing room."
   },
-  "component_guidelines": {
-    "page_header": {
-      "structure": "Flexbox row (desktop) / column (mobile). Space-between alignment.",
-      "content": "Institution Name/Fiscal Year on left. Published Date and 'Document' button on right."
+  "components": {
+    "cards": {
+      "design": ".bg-white, .rounded-3 (8px radius), 1px solid #E2E8F0, .shadow-sm."
     },
-    "stat_card": {
-      "container": "bg-white rounded-xl border border-slate-200 shadow-sm p-6 hover:-translate-y-1 hover:shadow-md transition-all duration-200",
-      "label": "text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2",
-      "value": "text-2xl sm:text-3xl font-bold text-slate-900 tabular-nums",
-      "subtext_or_badge": "mt-3"
+    "form_inputs": {
+      "design": "Clean standard Bootstrap .form-control but override focus border to #166534 and box-shadow to a subtle #86EFAC ring. No heavy shadows."
     },
-    "indicator_badge": {
-      "style": "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider",
-      "logic": "Apply green/yellow/red color classes based on the health of NPA/NPL/Liquidity indicators."
-    },
-    "document_button": {
-      "style": "inline-flex items-center justify-center rounded-lg bg-[#047857] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#064e3b] transition-colors",
-      "icon": "Add a document/download SVG icon next to the text."
-    },
-    "report_note": {
-      "style": "col-span-full mt-6 bg-slate-50 rounded-lg p-4 border border-slate-200 text-sm text-slate-600"
+    "sticky_action_bar": {
+      "design": "Wrap the Save button and Report Note in a sticky bottom container: .position-sticky .bottom-0 .bg-white .border-top .p-3 (with high z-index). This satisfies the 'sticky save ergonomics'."
     }
   },
+  "data_grouping": [
+    "Card 1 (Report Setup): Fiscal Year, Report Date, Attachment",
+    "Card 2 (Core Demographics): Total Members, Loan Members",
+    "Card 3 (Capital & Funds): Share Capital, Reserved Fund, Other Fund",
+    "Card 4 (Assets & Banking): Total Assets, Bank Cash, Fixed Assets",
+    "Card 5 (Liquidity & Loans): Deposit, Loan, NPA, NPL, Liquidity"
+  ],
   "instructions_to_main_agent": [
-    "Inject Tailwind CSS via CDN (`<script src='https://cdn.tailwindcss.com'></script>`) into the legacy PHP file if a build system is not present.",
-    "Inject Google Fonts for 'Work Sans' and 'IBM Plex Sans' in the `<head>`.",
-    "Refactor the existing sparse data layout into a CSS Grid (`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6`).",
-    "Group related financial stats (Assets, Deposits, Loans) into prominent `stat_card` designs.",
-    "Use distinct visual badges for NPA/NPL/Liquidity to make them scannable.",
-    "Ensure all data points and interactive elements include a `data-testid` attribute (e.g., `data-testid='total-assets-value'`).",
-    "Maintain the existing PHP variables and logic; strictly update the HTML structure and CSS classes."
+    "Do NOT migrate to React/Tailwind. Maintain existing PHP/Bootstrap environment.",
+    "Preserve the exact HTML `name` attributes and existing POST save flow logic.",
+    "Add `data-testid` attributes to all form inputs and the save button.",
+    "Restructure the flat vertical form into a Bento-card grid grouping using Bootstrap cards, aligning with `data_grouping`.",
+    "Implement the sticky save bar so the user doesn't have to scroll to the bottom of the page to save."
   ]
 }
