@@ -19,6 +19,7 @@ User later asked to start, selected a specific issue category, and prioritized f
 - 2026-06-08: Fixed public mobile menu interaction by stabilizing `assets/js/v9-mobile-fix.js`, adding dedicated dropdown chevron toggles, aria-expanded updates, close-state cleanup, and matching mobile CSS/test IDs in `/app/includes/header.php` and `/app/assets/css/app-public.css`.
 - 2026-06-08: Added institutional profile fields in admin/public flow: other fund (`other_fund`), bank/cash balance (`bank_cash_balance`), fixed assets (`fixed_assets`), and total loan members (`total_loan_members`). Updated admin form, POST save/update logic, auto schema alters, fresh install SQL, ensure-admin-tables schema, and public display with null-safe fallbacks.
 - 2026-06-08: Fixed KYC province dropdown duplication caused by repeated `initAllKYCCapture()` calls. Made `setupAddressDropdowns()` and same-address listener idempotent in `/app/assets/js/kyc-capture.js`, added cache-busting script version `v=10.9` in `/app/online-kyc.php`, and cleaned JS lint issues in the same file.
+- 2026-06-08: Improved public institutional profile data-view UI/UX with compact bento-style stat cards, clearer fiscal-year header/date/document action, stronger financial hierarchy, readable indicator bars, mobile-responsive spacing, and required `data-testid` attributes for key interactive/user-facing elements.
 
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.
@@ -50,3 +51,4 @@ User later asked to start, selected a specific issue category, and prioritized f
 - 2026-06-08: Isolated Playwright DOM smoke confirmed mobile drawer open/close, chevron injection, submenu toggle, and aria-expanded update.
 - 2026-06-08: Testing agent iteration 2 initially found null-safe public profile issue; fixed it and reran `/app/tests/test_php_feature_regression.py`: 7 passed.
 - 2026-06-08: Verified KYC province dropdown repeated initialization in Playwright isolated DOM: after 5 manual re-inits, permanent province select stayed at 8 options total (placeholder + 7 provinces), with no duplicate province list.
+- 2026-06-08: Verified institutional profile UI update with PHP syntax check, regression suite (`7 passed`), and browser smoke layout test showing no horizontal overflow at 1366px with sample data.

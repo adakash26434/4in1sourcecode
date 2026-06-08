@@ -18331,6 +18331,343 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     .ip-stat-item { border-right: none; border-bottom: 1px solid rgba(var(--primary-rgb,26,95,42),.07); }
 }
 
+/* Institutional profile data view polish — compact bento layout */
+.institutional-profile-page {
+    background:
+        linear-gradient(180deg, rgba(var(--primary-rgb,26,95,42),.035), rgba(255,255,255,0) 240px),
+        #fff;
+}
+
+.ip-section-intro {
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ip-section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(var(--primary-rgb,26,95,42),.09);
+    color: var(--primary-dark);
+    font-size: .78rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.ip-section-intro h2 {
+    color: var(--primary-dark);
+    font-weight: 800;
+    margin: 0 0 8px;
+    line-height: 1.45;
+}
+
+.ip-section-intro p {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--text-light,#667085);
+    font-size: .98rem;
+}
+
+.ip-profile-card {
+    border-radius: 8px !important;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(var(--primary-rgb,26,95,42),.12) !important;
+    box-shadow: 0 12px 34px rgba(15, 23, 42, .08) !important;
+}
+
+.ip-card-header {
+    background: #0f4f25 !important;
+    color: #fff !important;
+    padding: 16px 18px !important;
+    gap: 12px !important;
+}
+
+.ip-card-title-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    min-width: 0;
+}
+
+.ip-fy-badge {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
+    font-weight: 900 !important;
+    font-size: 1.02rem !important;
+}
+
+.ip-date-info {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    color: rgba(255,255,255,.82);
+    font-size: .8rem !important;
+}
+
+.ip-date-info span {
+    color: rgba(255,255,255,.64);
+}
+
+.ip-doc-btn {
+    border: 1px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    border-radius: 8px;
+    min-height: 38px;
+    padding: 8px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    font-size: .82rem;
+    transition: transform .18s ease, background-color .18s ease, border-color .18s ease;
+}
+
+.ip-doc-btn:hover,
+.ip-doc-btn:focus-visible {
+    background: rgba(255,255,255,.2);
+    color: #fff;
+    border-color: rgba(255,255,255,.55);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.ip-doc-btn-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.16);
+    flex: 0 0 auto;
+}
+
+.ip-stats-grid {
+    padding: 14px !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    border-bottom: 0 !important;
+    background: #f7faf8;
+}
+
+.ip-stat-item {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px !important;
+    padding: 14px !important;
+    min-height: 92px;
+    border: 1px solid rgba(15, 23, 42, .08) !important;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, .04);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.ip-stat-item:hover {
+    background: #fff !important;
+    transform: translateY(-2px);
+    border-color: rgba(var(--primary-rgb,26,95,42),.22) !important;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, .08);
+}
+
+.ip-stat-featured {
+    grid-column: span 2;
+    min-height: 104px;
+    background: linear-gradient(180deg, #ffffff, rgba(var(--primary-rgb,26,95,42),.035));
+}
+
+.ip-stats-grid > .ip-stat-item:nth-last-child(2):not(.ip-stat-featured),
+.ip-stats-grid > .ip-stat-item:last-child:not(.ip-stat-featured) {
+    grid-column: span 2;
+}
+
+.ip-stat-icon {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+}
+
+.ip-stat-body {
+    min-width: 0;
+}
+
+.ip-stat-value {
+    font-size: 1.05rem !important;
+    font-weight: 900 !important;
+    color: #16251a !important;
+    line-height: 1.25 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-break: break-word;
+}
+
+.ip-stat-featured .ip-stat-value {
+    font-size: 1.18rem !important;
+}
+
+.ip-stat-label {
+    margin-top: 5px !important;
+    font-size: .75rem !important;
+    font-weight: 800 !important;
+    color: #667085 !important;
+}
+
+.ip-stat-sub {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 6px !important;
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-size: .68rem !important;
+    color: var(--primary-dark) !important;
+    background: rgba(var(--primary-rgb,26,95,42),.08);
+}
+
+.ip-indicators-row {
+    margin: 0 14px 14px;
+    padding: 12px !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px !important;
+    background: #fff !important;
+    border: 1px solid rgba(var(--primary-rgb,26,95,42),.1) !important;
+    border-radius: 8px;
+}
+
+.ip-indicator {
+    min-width: 0 !important;
+    flex: unset !important;
+    display: grid !important;
+    grid-template-columns: minmax(72px, auto) minmax(70px, 1fr) auto;
+    align-items: center;
+    gap: 8px !important;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: rgba(var(--primary-rgb,26,95,42),.035);
+}
+
+.ip-ind-label {
+    min-width: 0 !important;
+    white-space: normal !important;
+    font-size: .72rem !important;
+    font-weight: 800;
+    color: #475467 !important;
+    line-height: 1.25;
+}
+
+.ip-ind-bar-wrap {
+    height: 9px !important;
+    min-width: 58px !important;
+    background: rgba(15, 23, 42, .09) !important;
+}
+
+.ip-ind-value {
+    min-width: 36px !important;
+    font-size: .82rem !important;
+    font-weight: 900 !important;
+}
+
+.ip-reserve-row,
+.ip-note {
+    margin: 0 14px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(var(--primary-rgb,26,95,42),.1) !important;
+    background: #fff !important;
+}
+
+.ip-reserve-row {
+    padding: 12px 14px !important;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+}
+
+.ip-note {
+    padding: 12px 14px !important;
+    color: #667085 !important;
+    line-height: 1.65;
+}
+
+@media (max-width: 991px) {
+    .ip-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+    .ip-stat-featured {
+        grid-column: span 1;
+    }
+    .ip-stats-grid > .ip-stat-item:nth-last-child(2):not(.ip-stat-featured),
+    .ip-stats-grid > .ip-stat-item:last-child:not(.ip-stat-featured) {
+        grid-column: span 1;
+    }
+    .ip-indicators-row {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .institutional-profile-page {
+        padding-top: 42px;
+    }
+    .ip-section-intro {
+        text-align: left !important;
+    }
+    .ip-section-intro p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .ip-card-header {
+        align-items: stretch !important;
+    }
+    .ip-card-title-wrap,
+    .ip-doc-btn {
+        width: 100%;
+    }
+    .ip-doc-btn {
+        justify-content: center;
+    }
+    .ip-stats-grid {
+        padding: 10px !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    .ip-stat-item {
+        min-height: 84px;
+        padding: 12px !important;
+    }
+    .ip-stat-featured .ip-stat-value,
+    .ip-stat-value {
+        font-size: 1rem !important;
+    }
+    .ip-indicators-row,
+    .ip-reserve-row,
+    .ip-note {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .ip-indicator {
+        grid-template-columns: 1fr auto;
+    }
+    .ip-ind-bar-wrap {
+        grid-column: 1 / -1;
+        order: 3;
+    }
+}
+
 /* ═══════════════════════════════════════════════════
    34. PARTNER FACILITIES PAGE (partner-facilities.php)
    ═══════════════════════════════════════════════════ */

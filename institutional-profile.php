@@ -50,7 +50,7 @@ function ipShortAmt(float $v): string {
 </section>
 
 <!-- Main Content -->
-<section class="section-padding">
+<section class="section-padding institutional-profile-page">
 <div class="container">
 
 <?php if (empty($profiles)): ?>
@@ -66,12 +66,12 @@ function ipShortAmt(float $v): string {
 <?php else: ?>
 
 <!-- Section intro -->
-<div class="text-center mb-5">
-    <h2 style="color:var(--primary-color);font-weight:700;">संस्थाको आर्थिक प्रोफाइल</h2>
-    <p class="text-muted" style="max-width:650px;margin:0 auto;">
+<div class="ip-section-intro text-center mb-4">
+    <span class="ip-section-kicker"><i class="fas fa-chart-line"></i> आर्थिक तथ्याङ्क</span>
+    <h2>संस्थाको आर्थिक प्रोफाइल</h2>
+    <p>
         वार्षिक आर्थिक तथ्याङ्क — सदस्य संख्या, शेयर, बचत, ऋण र कुल सम्पत्तिको विवरण
     </p>
-    <div style="width:60px;height:4px;background:linear-gradient(90deg,var(--primary-color),var(--primary-light));border-radius:2px;margin:16px auto 0;"></div>
 </div>
 
 <?php foreach ($profiles as $p): ?>
@@ -86,20 +86,22 @@ function ipShortAmt(float $v): string {
 
     <!-- Card Header -->
     <div class="ip-card-header">
-        <div class="ip-fy-badge">
-            <i class="fas fa-calendar-days me-2"></i>
-            आ.व. <?php echo htmlspecialchars($p['fiscal_year']); ?>
-        </div>
-        <?php if (!empty($p['report_date_bs'])): ?>
-        <div class="ip-date-info">
-            <i class="fas fa-clock me-1"></i>
-            <span style="opacity:0.82;font-size:0.88em;margin-right:4px;">प्रकाशित:</span>
-            <?php echo htmlspecialchars($p['report_date_bs']); ?>
-            <?php if (!empty($p['report_date_ad'])): ?>
-            &nbsp;/&nbsp; <?php echo date('d M Y', strtotime($p['report_date_ad'])); ?>
+        <div class="ip-card-title-wrap">
+            <div class="ip-fy-badge" data-testid="institutional-profile-fiscal-year-badge">
+                <i class="fas fa-calendar-days me-2"></i>
+                आ.व. <?php echo htmlspecialchars($p['fiscal_year']); ?>
+            </div>
+            <?php if (!empty($p['report_date_bs'])): ?>
+            <div class="ip-date-info" data-testid="institutional-profile-published-date">
+                <i class="fas fa-clock me-1"></i>
+                <span>प्रकाशित:</span>
+                <?php echo htmlspecialchars($p['report_date_bs']); ?>
+                <?php if (!empty($p['report_date_ad'])): ?>
+                &nbsp;/&nbsp; <?php echo date('d M Y', strtotime($p['report_date_ad'])); ?>
+                <?php endif; ?>
+            </div>
             <?php endif; ?>
         </div>
-        <?php endif; ?>
         <?php if (!empty($p['attachment_path'])): ?>
         <?php
             $_ipDocUrl  = htmlspecialchars(SITE_URL . ltrim($p['attachment_path'], '/'), ENT_QUOTES, 'UTF-8');
@@ -108,7 +110,8 @@ function ipShortAmt(float $v): string {
         ?>
         <button type="button" class="ip-doc-btn"
                 onclick="ipOpenDoc('<?php echo $_ipDocUrl; ?>','<?php echo $_ipDocExt; ?>')"
-                title="<?php echo $_ipDocLbl; ?>">
+                title="<?php echo $_ipDocLbl; ?>"
+                data-testid="institutional-profile-document-button">
             <span class="ip-doc-btn-icon">
                 <?php if ($_ipDocExt === 'pdf'): ?>
                 <i class="fas fa-file-pdf"></i>
@@ -126,7 +129,7 @@ function ipShortAmt(float $v): string {
     <div class="ip-stats-grid">
 
         <!-- Members -->
-        <div class="ip-stat-item ip-stat-primary">
+        <div class="ip-stat-item ip-stat-primary ip-stat-featured">
             <div class="ip-stat-icon"><i class="fas fa-users"></i></div>
             <div class="ip-stat-body">
                 <div class="ip-stat-value" data-testid="institutional-profile-total-members-value"><?php echo number_format((int)$p['total_members']); ?></div>
@@ -138,10 +141,10 @@ function ipShortAmt(float $v): string {
         </div>
 
         <!-- Total Assets -->
-        <div class="ip-stat-item ip-stat-success">
+        <div class="ip-stat-item ip-stat-success ip-stat-featured">
             <div class="ip-stat-icon"><i class="fas fa-landmark"></i></div>
             <div class="ip-stat-body">
-                <div class="ip-stat-value"><?php echo ipShortAmt((float)$p['total_assets']); ?></div>
+                <div class="ip-stat-value" data-testid="institutional-profile-total-assets-value"><?php echo ipShortAmt((float)$p['total_assets']); ?></div>
                 <div class="ip-stat-label">कुल सम्पत्ति</div>
             </div>
         </div>
@@ -150,7 +153,7 @@ function ipShortAmt(float $v): string {
         <div class="ip-stat-item ip-stat-info">
             <div class="ip-stat-icon"><i class="fas fa-coins"></i></div>
             <div class="ip-stat-body">
-                <div class="ip-stat-value"><?php echo ipShortAmt((float)$p['share_capital']); ?></div>
+                <div class="ip-stat-value" data-testid="institutional-profile-share-capital-value"><?php echo ipShortAmt((float)$p['share_capital']); ?></div>
                 <div class="ip-stat-label">शेयर पूँजी</div>
                 <?php if (!empty($p['share_capital_percent'])): ?>
                 <div class="ip-stat-sub"><?php echo $p['share_capital_percent']; ?>% वृद्धि</div>
@@ -162,7 +165,7 @@ function ipShortAmt(float $v): string {
         <div class="ip-stat-item ip-stat-teal">
             <div class="ip-stat-icon"><i class="fas fa-piggy-bank"></i></div>
             <div class="ip-stat-body">
-                <div class="ip-stat-value"><?php echo ipShortAmt((float)$p['deposit']); ?></div>
+                <div class="ip-stat-value" data-testid="institutional-profile-deposit-value"><?php echo ipShortAmt((float)$p['deposit']); ?></div>
                 <div class="ip-stat-label">कुल बचत</div>
                 <?php if (!empty($p['deposit_percent'])): ?>
                 <div class="ip-stat-sub"><?php echo $p['deposit_percent']; ?>% वृद्धि</div>
@@ -190,7 +193,7 @@ function ipShortAmt(float $v): string {
         <div class="ip-stat-item ip-stat-purple">
             <div class="ip-stat-icon"><i class="fas fa-shield-halved"></i></div>
             <div class="ip-stat-body">
-                <div class="ip-stat-value"><?php echo ipShortAmt((float)$p['reserved_fund']); ?></div>
+                <div class="ip-stat-value" data-testid="institutional-profile-reserved-fund-value"><?php echo ipShortAmt((float)$p['reserved_fund']); ?></div>
                 <div class="ip-stat-label">जगेडा कोष</div>
                 <?php if (!empty($p['reserved_fund_percent'])): ?>
                 <div class="ip-stat-sub"><?php echo $p['reserved_fund_percent']; ?>% वृद्धि</div>
@@ -241,7 +244,7 @@ function ipShortAmt(float $v): string {
     ?>
     <div class="ip-indicators-row">
         <?php if (!empty($p['npa_percent'])): ?>
-        <div class="ip-indicator">
+        <div class="ip-indicator" data-testid="institutional-profile-npa-indicator">
             <div class="ip-ind-label">NPA (खराब ऋण)</div>
             <div class="ip-ind-bar-wrap">
                 <?php
@@ -256,7 +259,7 @@ function ipShortAmt(float $v): string {
         <?php endif; ?>
 
         <?php if (!empty($p['npl_percent'])): ?>
-        <div class="ip-indicator">
+        <div class="ip-indicator" data-testid="institutional-profile-npl-indicator">
             <div class="ip-ind-label">NPL</div>
             <div class="ip-ind-bar-wrap">
                 <?php $npl = (float)$p['npl_percent']; $bw = min($npl * 10, 100); ?>
@@ -267,7 +270,7 @@ function ipShortAmt(float $v): string {
         <?php endif; ?>
 
         <?php if (!empty($p['liquidity_percent'])): ?>
-        <div class="ip-indicator">
+        <div class="ip-indicator" data-testid="institutional-profile-liquidity-indicator">
             <div class="ip-ind-label">तरलता (Liquidity)</div>
             <div class="ip-ind-bar-wrap">
                 <?php $liq = (float)$p['liquidity_percent']; $bw2 = min($liq, 100); ?>
@@ -281,7 +284,7 @@ function ipShortAmt(float $v): string {
 
     <!-- Loan Reserve Fund -->
     <?php if (!empty($p['total_loan_reserve_fund'])): ?>
-    <div class="ip-reserve-row">
+    <div class="ip-reserve-row" data-testid="institutional-profile-loan-reserve-row">
         <i class="fas fa-vault me-2 text-success"></i>
         <strong>ऋण सुरक्षण कोष:</strong>
         <?php echo ipShortAmt((float)$p['total_loan_reserve_fund']); ?>
@@ -293,7 +296,7 @@ function ipShortAmt(float $v): string {
 
     <!-- Note -->
     <?php if (!empty($p['report_note'])): ?>
-    <div class="ip-note">
+    <div class="ip-note" data-testid="institutional-profile-report-note">
         <i class="fas fa-info-circle me-2 text-muted"></i>
         <?php echo nl2br(htmlspecialchars($p['report_note'])); ?>
     </div>
@@ -312,7 +315,7 @@ function ipShortAmt(float $v): string {
 <!-- ══════════════════════════════════════════════════════════
      Document Preview Modal — PDF / Image popup
      ══════════════════════════════════════════════════════════ -->
-<div id="ipDocModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99999;align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)ipCloseDoc()">
+<div id="ipDocModal" data-testid="institutional-profile-document-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99999;align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)ipCloseDoc()">
   <div style="background:#fff;border-radius:14px;width:100%;max-width:920px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.4);">
 
     <!-- Header -->
@@ -327,12 +330,14 @@ function ipShortAmt(float $v): string {
       <div style="display:flex;align-items:center;gap:8px;">
         <a id="ipDocDlBtn" href="#" download target="_blank"
            style="width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:#f0fdf4;color:#166534;text-decoration:none;border:1px solid #bbf7d0;transition:background .15s;"
-           title="<?php echo isEnglish() ? 'Download' : 'डाउनलोड'; ?>">
+           title="<?php echo isEnglish() ? 'Download' : 'डाउनलोड'; ?>"
+           data-testid="institutional-profile-document-download-link">
           <i class="fas fa-download" style="font-size:.85rem;"></i>
         </a>
         <button onclick="ipCloseDoc()"
                 style="width:36px;height:36px;border-radius:8px;border:none;background:#f3f4f6;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#6b7280;transition:background .15s;"
-                title="<?php echo isEnglish() ? 'Close' : 'बन्द'; ?>">
+                title="<?php echo isEnglish() ? 'Close' : 'बन्द'; ?>"
+                data-testid="institutional-profile-document-close-button">
           <i class="fas fa-xmark" style="font-size:1rem;"></i>
         </button>
       </div>
