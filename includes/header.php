@@ -1368,7 +1368,123 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
     <!-- PFL Mobile Nav Backdrop -->
     <div class="mobile-nav-backdrop" id="pflMobileBackdrop" aria-hidden="true" data-testid="public-mobile-menu-backdrop"></div>
 
-    <script>/* v9.4: PFL mobile nav toggle moved to assets/js/v9-mobile-fix.js */</script>
+    <style id="emg-mobile-nav-critical">
+    @media (max-width: 991.98px) {
+        body.header-v2 #mainNavV2.main-nav {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            bottom: 0 !important;
+            width: min(82vw, 320px) !important;
+            max-width: 320px !important;
+            height: 100dvh !important;
+            transform: translate3d(-105%,0,0) !important;
+            transition: transform .24s cubic-bezier(.22,.61,.36,1) !important;
+            background: #0b3f24 !important;
+            color: #fff !important;
+            z-index: 2147483001 !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            padding: 0 10px 18px !important;
+            box-shadow: 18px 0 36px rgba(2,6,23,.34) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+        }
+        body.header-v2 #mainNavV2.nav-open,
+        body.header-v2 #mainNavV2.open,
+        body.header-v2 #mainNavV2.active { transform: translate3d(0,0,0) !important; }
+        body.header-v2 #pflMobileBackdrop {
+            position: fixed !important;
+            inset: 0 !important;
+            background: rgba(2,6,23,.62) !important;
+            z-index: 2147483000 !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            display: block !important;
+        }
+        body.header-v2 #pflMobileBackdrop.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+        body.header-v2.mobile-nav-open { overflow: hidden !important; }
+    }
+    </style>
+    <script>
+    (function(){
+        function bindPflMobileMenu(){
+            var toggle = document.getElementById('mobileMenuToggle2');
+            var nav = document.getElementById('mainNavV2');
+            var closeBtn = document.getElementById('closeMenuV2');
+            var backdrop = document.getElementById('pflMobileBackdrop');
+            if (!toggle || !nav || toggle.dataset.emgMobileBound === '1') return;
+            toggle.dataset.emgMobileBound = '1';
+            toggle.dataset.v96Bound = '1';
+            var savedY = 0;
+            nav.querySelectorAll('.has-dropdown, .has-sub').forEach(function(li){
+                var link = li.querySelector(':scope > a');
+                if (!link || li.querySelector(':scope > .dd-chevron-btn')) return;
+                var inlineChevron = link.querySelector('.fa-chevron-down');
+                if (inlineChevron) inlineChevron.style.display = 'none';
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'dd-chevron-btn';
+                btn.setAttribute('aria-label', 'Toggle submenu');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                li.insertBefore(btn, link.nextSibling);
+            });
+            function openNav(){
+                savedY = window.scrollY || document.documentElement.scrollTop || 0;
+                nav.classList.add('nav-open','open','active');
+                if (backdrop) backdrop.classList.add('active');
+                document.body.classList.add('mobile-nav-open');
+                document.documentElement.classList.add('mobile-nav-open');
+                document.body.style.top = '-' + savedY + 'px';
+                document.body.style.overflow = 'hidden';
+                toggle.setAttribute('aria-expanded','true');
+                nav.setAttribute('aria-hidden','false');
+            }
+            function closeNav(){
+                nav.classList.remove('nav-open','open','active');
+                if (backdrop) backdrop.classList.remove('active');
+                document.body.classList.remove('mobile-nav-open');
+                document.documentElement.classList.remove('mobile-nav-open');
+                document.body.style.top = '';
+                document.body.style.overflow = '';
+                toggle.setAttribute('aria-expanded','false');
+                nav.setAttribute('aria-hidden','true');
+                nav.querySelectorAll('.open').forEach(function(el){ el.classList.remove('open'); });
+                nav.querySelectorAll('.dd-chevron-btn[aria-expanded="true"]').forEach(function(btn){ btn.setAttribute('aria-expanded','false'); });
+                if (savedY) window.scrollTo(0, savedY);
+            }
+            toggle.addEventListener('click', function(e){
+                e.preventDefault(); e.stopPropagation();
+                (nav.classList.contains('nav-open') ? closeNav : openNav)();
+            }, true);
+            if (closeBtn) closeBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); closeNav(); }, true);
+            if (backdrop) backdrop.addEventListener('click', function(e){ e.preventDefault(); closeNav(); }, true);
+            nav.addEventListener('click', function(e){
+                if (window.innerWidth >= 992) return;
+                var btn = e.target.closest('.dd-chevron-btn');
+                var parentLink = e.target.closest('.has-dropdown > a, .has-sub > a');
+                var li = btn ? btn.closest('.has-dropdown,.has-sub') : (parentLink ? parentLink.parentElement : null);
+                if (!li || !nav.contains(li)) return;
+                e.preventDefault(); e.stopPropagation();
+                li.classList.toggle('open');
+                var directBtn = li.querySelector(':scope > .dd-chevron-btn');
+                if (directBtn) directBtn.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
+            }, true);
+            document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+            window.__pflMobileMenuOpen = openNav;
+            window.__pflMobileMenuClose = closeNav;
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindPflMobileMenu);
+        else bindPflMobileMenu();
+    })();
+    </script>
     <script src="<?php echo SITE_URL; ?>assets/js/coop-mobile.js?v=6.5" defer></script>
 
     <?php
