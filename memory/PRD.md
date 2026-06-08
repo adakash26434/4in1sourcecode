@@ -15,22 +15,36 @@ User later asked to start, selected a specific issue category, and prioritized f
 - Updated `/app/_bootstrap.php` to load production config first and conditionally load optional legacy core files only when their sentinel functions are missing.
 - Verified 272 PHP files with `php -l`; no syntax errors found.
 - Verified key include flows: root index, member login, admin dashboard/bootstrap; no duplicate function fatal errors remain.
+- 2026-06-08: Fixed KYC Nepal address dataset in `/app/includes/nepal-address.php` to 7 provinces, 77 districts, 753 unique local levels, with no duplicate municipality entries. Corrected known bad entries such as duplicate Rasuwa records, duplicate Rautahat record, invalid ward count for Dordi, typo in Pachaaljharana, and Kanchanpur Dodhara Chandani naming.
+- 2026-06-08: Fixed public mobile menu interaction by stabilizing `assets/js/v9-mobile-fix.js`, adding dedicated dropdown chevron toggles, aria-expanded updates, close-state cleanup, and matching mobile CSS/test IDs in `/app/includes/header.php` and `/app/assets/css/app-public.css`.
+- 2026-06-08: Added institutional profile fields in admin/public flow: other fund (`other_fund`), bank/cash balance (`bank_cash_balance`), fixed assets (`fixed_assets`), and total loan members (`total_loan_members`). Updated admin form, POST save/update logic, auto schema alters, fresh install SQL, ensure-admin-tables schema, and public display with null-safe fallbacks.
 
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.
+- This fork is a legacy/custom PHP project. Supervisor React/FastAPI services are not applicable here and may show FATAL because `/app/frontend` and `/app/backend` do not exist.
 
 ## Prioritized Backlog
 ### P0
 - Configure/test against the real database environment to validate admin/member features end-to-end.
 - Keep current `_bootstrap.php` load order and optional helper guards unchanged.
+- Validate the mobile public menu and online KYC dropdowns on the live DB-configured site where full pages render beyond setup mode.
 
 ### P1
 - Add stable admin/member test credentials after DB setup for repeatable auth testing.
 - Review admin/member pages that still use older direct includes and gradually standardize them.
+- If the user provides any exact missing local-government list later, reconcile it against the current 753-level dataset.
 
 ### P2
 - Add a lightweight PHP regression script into CI/maintenance workflow for include-order and syntax checks.
 - Improve setup-mode UI text if needed for non-technical admins.
 
 ## Next Tasks
-- User can now share the exact page/button/screenshot issue list for the next targeted fixes.
+- With DB configured, test admin institutional profile add/edit and public profile rendering end-to-end.
+- Continue with any next exact page/button/screenshot issue list from the user.
+
+## Verification Log
+- 2026-06-08: `php -l` passed for modified PHP files: `includes/nepal-address.php`, `includes/header.php`, `online-kyc.php`, `admin/institutional-profile.php`, `institutional-profile.php`, `admin/includes/ensure-admin-tables.php`.
+- 2026-06-08: Address data CLI check passed: Municipalities=753, Unique=753, Duplicates=0.
+- 2026-06-08: JS lint passed for `/app/assets/js/v9-mobile-fix.js`.
+- 2026-06-08: Isolated Playwright DOM smoke confirmed mobile drawer open/close, chevron injection, submenu toggle, and aria-expanded update.
+- 2026-06-08: Testing agent iteration 2 initially found null-safe public profile issue; fixed it and reran `/app/tests/test_php_feature_regression.py`: 7 passed.

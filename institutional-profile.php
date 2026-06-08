@@ -75,6 +75,12 @@ function ipShortAmt(float $v): string {
 </div>
 
 <?php foreach ($profiles as $p): ?>
+<?php
+    $totalLoanMembers = (int)($p['total_loan_members'] ?? 0);
+    $otherFund = (float)($p['other_fund'] ?? 0);
+    $bankCashBalance = (float)($p['bank_cash_balance'] ?? 0);
+    $fixedAssets = (float)($p['fixed_assets'] ?? 0);
+?>
 <!-- ── Profile Card for each fiscal year ── -->
 <div class="ip-profile-card mb-5">
 
@@ -173,8 +179,8 @@ function ipShortAmt(float $v): string {
                 <?php if (!empty($p['loan_percent'])): ?>
                 <div class="ip-stat-sub"><?php echo $p['loan_percent']; ?>% वृद्धि</div>
                 <?php endif; ?>
-                <?php if (!empty($p['total_loan_members'])): ?>
-                <div class="ip-stat-sub"><?php echo number_format((int)$p['total_loan_members']); ?> ऋणी सदस्य</div>
+                <?php if ($totalLoanMembers > 0): ?>
+                <div class="ip-stat-sub"><?php echo number_format($totalLoanMembers); ?> ऋणी सदस्य</div>
                 <?php endif; ?>
             </div>
         </div>
@@ -194,33 +200,33 @@ function ipShortAmt(float $v): string {
         <?php endif; ?>
 
         <!-- Other Fund -->
-        <?php if (!empty($p['other_fund'])): ?>
+        <?php if ($otherFund > 0): ?>
         <div class="ip-stat-item ip-stat-info">
             <div class="ip-stat-icon"><i class="fas fa-layer-group"></i></div>
             <div class="ip-stat-body">
-                <div class="ip-stat-value" data-testid="institutional-profile-other-fund-value"><?php echo ipShortAmt((float)$p['other_fund']); ?></div>
+                <div class="ip-stat-value" data-testid="institutional-profile-other-fund-value"><?php echo ipShortAmt($otherFund); ?></div>
                 <div class="ip-stat-label">अन्य कोष</div>
             </div>
         </div>
         <?php endif; ?>
 
         <!-- Bank and Cash Balance -->
-        <?php if (!empty($p['bank_cash_balance'])): ?>
+        <?php if ($bankCashBalance > 0): ?>
         <div class="ip-stat-item ip-stat-teal">
             <div class="ip-stat-icon"><i class="fas fa-money-bill-transfer"></i></div>
             <div class="ip-stat-body">
-                <div class="ip-stat-value" data-testid="institutional-profile-bank-cash-balance-value"><?php echo ipShortAmt((float)$p['bank_cash_balance']); ?></div>
+                <div class="ip-stat-value" data-testid="institutional-profile-bank-cash-balance-value"><?php echo ipShortAmt($bankCashBalance); ?></div>
                 <div class="ip-stat-label">बैंक तथा नगद मौज्दात</div>
             </div>
         </div>
         <?php endif; ?>
 
         <!-- Fixed Assets -->
-        <?php if (!empty($p['fixed_assets'])): ?>
+        <?php if ($fixedAssets > 0): ?>
         <div class="ip-stat-item ip-stat-success">
             <div class="ip-stat-icon"><i class="fas fa-building"></i></div>
             <div class="ip-stat-body">
-                <div class="ip-stat-value" data-testid="institutional-profile-fixed-assets-value"><?php echo ipShortAmt((float)$p['fixed_assets']); ?></div>
+                <div class="ip-stat-value" data-testid="institutional-profile-fixed-assets-value"><?php echo ipShortAmt($fixedAssets); ?></div>
                 <div class="ip-stat-label">स्थिर सम्पत्ति</div>
             </div>
         </div>
