@@ -18464,6 +18464,7 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     border-radius: 8px;
     overflow: hidden;
     font-size: .86rem;
+    table-layout: fixed;
 }
 
 .ip-ledger-table th,
@@ -18495,18 +18496,28 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     background: rgba(var(--primary-rgb,26,95,42),.025);
 }
 
-.ip-ledger-table td:first-child {
+.ip-ledger-table th:nth-child(1),
+.ip-ledger-table th:nth-child(4),
+.ip-ledger-table td:nth-child(1),
+.ip-ledger-table td:nth-child(4) {
+    width: 46px;
+}
+
+.ip-ledger-table td:nth-child(1),
+.ip-ledger-table td:nth-child(4) {
     text-align: center;
     color: #64748b;
     font-weight: 800;
 }
 
-.ip-ledger-table td:nth-child(2) {
+.ip-ledger-table td:nth-child(2),
+.ip-ledger-table td:nth-child(5) {
     color: #334155;
     font-weight: 800;
 }
 
-.ip-ledger-table td:nth-child(2) i {
+.ip-ledger-table td:nth-child(2) i,
+.ip-ledger-table td:nth-child(5) i {
     width: 18px;
     color: var(--primary-color,#166534);
     margin-right: 6px;
@@ -18514,10 +18525,22 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     opacity: .92;
 }
 
-.ip-ledger-table td:last-child strong {
+.ip-ledger-table td:nth-child(3) strong,
+.ip-ledger-table td:nth-child(6) strong {
     color: #111827;
     font-weight: 900;
     white-space: nowrap;
+}
+
+.ip-ledger-table th:nth-child(3),
+.ip-ledger-table th:nth-child(6),
+.ip-ledger-table td:nth-child(3),
+.ip-ledger-table td:nth-child(6) {
+    text-align: right;
+}
+
+.ip-empty-cell {
+    background: rgba(15, 23, 42, .015) !important;
 }
 
 .ip-mini-chip {
@@ -18734,7 +18757,7 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
         -webkit-overflow-scrolling: touch;
     }
     .ip-ledger-table {
-        min-width: 520px;
+        min-width: 760px;
         font-size: .8rem;
     }
     .ip-ledger-table th,

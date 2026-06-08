@@ -22,6 +22,7 @@ User later asked to start, selected a specific issue category, and prioritized f
 - 2026-06-08: Improved public institutional profile data-view UI/UX with compact bento-style stat cards, clearer fiscal-year header/date/document action, stronger financial hierarchy, readable indicator bars, mobile-responsive spacing, and required `data-testid` attributes for key interactive/user-facing elements.
 - 2026-06-08: Improved admin institutional profile data-entry form UI/UX with compact control-room styling, stronger header, tighter grouped sections, cleaner input spacing, sticky save/cancel footer, mobile responsiveness, and additional `data-testid` attributes for important inputs/actions.
 - 2026-06-08: Reworked public institutional profile data view from large bento cards to a compact ledger/table-style layout based on user screenshot feedback. Reduced header/card height, removed oversized stat cards, added dense rows for month-wise records, kept document action and indicators compact.
+- 2026-06-08: Updated compact public institutional profile ledger to show two data items per row on desktop, reducing vertical height further while keeping mobile horizontal-scroll safety and preserving `data-testid` markers.
 
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.
@@ -56,3 +57,4 @@ User later asked to start, selected a specific issue category, and prioritized f
 - 2026-06-08: Verified institutional profile UI update with PHP syntax check, regression suite (`7 passed`), and browser smoke layout test showing no horizontal overflow at 1366px with sample data.
 - 2026-06-08: Verified admin institutional profile UI update with PHP syntax check, regression suite (`7 passed`), and isolated browser layout smoke test showing no horizontal overflow at 1366px with sample admin form content.
 - 2026-06-08: Verified compact ledger-style public institutional profile update with PHP syntax check, regression suite (`7 passed`), and isolated browser smoke test showing 9 compact ledger rows with no horizontal overflow at 1366px.
+- 2026-06-08: Verified two-item-per-row ledger update with PHP syntax check, regression suite (`7 passed`), and isolated browser smoke showing 6-column table, 5 rows for 9 sample items, no horizontal overflow at 1366px.
