@@ -18331,7 +18331,7 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     .ip-stat-item { border-right: none; border-bottom: 1px solid rgba(var(--primary-rgb,26,95,42),.07); }
 }
 
-/* Institutional profile data view polish — compact bento layout */
+/* Institutional profile data view polish — compact ledger layout */
 .institutional-profile-page {
     background:
         linear-gradient(180deg, rgba(var(--primary-rgb,26,95,42),.035), rgba(255,255,255,0) 240px),
@@ -18376,14 +18376,14 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     overflow: hidden;
     background: #ffffff;
     border: 1px solid rgba(var(--primary-rgb,26,95,42),.12) !important;
-    box-shadow: 0 12px 34px rgba(15, 23, 42, .08) !important;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, .07) !important;
 }
 
 .ip-card-header {
     background: #0f4f25 !important;
     color: #fff !important;
-    padding: 16px 18px !important;
-    gap: 12px !important;
+    padding: 10px 14px !important;
+    gap: 10px !important;
 }
 
 .ip-card-title-wrap {
@@ -18399,7 +18399,7 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     align-items: center;
     line-height: 1.2;
     font-weight: 900 !important;
-    font-size: 1.02rem !important;
+    font-size: .92rem !important;
 }
 
 .ip-date-info {
@@ -18408,7 +18408,7 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     flex-wrap: wrap;
     gap: 4px;
     color: rgba(255,255,255,.82);
-    font-size: .8rem !important;
+    font-size: .74rem !important;
 }
 
 .ip-date-info span {
@@ -18420,13 +18420,13 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     background: rgba(255,255,255,.12);
     color: #fff;
     border-radius: 8px;
-    min-height: 38px;
-    padding: 8px 12px;
+    min-height: 32px;
+    padding: 6px 10px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-weight: 800;
-    font-size: .82rem;
+    font-size: .76rem;
     transition: transform .18s ease, background-color .18s ease, border-color .18s ease;
 }
 
@@ -18448,6 +18448,94 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     justify-content: center;
     background: rgba(255,255,255,.16);
     flex: 0 0 auto;
+}
+
+.ip-ledger-wrap {
+    padding: 10px;
+    background: #f7faf8;
+}
+
+.ip-ledger-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border: 1px solid rgba(var(--primary-rgb,26,95,42),.13);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: .86rem;
+}
+
+.ip-ledger-table th,
+.ip-ledger-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(15, 23, 42, .09);
+    vertical-align: middle;
+    line-height: 1.35;
+}
+
+.ip-ledger-table th {
+    background: rgba(var(--primary-rgb,26,95,42),.07);
+    color: #34423a;
+    font-size: .74rem;
+    font-weight: 900;
+    letter-spacing: .02em;
+}
+
+.ip-ledger-table th:last-child,
+.ip-ledger-table td:last-child {
+    text-align: right;
+}
+
+.ip-ledger-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.ip-ledger-table tbody tr:hover td {
+    background: rgba(var(--primary-rgb,26,95,42),.025);
+}
+
+.ip-ledger-table td:first-child {
+    text-align: center;
+    color: #64748b;
+    font-weight: 800;
+}
+
+.ip-ledger-table td:nth-child(2) {
+    color: #334155;
+    font-weight: 800;
+}
+
+.ip-ledger-table td:nth-child(2) i {
+    width: 18px;
+    color: var(--primary-color,#166534);
+    margin-right: 6px;
+    text-align: center;
+    opacity: .92;
+}
+
+.ip-ledger-table td:last-child strong {
+    color: #111827;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.ip-mini-chip {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: rgba(var(--primary-rgb,26,95,42),.08);
+    color: var(--primary-dark,#14532d);
+    font-size: .68rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.ip-total-row td {
+    background: rgba(var(--primary-rgb,26,95,42),.055);
+    font-weight: 900;
 }
 
 .ip-stats-grid {
@@ -18537,8 +18625,8 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
 }
 
 .ip-indicators-row {
-    margin: 0 14px 14px;
-    padding: 12px !important;
+    margin: 0 10px 10px;
+    padding: 8px !important;
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px !important;
@@ -18554,7 +18642,7 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     grid-template-columns: minmax(72px, auto) minmax(70px, 1fr) auto;
     align-items: center;
     gap: 8px !important;
-    padding: 8px 10px;
+    padding: 6px 8px;
     border-radius: 8px;
     background: rgba(var(--primary-rgb,26,95,42),.035);
 }
@@ -18582,14 +18670,14 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
 
 .ip-reserve-row,
 .ip-note {
-    margin: 0 14px 14px;
+    margin: 0 10px 10px;
     border-radius: 8px;
     border: 1px solid rgba(var(--primary-rgb,26,95,42),.1) !important;
     background: #fff !important;
 }
 
 .ip-reserve-row {
-    padding: 12px 14px !important;
+    padding: 8px 10px !important;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -18598,7 +18686,7 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
 }
 
 .ip-note {
-    padding: 12px 14px !important;
+    padding: 8px 10px !important;
     color: #667085 !important;
     line-height: 1.65;
 }
@@ -18639,6 +18727,23 @@ textarea.form-control { min-height: 110px !important; resize: vertical !importan
     }
     .ip-doc-btn {
         justify-content: center;
+    }
+    .ip-ledger-wrap {
+        padding: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .ip-ledger-table {
+        min-width: 520px;
+        font-size: .8rem;
+    }
+    .ip-ledger-table th,
+    .ip-ledger-table td {
+        padding: 7px 8px;
+    }
+    .ip-mini-chip {
+        font-size: .62rem;
+        margin-left: 4px;
     }
     .ip-stats-grid {
         padding: 10px !important;
