@@ -229,3 +229,18 @@ def test_mobile_drawer_stacking_fix_present() -> None:
     assert int(m.group(1)) > 2147483000, (
         f"Wrapper z-index ({m.group(1)}) must be > backdrop z-index (2147483000)"
     )
+
+
+def test_fix_pass2_present() -> None:
+    """FIX-PASS 2 block must be in global-theme.php — addresses 3 user-reported issues:
+    (A) digital-services h5 white-on-gray invisible, (B) HRM .btn-coop Devanagari clip,
+    (C) institutional profile create button distortion."""
+    content = Path("/app/assets/css/global-theme.php").read_text(encoding="utf-8")
+    assert "FIX-PASS 2" in content
+    # A: tools-category-card h5 contrast fix
+    assert ".tools-widget-section .tools-category-card h5" in content
+    # B: .btn-coop overflow:visible + padding
+    assert ".btn-coop, a.btn-coop, button.btn-coop" in content
+    assert "overflow: visible" in content
+    # C: institutional profile button defensive override
+    assert 'button[form="profileMainForm"].btn' in content

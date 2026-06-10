@@ -1853,4 +1853,90 @@ body, .admin-shell, .member-page                   {
     opacity: 1 !important;
 }
 
+/* ══════════════════════════════════════════════════════════════════════
+   FIX-PASS 2 (2026-06-10) — targeted issues from user feedback
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── A. PUBLIC HOMEPAGE: "अन्य डिजिटल सेवाहरू" cards — h5 contrast ── */
+/* Earlier rule in app-public.css used white-on-gradient; later override used
+   light-green-on-light-green which was reported as "white on light gray" in
+   some browser cache states. Force a guaranteed-readable dark-green text on
+   soft-green chip for h5 inside .tools-category-card. */
+.tools-widget-section .tools-category-card h5,
+.tools-category-card.tools-cat-forms h5,
+.tools-category-card.tools-cat-tools h5,
+.tools-category-card.tools-cat-member h5 {
+    color: var(--primary-dark, #144a21) !important;
+    background: color-mix(in srgb, var(--primary-color, #1a5f2a) 10%, #ffffff) !important;
+    border: 1px solid color-mix(in srgb, var(--primary-color, #1a5f2a) 18%, #ffffff) !important;
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+    text-shadow: none !important;
+    animation: none !important;
+}
+.tools-widget-section .tools-category-card h5 i,
+.tools-category-card h5 i {
+    color: var(--text-on-primary, #fff) !important;
+    background: var(--primary-color, #1a5f2a) !important;
+    border-radius: 6px !important;
+    width: 24px !important; height: 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.8rem !important;
+}
+/* Kill old shimmer pseudo-element that creates white wash on h5 */
+.tools-widget-section .tools-category-card h5::after,
+.tools-category-card h5::after {
+    display: none !important;
+}
+
+/* ── B. HRM .btn-coop — Devanagari-safe padding + no text clip ── */
+/* HRM pages use .btn-coop (NOT Bootstrap .btn), so our earlier .btn overflow
+   fix didn't apply. The HRM action buttons ("कर्मचारी सूची", "ड्यासबोर्ड",
+   "+ नयाँ कर्मचारी") had their Devanagari descenders + icons clipped at the
+   bottom. Same fix as .btn now applied to .btn-coop. */
+.btn-coop, a.btn-coop, button.btn-coop                {
+    overflow: visible !important;
+    text-decoration: none !important;
+    line-height: 1.45 !important;
+    min-height: 40px;
+    padding-top: 9px !important;
+    padding-bottom: 9px !important;
+    align-items: center !important;
+    white-space: nowrap;
+}
+a.btn-coop, a.btn-coop:hover, a.btn-coop:focus, a.btn-coop:active {
+    text-decoration: none !important;
+}
+.btn-coop > i, .btn-coop > svg                        {
+    color: inherit !important;
+    font-size: 0.95em !important;
+    line-height: 1 !important;
+    flex-shrink: 0;
+}
+/* Page-header row containing .btn-coop — proper wrap on small screens */
+.stf-page-head, .page-header                          {
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    row-gap: 8px !important;
+}
+.stf-page-head .d-flex.gap-2, .page-header .d-flex.gap-2 {
+    flex-wrap: wrap !important;
+    row-gap: 8px !important;
+}
+
+/* ── C. INSTITUTIONAL PROFILE create/save button — explicit visibility ── */
+/* Defensive override for any leftover narrow padding causing clip */
+.admin-content .admin-page-header .btn,
+#profileMainForm + * .btn-primary,
+button[form="profileMainForm"].btn,
+.admin-content .btn.btn-primary                       {
+    padding-top: 9px !important;
+    padding-bottom: 9px !important;
+    min-height: 40px;
+    line-height: 1.45 !important;
+    text-decoration: none !important;
+}
+
 </style>
