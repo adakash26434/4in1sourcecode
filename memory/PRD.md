@@ -38,6 +38,14 @@ User later asked to start, selected a specific issue category, and prioritized f
     5. **Unused files removed**: `assets/css/_color-vars.php` (@deprecated, replaced by `global-theme.php`), `assets/js/pwa-init.js` (zero references), `assets/js/v10.6-mobile-helpers.js` (zero references).
     6. **Regression suite extended**: added 4 new tests in `tests/test_php_feature_regression.py` for the four fixes above (overflow:hidden removed, final patch present, no duplicate HRM tables, neutralizer removed). All 11 tests pass.
     7. **PHP syntax check**: `php -l` clean across all 270 PHP files.
+- 2026-06-08 (continued): **Backlog cleanup**:
+    1. **`pages.php` ↔ `pages-v2.php` full migration**: Removed legacy 9-line `admin/pages.php` wrapper. Renamed `admin/pages-v2.php` → `admin/pages.php`. Updated all internal redirects + outside references (`admin/settings.php`, `admin/includes/admin-header.php`, `admin/help-guide.php`) from `pages-v2.php` → `pages.php`. Renamed function `pages_v2_tinymce()` → `pages_admin_tinymce()`. Zero stale references remain.
+    2. **`app-admin.css` duplicate consolidation** (17,215 → 16,915 lines, ~300 saved):
+        - Removed 3 of 4 duplicate `.stat-uniform-card` blocks (lines ~8027, ~13123, ~13947). Canonical block at file end retained.
+        - Removed duplicate `.admin-nav-tabs` block at ~line 3587 (was overridden by !important block at ~5154).
+        - Removed duplicate `.nav-tabs` blocks at ~line 7451 (kept only mobile `overflow-x:auto` wrapper) and ~line 8723 (was overridden by pill block at ~8964).
+        - Removed dead `.nav-tabs .nav-link` rules from final canonical block (kept `.nav-pills .nav-link.active`).
+    3. Regression suite all green (11/11), PHP syntax clean on all 270 PHP files, CSS brace balance verified.
 
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.

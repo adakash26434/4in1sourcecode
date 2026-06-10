@@ -603,7 +603,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                     </div>
                     <div class="alert alert-info mt-3 mb-0">
                         <i class="fas fa-info-circle"></i>
-                        <?php echo $__t('सन्देशहरू', 'Messages'); ?> <a href="pages-v2.php" class="alert-link"><?php echo $__t('पृष्ठ व्यवस्थापन', 'Page Management'); ?></a> <?php echo $__t('मा सम्पादन गर्नुहोस्। फोटोहरू "Branding / Media Manager" मा एकै ठाउँबाट अपलोड गर्न सकिन्छ।', 'can be edited there. Photos can be uploaded from "Branding / Media Manager".'); ?>
+                        <?php echo $__t('सन्देशहरू', 'Messages'); ?> <a href="pages.php" class="alert-link"><?php echo $__t('पृष्ठ व्यवस्थापन', 'Page Management'); ?></a> <?php echo $__t('मा सम्पादन गर्नुहोस्। फोटोहरू "Branding / Media Manager" मा एकै ठाउँबाट अपलोड गर्न सकिन्छ।', 'can be edited there. Photos can be uploaded from "Branding / Media Manager".'); ?>
                     </div>
                 </div>
             </div>

@@ -3583,36 +3583,8 @@ body.dark-mode .dark-mode-toggle .fa-moon {
 /* =============================================================
    ADMIN TABS — Form/Table tabs for better UX
    admin-nav-tabs: Bootstrap tabs लाई custom style
+   NOTE: canonical .admin-nav-tabs rules at line ~5182 (with !important) supersede this block; removed to reduce cascade churn.
    ============================================================= */
-.admin-nav-tabs {
-    border-bottom: 2px solid #e8f5e9;
-    gap: 4px;
-}
-.admin-nav-tabs .nav-link {
-    border: 1.5px solid transparent;
-    border-radius: 10px 10px 0 0;
-    color: #555;
-    font-weight: 600;
-    padding: 10px 22px;
-    transition: all 0.22s;
-    background: #f8fdf9;
-}
-.admin-nav-tabs .nav-link:hover {
-    color: var(--primary-color);
-    border-color: #c8e6c9 #c8e6c9 transparent;
-    background: #edf7ef;
-}
-.admin-nav-tabs .nav-link.active {
-    color: var(--primary-color);
-    background: #fff;
-    border-color: var(--color-success) var(--color-success) #fff;
-    border-bottom: 2px solid #fff;
-    box-shadow: 0 -2px 8px rgba(26,95,42,0.08);
-}
-.admin-nav-tabs .nav-link .badge {
-    font-size: 0.72rem;
-    padding: 3px 7px;
-}
 
 /* Category toggle buttons in rate form */
 .cat-btn {
@@ -7474,51 +7446,11 @@ textarea.form-control {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   19. TABS — Better tab navigation for list/add pages
+   19. TABS — mobile horizontal-scroll wrapper (canonical .nav-link styles at ~line 8763)
    ───────────────────────────────────────────────────────────────────────── */
 .nav-tabs {
-    border-bottom: 2px solid #e8f5e9 !important;
-    gap: 4px;
     flex-wrap: nowrap;
     overflow-x: auto;
-}
-
-.nav-tabs .nav-link {
-    border: none !important;
-    border-radius: var(--radius-md) var(--radius-md) 0 0 !important;
-    padding: 9px 18px !important;
-    color: #6b7280 !important;
-    font-size: 0.85rem !important;
-    font-weight: 500 !important;
-    transition: all var(--transition-fast) !important;
-    background: transparent !important;
-    position: relative;
-}
-
-.nav-tabs .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: transparent;
-    transition: background var(--transition-fast);
-}
-
-.nav-tabs .nav-link:hover {
-    color: var(--primary-color) !important;
-    background: var(--green-50) !important;
-}
-
-.nav-tabs .nav-link.active {
-    color: var(--primary-color) !important;
-    font-weight: 700 !important;
-    background: var(--green-50) !important;
-}
-
-.nav-tabs .nav-link.active::after {
-    background: var(--primary-color);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -8023,28 +7955,9 @@ input[type="file"].form-control {
 .sm-icon.ic-resolved  { background:#dcfce7; color:#15803d; }
 .sm-icon.ic-anon      { background:#f3f4f6; color:#6b7280; }
 
-/* Bootstrap-based stat cards (member-online-portal etc.) */
-.stat-uniform-card {
-    min-height: 122px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-}
-.stat-uniform-card .stat-value {
-    font-size: 1.9rem;
-    font-weight: 800;
-    line-height: 1;
-}
-.stat-uniform-card .stat-label {
-    font-size: 0.78rem;
-    color: #6b7280;
-    line-height: 1.35;
-    min-height: 2.1em;
-    text-align: center;
-}
+/* Bootstrap-based stat cards (member-online-portal etc.)
+   NOTE: Canonical .stat-uniform-card rules consolidated at end of file (~line 15596+).
+   This block (old) intentionally removed to eliminate CSS override cascade. */
 
 /* Pagination improvements */
 .adm-pagination { display:flex; gap:4px; justify-content:center; align-items:center; flex-wrap:wrap; }
@@ -8805,34 +8718,8 @@ body {
 .badge-soft-muted   { background:#f3f4f6; color:#4b5563; }
 
 /* ═══════════════════════════════════════════════════
-   12. TABS — Modern underline style
+   12. TABS — REMOVED (overridden by pill-style block at ~line 8964)
    ═══════════════════════════════════════════════════ */
-.nav-tabs {
-    border-bottom: 2px solid var(--adm-border) !important;
-    gap: 4px !important;
-}
-.nav-tabs .nav-link {
-    border: none !important;
-    border-bottom: 3px solid transparent !important;
-    border-radius: 0 !important;
-    padding: 10px 18px !important;
-    font-weight: 600 !important;
-    font-size: .9rem !important;
-    color: var(--adm-muted) !important;
-    transition: color .15s !important;
-    margin-bottom: -2px !important;
-}
-.nav-tabs .nav-link:hover {
-    color: var(--primary-color) !important;
-    border-bottom-color: rgba(var(--primary-rgb,26,95,42),.3) !important;
-    background: transparent !important;
-}
-.nav-tabs .nav-link.active {
-    color: var(--primary-color) !important;
-    border-bottom-color: var(--primary-color) !important;
-    background: transparent !important;
-    font-weight: 700 !important;
-}
 
 /* ═══════════════════════════════════════════════════
    13. PAGINATION — Clean
@@ -13119,15 +13006,9 @@ body.admin-shell { padding-bottom: 70px; }
 
 /* ═══════════════════════════════════════════════════
    57. ADMIN MEMBERS (admin/members.php)
+   NOTE: .stat-uniform-card rules removed — see canonical block at end of file.
    ═══════════════════════════════════════════════════ */
-.stat-uniform-card { background: linear-gradient(135deg, var(--surface-color), color-mix(in srgb, var(--primary-color) 5%, white)); border: 2px solid color-mix(in srgb, var(--primary-color) 12%, white); border-radius: 16px; transition: all .3s cubic-bezier(.4,0,.2,1); position: relative; overflow: hidden; }
-.stat-uniform-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary-color) 10%, white), transparent); transition: left .5s; }
-.stat-uniform-card:hover::before { left: 100%; }
-.stat-uniform-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 32px rgba(var(--primary-rgb), .2); border-color: var(--primary-color); }
-.stat-uniform-card i { transition: all .3s; }
-.stat-uniform-card:hover i { transform: scale(1.1) rotate(5deg); }
 .stat-value { font-size: 2rem; font-weight: 900; color: var(--primary-dark); transition: all .3s; }
-.stat-uniform-card:hover .stat-value { color: var(--primary-color); transform: scale(1.05); }
 .stat-label { font-size: .8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .4px; }
 .mem-search-group { border-radius: 25px; overflow: hidden; box-shadow: 0 2px 8px rgba(var(--primary-rgb), .1); }
 .mem-search-group .input-group-text { background: var(--primary-color); color: var(--text-on-primary); border: none; }
@@ -13966,123 +13847,7 @@ body.admin-auth-page { font-family: var(--font-primary,'Mukta','Noto Sans Devana
     .table thead th { background: #f0f0f0 !important; color: #000 !important; }
 }
 
-/* ========== admin-stat-cards.css ========== */
-/* Uniform Stat/Count Cards CSS */
-
-.stat-uniform-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.stat-uniform-card {
-  min-height: 118px;
-  border-radius: 0.75rem;
-  transition: all 0.2s ease;
-  border-left: 4px solid var(--bs-primary);
-  background: #fff;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.stat-uniform-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
-  text-decoration: none;
-  color: inherit;
-}
-
-.stat-uniform-card:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Color variants */
-.stat-uniform-card[data-bg="primary"] {
-  border-left-color: var(--bs-primary);
-}
-
-.stat-uniform-card[data-bg="secondary"] {
-  border-left-color: var(--bs-secondary);
-}
-
-.stat-uniform-card[data-bg="success"] {
-  border-left-color: var(--bs-success);
-}
-
-.stat-uniform-card[data-bg="danger"] {
-  border-left-color: var(--bs-danger);
-}
-
-.stat-uniform-card[data-bg="warning"] {
-  border-left-color: var(--bs-warning);
-}
-
-.stat-uniform-card[data-bg="info"] {
-  border-left-color: var(--bs-info);
-}
-
-.stat-uniform-card[data-bg="light"] {
-  border-left-color: var(--bs-light);
-}
-
-.stat-uniform-card[data-bg="dark"] {
-  border-left-color: var(--bs-dark);
-}
-
-/* Icon styling */
-.stat-uniform-icon {
-  font-size: 1.4rem;
-  color: var(--bs-secondary);
-  margin-bottom: 0.25rem;
-  line-height: 1;
-}
-
-/* Value styling */
-.stat-uniform-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.1;
-  margin: 0.25rem 0;
-}
-
-/* Label styling */
-.stat-uniform-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin: 0;
-}
-
-/* Mobile responsive */
-@media (max-width: 575.98px) {
-  .stat-uniform-value {
-    font-size: 1.2rem;
-  }
-
-  .stat-uniform-icon {
-    font-size: 1.1rem;
-  }
-
-  .stat-uniform-card {
-    min-height: 100px;
-    padding: 1rem !important;
-  }
-
-  .stat-uniform-label {
-    font-size: 0.65rem;
-  }
-}
-
-/* Tablet responsive */
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .stat-uniform-card {
-    min-height: 110px;
-  }
-}
+/* ========== admin-stat-cards.css — REMOVED (consolidated to canonical block at end of file) ========== */
 
 /* ========== theme-overrides-v4.css ========== */
 /* Merged from theme-overrides-v3.css — kept before v4 rules to preserve cascade order */
@@ -14278,19 +14043,7 @@ body.admin-auth-page { font-family: var(--font-primary,'Mukta','Noto Sans Devana
     background: rgba(var(--primary-rgb,26,95,42), .04);
 }
 
-/* ─── 7. TABS — unified theme look ──────────────────────────── */
-.nav-tabs .nav-link {
-    color: var(--text-secondary);
-    border-radius: 8px 8px 0 0;
-    font-weight: 600;
-    font-size: var(--font-size-sm);
-}
-.nav-tabs .nav-link.active {
-    color: var(--primary-color);
-    border-color: var(--border-color) var(--border-color) #fff;
-    border-bottom: 2px solid var(--primary-color);
-    background: #fff;
-}
+/* ─── 7. TABS — .nav-tabs canonical pill style lives at line ~8964 (.nav-tabs/.admin-nav-tabs combined). Below is .nav-pills only ──────────── */
 .nav-pills .nav-link.active {
     background: var(--primary-color) !important;
     color: var(--text-on-primary) !important;

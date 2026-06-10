@@ -363,13 +363,13 @@ set_exception_handler(function (\Throwable $ex) {
                                 <a href="interest-rates.php"><span class="nav-icon-wrap"><i class="fas fa-percent"></i></span><span><?php echo $adminT('ब्याज दर', 'Interest Rates'); ?></span></a>
                             </li>
                             <li class="<?php echo ($currentPage === 'pages-v2' && (($_GET['tab'] ?? 'dynamic') === 'dynamic')) ? 'active' : ''; ?>">
-                                <a href="pages-v2.php?tab=dynamic">
+                                <a href="pages.php?tab=dynamic">
                                     <span class="nav-icon-wrap"><i class="fas fa-file-lines"></i></span>
                                     <span><?php echo $adminT('गतिशील पृष्ठ', 'Dynamic Pages'); ?></span>
                                 </a>
                             </li>
                             <li class="<?php echo ($currentPage === 'pages-v2' && (($_GET['tab'] ?? '') === 'static')) ? 'active' : ''; ?>">
-                                <a href="pages-v2.php?tab=static">
+                                <a href="pages.php?tab=static">
                                     <span class="nav-icon-wrap"><i class="fas fa-layer-group"></i></span>
                                     <span><?php echo $adminT('स्थिर पृष्ठ', 'Static Pages'); ?></span>
                                 </a>
