@@ -60,6 +60,15 @@ User later asked to start, selected a specific issue category, and prioritized f
     2. **Nepali/Devanagari descender clipping in buttons + badges** — converts all fixed `height: Xpx` to `height: auto !important` with safe `line-height: 1.45` and `padding-block: 5-9px`. Badge padding bumped from 4px → 5px top/bottom + `min-height: 22px` + `display: inline-flex; align-items: center`. Same pattern applied to `.btn, .btn-coop, .nav-link, .dropdown-item, .status-chip, .chip, .pill, .tag, .badge`.
     Inline `[style*="height"]` selectors give `min-height: 36px` fallback when templates hard-code height in HTML.
     Regression test added: `test_fix_pass3_global_icon_devanagari` (14/14 tests pass). CSS rule count: 304 → 316. PHP `-l` clean on all 270 files.
+- 2026-06-10: **Comprehensive refactor audit + documentation deliverables**:
+    1. **Legacy file audit** — scanned project for `*-old.*`, `*-backup.*`, `*-v[123].*`, `@deprecated` headers, zero-reference JS/PHP. **Result: 0 orphans** (earlier 2026-06-08 cleanups already removed all stale files). Project is now well-curated.
+    2. **`archive_old_v1/` convention introduced** — new folder with `README.md` (workflow: verify zero refs → move → log) and append-only `MOVED.log` documenting historical deletions. Future deprecations move here instead of being deleted, retained for 1 release cycle for safe rollback.
+    3. **Documentation deliverables (NEW)**:
+        - `/app/README.md` — top-level project overview (tech stack, structure, setup, conventions, testing)
+        - `/app/docs/PROJECT_STRUCTURE.md` — detailed directory map with every folder explained
+        - `/app/docs/CSS_ARCHITECTURE.md` — cascade order, Devanagari safety table, icon sizing convention, token reference
+        - `/app/docs/REFACTOR_AUDIT_2026-06-10.md` — evidence trail with replication commands + risk assessment
+    4. **System integrity verified**: 270/270 PHP files lint-clean, all 6 CSS files brace-balanced, 14/14 regression tests pass, dependencies/DB hooks/asset paths untouched.
 
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.
