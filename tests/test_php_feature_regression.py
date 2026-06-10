@@ -205,3 +205,27 @@ def test_btn_neutralizer_block_removed() -> None:
         "The 'neutralize buttons' block is still present in app-admin.css. "
         "It forces white background on all colored buttons and hides icons."
     )
+
+
+
+def test_mobile_drawer_stacking_fix_present() -> None:
+    """Public mobile menu drawer (#mainNavV2) lives inside sticky .pfl-header-wrapper
+    (position:sticky; z-index:1000) which creates a stacking context that traps the
+    drawer below the body-level #pflMobileBackdrop. When mobile-nav-open class is on
+    body, the wrapper must be lifted above the backdrop so the drawer becomes visible
+    instead of dimmed by the backdrop."""
+    content = Path("/app/includes/header.php").read_text(encoding="utf-8")
+    assert "body.header-v2.mobile-nav-open .pfl-header-wrapper" in content, (
+        "Missing stacking-context fix for mobile drawer — wrapper must be lifted "
+        "above backdrop when nav is open."
+    )
+    # Confirm the z-index lift value is above the backdrop's 2147483000
+    import re
+    m = re.search(
+        r'body\.header-v2\.mobile-nav-open\s+\.pfl-header-wrapper\s*\{[^}]*z-index:\s*(\d+)',
+        content,
+    )
+    assert m is not None, "Stacking fix block must set explicit z-index"
+    assert int(m.group(1)) > 2147483000, (
+        f"Wrapper z-index ({m.group(1)}) must be > backdrop z-index (2147483000)"
+    )

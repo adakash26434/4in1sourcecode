@@ -1410,6 +1410,16 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             pointer-events: auto !important;
         }
         body.header-v2.mobile-nav-open { overflow: hidden !important; }
+
+        /* ── CRITICAL FIX: sticky .pfl-header-wrapper (z-index:1000) creates its own
+           stacking context, trapping #mainNavV2 (drawer) inside it. The backdrop sits
+           outside the wrapper at z-index 2147483000 → backdrop ends up on top of the
+           drawer and dims it. When mobile nav opens, lift the wrapper above backdrop
+           so the drawer becomes visible at full contrast. ── */
+        body.header-v2.mobile-nav-open .pfl-header-wrapper {
+            z-index: 2147483002 !important;
+            isolation: isolate;
+        }
     }
     </style>
     <script>

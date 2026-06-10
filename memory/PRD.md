@@ -46,6 +46,10 @@ User later asked to start, selected a specific issue category, and prioritized f
         - Removed duplicate `.nav-tabs` blocks at ~line 7451 (kept only mobile `overflow-x:auto` wrapper) and ~line 8723 (was overridden by pill block at ~8964).
         - Removed dead `.nav-tabs .nav-link` rules from final canonical block (kept `.nav-pills .nav-link.active`).
     3. Regression suite all green (11/11), PHP syntax clean on all 270 PHP files, CSS brace balance verified.
+- 2026-06-10: **Mobile menu drawer "dim/hidden" fix** (from user screen recording showing drawer text barely visible under backdrop tint):
+    - Root cause: `.pfl-header-wrapper` has `position:sticky; z-index:1000` which creates a **stacking context** that traps `#mainNavV2` (drawer) inside it. The body-level `#pflMobileBackdrop` (z-index:2147483000) ends up above the drawer because the wrapper itself caps at z-index 1000 — drawer's own `z-index:2147483001` is meaningless inside the wrapper's context.
+    - Fix in `includes/header.php`: When body has `.mobile-nav-open`, lift `.pfl-header-wrapper` to `z-index:2147483002` with `isolation:isolate`. Now wrapper sits above backdrop, drawer becomes fully visible at full contrast, backdrop dims only the rest of the page below.
+    - Regression test added: `test_mobile_drawer_stacking_fix_present` (12/12 tests pass).
 
 ## Current Known Environment State
 - Database credentials are not configured in this workspace, so public/member pages may show the setup screen and admin bootstrap logs non-fatal DB-not-configured messages. This is expected until real DB config is present.
