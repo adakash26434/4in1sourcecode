@@ -1939,4 +1939,124 @@ button[form="profileMainForm"].btn,
     text-decoration: none !important;
 }
 
+/* ══════════════════════════════════════════════════════════════════════
+   FIX-PASS 3 (2026-06-10) — global icon scaling + Devanagari safety
+   Two passive, project-wide overrides:
+   (A) Icons inside dropdowns/buttons/nav scaled to text size (0.92em, ~14px)
+   (B) Buttons/badges never use fixed heights — flexible padding so Devanagari
+       descenders (ँ ी ु etc.) never clip.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── A. ICON SIZING — proportional to text, never oversized ────── */
+/* Dropdown menus (Bootstrap + custom .pfl-drop / .qh-menu) */
+.dropdown-menu .dropdown-item i,
+.dropdown-menu .dropdown-item svg,
+.dropdown-menu a i,
+.dropdown-menu a svg,
+.pfl-drop a i, .pfl-drop a svg,
+.qh-menu a i, .qh-menu a svg,
+.quick-links-dropdown a i,
+ul.dropdown-menu i, ul.dropdown-menu svg               {
+    font-size: 0.92em !important;
+    width: 1.15em !important;
+    min-width: 1.15em !important;
+    max-width: 1.4em !important;
+    height: auto !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    flex-shrink: 0 !important;
+}
+/* Button icons — proportional, never bigger than text */
+.btn > i, .btn > svg,
+.btn-coop > i, .btn-coop > svg,
+button > i:only-child, a > i:only-child                {
+    font-size: 0.95em !important;
+    line-height: 1 !important;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+/* Badge icons — even smaller */
+.badge > i, .badge > svg                               {
+    font-size: 0.88em !important;
+    line-height: 1 !important;
+    vertical-align: middle;
+}
+/* Nav-link & sidebar icons — uniform 16-18px */
+.navbar .nav-link > i,
+.nav-menu > li > a > i,
+.sidebar-nav a > i,
+.admin-sidebar a > i                                   {
+    font-size: 0.95em !important;
+    width: 1.2em;
+    text-align: center;
+    flex-shrink: 0;
+}
+/* Dropdown items must use flex so icon + text align perfectly */
+.dropdown-menu .dropdown-item,
+.dropdown-menu > li > a,
+.pfl-drop a, .qh-menu a                                {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    line-height: 1.45 !important;
+}
+
+/* ── B. NEPALI/DEVANAGARI DESCENDER SAFETY ─────────────────────── */
+/* Convert any fixed-height button/badge to min-height with flex padding so
+   ँ ी ु ृ ँ̱ etc. never clip. */
+.btn, .btn-coop, .badge,
+.btn-sm, .btn-lg,
+.nav-link, .dropdown-item,
+.pfl-drop a, .qh-menu a                                {
+    height: auto !important;
+    line-height: 1.45 !important;
+}
+/* Badge Devanagari-safe padding (was 4px → too tight for descenders) */
+.badge                                                 {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    line-height: 1.4 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    vertical-align: middle;
+    min-height: 22px;
+}
+/* Small badge variant — keep readable */
+.badge-sm, .badge.badge-sm                             {
+    padding: 4px 7px !important;
+    font-size: 0.68rem !important;
+    line-height: 1.35 !important;
+    min-height: 20px;
+}
+/* Pills (Bootstrap .badge.rounded-pill) keep border-radius */
+.badge.rounded-pill                                    { border-radius: 999px !important; }
+
+/* Form labels, table cells — line-height safe for Devanagari */
+.form-label, .table th, .table td                      {
+    line-height: 1.5 !important;
+}
+
+/* Status chip-style spans used on profile pages */
+.status-chip, .chip, .pill, .tag                       {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    line-height: 1.4 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    height: auto !important;
+    min-height: 24px;
+}
+
+/* ── C. CASCADE-RESET: kill any inline height:XXpx on buttons/links
+   that might have been set by older templates ──────────────────── */
+.btn[style*="height"],
+.btn-coop[style*="height"],
+.badge[style*="height"]                                {
+    /* inline style still wins but we add min-height fallback */
+    min-height: 36px;
+}
+
 </style>

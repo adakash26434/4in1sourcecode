@@ -244,3 +244,21 @@ def test_fix_pass2_present() -> None:
     assert "overflow: visible" in content
     # C: institutional profile button defensive override
     assert 'button[form="profileMainForm"].btn' in content
+
+
+
+def test_fix_pass3_global_icon_devanagari() -> None:
+    """FIX-PASS 3 block must be present — global icon scaling + Devanagari descender
+    safety. Caps icon font-size to 0.92em-0.95em across dropdowns/buttons/nav, and
+    converts fixed heights on buttons/badges to flexible min-height + padding so
+    Nepali bottom modifiers (ँ ी ु ृ) never clip."""
+    content = Path("/app/assets/css/global-theme.php").read_text(encoding="utf-8")
+    assert "FIX-PASS 3" in content
+    # A: icon sizing
+    assert ".dropdown-menu .dropdown-item i" in content
+    assert "font-size: 0.92em" in content
+    # B: Devanagari-safe — height:auto and badge padding
+    assert "height: auto !important" in content
+    assert ".badge" in content
+    # C: inline-height fallback selector
+    assert '.btn[style*="height"]' in content
