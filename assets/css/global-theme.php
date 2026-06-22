@@ -2059,4 +2059,146 @@ button > i:only-child, a > i:only-child                {
     min-height: 36px;
 }
 
+/* ══════════════════════════════════════════════════════════════════════
+   FIX-PASS 4 (2026-06-22) — STAT CARD & STAT-MINI CONSOLIDATION
+   Previous fixes applied to global-theme.php and override multiple
+   conflicting definitions in app-admin.css (which has .stat-card defined
+   7x and .stat-mini defined 3x causing specificity wars).
+   This pass creates ONE canonical definition for each.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── CANONICAL .stat-card — Single source of truth ───────────────── */
+/* This overrides all 7+ previous definitions in app-admin.css */
+.stat-card {
+    padding: 20px !important;
+    border-radius: 12px !important;
+    color: white !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    min-height: 95px !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+}
+.stat-card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+/* Color variants — all use CSS variables for consistency */
+.stat-card.bg-primary  { background: linear-gradient(135deg, var(--primary-color, #1a5f2a), var(--color-success, #28a745)) !important; }
+.stat-card.bg-success { background: linear-gradient(135deg, var(--primary-color, #1a5f2a), var(--color-success, #28a745)) !important; }
+.stat-card.bg-info    { background: linear-gradient(135deg, #0dcaf0, #0891b2) !important; }
+.stat-card.bg-warning { background: linear-gradient(135deg, #f59e0b, #d97706) !important; }
+.stat-card.bg-danger  { background: linear-gradient(135deg, #dc2626, #ef4444) !important; }
+.stat-card.bg-dark    { background: linear-gradient(135deg, #374151, #1f2937) !important; }
+.stat-card.bg-secondary { background: linear-gradient(135deg, #6b7280, #4b5563) !important; }
+/* Stat card internals */
+.stat-card .stat-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.stat-card .stat-icon.warn  { background: rgba(245,158,11,0.2); color: #b45309; }
+.stat-card .stat-icon.danger{ background: rgba(220,38,38,0.2); color: #b91c1c; }
+.stat-card .stat-icon.info  { background: rgba(13,202,240,0.2); color: #0369a1; }
+.stat-card .stat-info h3 { font-size: 1.6rem !important; font-weight: 700 !important; margin: 0 !important; line-height: 1 !important; }
+.stat-card .stat-info p  { margin: 0.2rem 0 0 !important; font-size: 0.8rem !important; opacity: 0.9 !important; }
+
+/* ── CANONICAL .stat-mini — Single source of truth ───────────────── */
+.stat-mini-row { display: flex !important; gap: 12px !important; flex-wrap: wrap !important; margin-bottom: 20px !important; }
+.stat-mini {
+    flex: 1 !important; 
+    min-width: 130px !important; 
+    background: #fff !important; 
+    border-radius: 10px !important;
+    border: 1.5px solid #e8edf3 !important; 
+    padding: 14px 16px !important; 
+    text-decoration: none !important;
+    transition: box-shadow 0.18s, border-color 0.18s !important; 
+    display: flex !important; 
+    flex-direction: column !important;
+    justify-content: flex-start !important; 
+    min-height: 122px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04) !important;
+}
+.stat-mini:hover { box-shadow: 0 4px 18px rgba(26,95,42,0.12) !important; border-color: #22c55e !important; }
+.stat-mini.active-filter { border-color: var(--primary-color, #1a5f2a) !important; background: #f0fdf4 !important; box-shadow: 0 2px 10px rgba(26,95,42,0.15) !important; }
+.stat-mini .sm-val { font-size: 1.6rem !important; font-weight: 800 !important; color: #1a2e1d !important; line-height: 1 !important; }
+.stat-mini .sm-lbl { font-size: 0.73rem !important; color: #6b7280 !important; margin-top: 2px !important; line-height: 1.35 !important; min-height: 2em !important; }
+.stat-mini .sm-icon { width: 34px !important; height: 34px !important; border-radius: 8px !important; display: flex !important; align-items: center !important; justify-content: center !important; font-size: 0.9rem !important; margin-bottom: 8px !important; flex-shrink: 0 !important; }
+/* Icon color variants */
+.sm-icon.ic-total     { background: #fef2f2 !important; color: var(--secondary-dark, #922b21) !important; }
+.sm-icon.ic-pending   { background: #fef9c3 !important; color: #b45309 !important; }
+.sm-icon.ic-process   { background: #fef2f2 !important; color: var(--secondary-color, #c0392b) !important; }
+.sm-icon.ic-approved  { background: #dcfce7 !important; color: #15803d !important; }
+.sm-icon.ic-rejected  { background: #fee2e2 !important; color: #b91c1c !important; }
+.sm-icon.ic-disbursed { background: #fef2f2 !important; color: var(--secondary-dark, #922b21) !important; }
+.sm-icon.ic-amount    { background: #fef3c7 !important; color: #92400e !important; }
+.sm-icon.ic-resolved  { background: #dcfce7 !important; color: #15803d !important; }
+.sm-icon.ic-anon      { background: #f3f4f6 !important; color: #6b7280 !important; }
+
+/* ── CANONICAL .stat-uniform-card — Bootstrap card-based stat ────── */
+.stat-uniform-card {
+    background: #fff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 10px !important;
+    padding: 16px !important;
+    transition: box-shadow 0.2s, transform 0.2s !important;
+}
+.stat-uniform-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important; transform: translateY(-1px) !important; }
+.stat-uniform-card .stat-uniform-icon { font-size: 1.5rem !important; margin-bottom: 8px !important; }
+.stat-uniform-card .stat-uniform-value { font-size: 1.4rem !important; font-weight: 700 !important; color: var(--text-primary, #1f2937) !important; }
+.stat-uniform-card .stat-uniform-label { font-size: 0.75rem !important; color: var(--text-muted, #6b7280) !important; }
+
+/* ── ADMIN TABLE CARD — Standard wrapper for tables ───────────────── */
+.admin-table-card {
+    border: none !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 18px rgba(16,24,40,0.07) !important;
+    overflow: hidden !important;
+    background: #fff !important;
+}
+.admin-table-card .table thead th {
+    background: linear-gradient(135deg, rgba(26,95,42,0.08), rgba(40,167,69,0.12)) !important;
+    color: var(--primary-color, #1a5f2a) !important;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+}
+
+/* ── COOP TABLE — Uniform table styling for all panels ────────────── */
+.coop-table {
+    font-family: var(--font-primary) !important;
+    font-size: 0.875rem !important;
+}
+.coop-table thead th {
+    background: linear-gradient(135deg, rgba(26,95,42,0.08), rgba(40,167,69,0.12)) !important;
+    color: var(--primary-color, #1a5f2a) !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid var(--primary-color, #1a5f2a) !important;
+}
+.coop-table tbody tr:hover {
+    background-color: rgba(26,95,42,0.04) !important;
+}
+
+/* Mobile table card view */
+.table-responsive-stack tbody tr {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 1rem !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    padding: 0.75rem !important;
+}
+.table-responsive-stack tbody td {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border: none !important;
+    padding: 0.25rem 0.5rem !important;
+}
+.table-responsive-stack tbody td::before {
+    content: attr(data-label) !important;
+    font-weight: 600 !important;
+    color: var(--text-muted, #6b7280) !important;
+    font-size: 0.75rem !important;
+    min-width: 100px !important;
+}
+
 </style>

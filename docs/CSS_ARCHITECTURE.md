@@ -102,6 +102,14 @@ Structure:
   /*   - global icon sizing (0.92em-0.95em)
        - Devanagari descender safety (height:auto, line-height:1.45)
        - badge inline-flex padding bump 4px→5px */
+
+  /* FIX-PASS 4 (2026-06-22) */
+  /*   - CANONICAL .stat-card (was defined 7x in app-admin.css) */
+  /*   - CANONICAL .stat-mini (was defined 3x in app-admin.css) */
+  /*   - CANONICAL .stat-uniform-card */
+  /*   - ADMIN TABLE CARD standardization */
+  /*   - COOP TABLE standardization with mobile card view */
+  /*   - Icon color variants for stat-mini (.ic-pending, .ic-approved, etc.) */
 </style>
 ```
 
@@ -220,4 +228,4 @@ python3 -m pytest tests/test_php_feature_regression.py -v
 
 ---
 
-— Last updated: **2026-06-10**
+— Last updated: **2026-06-22**
