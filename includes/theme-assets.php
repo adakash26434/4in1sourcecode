@@ -49,6 +49,50 @@ if (!function_exists('coopThemeCssUrl')) {
         echo '<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">' . "\n";
     }
 
+    /**
+     * Load Lucide icons JS (AkashDigital-style local asset).
+     * No CDN dependency — uses assets/vendor/lucide.min.js
+     */
+    function coopThemeLucide(): void
+    {
+        static $done = false;
+        if ($done) {
+            return;
+        }
+        $done = true;
+        if (function_exists('lucide_asset')) {
+            $url = lucide_asset();
+            echo '<script src="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '" defer></script>' . "\n";
+        } else {
+            // Fallback: construct manually
+            $base = defined('SITE_URL') ? SITE_URL : '/';
+            $path = defined('ROOT_PATH') ? ROOT_PATH : dirname(__DIR__) . '/';
+            $fullPath = $path . 'assets/vendor/lucide.min.js';
+            $mtime = @filemtime($fullPath) ?: time();
+            echo '<script src="' . htmlspecialchars($base . 'assets/vendor/lucide.min.js?v=' . $mtime, ENT_QUOTES, 'UTF-8') . '" defer></script>' . "\n";
+        }
+    }
+
+    /**
+     * Initialize Lucide icons (call before </body> or after lucide.js loads).
+     */
+    function coopThemeLucideInit(): void
+    {
+        static $done = false;
+        if ($done) {
+            return;
+        }
+        $done = true;
+        echo '<script>
+document.addEventListener("DOMContentLoaded", function() {
+    if (typeof lucide !== "undefined") lucide.createIcons();
+});
+if (document.readyState !== "loading" && typeof lucide !== "undefined") {
+    lucide.createIcons();
+}
+</script>' . "\n";
+    }
+
     function coopThemeDetectPanel(): string
     {
         if (defined('PORTAL') && is_string(PORTAL) && PORTAL !== '') {
@@ -118,11 +162,17 @@ if (!function_exists('coopThemeCssUrl')) {
                 break;
         }
 
+        /* ── 2. Load Lucide icons (AkashDigital-style, local vendor) ── */
+        if (empty($options['skip_lucide'])) {
+            coopThemeLucide();
+        }
+
+        /* ── 3. Extra CSS files ── */
         foreach ($options['extra'] ?? [] as $rel) {
             coopThemeLink($rel);
         }
 
-        /* ── 2. DB-computed brand colors AFTER static CSS so !important wins ── */
+        /* ── 4. DB-computed brand colors AFTER static CSS so !important wins ── */
         coopThemeRequireGlobal();
     }
 
