@@ -234,7 +234,7 @@ set_exception_handler(function (\Throwable $ex) {
         . $ex->getMessage() . ' in ' . $ex->getFile() . ':' . $ex->getLine());
     echo '<div class="container-fluid mt-4">'
        . '<div class="alert alert-danger border-start border-danger border-4 shadow-sm" role="alert">'
-       . '<h5 class="mb-2"><i class="fas fa-triangle-exclamation me-2"></i>डेटाबेस त्रुटि भयो</h5>'
+       . '<h5 class="mb-2"><i data-lucide="triangle-exclamation me-2"></i>डेटाबेस त्रुटि भयो</h5>'
        . '<p class="mb-1">यो पृष्ठ लोड गर्दा समस्या आयो। सम्भावित कारणहरू:</p>'
        . '<ul class="mb-2 ps-3">'
        . '<li>डेटाबेस तालिका अझसम्म बनिसकेको छैन</li>'
@@ -242,7 +242,7 @@ set_exception_handler(function (\Throwable $ex) {
        . '<li>Migration अपूर्ण — <a href="run-migration.php" class="alert-link">Migration चलाउनुहोस्</a></li>'
        . '</ul>'
        . '<small class="text-muted d-block font-monospace">'
-       . '<i class="fas fa-code me-1"></i>'
+       . '<i data-lucide="code me-1"></i>'
        . htmlspecialchars($ex->getMessage(), ENT_QUOTES, 'UTF-8')
        . '</small>'
        . '</div></div>';
@@ -257,24 +257,16 @@ set_exception_handler(function (\Throwable $ex) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($pageTitle) ? $pageTitle . ' - ' : ''; ?><?php echo $adminT('एडमिन प्यानल', 'Admin Panel'); ?></title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS (required for admin pages) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Google Fonts — Mukta (UI) + Noto Sans Devanagari (नेपाली) — public/member सँग एकरूप -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- DataTables CSS -->
+    <!-- DataTables CSS (required for admin table pages) -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
-    <!-- Nepali Datepicker CSS (self-hosted v5) -->
+    <!-- Nepali Datepicker CSS (self-hosted) -->
     <link rel="stylesheet" href="../assets/css/nepali.datepicker.min.css">
 
-    <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('admin', ['skip_fonts' => true]); } ?>
+    <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('admin'); } ?>
 
     <!-- PWA manifest + Apple tags -->
     <link rel="manifest" href="<?php echo defined('SITE_URL') ? SITE_URL : '../'; ?>manifest.php">
@@ -298,12 +290,12 @@ set_exception_handler(function (\Throwable $ex) {
                     <?php if ($hasSiteLogo): ?>
                     <img src="<?php echo SITE_URL . htmlspecialchars($siteLogo, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($siteName, ENT_QUOTES, 'UTF-8'); ?>" class="sidebar-brand-logo">
                     <?php else: ?>
-                    <div class="admin-logo-fallback"><i class="fas fa-landmark"></i></div>
+                    <div class="admin-logo-fallback"><i data-lucide="landmark"></i></div>
                     <span class="sidebar-brand-text"><?php echo $adminT('एडमिन प्यानल', 'Admin Panel'); ?></span>
                     <?php endif; ?>
                 </a>
                 <button type="button" class="sidebar-close" id="sidebarClose" aria-label="Close menu">
-                    <i class="fas fa-times"></i>
+                    <i data-lucide="times"></i>
                 </button>
             </div>
 
@@ -313,7 +305,7 @@ set_exception_handler(function (\Throwable $ex) {
                     <li class="<?php echo $currentPage == 'dashboard' ? 'active' : ''; ?>">
                         <?php $__dash_total = array_sum($adminAlertCounts) + $unreadMessages; ?>
                         <a href="dashboard.php" class="sidebar-link-flex">
-                            <span class="nav-icon-wrap"><i class="fas fa-gauge-high"></i></span>
+                            <span class="nav-icon-wrap"><i data-lucide="gauge-high"></i></span>
                             <span class="sidebar-link-label"><?php echo $adminT('ड्यासबोर्ड', 'Dashboard'); ?></span>
                             <?php if ($__dash_total > 0): ?>
                             <span class="group-badge"><?php echo $__dash_total; ?></span>
@@ -324,7 +316,7 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── Admin User Management — सबै admin ले देख्छन् ── -->
                     <li class="<?php echo $currentPage === 'manage-admins' ? 'active' : ''; ?>">
                         <a href="manage-admins.php">
-                            <span class="nav-icon-wrap"><i class="fas fa-users-gear"></i></span>
+                            <span class="nav-icon-wrap"><i data-lucide="users-gear"></i></span>
                             <span><?php echo $adminT('Admin व्यवस्थापन', 'Admin Management'); ?></span>
                             <?php if (!empty($_SESSION['is_superadmin'])): ?>
                             <span class="sa-mini-badge">SA</span>
@@ -335,68 +327,68 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── सामग्री ── -->
                     <li class="nav-group-wrap">
                         <div class="nav-group-header <?php echo $activeGroup=='samgri' ? 'open' : ''; ?>" data-group="samgri">
-                            <span class="nav-group-icon"><i class="fas fa-folder-open"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="folder-open"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('सामग्री', 'Content'); ?></span>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='samgri' ? 'open' : ''; ?>" id="group-samgri">
                             <li class="<?php echo $currentPage=='notices' ? 'active' : ''; ?>">
-                                <a href="notices.php"><span class="nav-icon-wrap"><i class="fas fa-bullhorn"></i></span><span><?php echo $adminT('सूचनाहरू', 'Notices'); ?></span></a>
+                                <a href="notices.php"><span class="nav-icon-wrap"><i data-lucide="bullhorn"></i></span><span><?php echo $adminT('सूचनाहरू', 'Notices'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='designations' ? 'active' : ''; ?>">
-                                <a href="designations.php"><span class="nav-icon-wrap"><i class="fas fa-id-badge"></i></span><span><?php echo $adminT('पद मास्टर', 'Designation Master'); ?></span></a>
+                                <a href="designations.php"><span class="nav-icon-wrap"><i data-lucide="id-badge"></i></span><span><?php echo $adminT('पद मास्टर', 'Designation Master'); ?></span></a>
                             </li>
                             <?php /* निर्वाचन सम्बन्धी menus छुट्टै “निर्वाचन” group मा (पद Master = election-posts) */ ?>
                             <li class="<?php echo $currentPage=='news' ? 'active' : ''; ?>">
-                                <a href="news.php"><span class="nav-icon-wrap"><i class="fas fa-newspaper"></i></span><span><?php echo $adminT('समाचार', 'News'); ?></span></a>
+                                <a href="news.php"><span class="nav-icon-wrap"><i data-lucide="newspaper"></i></span><span><?php echo $adminT('समाचार', 'News'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='sliders' ? 'active' : ''; ?>">
-                                <a href="sliders.php"><span class="nav-icon-wrap"><i class="fas fa-images"></i></span><span><?php echo $adminT('स्लाइडर', 'Sliders'); ?></span></a>
+                                <a href="sliders.php"><span class="nav-icon-wrap"><i data-lucide="images"></i></span><span><?php echo $adminT('स्लाइडर', 'Sliders'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='gallery' ? 'active' : ''; ?>">
-                                <a href="gallery.php"><span class="nav-icon-wrap"><i class="fas fa-photo-film"></i></span><span><?php echo $adminT('ग्यालरी', 'Gallery'); ?></span></a>
+                                <a href="gallery.php"><span class="nav-icon-wrap"><i data-lucide="photo-film"></i></span><span><?php echo $adminT('ग्यालरी', 'Gallery'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='services' ? 'active' : ''; ?>">
-                                <a href="services.php"><span class="nav-icon-wrap"><i class="fas fa-hand-holding-heart"></i></span><span><?php echo $adminT('सेवाहरू', 'Services'); ?></span></a>
+                                <a href="services.php"><span class="nav-icon-wrap"><i data-lucide="hand-holding-heart"></i></span><span><?php echo $adminT('सेवाहरू', 'Services'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='interest-rates' ? 'active' : ''; ?>">
-                                <a href="interest-rates.php"><span class="nav-icon-wrap"><i class="fas fa-percent"></i></span><span><?php echo $adminT('ब्याज दर', 'Interest Rates'); ?></span></a>
+                                <a href="interest-rates.php"><span class="nav-icon-wrap"><i data-lucide="percent"></i></span><span><?php echo $adminT('ब्याज दर', 'Interest Rates'); ?></span></a>
                             </li>
                             <li class="<?php echo ($currentPage === 'pages-v2' && (($_GET['tab'] ?? 'dynamic') === 'dynamic')) ? 'active' : ''; ?>">
                                 <a href="pages.php?tab=dynamic">
-                                    <span class="nav-icon-wrap"><i class="fas fa-file-lines"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="file-lines"></i></span>
                                     <span><?php echo $adminT('गतिशील पृष्ठ', 'Dynamic Pages'); ?></span>
                                 </a>
                             </li>
                             <li class="<?php echo ($currentPage === 'pages-v2' && (($_GET['tab'] ?? '') === 'static')) ? 'active' : ''; ?>">
                                 <a href="pages.php?tab=static">
-                                    <span class="nav-icon-wrap"><i class="fas fa-layer-group"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="layer-group"></i></span>
                                     <span><?php echo $adminT('स्थिर पृष्ठ', 'Static Pages'); ?></span>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='downloads' ? 'active' : ''; ?>">
-                                <a href="downloads.php"><span class="nav-icon-wrap"><i class="fas fa-file-arrow-down"></i></span><span><?php echo $adminT('डाउनलोड', 'Downloads'); ?></span></a>
+                                <a href="downloads.php"><span class="nav-icon-wrap"><i data-lucide="file-arrow-down"></i></span><span><?php echo $adminT('डाउनलोड', 'Downloads'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='faqs' ? 'active' : ''; ?>">
-                                <a href="faqs.php"><span class="nav-icon-wrap"><i class="fas fa-circle-question"></i></span><span><?php echo $adminT('प्रश्नोत्तर (FAQs)', 'FAQs'); ?></span></a>
+                                <a href="faqs.php"><span class="nav-icon-wrap"><i data-lucide="circle-question"></i></span><span><?php echo $adminT('प्रश्नोत्तर (FAQs)', 'FAQs'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='useful-links' ? 'active' : ''; ?>">
-                                <a href="useful-links.php"><span class="nav-icon-wrap"><i class="fas fa-link"></i></span><span><?php echo $adminT('उपयोगी लिंकहरू', 'Useful Links'); ?></span></a>
+                                <a href="useful-links.php"><span class="nav-icon-wrap"><i data-lucide="link"></i></span><span><?php echo $adminT('उपयोगी लिंकहरू', 'Useful Links'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='awards' ? 'active' : ''; ?>">
-                                <a href="awards.php"><span class="nav-icon-wrap"><i class="fas fa-trophy"></i></span><span><?php echo $adminT('सम्मान/पुरस्कार', 'Awards'); ?></span></a>
+                                <a href="awards.php"><span class="nav-icon-wrap"><i data-lucide="trophy"></i></span><span><?php echo $adminT('सम्मान/पुरस्कार', 'Awards'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='reports' ? 'active' : ''; ?>">
-                                <a href="reports.php"><span class="nav-icon-wrap"><i class="fas fa-chart-column"></i></span><span><?php echo $adminT('प्रतिवेदन', 'Reports'); ?></span></a>
+                                <a href="reports.php"><span class="nav-icon-wrap"><i data-lucide="chart-column"></i></span><span><?php echo $adminT('प्रतिवेदन', 'Reports'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='app-features' ? 'active' : ''; ?>">
-                                <a href="app-features.php"><span class="nav-icon-wrap"><i class="fas fa-mobile-screen"></i></span><span><?php echo $adminT('एप सुविधाहरू', 'App Features'); ?></span></a>
+                                <a href="app-features.php"><span class="nav-icon-wrap"><i data-lucide="mobile-screen"></i></span><span><?php echo $adminT('एप सुविधाहरू', 'App Features'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='why-choose' ? 'active' : ''; ?>">
-                                <a href="why-choose.php"><span class="nav-icon-wrap"><i class="fas fa-star nav-icon-accent nav-icon-gold"></i></span><span><?php echo $adminT('किन हामीलाई छान्ने?', 'Why Choose Us'); ?></span></a>
+                                <a href="why-choose.php"><span class="nav-icon-wrap"><i data-lucide="star nav-icon-accent nav-icon-gold"></i></span><span><?php echo $adminT('किन हामीलाई छान्ने?', 'Why Choose Us'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='partner-facilities' ? 'active' : ''; ?>">
-                                <a href="partner-facilities.php"><span class="nav-icon-wrap"><i class="fas fa-handshake nav-icon-accent nav-icon-primary-soft"></i></span><span><?php echo $adminT('साझेदार सुविधा', 'Partner Facilities'); ?></span></a>
+                                <a href="partner-facilities.php"><span class="nav-icon-wrap"><i data-lucide="handshake nav-icon-accent nav-icon-primary-soft"></i></span><span><?php echo $adminT('साझेदार सुविधा', 'Partner Facilities'); ?></span></a>
                             </li>
                         </ul>
                     </li>
@@ -404,25 +396,25 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── टोली ── -->
                     <li class="nav-group-wrap">
                         <div class="nav-group-header <?php echo $activeGroup=='toli' ? 'open' : ''; ?>" data-group="toli">
-                            <span class="nav-group-icon"><i class="fas fa-users"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="users"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('टोली', 'Team'); ?></span>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='toli' ? 'open' : ''; ?>" id="group-toli">
                             <li class="<?php echo $currentPage=='team' ? 'active' : ''; ?>">
-                                <a href="team.php"><span class="nav-icon-wrap"><i class="fas fa-building-columns"></i></span><span><?php echo $adminT('सञ्चालक / समिति', 'Directors / Committee'); ?></span></a>
+                                <a href="team.php"><span class="nav-icon-wrap"><i data-lucide="building-columns"></i></span><span><?php echo $adminT('सञ्चालक / समिति', 'Directors / Committee'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='team-karmachari' ? 'active' : ''; ?>">
-                                <a href="team-karmachari.php"><span class="nav-icon-wrap"><i class="fas fa-user-tie"></i></span><span><?php echo $adminT('कर्मचारी / व्यवस्थापन', 'Staff / Management'); ?></span></a>
+                                <a href="team-karmachari.php"><span class="nav-icon-wrap"><i data-lucide="user-tie"></i></span><span><?php echo $adminT('कर्मचारी / व्यवस्थापन', 'Staff / Management'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='committees' ? 'active' : ''; ?>">
-                                <a href="committees.php"><span class="nav-icon-wrap"><i class="fas fa-people-group"></i></span><span><?php echo $adminT('समिति/उपसमिति', 'Committee/Subcommittee'); ?></span></a>
+                                <a href="committees.php"><span class="nav-icon-wrap"><i data-lucide="people-group"></i></span><span><?php echo $adminT('समिति/उपसमिति', 'Committee/Subcommittee'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='info-officer' ? 'active' : ''; ?>">
-                                <a href="info-officer.php"><span class="nav-icon-wrap"><i class="fas fa-user-shield nav-icon-accent nav-icon-cyan"></i></span><span><?php echo $adminT('सूचना अधिकारी (RTI)', 'Information Officer (RTI)'); ?></span></a>
+                                <a href="info-officer.php"><span class="nav-icon-wrap"><i data-lucide="user-shield nav-icon-accent nav-icon-cyan"></i></span><span><?php echo $adminT('सूचना अधिकारी (RTI)', 'Information Officer (RTI)'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='grievance-officer' ? 'active' : ''; ?>">
-                                <a href="grievance-officer.php"><span class="nav-icon-wrap"><i class="fas fa-user-tie nav-icon-accent nav-icon-purple"></i></span><span><?php echo $adminT('गुनासो अधिकारी', 'Grievance Officer'); ?></span></a>
+                                <a href="grievance-officer.php"><span class="nav-icon-wrap"><i data-lucide="user-tie nav-icon-accent nav-icon-purple"></i></span><span><?php echo $adminT('गुनासो अधिकारी', 'Grievance Officer'); ?></span></a>
                             </li>
                         </ul>
                     </li>
@@ -430,31 +422,31 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── HRM (मानव संसाधन) ── v11.1 ── -->
                     <li class="nav-group-wrap">
                         <div class="nav-group-header <?php echo $activeGroup=='hrm' ? 'open' : ''; ?>" data-group="hrm">
-                            <span class="nav-group-icon"><i class="fas fa-id-badge"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="id-badge"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('मानव संसाधन (HRM)', 'HRM'); ?></span>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='hrm' ? 'open' : ''; ?>" id="group-hrm">
                             <li class="<?php echo $currentPage=='hrm-dashboard' ? 'active' : ''; ?>">
-                                <a href="hrm-dashboard.php"><span class="nav-icon-wrap"><i class="fas fa-gauge"></i></span><span><?php echo $adminT('HRM ड्यासबोर्ड', 'HRM Dashboard'); ?></span></a>
+                                <a href="hrm-dashboard.php"><span class="nav-icon-wrap"><i data-lucide="gauge"></i></span><span><?php echo $adminT('HRM ड्यासबोर्ड', 'HRM Dashboard'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='hrm-employees' ? 'active' : ''; ?>">
-                                <a href="hrm-employees.php"><span class="nav-icon-wrap"><i class="fas fa-users"></i></span><span><?php echo $adminT('कर्मचारीहरू', 'Employees'); ?></span></a>
+                                <a href="hrm-employees.php"><span class="nav-icon-wrap"><i data-lucide="users"></i></span><span><?php echo $adminT('कर्मचारीहरू', 'Employees'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='hrm-employee-directory' ? 'active' : ''; ?>">
-                                <a href="hrm-employee-directory.php"><span class="nav-icon-wrap"><i class="fas fa-address-book nav-icon-accent nav-icon-cyan"></i></span><span><?php echo $adminT('कर्मचारी डाइरेक्टरी', 'Employee Directory'); ?></span></a>
+                                <a href="hrm-employee-directory.php"><span class="nav-icon-wrap"><i data-lucide="address-book nav-icon-accent nav-icon-cyan"></i></span><span><?php echo $adminT('कर्मचारी डाइरेक्टरी', 'Employee Directory'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='hrm-departments' ? 'active' : ''; ?>">
-                                <a href="hrm-departments.php"><span class="nav-icon-wrap"><i class="fas fa-sitemap"></i></span><span><?php echo $adminT('विभागहरू', 'Departments'); ?></span></a>
+                                <a href="hrm-departments.php"><span class="nav-icon-wrap"><i data-lucide="sitemap"></i></span><span><?php echo $adminT('विभागहरू', 'Departments'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='hrm-contracts' ? 'active' : ''; ?>">
-                                <a href="hrm-contracts.php"><span class="nav-icon-wrap"><i class="fas fa-file-signature"></i></span><span><?php echo $adminT('करार/नियुक्ति', 'Contracts'); ?></span></a>
+                                <a href="hrm-contracts.php"><span class="nav-icon-wrap"><i data-lucide="file-signature"></i></span><span><?php echo $adminT('करार/नियुक्ति', 'Contracts'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='hrm-documents' ? 'active' : ''; ?>">
-                                <a href="hrm-documents.php"><span class="nav-icon-wrap"><i class="fas fa-folder-open"></i></span><span><?php echo $adminT('दस्तावेजहरू', 'Documents'); ?></span></a>
+                                <a href="hrm-documents.php"><span class="nav-icon-wrap"><i data-lucide="folder-open"></i></span><span><?php echo $adminT('दस्तावेजहरू', 'Documents'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='hrm-messenger' ? 'active' : ''; ?>">
-                                <a href="hrm-messenger.php"><span class="nav-icon-wrap"><i class="fas fa-comments nav-icon-accent nav-icon-primary-soft"></i></span><span><?php echo $adminT('आन्तरिक च्याट', 'Internal Chat'); ?></span></a>
+                                <a href="hrm-messenger.php"><span class="nav-icon-wrap"><i data-lucide="comments nav-icon-accent nav-icon-primary-soft"></i></span><span><?php echo $adminT('आन्तरिक च्याट', 'Internal Chat'); ?></span></a>
                             </li>
                         </ul>
                     </li>
@@ -463,18 +455,18 @@ set_exception_handler(function (\Throwable $ex) {
                     <li class="nav-group-wrap">
                         <?php $rojgarBadge = $adminAlertCounts['job']; ?>
                         <div class="nav-group-header <?php echo $activeGroup=='rojgar' ? 'open' : ''; ?>" data-group="rojgar">
-                            <span class="nav-group-icon"><i class="fas fa-briefcase"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="briefcase"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('रोजगारी', 'Career'); ?></span>
                             <?php if ($rojgarBadge > 0): ?><span class="group-badge"><?php echo $rojgarBadge; ?></span><?php endif; ?>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='rojgar' ? 'open' : ''; ?>" id="group-rojgar">
                             <li class="<?php echo $currentPage=='careers' ? 'active' : ''; ?>">
-                                <a href="careers.php"><span class="nav-icon-wrap"><i class="fas fa-briefcase"></i></span><span><?php echo $adminT('रोजगारी पोस्ट', 'Career Posts'); ?></span></a>
+                                <a href="careers.php"><span class="nav-icon-wrap"><i data-lucide="briefcase"></i></span><span><?php echo $adminT('रोजगारी पोस्ट', 'Career Posts'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='job-applications' ? 'active' : ''; ?>">
                                 <a href="job-applications.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-file-circle-check"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="file-circle-check"></i></span>
                                     <span><?php echo $adminT('जागिर आवेदन', 'Job Applications'); ?></span>
                                     <?php if ($adminAlertCounts['job'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['job']; ?></span><?php endif; ?>
                                 </a>
@@ -486,63 +478,63 @@ set_exception_handler(function (\Throwable $ex) {
                     <li class="nav-group-wrap">
                         <?php $aavedan_total = $adminAlertCounts['kyc'] + $adminAlertCounts['kyc_risk'] + $adminAlertCounts['loan'] + $adminAlertCounts['account'] + $adminAlertCounts['digital'] + $adminAlertCounts['auction'] + $adminAlertCounts['vendor']; ?>
                         <div class="nav-group-header <?php echo $activeGroup=='aavedan' ? 'open' : ''; ?>" data-group="aavedan">
-                            <span class="nav-group-icon"><i class="fas fa-inbox"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="inbox"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('आवेदनहरू', 'Applications'); ?></span>
                             <?php if ($aavedan_total > 0): ?><span class="group-badge"><?php echo $aavedan_total; ?></span><?php endif; ?>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='aavedan' ? 'open' : ''; ?>" id="group-aavedan">
                             <li class="<?php echo $currentPage=='kyc' ? 'active' : ''; ?>">
                                 <a href="kyc-applications.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-id-card-clip"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="id-card-clip"></i></span>
                                     <span><?php echo $adminT('KYC आवेदन', 'KYC Applications'); ?></span>
                                     <?php if ($adminAlertCounts['kyc'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['kyc']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='kyc-risk-reviews' ? 'active' : ''; ?>">
                                 <a href="kyc-risk-reviews.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-shield-halved"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="shield-halved"></i></span>
                                     <span><?php echo $adminT('KYC जोखिम समीक्षा', 'KYC Risk Review'); ?></span>
                                     <?php if ($adminAlertCounts['kyc_risk'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['kyc_risk']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='loans' ? 'active' : ''; ?>">
                                 <a href="loan-applications.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-hand-holding-dollar"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="hand-holding-dollar"></i></span>
                                     <span><?php echo $adminT('ऋण आवेदन', 'Loan Applications'); ?></span>
                                     <?php if ($adminAlertCounts['loan'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['loan']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='account-apps' ? 'active' : ''; ?>">
                                 <a href="account-applications.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-user-plus"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="user-plus"></i></span>
                                     <span><?php echo $adminT('खाता आवेदन', 'Account Applications'); ?></span>
                                     <?php if ($adminAlertCounts['account'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['account']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='digital-service-requests' ? 'active' : ''; ?>">
                                 <a href="digital-service-requests.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-laptop-code"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="laptop-code"></i></span>
                                     <span><?php echo $adminT('डिजिटल सेवा', 'Digital Services'); ?></span>
                                     <?php if ($adminAlertCounts['digital'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['digital']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='auctions' ? 'active' : ''; ?>">
                                 <a href="auctions.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-gavel"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="gavel"></i></span>
                                     <span><?php echo $adminT('लिलामी / बोलपत्र', 'Auction / Bids'); ?></span>
                                     <?php if ($adminAlertCounts['auction'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['auction']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='auction-bids' ? 'active' : ''; ?>">
                                 <a href="auction-bids.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-list-ol"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="list-ol"></i></span>
                                     <span><?php echo $adminT('बोलपत्र सूची', 'Bid List'); ?></span>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='vendor-enlistment' ? 'active' : ''; ?>">
                                 <a href="vendor-enlistment.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-store"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="store"></i></span>
                                     <span><?php echo $adminT('भेन्डर सूचीकरण', 'Vendor Enlistment'); ?></span>
                                     <?php if ($adminAlertCounts['vendor'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['vendor']; ?></span><?php endif; ?>
                                 </a>
@@ -553,33 +545,33 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── कार्यक्रम व्यवस्थापन (All program tools) ── -->
                     <li class="nav-group-wrap">
                         <div class="nav-group-header <?php echo $activeGroup=='program' ? 'open' : ''; ?>" data-group="program">
-                            <span class="nav-group-icon"><i class="fas fa-calendar-check"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="calendar-check"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('कार्यक्रम व्यवस्थापन', 'Program Management'); ?></span>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='program' ? 'open' : ''; ?>" id="group-program">
                             <li class="<?php echo $currentPage=='programs' ? 'active' : ''; ?>">
                                 <a href="programs.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-calendar-plus"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="calendar-plus"></i></span>
                                     <span><?php echo $adminT('कार्यक्रम बनाउने / सूची', 'Program Create / List'); ?></span>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='program-attendance-verify' ? 'active' : ''; ?>">
                                 <a href="../program-attendance-verify.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-user-check"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="user-check"></i></span>
                                     <span><?php echo $adminT('उपस्थिति प्रमाणिकरण', 'Attendance Verify'); ?></span>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='program-attendance' ? 'active' : ''; ?>">
                                 <a href="program-attendance.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-clipboard-check"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="clipboard-check"></i></span>
                                     <span><?php echo $adminT('उपस्थिति रिपोर्ट', 'Attendance Report'); ?></span>
                                 </a>
                             </li>
                             <?php /* निर्वाचन जानकारी छुट्टै group मा सरेको */ ?>
                             <li class="<?php echo $currentPage=='analytics' ? 'active' : ''; ?>">
                                 <a href="analytics.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-chart-line"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="chart-line"></i></span>
                                     <span><?php echo $adminT('विश्लेषण ड्यासबोर्ड', 'Analytics Dashboard'); ?></span>
                                 </a>
                             </li>
@@ -590,22 +582,22 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── निर्वाचन (छुट्टै group) ── -->
                     <li class="nav-group-wrap">
                         <div class="nav-group-header <?php echo $activeGroup=='nirvachan' ? 'open' : ''; ?>" data-group="nirvachan">
-                            <span class="nav-group-icon"><i class="fas fa-check-to-slot"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="check-to-slot"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('निर्वाचन', 'Election'); ?></span>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='nirvachan' ? 'open' : ''; ?>" id="group-nirvachan">
                             <li class="<?php echo $currentPage=='election-information' ? 'active' : ''; ?>">
-                                <a href="election-information.php"><span class="nav-icon-wrap"><i class="fas fa-circle-info"></i></span><span><?php echo $adminT('निर्वाचन जानकारी', 'Election Information'); ?></span></a>
+                                <a href="election-information.php"><span class="nav-icon-wrap"><i data-lucide="circle-info"></i></span><span><?php echo $adminT('निर्वाचन जानकारी', 'Election Information'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='election-posts' ? 'active' : ''; ?>">
-                                <a href="election-posts.php"><span class="nav-icon-wrap"><i class="fas fa-briefcase"></i></span><span><?php echo $adminT('पद Master', 'Post Master'); ?></span></a>
+                                <a href="election-posts.php"><span class="nav-icon-wrap"><i data-lucide="briefcase"></i></span><span><?php echo $adminT('पद Master', 'Post Master'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='election-candidates' ? 'active' : ''; ?>">
-                                <a href="election-candidates.php"><span class="nav-icon-wrap"><i class="fas fa-user-tie"></i></span><span><?php echo $adminT('उम्मेदवार/पद', 'Candidates/Posts'); ?></span></a>
+                                <a href="election-candidates.php"><span class="nav-icon-wrap"><i data-lucide="user-tie"></i></span><span><?php echo $adminT('उम्मेदवार/पद', 'Candidates/Posts'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='election-results' ? 'active' : ''; ?>">
-                                <a href="election-results.php"><span class="nav-icon-wrap"><i class="fas fa-chart-bar"></i></span><span><?php echo $adminT('निर्वाचन नतिजा', 'Election Results'); ?></span></a>
+                                <a href="election-results.php"><span class="nav-icon-wrap"><i data-lucide="chart-bar"></i></span><span><?php echo $adminT('निर्वाचन नतिजा', 'Election Results'); ?></span></a>
                             </li>
                         </ul>
                     </li>
@@ -614,59 +606,59 @@ set_exception_handler(function (\Throwable $ex) {
                     <li class="nav-group-wrap">
                         <?php $sampark_total = $unreadMessages + $adminAlertCounts['feedback'] + $adminAlertCounts['grievance'] + $adminAlertCounts['welfare'] + $adminAlertCounts['appointment']; ?>
                         <div class="nav-group-header <?php echo $activeGroup=='sampark' ? 'open' : ''; ?>" data-group="sampark">
-                            <span class="nav-group-icon"><i class="fas fa-comments"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="comments"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('सम्पर्क', 'Contact'); ?></span>
                             <?php if ($sampark_total > 0): ?><span class="group-badge"><?php echo $sampark_total; ?></span><?php endif; ?>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='sampark' ? 'open' : ''; ?>" id="group-sampark">
                             <li class="<?php echo $currentPage=='messages' ? 'active' : ''; ?>">
                                 <a href="messages.php" class="sidebar-link-flex">
-                                    <span class="nav-icon-wrap"><i class="fas fa-envelope-open-text"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="envelope-open-text"></i></span>
                                     <span class="sidebar-link-label"><?php echo $adminT('सन्देशहरू', 'Messages'); ?></span>
                                     <?php if ($unreadMessages > 0): ?><span class="badge"><?php echo $unreadMessages; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='feedbacks' ? 'active' : ''; ?>">
                                 <a href="feedbacks.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-comments"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="comments"></i></span>
                                     <span><?php echo $adminT('सुझाव/प्रतिक्रिया', 'Feedback'); ?></span>
                                     <?php if ($adminAlertCounts['feedback'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['feedback']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='grievances' ? 'active' : ''; ?>">
                                 <a href="grievances.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-triangle-exclamation"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="triangle-exclamation"></i></span>
                                     <span><?php echo $adminT('गुनासो', 'Grievances'); ?></span>
                                     <?php if ($adminAlertCounts['grievance'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['grievance']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='appointments' ? 'active' : ''; ?>">
                                 <a href="appointments.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-calendar-check"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="calendar-check"></i></span>
                                     <span><?php echo $adminT('भेटघाट', 'Appointments'); ?></span>
                                     <?php if ($adminAlertCounts['appointment'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['appointment']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='welfare-claims' ? 'active' : ''; ?>">
                                 <a href="welfare-claims.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-heart-circle-plus"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="heart-circle-plus"></i></span>
                                     <span><?php echo $adminT('कल्याण दाबी', 'Welfare Claims'); ?></span>
                                     <?php if ($adminAlertCounts['welfare'] > 0): ?><span class="badge"><?php echo $adminAlertCounts['welfare']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='help-center' ? 'active' : ''; ?>">
-                                <a href="help-center.php"><span class="nav-icon-wrap"><i class="fas fa-headset"></i></span><span><?php echo $adminT('सहायता केन्द्र', 'Help Center'); ?></span></a>
+                                <a href="help-center.php"><span class="nav-icon-wrap"><i data-lucide="headset"></i></span><span><?php echo $adminT('सहायता केन्द्र', 'Help Center'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='members' ? 'active' : ''; ?>">
                                 <a href="members.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-user-check nav-icon-accent nav-icon-primary"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="user-check nav-icon-accent nav-icon-primary"></i></span>
                                     <span><?php echo $adminT('सदस्य पोर्टल', 'Member Portal'); ?></span>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='member-activities' ? 'active' : ''; ?>">
                                 <a href="member-activities.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-magnifying-glass-chart nav-icon-accent nav-icon-amber"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="magnifying-glass-chart nav-icon-accent nav-icon-amber"></i></span>
                                     <span><?php echo $adminT('सदस्य गतिविधि खोज', 'Member Activities Search'); ?></span>
                                 </a>
                             </li>
@@ -677,22 +669,22 @@ set_exception_handler(function (\Throwable $ex) {
                     <li class="nav-group-wrap">
                         <?php $memPortalBadgeTotal = $memPortalBadge ?? 0; ?>
                         <div class="nav-group-header <?php echo $activeGroup=='memportal' ? 'open' : ''; ?>" data-group="memportal">
-                            <span class="nav-group-icon"><i class="fas fa-globe"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="globe"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('सदस्य अनलाइन पोर्टल', 'Member Online Portal'); ?></span>
                             <?php if ($memPortalBadgeTotal > 0): ?><span class="group-badge"><?php echo $memPortalBadgeTotal; ?></span><?php endif; ?>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='memportal' ? 'open' : ''; ?>" id="group-memportal">
                             <li class="<?php echo $currentPage=='member-online-portal' ? 'active' : ''; ?>">
                                 <a href="member-online-portal.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-users-line nav-icon-accent nav-icon-primary"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="users-line nav-icon-accent nav-icon-primary"></i></span>
                                     <span><?php echo $adminT('दर्ता अनुमोदन', 'Registration Approval'); ?></span>
                                     <?php if (!empty($adminAlertCounts['mem_pending'])): ?><span class="badge"><?php echo $adminAlertCounts['mem_pending']; ?></span><?php endif; ?>
                                 </a>
                             </li>
                             <li class="<?php echo ($currentPage=='member-online-portal' && ($_GET['tab'] ?? '')=='resets') ? 'active' : ''; ?>">
                                 <a href="member-online-portal.php?tab=resets">
-                                    <span class="nav-icon-wrap"><i class="fas fa-key nav-icon-accent nav-icon-amber"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="key nav-icon-accent nav-icon-amber"></i></span>
                                     <span><?php echo $adminT('पासवर्ड Reset', 'Password Reset'); ?></span>
                                     <?php if (!empty($adminAlertCounts['mem_resets'])): ?><span class="badge"><?php echo $adminAlertCounts['mem_resets']; ?></span><?php endif; ?>
                                 </a>
@@ -703,46 +695,46 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── संस्था ── -->
                     <li class="nav-group-wrap">
                         <div class="nav-group-header <?php echo $activeGroup=='sanstha' ? 'open' : ''; ?>" data-group="sanstha">
-                            <span class="nav-group-icon"><i class="fas fa-building-columns"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="building-columns"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('संस्था', 'Institution'); ?></span>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='sanstha' ? 'open' : ''; ?>" id="group-sanstha">
                             <li class="<?php echo $currentPage=='service-centers' ? 'active' : ''; ?>">
-                                <a href="service-centers.php"><span class="nav-icon-wrap"><i class="fas fa-location-dot"></i></span><span><?php echo $adminT('शाखाहरू', 'Branches'); ?></span></a>
+                                <a href="service-centers.php"><span class="nav-icon-wrap"><i data-lucide="location-dot"></i></span><span><?php echo $adminT('शाखाहरू', 'Branches'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='institutional-profile' ? 'active' : ''; ?>">
-                                <a href="institutional-profile.php"><span class="nav-icon-wrap"><i class="fas fa-building-columns"></i></span><span><?php echo $adminT('संस्थागत प्रोफाइल', 'Institutional Profile'); ?></span></a>
+                                <a href="institutional-profile.php"><span class="nav-icon-wrap"><i data-lucide="building-columns"></i></span><span><?php echo $adminT('संस्थागत प्रोफाइल', 'Institutional Profile'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='notification-settings' ? 'active' : ''; ?>">
                                 <a href="notification-settings.php">
-                                <span class="nav-icon-wrap"><i class="fas fa-bell"></i></span>
+                                <span class="nav-icon-wrap"><i data-lucide="bell"></i></span>
                                 <span><?php echo $adminT('सूचना सेटिङ्स', 'Notification Settings'); ?></span>
                             </a>
                             </li>
                             <li class="<?php echo $currentPage=='notification-templates' ? 'active' : ''; ?>">
                                 <a href="notification-templates.php">
-                                <span class="nav-icon-wrap"><i class="fas fa-envelope-open-text nav-icon-accent nav-icon-violet"></i></span>
+                                <span class="nav-icon-wrap"><i data-lucide="envelope-open-text nav-icon-accent nav-icon-violet"></i></span>
                                 <span><?php echo $adminT('सूचना Templates', 'Notification Templates'); ?></span>
                             </a>
                             </li>
                             <li class="<?php echo $currentPage=='push-notifications' ? 'active' : ''; ?>">
                                 <a href="push-notifications.php">
-                                <span class="nav-icon-wrap"><i class="fas fa-bell-ring" style="color:#f59e0b;"></i></span>
+                                <span class="nav-icon-wrap"><i data-lucide="bell-ring" style="color:#f59e0b;"></i></span>
                                 <span><?php echo $adminT('Push Notifications', 'Push Notifications'); ?></span>
                             </a>
                             </li>
                             <li class="<?php echo $currentPage=='member-of-year' ? 'active' : ''; ?>">
-                                <a href="member-of-year.php"><span class="nav-icon-wrap"><i class="fas fa-trophy nav-icon-accent nav-icon-gold"></i></span><span><?php echo $adminT('वर्षको सर्वश्रेष्ठ सदस्य', 'Member of the Year'); ?></span></a>
+                                <a href="member-of-year.php"><span class="nav-icon-wrap"><i data-lucide="trophy nav-icon-accent nav-icon-gold"></i></span><span><?php echo $adminT('वर्षको सर्वश्रेष्ठ सदस्य', 'Member of the Year'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='about-settings' ? 'active' : ''; ?>">
-                                <a href="about-settings.php"><span class="nav-icon-wrap"><i class="fas fa-landmark"></i></span><span><?php echo $adminT('बारेमा पृष्ठ', 'About Page'); ?></span></a>
+                                <a href="about-settings.php"><span class="nav-icon-wrap"><i data-lucide="landmark"></i></span><span><?php echo $adminT('बारेमा पृष्ठ', 'About Page'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='satisfaction-settings' ? 'active' : ''; ?>">
-                                <a href="satisfaction-settings.php"><span class="nav-icon-wrap"><i class="fas fa-smile nav-icon-accent nav-icon-pink"></i></span><span><?php echo $adminT('सन्तुष्टि Widget', 'Satisfaction Widget'); ?></span></a>
+                                <a href="satisfaction-settings.php"><span class="nav-icon-wrap"><i data-lucide="smile nav-icon-accent nav-icon-pink"></i></span><span><?php echo $adminT('सन्तुष्टि Widget', 'Satisfaction Widget'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='settings' ? 'active' : ''; ?>">
-                                <a href="settings.php"><span class="nav-icon-wrap"><i class="fas fa-sliders"></i></span><span><?php echo $adminT('सेटिङ्स', 'Settings'); ?></span></a>
+                                <a href="settings.php"><span class="nav-icon-wrap"><i data-lucide="sliders"></i></span><span><?php echo $adminT('सेटिङ्स', 'Settings'); ?></span></a>
                             </li>
                         </ul>
                     </li>
@@ -750,59 +742,59 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── प्रविधि ── -->
                     <li class="nav-group-wrap">
                         <div class="nav-group-header <?php echo $activeGroup=='prawidhi' ? 'open' : ''; ?>" data-group="prawidhi">
-                            <span class="nav-group-icon"><i class="fas fa-server"></i></span>
+                            <span class="nav-group-icon"><i data-lucide="server"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('प्रविधि', 'Technical'); ?></span>
-                            <i class="fas fa-chevron-right nav-arrow"></i>
+                            <i data-lucide="chevron-right nav-arrow"></i>
                         </div>
                         <ul class="nav-submenu <?php echo $activeGroup=='prawidhi' ? 'open' : ''; ?>" id="group-prawidhi">
                             <li class="<?php echo $currentPage=='system-info' ? 'active' : ''; ?>">
-                                <a href="system-info.php"><span class="nav-icon-wrap"><i class="fas fa-server"></i></span><span><?php echo $adminT('प्रणाली जानकारी', 'System Info'); ?></span></a>
+                                <a href="system-info.php"><span class="nav-icon-wrap"><i data-lucide="server"></i></span><span><?php echo $adminT('प्रणाली जानकारी', 'System Info'); ?></span></a>
                             </li>
                             <?php if (!empty($_SESSION['is_superadmin'])): ?>
                             <li class="<?php echo $currentPage=='run-migration' ? 'active' : ''; ?>">
                                 <a href="run-migration.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-database"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="database"></i></span>
                                     <span><?php echo $adminT('डेटाबेस Migration', 'Database Migration'); ?></span>
                                     <span class="sa-label-badge">SA</span>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='backup-restore' ? 'active' : ''; ?>">
                                 <a href="backup-restore.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-shield-alt"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="shield-alt"></i></span>
                                     <span><?php echo $adminT('ब्याकअप / पुनर्स्थापना', 'Backup / Restore'); ?></span>
                                     <span class="sa-label-badge">SA</span>
                                 </a>
                             </li>
                             <?php endif; ?>
                             <li class="<?php echo $currentPage=='update-checklist' ? 'active' : ''; ?>">
-                                <a href="update-checklist.php"><span class="nav-icon-wrap"><i class="fas fa-list-check"></i></span><span><?php echo $adminT('अपडेट सूची', 'Update Checklist'); ?></span></a>
+                                <a href="update-checklist.php"><span class="nav-icon-wrap"><i data-lucide="list-check"></i></span><span><?php echo $adminT('अपडेट सूची', 'Update Checklist'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='site-health' ? 'active' : ''; ?>">
-                                <a href="site-health.php"><span class="nav-icon-wrap"><i class="fas fa-heart-pulse"></i></span><span><?php echo $adminT('साइट स्वास्थ्य', 'Site Health'); ?></span></a>
+                                <a href="site-health.php"><span class="nav-icon-wrap"><i data-lucide="heart-pulse"></i></span><span><?php echo $adminT('साइट स्वास्थ्य', 'Site Health'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='audit-log' ? 'active' : ''; ?>">
                                 <a href="audit-log.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-shield-halved nav-icon-accent nav-icon-blue"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="shield-halved nav-icon-accent nav-icon-blue"></i></span>
                                     <span><?php echo $adminT('अडिट लग', 'Audit Log'); ?></span>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='error-log' ? 'active' : ''; ?>">
                                 <a href="error-log.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-bug nav-icon-accent nav-icon-red"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="bug nav-icon-accent nav-icon-red"></i></span>
                                     <span><?php echo $adminT('त्रुटि लग', 'Error Log'); ?></span>
                                 </a>
                             </li>
                             <!-- v5: In-app User Manual / Help & Guide (non-developer friendly) -->
                             <li class="<?php echo ($currentPage=='help-guide' || $currentPage=='help-center') ? 'active' : ''; ?>">
                                 <a href="help-center.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-book-open nav-icon-accent nav-icon-green"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="book-open nav-icon-accent nav-icon-green"></i></span>
                                     <span><?php echo $adminT('📖 सहायता / Help', '📖 Help / Guide'); ?></span>
                                 </a>
                             </li>
                             <!-- Site Setup Manager — setup.php को काम admin panel भित्रबाट -->
                             <li class="<?php echo $currentPage=='site-setup' ? 'active' : ''; ?>">
                                 <a href="site-setup.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-sliders"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="sliders"></i></span>
                                     <span><?php echo $adminT('साइट सेटअप', 'Site Setup'); ?></span>
                                 </a>
                             </li>
@@ -810,14 +802,14 @@ set_exception_handler(function (\Throwable $ex) {
                             <?php if (!empty($_SESSION['is_superadmin'])): ?>
                             <li class="<?php echo $currentPage=='site-license' ? 'active' : ''; ?>">
                                 <a href="site-license.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-calendar-check nav-icon-accent nav-icon-amber"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="calendar-check nav-icon-accent nav-icon-amber"></i></span>
                                     <span><?php echo $adminT('साइट म्याद', 'Site License'); ?></span>
                                     <span class="sa-label-badge">SA</span>
                                 </a>
                             </li>
                             <li class="<?php echo $currentPage=='db-setup' ? 'active' : ''; ?>">
                                 <a href="db-setup.php">
-                                    <span class="nav-icon-wrap"><i class="fas fa-database nav-icon-accent nav-icon-primary-soft"></i></span>
+                                    <span class="nav-icon-wrap"><i data-lucide="database nav-icon-accent nav-icon-primary-soft"></i></span>
                                     <span><?php echo $adminT('DB सेटअप', 'DB Setup'); ?></span>
                                     <span class="sa-label-badge">SA</span>
                                 </a>
@@ -830,7 +822,7 @@ set_exception_handler(function (\Throwable $ex) {
                                    class="pwa-admin-install-link"
                                    title="<?php echo $adminT('App Install गर्नुहोस्', 'Install App'); ?>">
                                     <span class="nav-icon-wrap">
-                                        <i class="fas fa-mobile-screen-button nav-icon-accent nav-icon-green"></i>
+                                        <i data-lucide="mobile-screen-button nav-icon-accent nav-icon-green"></i>
                                     </span>
                                     <span><?php echo $adminT('App Install गर्नुहोस्', 'Install App'); ?></span>
                                     <span class="badge bg-success ms-auto" style="font-size:.65rem;padding:2px 6px;">PWA</span>
@@ -850,9 +842,9 @@ set_exception_handler(function (\Throwable $ex) {
                     <?php if ($adminPhoto !== ''): ?>
                         <img src="<?php echo htmlspecialchars($adminPhoto, ENT_QUOTES, 'UTF-8'); ?>" alt="Admin"
                              class="sidebar-user-avatar-img"
-                             onerror="this.style.display='none';this.parentNode.innerHTML='<i class=&quot;fas fa-user sidebar-user-fallback-icon&quot;></i>';">
+                             onerror="this.style.display='none';this.parentNode.innerHTML='<i data-lucide=&quot;user&quot; class=&quot;sidebar-user-fallback-icon&quot;></i>';">
                     <?php else: ?>
-                        <i class="fas fa-user sidebar-user-fallback-icon"></i>
+                        <i data-lucide="user" class="sidebar-user-fallback-icon"></i>
                     <?php endif; ?>
                 </div>
                 <div class="sidebar-user-meta">
@@ -864,7 +856,7 @@ set_exception_handler(function (\Throwable $ex) {
                     </div>
                 </div>
                 <a href="logout.php" title="<?php echo $adminT('लगआउट', 'Logout'); ?>" class="sidebar-strip-logout">
-                    <i class="fas fa-right-from-bracket"></i>
+                    <i data-lucide="right-from-bracket"></i>
                 </a>
             </div>
         </aside>
@@ -875,12 +867,12 @@ set_exception_handler(function (\Throwable $ex) {
             <header class="admin-header admin-header--compact">
                 <div class="header-left">
                     <button class="sidebar-toggle" id="sidebarToggle">
-                        <i class="fas fa-bars"></i>
+                        <i data-lucide="bars"></i>
                     </button>
                     <a href="<?php echo ADMIN_URL; ?>dashboard.php" class="admin-topbar-brand <?php echo $hasSiteLogo ? 'has-logo' : 'no-logo'; ?>">
                         <!-- Always keep a fallback UI; if logo fails to load, show this -->
                         <div class="admin-logo-fallback" style="<?php echo $hasSiteLogo ? 'display:none;' : ''; ?>">
-                            <i class="fas fa-landmark"></i>
+                            <i data-lucide="landmark"></i>
                         </div>
                         <?php if ($hasSiteLogo): ?>
                         <img
@@ -896,7 +888,7 @@ set_exception_handler(function (\Throwable $ex) {
                     <div class="page-title-wrap">
                         <h1 class="page-title"><?php echo $pageTitle ?? $adminT('ड्यासबोर्ड', 'Dashboard'); ?></h1>
                         <span class="header-date-pill" title="<?php echo $adminT('आजको मिति', 'Today'); ?>">
-                            <i class="fas fa-calendar-day"></i>
+                            <i data-lucide="calendar-day"></i>
                             <?php echo function_exists('formatNepaliDate') ? formatNepaliDate(date('Y-m-d')) : date('Y-m-d'); ?>
                         </span>
                     </div>
@@ -909,17 +901,17 @@ set_exception_handler(function (\Throwable $ex) {
                             id="adminQsBtn" onclick="adminQsOpen()"
                             title="<?php echo $adminT('खोज्नुहोस्', 'Search'); ?> (Ctrl+K)"
                             aria-label="<?php echo $adminT('खोज्नुहोस्', 'Search'); ?>">
-                        <i class="fas fa-search"></i>
+                        <i data-lucide="search"></i>
                         <span class="admin-qs-kbd d-none d-xl-inline">⌘K</span>
                     </button>
                     <a href="<?php echo htmlspecialchars($adminLangToggleUrl, ENT_QUOTES, 'UTF-8'); ?>" class="admin-header-icon" title="<?php echo $adminT('भाषा परिवर्तन', 'Switch Language'); ?>" aria-label="<?php echo $adminT('भाषा', 'Language'); ?>">
-                        <i class="fas fa-language"></i>
+                        <i data-lucide="language"></i>
                         <span class="admin-header-icon-label d-none d-xl-inline"><?php echo $adminLangBadge; ?></span>
                     </a>
                     <a href="<?php echo ADMIN_URL; ?>settings.php#version"
                        class="admin-header-icon d-none d-lg-inline-flex"
                        title="<?php echo $adminT('संस्करण', 'Version'); ?> v<?php echo htmlspecialchars($siteVer); ?>">
-                        <i class="fas fa-code-branch"></i>
+                        <i data-lucide="code-branch"></i>
                     </a>
 
                     <!-- Notifications bell — clickable dropdown -->
@@ -950,7 +942,7 @@ set_exception_handler(function (\Throwable $ex) {
                         <button type="button" class="notification-bell notif-toggle-btn"
                                 title="<?php echo $adminT('सूचनाहरू', 'Notifications'); ?> — <?php echo $totalAlerts > 0 ? $totalAlerts . ' pending' : $adminT('सबै हेरिएको', 'All clear'); ?>"
                                 aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell"></i>
+                            <i data-lucide="bell"></i>
                             <?php if ($totalAlerts > 0): ?>
                             <span class="notif-count"><?php echo $totalAlerts; ?></span>
                             <?php endif; ?>
@@ -959,7 +951,7 @@ set_exception_handler(function (\Throwable $ex) {
                         <!-- Dropdown panel -->
                         <div class="notif-dropdown" id="notifDropdown">
                             <div class="notif-dropdown-header">
-                                <span><i class="fas fa-bell me-1"></i><?php echo $adminT('सूचनाहरू', 'Notifications'); ?></span>
+                                <span><i data-lucide="bell me-1"></i><?php echo $adminT('सूचनाहरू', 'Notifications'); ?></span>
                                 <?php if ($totalAlerts > 0): ?>
                                 <span class="notif-total-badge"><?php echo $totalAlerts; ?> <?php echo $adminT('पेन्डिङ', 'pending'); ?></span>
                                 <?php endif; ?>
@@ -967,7 +959,7 @@ set_exception_handler(function (\Throwable $ex) {
                             <div class="notif-dropdown-body">
                                 <?php if (empty($activeNotifs)): ?>
                                 <div class="notif-empty">
-                                    <i class="fas fa-check-circle text-success fa-2x mb-2"></i>
+                                    <i data-lucide="check-circle text-success fa-2x mb-2"></i>
                                     <p class="mb-0"><?php echo $adminT('सबै हेरिएको छ!', 'All caught up!'); ?></p>
                                 </div>
                                 <?php else: ?>
@@ -975,7 +967,7 @@ set_exception_handler(function (\Throwable $ex) {
                                 <a href="<?php echo ADMIN_URL . htmlspecialchars($ni['href']); ?>"
                                    class="notif-item">
                                     <span class="notif-item-icon notif-tone-<?php echo htmlspecialchars($ni['tone'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        <i class="fas <?php echo $ni['icon']; ?>"></i>
+                                        <i data-lucide="<?php echo htmlspecialchars(fa_to_lucide($ni['icon']), ENT_QUOTES, 'UTF-8'); ?>"></i>
                                     </span>
                                     <span class="notif-item-label"><?php echo $ni['label']; ?></span>
                                     <span class="notif-item-count notif-tone-bg-<?php echo htmlspecialchars($ni['tone'], ENT_QUOTES, 'UTF-8'); ?>">
@@ -987,7 +979,7 @@ set_exception_handler(function (\Throwable $ex) {
                             </div>
                             <div class="notif-dropdown-footer">
                                 <a href="<?php echo ADMIN_URL; ?>dashboard.php">
-                                    <i class="fas fa-th-large me-1"></i><?php echo $adminT('ड्यासबोर्ड हेर्नुहोस्', 'Open Dashboard'); ?>
+                                    <i data-lucide="th-large me-1"></i><?php echo $adminT('ड्यासबोर्ड हेर्नुहोस्', 'Open Dashboard'); ?>
                                 </a>
                             </div>
                         </div>
@@ -1000,10 +992,10 @@ set_exception_handler(function (\Throwable $ex) {
                                      class="admin-avatar-sm"
                                      onerror="this.style.display='none';">
                             <?php else: ?>
-                                <span class="admin-avatar-sm admin-avatar-fallback" aria-hidden="true"><i class="fas fa-user"></i></span>
+                                <span class="admin-avatar-sm admin-avatar-fallback" aria-hidden="true"><i data-lucide="user"></i></span>
                             <?php endif; ?>
                             <span class="admin-name admin-name-inline d-none"><?php echo htmlspecialchars($adminName); ?></span>
-                            <i class="fas fa-chevron-down admin-info-chevron d-none d-md-inline" aria-hidden="true"></i>
+                            <i data-lucide="chevron-down" class="admin-info-chevron d-none d-md-inline" aria-hidden="true"></i>
                             <div class="admin-menu">
                                 <div class="admin-menu-head">
                                     <strong><?php echo htmlspecialchars($adminName); ?></strong>
@@ -1011,18 +1003,18 @@ set_exception_handler(function (\Throwable $ex) {
                                     <span class="superadmin-pill"><?php echo $adminT('सुपर एडमिन', 'Super Admin'); ?></span>
                                     <?php endif; ?>
                                     <?php if ($adminLastLoginLabel !== ''): ?>
-                                    <small class="admin-menu-meta"><i class="fas fa-clock"></i> <?php echo $adminT('अघिल्लो', 'Last'); ?>: <?php echo htmlspecialchars($adminLastLoginLabel); ?></small>
+                                    <small class="admin-menu-meta"><i data-lucide="clock"></i> <?php echo $adminT('अघिल्लो', 'Last'); ?>: <?php echo htmlspecialchars($adminLastLoginLabel); ?></small>
                                     <?php endif; ?>
                                 </div>
                                 <?php if (empty($_SESSION['is_superadmin'])): ?>
                                     <!-- Normal admin मात्र profile र change-password देख्छ -->
-                                    <a href="profile.php"><i class="fas fa-user"></i> <?php echo $adminT('प्रोफाइल', 'Profile'); ?></a>
-                                    <a href="change-password.php"><i class="fas fa-key"></i> <?php echo $adminT('पासवर्ड', 'Password'); ?></a>
+                                    <a href="profile.php"><i data-lucide="user"></i> <?php echo $adminT('प्रोफाइल', 'Profile'); ?></a>
+                                    <a href="change-password.php"><i data-lucide="key"></i> <?php echo $adminT('पासवर्ड', 'Password'); ?></a>
                                 <?php else: ?>
                                     <!-- Superadmin को लागि admin management link -->
-                                    <a href="manage-admins.php"><i class="fas fa-users-gear"></i> <?php echo $adminT('Admin व्यवस्थापन', 'Admin Management'); ?></a>
+                                    <a href="manage-admins.php"><i data-lucide="users-gear"></i> <?php echo $adminT('Admin व्यवस्थापन', 'Admin Management'); ?></a>
                                 <?php endif; ?>
-                                <a href="logout.php"><i class="fas fa-sign-out-alt"></i> <?php echo $adminT('लगआउट', 'Logout'); ?></a>
+                                <a href="logout.php"><i data-lucide="sign-out-alt"></i> <?php echo $adminT('लगआउट', 'Logout'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -1041,7 +1033,7 @@ set_exception_handler(function (\Throwable $ex) {
                   $fIcon  = $fIcons[$fType] ?? 'fa-circle-info';
               ?>
               <div class="alert alert-<?php echo $fType; ?> alert-dismissible fade show mx-3 mt-3" role="alert">
-                  <i class="fas <?php echo $fIcon; ?> fa-fw flex-shrink-0"></i>
+                  <i data-lucide="<?php echo htmlspecialchars(fa_to_lucide($fIcon), ENT_QUOTES, 'UTF-8'); ?>" class="fa-fw flex-shrink-0"></i>
                   <span><?php echo htmlspecialchars($flash['message']); ?></span>
                   <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
               </div>
@@ -1183,7 +1175,7 @@ set_exception_handler(function (\Throwable $ex) {
          style="display:none;">
         <div class="admin-qs-box">
             <div class="admin-qs-head">
-                <i class="fas fa-search admin-qs-head-icon"></i>
+                <i data-lucide="search admin-qs-head-icon"></i>
                 <input type="search" id="admin-qs-input" class="admin-qs-input"
                        placeholder="<?php echo $adminT('सदस्य, KYC, सूचना खोज्नुहोस्…', 'Search members, KYC, notices…'); ?>"
                        autocomplete="off" spellcheck="false">
@@ -1254,7 +1246,7 @@ set_exception_handler(function (\Throwable $ex) {
                 _focus = -1; return;
             }
             document.getElementById('admin-qs-results').innerHTML =
-                '<div class="qs-loading"><i class="fas fa-spinner fa-spin"></i> खोज्दैछ…</div>';
+                '<div class="qs-loading"><i data-lucide="spinner fa-spin"></i> खोज्दैछ…</div>';
             _timer = setTimeout(function () { _search(q); }, 280);
         });
 
@@ -1264,35 +1256,35 @@ set_exception_handler(function (\Throwable $ex) {
                 .then(_render)
                 .catch(function () {
                     document.getElementById('admin-qs-results').innerHTML =
-                        '<div class="qs-empty"><i class="fas fa-circle-exclamation"></i> खोज्न सकिएन</div>';
+                        '<div class="qs-empty"><i data-lucide="circle-exclamation"></i> खोज्न सकिएन</div>';
                 });
         }
 
         function _render(data) {
             var items = [];
             var html = '';
-            function _group(list, icon, label, type) {
+            function _group(list, lucideIcon, label, type) {
                 if (!list || !list.length) return;
-                html += '<div class="qs-group"><div class="qs-glabel"><i class="fas ' + icon + '"></i> ' + label + '</div>';
+                html += '<div class="qs-group"><div class="qs-glabel"><i data-lucide="' + lucideIcon + '"></i> ' + label + '</div>';
                 list.forEach(function (r) {
                     var bc = r.badge === 'approved' || r.badge === 'active' ? 'qs-b-green' :
                              r.badge === 'pending' ? 'qs-b-orange' : 'qs-b-gray';
                     html += '<div class="qs-item" data-url="<?php echo htmlspecialchars(rtrim(ADMIN_URL,'/').'/', ENT_QUOTES, 'UTF-8'); ?>' + _esc(r.url) + '" tabindex="-1">' +
-                        '<span class="qs-item-type qs-t-' + type + '"><i class="fas ' + icon + '"></i></span>' +
+                        '<span class="qs-item-type qs-t-' + type + '"><i data-lucide="' + lucideIcon + '"></i></span>' +
                         '<span class="qs-item-body"><span class="qs-item-title">' + _esc(r.title) + '</span>' +
                         (r.sub ? '<span class="qs-item-sub">' + _esc(r.sub) + '</span>' : '') + '</span>' +
                         (r.badge ? '<span class="qs-badge ' + bc + '">' + _esc(r.badge) + '</span>' : '') +
-                        '<i class="fas fa-chevron-right qs-arrow"></i></div>';
+                        '<i data-lucide="chevron-right" class="qs-arrow"></i></div>';
                     items.push(r);
                 });
                 html += '</div>';
             }
-            _group(data.members, 'fa-users',    '<?php echo $adminT('सदस्यहरू', 'Members'); ?>', 'member');
-            _group(data.kyc,     'fa-id-card',  'KYC <?php echo $adminT('आवेदन', 'Applications'); ?>', 'kyc');
-            _group(data.notices, 'fa-bullhorn', '<?php echo $adminT('सूचनाहरू', 'Notices'); ?>', 'notice');
+            _group(data.members, 'users',           '<?php echo $adminT('सदस्यहरू', 'Members'); ?>', 'member');
+            _group(data.kyc,     'id-card',         'KYC <?php echo $adminT('आवेदन', 'Applications'); ?>', 'kyc');
+            _group(data.notices, 'megaphone',        '<?php echo $adminT('सूचनाहरू', 'Notices'); ?>', 'notice');
             if (!html) {
                 document.getElementById('admin-qs-results').innerHTML =
-                    '<div class="qs-empty"><i class="fas fa-circle-xmark"></i> <?php echo $adminT('कुनै नतिजा भेटिएन', 'No results found'); ?></div>';
+                    '<div class="qs-empty"><i data-lucide="circle-x"></i> <?php echo $adminT('कुनै नतिजा भेटिएन', 'No results found'); ?></div>';
                 return;
             }
             document.getElementById('admin-qs-results').innerHTML = html;

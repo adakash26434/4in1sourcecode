@@ -52,8 +52,11 @@ function adminPageHeader(string $title, string $icon = 'fa-cog', string $subtitl
           . htmlspecialchars($subtitle) . '</small>'
         : '';
 
-    /* icon background circle */
-    $iconHtml = '<span class="admin-page-header-icon flex-shrink-0"><i class="fas ' . $icon . '"></i></span>';
+    /* icon — convert FA name to Lucide, fallback to original */
+    $lucideIcon = function_exists('fa_to_lucide') ? fa_to_lucide($icon) : $icon;
+    $iconHtml = '<span class="admin-page-header-icon flex-shrink-0">'
+              . (function_exists('icon') ? icon($lucideIcon, 18) : '<i class="fas ' . htmlspecialchars($icon) . '"></i>')
+              . '</span>';
 
     /* Title topbar मा पहिले नै देखिन्छ — यहाँ subtitle + icon मात्र राख्ने */
     $subBlock = $sub
@@ -75,18 +78,21 @@ function adminPageHeader(string $title, string $icon = 'fa-cog', string $subtitl
    ────────────────────────────────────────────────────────────── */
 function adminAlert(string $type, string $msg, bool $dismiss = true): string {
     if (empty(trim($msg))) return '';
-    $icons = [
-        'success' => 'fa-circle-check',
-        'danger'  => 'fa-circle-xmark',
-        'warning' => 'fa-triangle-exclamation',
-        'info'    => 'fa-circle-info'
+    $lucideIcons = [
+        'success' => 'check-circle',
+        'danger'  => 'x-circle',
+        'warning' => 'alert-triangle',
+        'info'    => 'info'
     ];
-    $icon     = $icons[$type] ?? 'fa-circle-info';
+    $lucideIcon = $lucideIcons[$type] ?? 'info';
     $closeBtn = $dismiss
         ? '<button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="' . htmlspecialchars(adminUiT('बन्द', 'Close')) . '"></button>'
         : '';
+    $iconHtml = function_exists('icon')
+        ? icon($lucideIcon, 18)
+        : '<i class="fas fa-circle-info"></i>';
     return '<div class="alert alert-' . $type . ' alert-dismissible fade show" role="alert">'
-         . '<i class="fas ' . $icon . ' fa-fw flex-shrink-0"></i>'
+         . '<span class="flex-shrink-0">' . $iconHtml . '</span>'
          . '<span>' . htmlspecialchars($msg) . '</span>'
          . $closeBtn . '</div>';
 }
@@ -98,8 +104,11 @@ function adminAlert(string $type, string $msg, bool $dismiss = true): string {
 function adminEmptyRow(int $colspan = 6, string $msg = '', string $sub = ''): string {
     if ($msg === '') $msg = adminUiT('कुनै डाटा उपलब्ध छैन।', 'No data available.');
     if ($sub === '') $sub = adminUiT('माथिको बटनबाट नयाँ थप्नुहोस्।', 'Use the button above to add new records.');
+    $iconHtml = function_exists('icon')
+        ? icon('inbox', 40, 'color:#d1d5db;')
+        : '<i class="fas fa-inbox" style="font-size:2.2rem;"></i>';
     return '<tr><td colspan="' . $colspan . '" class="text-center admin-empty-state">'
-         . '<i class="fas fa-inbox" style="font-size:2.2rem;"></i>'
+         . $iconHtml
          . '<div style="font-size:0.9rem;font-weight:600;color:#6b7280;margin-top:8px;">'
          . htmlspecialchars($msg) . '</div>'
          . '<p>' . htmlspecialchars($sub) . '</p>'
@@ -157,21 +166,24 @@ function adminActiveBadge($isActive): string {
    ────────────────────────────────────────────────────────────── */
 function adminStatusBadge(string $status): string {
     $map = [
-        'pending'    => ['bg' => 'color-mix(in srgb, var(--secondary-color) 14%, #ffffff)', 'color' => 'var(--secondary-dark,var(--secondary-color))', 'icon' => 'fa-clock',       'label' => 'प्रतीक्षारत'],
-        'approved'   => ['bg' => 'color-mix(in srgb, var(--primary-color) 14%, #ffffff)', 'color' => 'var(--primary-dark,var(--primary-color))', 'icon' => 'fa-circle-check', 'label' => 'स्वीकृत'],
-        'rejected'   => ['bg' => 'color-mix(in srgb, var(--secondary-color) 16%, #ffffff)', 'color' => 'var(--secondary-dark,var(--secondary-color))', 'icon' => 'fa-circle-xmark', 'label' => 'अस्वीकृत'],
-        'processing' => ['bg' => 'color-mix(in srgb, var(--accent-color,#17a2b8) 14%, #ffffff)', 'color' => 'var(--accent-color,#17a2b8)', 'icon' => 'fa-spinner',      'label' => 'प्रक्रियामा'],
-        'resolved'   => ['bg' => 'color-mix(in srgb, var(--primary-color) 14%, #ffffff)', 'color' => 'var(--primary-dark,var(--primary-color))', 'icon' => 'fa-check',        'label' => 'समाधान'],
-        'closed'     => ['bg' => 'color-mix(in srgb, var(--secondary-color) 10%, #ffffff)', 'color' => 'var(--secondary-dark,var(--secondary-color))', 'icon' => 'fa-xmark',        'label' => 'बन्द'],
-        'active'     => ['bg' => 'color-mix(in srgb, var(--primary-color) 14%, #ffffff)', 'color' => 'var(--primary-dark,var(--primary-color))', 'icon' => 'fa-circle',       'label' => 'Active'],
-        'inactive'   => ['bg' => 'color-mix(in srgb, var(--secondary-color) 10%, #ffffff)', 'color' => 'var(--secondary-dark,var(--secondary-color))', 'icon' => 'fa-circle',       'label' => 'Inactive'],
+        'pending'    => ['bg' => 'color-mix(in srgb, var(--secondary-color) 14%, #ffffff)', 'color' => 'var(--secondary-dark,var(--secondary-color))', 'icon' => 'clock',           'label' => 'प्रतीक्षारत'],
+        'approved'   => ['bg' => 'color-mix(in srgb, var(--primary-color) 14%, #ffffff)', 'color' => 'var(--primary-dark,var(--primary-color))', 'icon' => 'check-circle',    'label' => 'स्वीकृत'],
+        'rejected'   => ['bg' => 'color-mix(in srgb, var(--secondary-color) 16%, #ffffff)', 'color' => 'var(--secondary-dark,var(--secondary-color))', 'icon' => 'x-circle',        'label' => 'अस्वीकृत'],
+        'processing' => ['bg' => 'color-mix(in srgb, var(--accent-color,#17a2b8) 14%, #ffffff)', 'color' => 'var(--accent-color,#17a2b8)', 'icon' => 'loader-2',         'label' => 'प्रक्रियामा'],
+        'resolved'   => ['bg' => 'color-mix(in srgb, var(--primary-color) 14%, #ffffff)', 'color' => 'var(--primary-dark,var(--primary-color))', 'icon' => 'check',           'label' => 'समाधान'],
+        'closed'     => ['bg' => 'color-mix(in srgb, var(--secondary-color) 10%, #ffffff)', 'color' => 'var(--secondary-dark,var(--secondary-color))', 'icon' => 'x',               'label' => 'बन्द'],
+        'active'     => ['bg' => 'color-mix(in srgb, var(--primary-color) 14%, #ffffff)', 'color' => 'var(--primary-dark,var(--primary-color))', 'icon' => 'circle',          'label' => 'Active'],
+        'inactive'   => ['bg' => 'color-mix(in srgb, var(--secondary-color) 10%, #ffffff)', 'color' => 'var(--secondary-dark,var(--secondary-color))', 'icon' => 'circle',          'label' => 'Inactive'],
     ];
-    $s = $map[strtolower($status)] ?? ['bg' => 'color-mix(in srgb, var(--primary-color) 10%, #ffffff)', 'color' => 'var(--primary-dark,var(--primary-color))', 'icon' => 'fa-circle', 'label' => $status];
+    $s = $map[strtolower($status)] ?? ['bg' => 'color-mix(in srgb, var(--primary-color) 10%, #ffffff)', 'color' => 'var(--primary-dark,var(--primary-color))', 'icon' => 'circle', 'label' => $status];
+    $iconHtml = function_exists('icon')
+        ? icon($s['icon'], 12)
+        : '<i class="fas fa-circle" style="font-size:0.65rem;"></i>';
     return '<span class="badge" style="'
          . 'background:' . $s['bg'] . ';color:' . $s['color'] . ';'
          . 'border-radius:20px;padding:4px 10px;font-weight:600;font-size:0.72rem;'
          . 'display:inline-flex;align-items:center;gap:4px;">'
-         . '<i class="fas ' . $s['icon'] . ' fa-fw" style="font-size:0.65rem;"></i>'
+         . $iconHtml
          . htmlspecialchars($s['label']) . '</span>';
 }
 
@@ -200,13 +212,15 @@ function adminStatLink(string $url, string $color, string $label, $count, bool $
    Primary "+ Add" button with gradient
    ────────────────────────────────────────────────────────────── */
 function adminAddBtn(string $label, string $href = '#', string $icon = 'fa-plus', string $onclick = ''): string {
+    $lucideIcon = function_exists('fa_to_lucide') ? fa_to_lucide($icon) : $icon;
+    $iconHtml = function_exists('icon') ? icon($lucideIcon, 15) : '<i class="fas ' . htmlspecialchars($icon) . '"></i>';
     $onclickAttr = $onclick ? ' onclick="' . htmlspecialchars($onclick, ENT_QUOTES) . '"' : '';
     if ($href !== '#') {
         return '<a href="' . htmlspecialchars($href) . '" class="btn btn-primary"' . $onclickAttr . '>'
-             . '<i class="fas ' . $icon . '"></i>' . htmlspecialchars($label) . '</a>';
+             . $iconHtml . htmlspecialchars($label) . '</a>';
     }
     return '<button type="button" class="btn btn-primary"' . $onclickAttr . '>'
-         . '<i class="fas ' . $icon . '"></i>' . htmlspecialchars($label) . '</button>';
+         . $iconHtml . htmlspecialchars($label) . '</button>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -218,12 +232,12 @@ function adminToggleBtn(int $recordId, $isActive, string $csrfToken, string $ext
         $btn = '<button type="submit" class="btn btn-sm btn-success" '
              . 'title="' . htmlspecialchars(adminUiT('सक्रिय छ — थिच्दा लुकाइन्छ', 'Currently active — click to hide')) . '" '
              . 'style="min-width:82px;">'
-             . '<i class="fas fa-eye fa-fw"></i> ' . htmlspecialchars(adminUiT('सक्रिय', 'Active')) . '</button>';
+             . '<i data-lucide="eye"></i> ' . htmlspecialchars(adminUiT('सक्रिय', 'Active')) . '</button>';
     } else {
         $btn = '<button type="submit" class="btn btn-sm btn-outline-secondary" '
              . 'title="' . htmlspecialchars(adminUiT('लुकाइएको छ — थिच्दा सक्रिय हुन्छ', 'Currently hidden — click to activate')) . '" '
              . 'style="min-width:82px;">'
-             . '<i class="fas fa-eye-slash fa-fw"></i> ' . htmlspecialchars(adminUiT('लुकाइएको', 'Hidden')) . '</button>';
+             . '<i data-lucide="eye-off"></i> ' . htmlspecialchars(adminUiT('लुकाइएको', 'Hidden')) . '</button>';
     }
     return '<form method="POST" class="d-inline">'
          . '<input type="hidden" name="action" value="toggle">'
@@ -244,7 +258,7 @@ function adminDeleteBtn(int $recordId, string $csrfToken, string $confirmMsg = '
          . '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($csrfToken) . '">'
          . $extraFields
          . '<button type="submit" class="btn btn-sm btn-outline-danger admin-icon-btn" title="हटाउनुहोस्">'
-         . '<i class="fas fa-trash-can"></i></button></form>';
+         . '<i data-lucide="trash-2"></i></button></form>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -256,11 +270,11 @@ function adminEditBtn(string $onclick = '', string $href = '#'): string {
         return '<button type="button" class="btn btn-sm btn-outline-primary" '
              . 'onclick="' . htmlspecialchars($onclick, ENT_QUOTES) . '" '
              . 'title="सम्पादन" style="min-width:34px;">'
-             . '<i class="fas fa-pen fa-fw"></i></button>';
+             . '<i data-lucide="pencil"></i></button>';
     }
     return '<a href="' . htmlspecialchars($href) . '" class="btn btn-sm btn-outline-primary" '
          . 'title="सम्पादन" style="min-width:34px;">'
-         . '<i class="fas fa-pen fa-fw"></i></a>';
+         . '<i data-lucide="pencil"></i></a>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -271,7 +285,7 @@ function adminViewBtn(string $href, string $label = ''): string {
     $txt   = $label ? ' ' . htmlspecialchars($label) : '';
     return '<a href="' . htmlspecialchars($href) . '" class="btn btn-sm btn-outline-info" '
          . 'title="हेर्नुहोस्" style="min-width:34px;">'
-         . '<i class="fas fa-eye fa-fw"></i>' . $txt . '</a>';
+         . '<i data-lucide="eye"></i>' . $txt . '</a>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -305,7 +319,7 @@ function adminActionBtns(
    ────────────────────────────────────────────────────────────── */
 function adminBackBtn(string $href, string $label = 'सूचीमा फर्किनुहोस्'): string {
     return '<a href="' . htmlspecialchars($href) . '" class="btn btn-outline-secondary btn-sm">'
-         . '<i class="fas fa-arrow-left me-1"></i>' . htmlspecialchars($label) . '</a>';
+         . '<i data-lucide="arrow-left" style="margin-right:4px;"></i>' . htmlspecialchars($label) . '</a>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -328,7 +342,8 @@ function adminSectionCard(string $title, string $icon, string $color, string $bo
     return '<div class="card mb-3 admin-section-card">'
          . '<div class="card-header py-2 px-3" style="' . $hdrStyle . '">'
          . '<h6 class="mb-0" style="' . $s['txt'] . 'display:flex!important;align-items:center!important;gap:8px!important;margin:0!important;">'
-         . '<i class="fas ' . $icon . '"></i>' . htmlspecialchars($title) . '</h6></div>'
+         . (function_exists('icon') ? icon(fa_to_lucide($icon), 16) : '<i class="fas ' . htmlspecialchars($icon) . '"></i>')
+         . htmlspecialchars($title) . '</h6></div>'
          . '<div class="card-body p-3">' . $body . '</div></div>';
 }
 
@@ -342,7 +357,9 @@ function adminTableCard(string $tableHtml, bool $noPad = true, string $headerTit
     /* Optional gradient header */
     $headerHtml = '';
     if ($headerTitle) {
-        $iconHtml = $headerIcon ? '<i class="fas ' . $headerIcon . ' me-2"></i>' : '';
+        $iconHtml = $headerIcon
+            ? (function_exists('icon') ? icon(fa_to_lucide($headerIcon), 18, 'margin-right:8px;') : '<i class="fas ' . htmlspecialchars($headerIcon) . ' me-2"></i>')
+            : '';
         $rightHtml = $headerRight ? '<div>' . $headerRight . '</div>' : '';
         $headerHtml = '<div class="card-header d-flex align-items-center justify-content-between">'
                     . '<h5 class="mb-0">'
@@ -385,10 +402,10 @@ function adminListSubtabPills(string $panePrefix, int $liveCount, int $archCount
     return '<ul class="nav nav-pills admin-inner-tabstrip flex-wrap gap-2 px-3 py-2 mx-3 mt-2 mb-2" role="tablist">'
         . '<li class="nav-item" role="presentation">'
         . '<button class="nav-link active py-2" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#' . $p . '-live" aria-controls="' . $p . '-live" aria-selected="true">'
-        . '<i class="fas fa-bolt me-1"></i>' . $liveLbl . ' <span class="badge adm-subpill-count adm-subpill-count--live ms-1">' . (int) $liveCount . '</span></button></li>'
+        . '<i data-lucide="zap" style="margin-right:4px;"></i>' . $liveLbl . ' <span class="badge adm-subpill-count adm-subpill-count--live ms-1">' . (int) $liveCount . '</span></button></li>'
         . '<li class="nav-item" role="presentation">'
         . '<button class="nav-link py-2" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#' . $p . '-arch" aria-controls="' . $p . '-arch" aria-selected="false">'
-        . '<i class="fas fa-archive me-1"></i>' . $archLbl . ' <span class="badge adm-subpill-count adm-subpill-count--arch ms-1">' . (int) $archCount . '</span></button></li>'
+        . '<i data-lucide="archive" style="margin-right:4px;"></i>' . $archLbl . ' <span class="badge adm-subpill-count adm-subpill-count--arch ms-1">' . (int) $archCount . '</span></button></li>'
         . '</ul>';
 }
 
@@ -432,9 +449,9 @@ function adminListSubtabQueryLinks(
     $paneAttr = ' data-subtab-pane="' . htmlspecialchars($panePrefix, ENT_QUOTES, 'UTF-8') . '"';
     return '<ul class="nav nav-pills admin-inner-tabstrip flex-wrap gap-2 px-3 py-2 mx-3 mt-2 mb-2" role="tablist"' . $paneAttr . '>'
         . '<li class="nav-item" role="presentation"><a class="nav-link py-2' . $liveActive . '" href="' . htmlspecialchars($mk('live'), ENT_QUOTES, 'UTF-8') . '">'
-        . '<i class="fas fa-bolt me-1"></i>सक्रिय <span class="badge adm-subpill-count adm-subpill-count--live ms-1">' . (int) $liveCount . '</span></a></li>'
+        . '<i data-lucide="zap" style="margin-right:4px;"></i>सक्रिय <span class="badge adm-subpill-count adm-subpill-count--live ms-1">' . (int) $liveCount . '</span></a></li>'
         . '<li class="nav-item" role="presentation"><a class="nav-link py-2' . $archActive . '" href="' . htmlspecialchars($mk('arch'), ENT_QUOTES, 'UTF-8') . '">'
-        . '<i class="fas fa-archive me-1"></i>अभिलेख <span class="badge adm-subpill-count adm-subpill-count--arch ms-1">' . (int) $archCount . '</span></a></li>'
+        . '<i data-lucide="archive" style="margin-right:4px;"></i>अभिलेख <span class="badge adm-subpill-count adm-subpill-count--arch ms-1">' . (int) $archCount . '</span></a></li>'
         . '</ul>';
 }
 
@@ -474,7 +491,9 @@ function adminHelpTip(string $mainText, array $steps = [], string $icon = 'fa-ci
         $stepsHtml .= '</ul>';
     }
     return '<div class="admin-help-tip mb-3">'
-         . '<span class="help-icon"><i class="fas ' . htmlspecialchars($icon) . '"></i></span>'
+         . '<span class="help-icon">'
+         . (function_exists('icon') ? icon(fa_to_lucide($icon), 14) : '<i class="fas ' . htmlspecialchars($icon) . '"></i>')
+         . '</span>'
          . '<div><span>' . htmlspecialchars($mainText) . '</span>' . $stepsHtml . '</div>'
          . '</div>';
 }
@@ -491,9 +510,12 @@ function adminQuickStat(string $label, int|string $value, string $icon = 'fa-cir
         'info'    => 'background:#fef2f2;color:var(--secondary-dark,#922b21);',
     ];
     $style = $colors[$color] ?? $colors['primary'];
+    $iconHtml = function_exists('icon')
+        ? icon(fa_to_lucide($icon), 12)
+        : '<i class="fas ' . htmlspecialchars($icon) . '" style="font-size:.7rem;"></i>';
     return '<span style="display:inline-flex;align-items:center;gap:6px;'
          . $style . 'padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600;">'
-         . '<i class="fas ' . htmlspecialchars($icon) . '" style="font-size:.7rem;"></i>'
+         . $iconHtml
          . htmlspecialchars((string)$value) . ' ' . htmlspecialchars($label) . '</span>';
 }
 

@@ -35,10 +35,11 @@ $_apInitial = mb_substr($_apAdminName, 0, 1);
 <link rel="apple-touch-icon" href="<?= SITE_URL ?>assets/images/icon-192x192.png">
 <link rel="manifest" href="<?= SITE_URL ?>manifest.json">
 <title><?= htmlspecialchars($page_title) ?> · <?= htmlspecialchars($_apSiteName) ?></title>
-<?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('shell'); } ?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="<?= SITE_URL ?>assets/css/app-core.css">
-<link rel="stylesheet" href="<?= SITE_URL ?>assets/css/app-admin.css">
+<?php
+if (function_exists('coopThemeHeadAssets')) {
+    coopThemeHeadAssets('shell');
+}
+?>
 <style>
   :root { --hp-border:#e6e9ef; --hp-muted:#6b7280; --hp-text:#1f2937; --hp-soft:#f5f7fb; }
   .hp-header{
@@ -55,8 +56,8 @@ $_apInitial = mb_substr($_apAdminName, 0, 1);
   }
   .hp-burger:hover{ background:#eef1f6; }
   .hp-brand{ display:flex; align-items:center; gap:6px; flex-shrink:0; text-decoration:none; }
-  .hp-brand-text{ font-weight:800; font-size:18px; color:var(--primary-color,#1a5f2a); letter-spacing:.2px; }
-  .hp-brand-text small{ color:var(--secondary-color,#dc2626); font-weight:700; margin-left:2px; }
+  .hp-brand-text{ font-weight:800; font-size:18px; color:var(--primary,#1a5f2a); letter-spacing:.2px; }
+  .hp-brand-text small{ color:var(--secondary,#c0392b); font-weight:700; margin-left:2px; }
   .hp-company{
     display:flex; align-items:center; gap:10px;
     background:#fff; border:1px solid var(--hp-border); border-radius:12px;
@@ -135,7 +136,7 @@ $_apInitial = mb_substr($_apAdminName, 0, 1);
 
 <header class="hp-header">
   <button class="hp-burger" onclick="document.getElementById('adminSidebar').classList.toggle('open')" aria-label="Menu">
-    <i class="fas fa-bars"></i>
+    <?php if (function_exists('icon')) { echo icon('menu', 18); } else { ?><i class="fas fa-bars"></i><?php } ?>
   </button>
 
   <a href="<?= $base ?>/" class="hp-brand">
@@ -147,32 +148,32 @@ $_apInitial = mb_substr($_apAdminName, 0, 1);
       <?php if ($_apLogoSrc !== ''): ?>
         <img src="<?= htmlspecialchars($_apLogoSrc, ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($_apSiteName, ENT_QUOTES, 'UTF-8') ?>">
       <?php else: ?>
-        <i class="fas <?= htmlspecialchars($page_icon) ?>" style="color:var(--primary-color,#1a5f2a);"></i>
+        <?php if (function_exists('icon')) { echo icon(fa_to_lucide($page_icon), 22, 'color:var(--primary,#1a5f2a);'); } else { ?><i class="fas <?= htmlspecialchars($page_icon) ?>"></i><?php } ?>
       <?php endif; ?>
     </span>
     <div class="hp-company-meta">
       <div class="hp-company-name"><?= htmlspecialchars($_apSiteName) ?></div>
-      <div class="hp-company-sub"><?= htmlspecialchars($page_title) ?> <i class="fas fa-circle-check"></i></div>
+      <div class="hp-company-sub"><?= htmlspecialchars($page_title) ?> <?php if (function_exists('icon')) { echo icon('check-circle', 12, 'color:#10b981;'); } else { ?><i class="fas fa-circle-check"></i><?php } ?></div>
     </div>
   </div>
 
   <form class="hp-search" method="get" action="<?= $base ?>/search.php" role="search">
-    <i class="fas fa-search"></i>
+    <?php if (function_exists('icon')) { echo icon('search', 16, 'color:var(--hp-muted,#6b7280);'); } else { ?><i class="fas fa-search"></i><?php } ?>
     <input type="search" name="q" placeholder="<?= htmlspecialchars('Search ...') ?>" autocomplete="off">
   </form>
 
   <div class="hp-actions">
-    <a href="<?= $base ?>/messages.php" class="hp-icon" title="Messages"><i class="fas fa-comment-dots"></i></a>
-    <a href="<?= $base ?>/scan.php" class="hp-icon" title="QR"><i class="fas fa-qrcode"></i></a>
+    <a href="<?= $base ?>/messages.php" class="hp-icon" title="Messages"><?php if (function_exists('icon')) { echo icon('message-circle', 18); } else { ?><i class="fas fa-comment-dots"></i><?php } ?></a>
+    <a href="<?= $base ?>/scan.php" class="hp-icon" title="QR"><?php if (function_exists('icon')) { echo icon('qr-code', 18); } else { ?><i class="fas fa-qrcode"></i><?php } ?></a>
     <a href="<?= $base ?>/notifications.php" class="hp-icon" title="Notifications">
-      <i class="fas fa-bell"></i>
+      <?php if (function_exists('icon')) { echo icon('bell', 18); } else { ?><i class="fas fa-bell"></i><?php } ?>
       <?php $_n = (int)($_SESSION['admin_unread'] ?? 0); if ($_n > 0): ?>
         <span class="hp-badge"><?= $_n > 99 ? '99+' : $_n ?></span>
       <?php else: ?>
         <span class="hp-dot"></span>
       <?php endif; ?>
     </a>
-    <a href="<?= $base ?>/settings.php" class="hp-icon" title="Settings"><i class="fas fa-cog"></i></a>
+    <a href="<?= $base ?>/settings.php" class="hp-icon" title="Settings"><?php if (function_exists('icon')) { echo icon('settings', 18); } else { ?><i class="fas fa-cog"></i><?php } ?></a>
     <a href="<?= $base ?>/profile.php" class="hp-avatar" title="<?= htmlspecialchars($_apAdminName) ?>"><?= htmlspecialchars(mb_strtoupper($_apInitial)) ?></a>
   </div>
 </header>

@@ -540,5 +540,6 @@
         }
     });
     </script>
+<?php if (function_exists('coopThemeLucideInit')) { coopThemeLucideInit(); } ?>
 </body>
 </html>
