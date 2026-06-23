@@ -18,16 +18,20 @@
  *   adminStatLink()         — clickable stat badge in header
  *   adminAddBtn()           — "+ Add" button
  *   adminToggleBtn()        — active/inactive toggle form
- *   adminDeleteBtn()        — delete confirm form
- *   adminEditBtn()          — edit button (modal or page link)
- *   adminViewBtn()          — view detail button
- *   adminActionBtns()       — grouped edit+toggle+delete buttons
- *   adminSectionCard()      — grouped form section with header
- *   adminTableCard()        — standard table wrapper card
- *   adminBackBtn()          — back to list button
- *   adminFiscalYearSelect() — BS fiscal year <select>
+ *   adminHeaderCard()       — card wrapper with icon, title, value, link
+ *   adminFooterActions()    — form submit + cancel button row
  * ══════════════════════════════════════════════════════════════
  */
+
+/* Load core/helpers.php if not already loaded (fa_to_lucide, icon, etc.) */
+if (!function_exists('fa_to_lucide')) {
+    $helpersPath = dirname(__DIR__, 2) . '/core/helpers.php';
+    if (file_exists($helpersPath)) {
+        require_once $helpersPath;
+    }
+}
+
+/* Admin UI helper functions continue below */
 if (!defined('IS_ADMIN_PAGE')) { http_response_code(403); exit('Access denied.'); }
 
 if (!function_exists('adminUiT')) {

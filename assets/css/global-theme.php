@@ -363,6 +363,78 @@ table.table-primary thead th,
     vertical-align: middle !important;
 }
 
+/* ── LUCIDE NAV ICONS — Standardize sidebar icon colors & sizes ──── */
+.nav-icon-wrap {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    flex-shrink: 0 !important;
+}
+.nav-icon-wrap i,
+.nav-icon-wrap svg {
+    width: 18px !important;
+    height: 18px !important;
+    stroke-width: 1.75 !important;
+}
+
+/* Icon accent color variants */
+.nav-icon-accent { color: var(--primary-color) !important; }
+.nav-icon-gold { color: #f59e0b !important; }
+.nav-icon-cyan { color: #06b6d4 !important; }
+.nav-icon-purple { color: #8b5cf6 !important; }
+.nav-icon-primary-soft { color: #60a5fa !important; }
+
+/* Admin sidebar nav link styling */
+.sidebar-link-flex {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 8px 12px !important;
+    color: rgba(255,255,255,0.85) !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    transition: background-color 0.15s, color 0.15s !important;
+}
+.sidebar-link-flex:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+    color: #fff !important;
+}
+.sidebar-link-flex.active {
+    background-color: rgba(255,255,255,0.15) !important;
+    color: #fff !important;
+    font-weight: 500 !important;
+}
+.sidebar-link-label { flex: 1 !important; }
+
+/* Admin logo fallback */
+.admin-logo-fallback {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(255,255,255,0.2) !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+}
+.admin-logo-fallback svg,
+.admin-logo-fallback i {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Sidebar nav arrow */
+.nav-arrow {
+    transition: transform 0.2s !important;
+    color: rgba(255,255,255,0.5) !important;
+}
+.nav-submenu.open .nav-arrow,
+.nav-group-header.open .nav-arrow {
+    transform: rotate(90deg) !important;
+}
+
 /* Card headers that use primary/secondary backgrounds */
 .card-header.bg-primary,
 .card-header.bg-secondary                  { color: var(--text-on-primary) !important; }
