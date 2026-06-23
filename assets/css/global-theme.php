@@ -2093,11 +2093,23 @@ button > i:only-child, a > i:only-child                {
 .stat-card.bg-danger  { background: linear-gradient(135deg, #dc2626, #ef4444) !important; }
 .stat-card.bg-dark    { background: linear-gradient(135deg, #374151, #1f2937) !important; }
 .stat-card.bg-secondary { background: linear-gradient(135deg, #6b7280, #4b5563) !important; }
-/* Stat card internals */
-.stat-card .stat-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-.stat-card .stat-icon.warn  { background: rgba(245,158,11,0.2); color: #b45309; }
-.stat-card .stat-icon.danger{ background: rgba(220,38,38,0.2); color: #b91c1c; }
-.stat-card .stat-icon.info  { background: rgba(13,202,240,0.2); color: #0369a1; }
+/* Stat card internals - FIX: Remove overlay effect for clear icon visibility */
+.stat-card .stat-icon { 
+    width: 50px; 
+    height: 50px; 
+    background: #ffffff; 
+    border-radius: 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.4rem; 
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Clean shadow instead of overlay */
+}
+.stat-card .stat-icon.warn  { background: #fef3c7; color: #b45309; box-shadow: 0 2px 8px rgba(245,158,11,0.25); }
+.stat-card .stat-icon.danger{ background: #fee2e2; color: #b91c1c; box-shadow: 0 2px 8px rgba(220,38,38,0.25); }
+.stat-card .stat-icon.info  { background: #e0f2fe; color: #0369a1; box-shadow: 0 2px 8px rgba(13,202,240,0.25); }
+.stat-card .stat-icon i { opacity: 1 !important; color: inherit; } /* Ensure icon is fully visible */
 .stat-card .stat-info h3 { font-size: 1.6rem !important; font-weight: 700 !important; margin: 0 !important; line-height: 1 !important; }
 .stat-card .stat-info p  { margin: 0.2rem 0 0 !important; font-size: 0.8rem !important; opacity: 0.9 !important; }
 
