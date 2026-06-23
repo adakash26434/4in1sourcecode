@@ -645,3 +645,26 @@ def test_component_directory_structure() -> None:
         assert path.exists(), f"Missing component: {comp}"
         content = path.read_text(encoding="utf-8")
         assert len(content) > 100, f"Component {comp} is too small"
+
+
+def test_fa_to_lucide_function_exists() -> None:
+    """Verify fa_to_lucide function exists in core/helpers.php."""
+    root = Path("/workspace/project/4in1sourcecode")
+    helpers = root / "core/helpers.php"
+    assert helpers.exists(), "core/helpers.php not found"
+    content = helpers.read_text(encoding="utf-8")
+    assert "function fa_to_lucide" in content, \
+        "fa_to_lucide() function not defined in core/helpers.php"
+
+
+def test_admin_ui_loads_helpers() -> None:
+    """Verify admin-ui.php loads core/helpers.php when needed."""
+    root = Path("/workspace/project/4in1sourcecode")
+    admin_ui = root / "admin/includes/admin-ui.php"
+    assert admin_ui.exists(), "admin/includes/admin-ui.php not found"
+    content = admin_ui.read_text(encoding="utf-8")
+    # Should have conditional loading of core/helpers.php
+    assert "fa_to_lucide" in content, \
+        "admin-ui.php should reference fa_to_lucide"
+    assert "helpers.php" in content, \
+        "admin-ui.php should load core/helpers.php when fa_to_lucide is not available"
