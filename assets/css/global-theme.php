@@ -2113,6 +2113,41 @@ button > i:only-child, a > i:only-child                {
 .stat-card .stat-info h3 { font-size: 1.6rem !important; font-weight: 700 !important; margin: 0 !important; line-height: 1 !important; }
 .stat-card .stat-info p  { margin: 0.2rem 0 0 !important; font-size: 0.8rem !important; opacity: 0.9 !important; }
 
+/* ── UNIFORM EDIT BUTTONS — Consolidate all .btn-edit-* variants ──── */
+/* All custom edit buttons now use same styling for consistency */
+[class*="btn-edit-"] {
+    background: #0d6efd !important;
+    border-color: #0d6efd !important;
+    color: #fff !important;
+}
+[class*="btn-edit-"]:hover {
+    background: #0b5ed7 !important;
+    border-color: #0a58ca !important;
+    color: #fff !important;
+}
+.btn-edit-notice,
+.btn-edit-aw,
+.btn-edit-career,
+.btn-edit-dl,
+.btn-edit-faq,
+.btn-edit-feat,
+.btn-edit-link,
+.btn-edit-member,
+.btn-edit-mot,
+.btn-edit-news,
+.btn-edit-pf,
+.btn-edit-rate,
+.btn-edit-sc,
+.btn-edit-sl,
+.btn-edit-sp,
+.btn-edit-svc,
+.btn-edit-tenure,
+.btn-edit-type {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 0.25rem !important;
+}
+
 /* ── CANONICAL .stat-mini — Single source of truth ───────────────── */
 .stat-mini-row { display: flex !important; gap: 12px !important; flex-wrap: wrap !important; margin-bottom: 20px !important; }
 .stat-mini {
