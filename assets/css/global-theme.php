@@ -329,6 +329,40 @@ table.table-primary thead th,
                                              border-color: var(--primary-dark) !important;
                                              color: var(--text-on-primary) !important; }
 
+/* Uniform form field styling */
+.field-coop {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    color: #212529 !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 0.25rem !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+.field-coop:focus {
+    color: #212529 !important;
+    background-color: #fff !important;
+    border-color: #86b7fe !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+}
+.field-coop::placeholder {
+    color: #6c757d !important;
+    opacity: 1 !important;
+}
+
+/* Uniform inline form */
+.stf-inline-form {
+    display: inline-flex !important;
+    vertical-align: middle !important;
+}
+
 /* Card headers that use primary/secondary backgrounds */
 .card-header.bg-primary,
 .card-header.bg-secondary                  { color: var(--text-on-primary) !important; }
