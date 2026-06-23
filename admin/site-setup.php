@@ -2,18 +2,13 @@
 /**
  * Admin: Site Setup Manager — site-setup.php
  * ===========================================
- * setup.php को सबै काम admin panel भित्रबाट गर्न सकिन्छ।
- * OTP आवश्यक छैन — admin login नै authentication हो।
+ * ⚠️ VIEW ONLY FROM ADMIN PANEL
+ * Site configuration edit garnu cPanel File Manager bata garnus!
  *
- * setup.php (public URL) वा admin/site-setup.php (admin panel) —
- * जहाँबाट update गरे पनि एउटै database मा save हुन्छ।
- * दुवैतिरबाट same data देखिन्छ।
+ * Edit via cPanel:
+ *   File Manager → public_html/setup-config.php
  *
- * Admin user थप्न/सूची/reset/delete: केवल `manage-admins.php` (दोहोरो फर्म हटाइयो)।
- *
- * तालिका सूची + install.sql + migration: `db-setup.php` (यहाँ दोहोरो सूचि/एक-क्लिक हटाइयो)।
- *
- * Superadmin login यहाँबाट होइन — `includes/superadmin-config.local.php` (cPanel) मा मात्र।
+ * Superadmin login: `includes/superadmin-config.local.php` (cPanel) मा मात्र।
  */
 
 require_once dirname(__DIR__) . '/includes/superadmin-config.php';
@@ -109,17 +104,22 @@ try {
     <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
         <div>
             <h4 class="mb-0">
-                <i class="fas fa-sliders me-2 ss-title-icon"></i>Site Setup Manager
+                <i class="fas fa-sliders me-2 ss-title-icon"></i>Site Setup Manager <span class="badge bg-secondary">View Only</span>
             </h4>
             <small class="text-muted">
-                Admin panel वा
-                <a href="../setup.php" target="_blank">setup.php (Public URL)</a>
-                — जहाँबाट update गरे पनि <strong>एउटै database</strong> मा save हुन्छ।
+                Site settings herna मात्र — edit garnu cPanel File Manager bata garnus!
             </small>
         </div>
-        <a href="../setup.php" target="_blank" class="btn btn-outline-secondary btn-sm">
-            <i class="fas fa-external-link-alt me-1"></i>setup.php Public URL
-        </a>
+    </div>
+
+    <!-- ⚠️ VIEW ONLY WARNING -->
+    <div class="alert alert-warning d-flex align-items-center gap-2 mb-4">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>
+            <strong>⚠️ View Only:</strong> 
+            Site configuration edit garnu cPanel File Manager <code>(setup-config.php)</code> bata garnus!
+            Admin panel ma sirf settings herna मात्र सकिन्छ।
+        </div>
     </div>
 
     <!-- ── Flash ── -->

@@ -3,16 +3,11 @@
  * =====================================================
  * ADMIN: DB SETUP — Superadmin Only
  * =====================================================
- * Database configuration, table creation, र connection
- * test — सबै Admin Panel बाटै।
- * setup.php (public URL) बन्द गरी यहाँ सारिएको छ।
+ * ⚠️ VIEW ONLY FROM ADMIN PANEL
+ * Database credentials edit garnu cPanel File Manager Bata garnus!
  *
- * Access:
- * • DB मिलिसकेपछि: Superadmin login अनिवार्य।
- * • Bootstrap (जडान फेल / admin छैन):
- *   — `includes/database.local.php` (वा legacy `database.php`) भित्र DB name/user भरिसकेको छ भने
- *     अतिरिक्त unlock चाहिँदैन — सिधै यहाँ credentials मिलाउन / install.sql चलाउन मिल्छ।
- *   — ती फाइल नै छैनन् वा DB name/user खाली: `superadmin-config.local.php` को user/pass ले unlock (फर्म)।
+ * Edit via cPanel:
+ *   File Manager → public_html/includes/database.local.php
  * =====================================================
  */
 
@@ -737,7 +732,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
             <i class="fas fa-database fa-xl"></i>
         </div>
         <div>
-            <h4 class="mb-0 fw-bold">DB Setup</h4>
+            <h4 class="mb-0 fw-bold">DB Setup <span class="badge bg-secondary">View Only</span></h4>
             <small class="text-muted">Database configuration र table setup — Superadmin only</small>
         </div>
         <div class="ms-auto d-flex gap-2 flex-wrap">
@@ -754,6 +749,16 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
             <a href="site-setup.php" class="btn btn-outline-secondary btn-sm">
                 <i class="fas fa-sliders me-1"></i>Site Setup
             </a>
+        </div>
+    </div>
+
+    <!-- ⚠️ VIEW ONLY WARNING -->
+    <div class="alert alert-warning d-flex align-items-center gap-2 mb-4">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>
+            <strong>⚠️ View Only:</strong> 
+            Database credentials edit garnu cPanel File Manager <code>(includes/database.local.php)</code> bata garnus!
+            Admin panel ma sirf table status herna मात्र सकिन्छ।
         </div>
     </div>
 
