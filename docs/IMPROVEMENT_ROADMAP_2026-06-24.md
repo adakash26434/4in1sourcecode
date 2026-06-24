@@ -102,6 +102,7 @@ Recent pushed commits (query helper stream):
 
 - `bc4c3ce` — core_safe_count helper + loan/kyc count lines centralize
 - `136f2e6` — vendor/member portal stats counts migrate to core_safe_count
+- `9b71214` — analytics/messages count lines migrate to core_safe_count
 
 ---
 
