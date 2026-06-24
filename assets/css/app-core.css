@@ -2265,16 +2265,6 @@ body:not([class*="admin-page-"]) .nav-tabs .nav-link.active {
     color: inherit;
 }
 
-/* Coop card — custom variant */
-.card-coop {
-    background: var(--bg-card, #fff);
-    border-radius: var(--radius-lg, 16px);
-    box-shadow: var(--shadow-md, 0 4px 16px rgba(0,0,0,.08));
-    padding: var(--space-lg, 24px);
-    border: 1px solid var(--border-soft, #f0f0f0);
-}
-
-
 /* ════════════════════════════════════════════════════════════════
     §6  TABLES
     ════════════════════════════════════════════════════════════════ */
