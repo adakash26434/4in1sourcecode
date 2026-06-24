@@ -23102,6 +23102,11 @@ body.auth-page,
 @media (max-width: 991.98px) {
     body.header-v2 #mainNavV2.main-nav,
     body.header-v2 .pfl-nav-area #mainNavV2.main-nav {
+        --mnav-row-min-h: 58px;
+        --mnav-sub-row-min-h: 52px;
+        --mnav-row-font: 1rem;
+        --mnav-sub-font: .96rem;
+        --mnav-icon-size: 34px;
         width: min(78vw, 356px) !important;
         max-width: 356px !important;
         background: #f7faf8 !important;
@@ -23109,6 +23114,24 @@ body.auth-page,
         box-shadow: 16px 0 34px rgba(15, 23, 42, .24) !important;
         padding: 0 !important;
         overflow-y: auto !important;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: geometricPrecision;
+    }
+
+    body.header-v2.menu-compact #mainNavV2.main-nav {
+        --mnav-row-min-h: 52px;
+        --mnav-sub-row-min-h: 47px;
+        --mnav-row-font: .94rem;
+        --mnav-sub-font: .9rem;
+        --mnav-icon-size: 30px;
+    }
+
+    body.header-v2.menu-large #mainNavV2.main-nav {
+        --mnav-row-min-h: 64px;
+        --mnav-sub-row-min-h: 58px;
+        --mnav-row-font: 1.05rem;
+        --mnav-sub-font: 1rem;
+        --mnav-icon-size: 38px;
     }
 
     body.header-v2 #mainNavV2 .close-menu {
@@ -23152,14 +23175,16 @@ body.auth-page,
     }
 
     body.header-v2 #mainNavV2 .nav-menu > li > a {
-        min-height: 58px !important;
+        min-height: var(--mnav-row-min-h) !important;
         padding: 14px 52px 14px 14px !important;
-        font-size: 1rem !important;
+        font-size: var(--mnav-row-font) !important;
         font-weight: 700 !important;
         color: #1f2937 !important;
         background: #ffffff !important;
         border-bottom: none !important;
-        line-height: 1.25 !important;
+        line-height: 1.32 !important;
+        letter-spacing: .01em !important;
+        word-spacing: .01em;
     }
 
     body.header-v2 #mainNavV2 .nav-menu > li.active > a,
@@ -23203,6 +23228,23 @@ body.auth-page,
         background: #fbfdfb !important;
         border-left: none !important;
         padding: 6px 0 !important;
+        display: block !important;
+        max-height: 0 !important;
+        opacity: 0 !important;
+        overflow: hidden !important;
+        visibility: hidden !important;
+        transform: translateY(-4px) !important;
+        transition: max-height .34s cubic-bezier(.2,.7,.2,1), opacity .24s ease, transform .24s ease, visibility .24s ease !important;
+        will-change: max-height, opacity, transform;
+    }
+
+    body.header-v2 #mainNavV2 .has-dropdown.open > .dropdown,
+    body.header-v2 #mainNavV2 .has-sub.open > .sub-menu,
+    body.header-v2 #mainNavV2 .has-sub.open > .dropdown {
+        max-height: 72vh !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
     }
 
     body.header-v2 #mainNavV2 .dropdown li,
@@ -23217,21 +23259,23 @@ body.auth-page,
 
     body.header-v2 #mainNavV2 .dropdown li a,
     body.header-v2 #mainNavV2 .sub-menu li a {
-        min-height: 52px !important;
+        min-height: var(--mnav-sub-row-min-h) !important;
         padding: 12px 14px 12px 16px !important;
-        font-size: .96rem !important;
+        font-size: var(--mnav-sub-font) !important;
         font-weight: 700 !important;
         color: #26323a !important;
         gap: 12px !important;
+        line-height: 1.34 !important;
+        letter-spacing: .01em !important;
     }
 
     body.header-v2 #mainNavV2 .dropdown li a i,
     body.header-v2 #mainNavV2 .dropdown li a .lucide-icon,
     body.header-v2 #mainNavV2 .sub-menu li a i,
     body.header-v2 #mainNavV2 .sub-menu li a .lucide-icon {
-        width: 34px !important;
-        min-width: 34px !important;
-        height: 34px !important;
+        width: var(--mnav-icon-size) !important;
+        min-width: var(--mnav-icon-size) !important;
+        height: var(--mnav-icon-size) !important;
         border-radius: 10px !important;
         background: #e8f4ec !important;
         color: #1f8b46 !important;
@@ -23240,7 +23284,7 @@ body.auth-page,
         justify-content: center !important;
         margin: 0 !important;
         font-size: 1rem !important;
-        flex: 0 0 34px !important;
+        flex: 0 0 var(--mnav-icon-size) !important;
     }
 
     body.header-v2 #mainNavV2 .dropdown li a:hover,
