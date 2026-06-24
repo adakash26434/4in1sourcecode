@@ -162,17 +162,25 @@ if (document.readyState !== "loading" && typeof lucide !== "undefined") {
                 break;
         }
 
-        /* ── 2. Load Lucide icons (AkashDigital-style, local vendor) ── */
+        /* ── 1.5. Load unified CSS system (global, forms, admin-ui) ── */
+        coopThemeLink('assets/css/global.css');
+        coopThemeLink('assets/css/forms-tables.css');
+        coopThemeLink('assets/css/admin-ui-unified.css');
+
+        /* ── 2. Load UI/UX enhancements (color fixes, contrast, accessibility) ── */
+        coopThemeLink('assets/css/ui-ux-enhancements.css');
+
+        /* ── 3. Load Lucide icons (AkashDigital-style, local vendor) ── */
         if (empty($options['skip_lucide'])) {
             coopThemeLucide();
         }
 
-        /* ── 3. Extra CSS files ── */
+        /* ── 4. Extra CSS files ── */
         foreach ($options['extra'] ?? [] as $rel) {
             coopThemeLink($rel);
         }
 
-        /* ── 4. DB-computed brand colors AFTER static CSS so !important wins ── */
+        /* ── 5. DB-computed brand colors AFTER static CSS so !important wins ── */
         coopThemeRequireGlobal();
     }
 
