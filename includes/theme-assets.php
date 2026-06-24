@@ -90,12 +90,41 @@ if (!function_exists('coopThemeCssUrl')) {
         }
         $done = true;
         echo '<script>
-document.addEventListener("DOMContentLoaded", function() {
-    if (typeof lucide !== "undefined") lucide.createIcons();
-});
-if (document.readyState !== "loading" && typeof lucide !== "undefined") {
-    lucide.createIcons();
-}
+(function () {
+    function normalizeLucideNames(root) {
+        if (typeof lucide === "undefined" || !root) return;
+        var registry = lucide.icons || {};
+        var aliases = {
+            "building-columns": ["landmark", "building-2"],
+            "shield-halved": ["shield", "shield-check"],
+            "chart-bar": ["bar-chart-3", "chart-column"],
+            "user-circle": ["circle-user", "user-round"],
+            "circle-question": ["help-circle", "circle-help"]
+        };
+        var nodes = root.querySelectorAll("[data-lucide]");
+        nodes.forEach(function (el) {
+            var name = (el.getAttribute("data-lucide") || "").trim();
+            if (!name || registry[name]) return;
+            var candidates = aliases[name] || [];
+            for (var i = 0; i < candidates.length; i++) {
+                var candidate = candidates[i];
+                if (registry[candidate]) {
+                    el.setAttribute("data-lucide", candidate);
+                    break;
+                }
+            }
+        });
+    }
+
+    function renderLucide() {
+        if (typeof lucide === "undefined") return;
+        normalizeLucideNames(document);
+        lucide.createIcons();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderLucide);
+    if (document.readyState !== "loading") renderLucide();
+})();
 </script>' . "\n";
     }
 
