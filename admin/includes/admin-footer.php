@@ -507,7 +507,7 @@
         if (typeof $ !== 'undefined' && $.fn.DataTable) {
             /* colspan rows in empty tbody ले tn/18 alert दिन्छ — suppress गर्छौं */
             $.fn.dataTable.ext.errMode = 'none';
-            document.querySelectorAll('table.data-table:not(.dataTable)').forEach(function(tbl) {
+            document.querySelectorAll('table.data-table:not(.dataTable), table.pf-data-table:not(.dataTable), table[class*="-data-table"]:not(.dataTable)').forEach(function(tbl) {
                 try {
                     $(tbl).DataTable({
                         language: {
