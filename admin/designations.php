@@ -94,7 +94,7 @@ echo adminPageHeader(
                     <span class="badge bg-secondary"><?php echo count($list); ?></span>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-sm mb-0 align-middle">
+                    <table class="table table-sm mb-0 align-middle coop-table">
                         <thead><tr><th>पद (NP)</th><th>English</th><th>क्रम</th><th>स्थिति</th><th></th></tr></thead>
                         <tbody>
                         <?php foreach ($list as $r): ?>

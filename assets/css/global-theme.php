@@ -2354,9 +2354,10 @@ button > i:only-child, a > i:only-child                {
     min-width: 100px !important;
 }
 
-</style>
-
 /* Ticker animation protection — never suppress */
-.ticker-scroll, .notice-ticker .ticker-scroll {
+.ticker-scroll,
+.notice-ticker .ticker-scroll {
     animation: tickerScroll 30s linear infinite !important;
 }
+
+</style>

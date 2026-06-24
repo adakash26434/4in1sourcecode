@@ -117,7 +117,7 @@ if (!empty($flash)) echo adminAlert($flash['type'] === 'success' ? 'success' : '
     <!-- LIST TAB -->
     <div class="tab-pane fade show active" id="wc-list">
         <div class="table-responsive">
-            <table class="table table-hover align-middle admin-table mb-0">
+            <table class="table table-hover align-middle admin-table mb-0 coop-table">
                 <thead>
                     <tr>
                         <th width="50">क्र.</th>

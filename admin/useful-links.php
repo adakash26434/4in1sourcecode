@@ -112,7 +112,7 @@ $linksArch = $lnkPart['archived'];
                     <div class="tab-content admin-table-subtab-content">
                     <div class="tab-pane fade show active" id="link-sub-live" role="tabpanel">
                     <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
+                    <table class="table table-hover align-middle mb-0 coop-table">
                         <thead>
                             <tr>
                                 <th class="ps-3" width="50">आइकन</th>
@@ -176,7 +176,7 @@ $linksArch = $lnkPart['archived'];
                     </div>
                     <div class="tab-pane fade" id="link-sub-arch" role="tabpanel">
                     <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
+                    <table class="table table-hover align-middle mb-0 coop-table">
                         <thead>
                             <tr>
                                 <th class="ps-3" width="50">आइकन</th>

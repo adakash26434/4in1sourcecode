@@ -61,11 +61,11 @@
     <script src="assets/vendor/bootstrap.bundle.min.js"></script>
 
     <!-- jQuery (Bootstrap भन्दा पछि, DataTables र Nepali Datepicker को लागि) -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="../assets/vendor/jquery.min.js"></script>
 
     <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../assets/vendor/datatables/dataTables.bootstrap5.min.js"></script>
 
     <!-- CKEditor for rich text editing -->
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
