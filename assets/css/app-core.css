@@ -3632,8 +3632,6 @@ textarea.form-control:focus {
 }
 
 /* Stat card pulse animation removed */
-@keyframes statPulse { from {} to {} }
-@keyframes fadeSlideIn { from {} to {} }
 
 /* ─── 5. CLEAN BORDERS ─────────────────────────────────────
    1px solid, soft grey — no heavy outlines               */
