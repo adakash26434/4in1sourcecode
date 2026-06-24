@@ -3792,7 +3792,6 @@ img { max-width: 100%; height: auto; }
    ════════════════════════════════════════════════════════════ */
 .container-coop {
     max-width: var(--container-max, 1280px);
-    margin: 0 auto;
     padding: 0 var(--container-pad, 20px);
     width: 100%;
 }
