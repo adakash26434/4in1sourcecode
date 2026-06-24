@@ -2891,7 +2891,6 @@ body.auth-portal-page:not(.verify-auth-page) .auth-lang-toggle { left: 20px; }
 /* Background */
 .coop-bg-soft  { background: var(--bg-soft, #f5faf6); }
 .coop-bg-muted { background: var(--bg-muted, #e8f5e9); }
-.coop-bg-card  { background: var(--bg-card, #fff); }
 
 /* Borders */
 
