@@ -16964,6 +16964,40 @@ html.pwa-installed  .mem-pwa-btn { display: none !important; }
 }
 
 /* =====================================================
+   v10.7.8 — Header Add Button Visibility
+   - Prevent translucent header btn style from hiding label text
+   - Keep plus icon and text readable in all admin page headers
+   ===================================================== */
+
+.main-content .admin-page-header .btn.btn-primary,
+.main-content .admin-page-header a.btn.btn-primary {
+    background: linear-gradient(135deg, #1f7a46, #176238) !important;
+    border-color: #176238 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    white-space: nowrap !important;
+}
+
+.main-content .admin-page-header .btn.btn-primary:hover,
+.main-content .admin-page-header a.btn.btn-primary:hover {
+    background: linear-gradient(135deg, #176238, #14532d) !important;
+    border-color: #14532d !important;
+    color: #ffffff !important;
+}
+
+.main-content .admin-page-header .btn.btn-primary i,
+.main-content .admin-page-header .btn.btn-primary .lucide-icon,
+.main-content .admin-page-header .btn.btn-primary svg,
+.main-content .admin-page-header a.btn.btn-primary i,
+.main-content .admin-page-header a.btn.btn-primary .lucide-icon,
+.main-content .admin-page-header a.btn.btn-primary svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* =====================================================
    v10.7.3 — Active/Compact Header Safety Overrides
    - Keep active dashboard tab text/icon readable
    - Prevent chopped user text in compact header
