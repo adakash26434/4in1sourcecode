@@ -114,7 +114,6 @@ input, select, textarea, button {
     border: 1px solid var(--border-soft);
 }
 
-/* ── Universal Form Field (.field-coop) ── */
 /* ── Container ── */
 .container-coop {
     max-width: var(--container-max);
