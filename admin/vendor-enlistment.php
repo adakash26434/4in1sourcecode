@@ -64,10 +64,10 @@ if (!in_array($tab, $validTabs, true)) {
 
 try {
     $counts = [
-        'all'      => (int)$db->query("SELECT COUNT(*) FROM vendors")->fetchColumn(),
-        'pending'  => (int)$db->query("SELECT COUNT(*) FROM vendors WHERE status='pending'")->fetchColumn(),
-        'approved' => (int)$db->query("SELECT COUNT(*) FROM vendors WHERE status='approved'")->fetchColumn(),
-        'rejected' => (int)$db->query("SELECT COUNT(*) FROM vendors WHERE status='rejected'")->fetchColumn(),
+        'all'      => core_safe_count($db, "SELECT COUNT(*) FROM vendors", '[vendor-enlistment all]'),
+        'pending'  => core_safe_count($db, "SELECT COUNT(*) FROM vendors WHERE status='pending'", '[vendor-enlistment pending]'),
+        'approved' => core_safe_count($db, "SELECT COUNT(*) FROM vendors WHERE status='approved'", '[vendor-enlistment approved]'),
+        'rejected' => core_safe_count($db, "SELECT COUNT(*) FROM vendors WHERE status='rejected'", '[vendor-enlistment rejected]'),
     ];
     if ($tab === 'all') {
         $vendors = $db->query("SELECT * FROM vendors ORDER BY status='pending' DESC, created_at DESC")->fetchAll();

@@ -203,11 +203,11 @@ if ($viewId) {
 /* ── Stats ── */
 $stats = [];
 try {
-    $stats['total']    = (int)$db->query("SELECT COUNT(*) FROM members")->fetchColumn();
-    $stats['pending']  = (int)$db->query("SELECT COUNT(*) FROM members WHERE approval_status='pending'")->fetchColumn();
-    $stats['approved'] = (int)$db->query("SELECT COUNT(*) FROM members WHERE approval_status='approved'")->fetchColumn();
-    $stats['rejected'] = (int)$db->query("SELECT COUNT(*) FROM members WHERE approval_status='rejected'")->fetchColumn();
-    $stats['inactive'] = (int)$db->query("SELECT COUNT(*) FROM members WHERE is_active=0")->fetchColumn();
+    $stats['total']    = core_safe_count($db, "SELECT COUNT(*) FROM members", '[member-online total]');
+    $stats['pending']  = core_safe_count($db, "SELECT COUNT(*) FROM members WHERE approval_status='pending'", '[member-online pending]');
+    $stats['approved'] = core_safe_count($db, "SELECT COUNT(*) FROM members WHERE approval_status='approved'", '[member-online approved]');
+    $stats['rejected'] = core_safe_count($db, "SELECT COUNT(*) FROM members WHERE approval_status='rejected'", '[member-online rejected]');
+    $stats['inactive'] = core_safe_count($db, "SELECT COUNT(*) FROM members WHERE is_active=0", '[member-online inactive]');
 } catch (\Throwable $e) {
     $stats = ['total'=>0,'pending'=>0,'approved'=>0,'rejected'=>0,'inactive'=>0];
 }
@@ -227,7 +227,7 @@ try {
 /* Program attendance rating dataset */
 $activeProgramTotal = 0;
 $memberProgramCounts = [];
-try { $activeProgramTotal = (int)$db->query("SELECT COUNT(*) FROM upcoming_programs WHERE is_active=1")->fetchColumn(); } catch (\Throwable $e) {}
+$activeProgramTotal = core_safe_count($db, "SELECT COUNT(*) FROM upcoming_programs WHERE is_active=1", '[member-online active-programs]');
 try {
     $ag = $db->query("SELECT a.member_id, COUNT(DISTINCT a.program_id) AS attended
                       FROM member_program_attendance a
