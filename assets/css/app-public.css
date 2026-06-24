@@ -22874,3 +22874,47 @@ body.auth-page,
 .contact-info-box .ct-link-dark:hover {
     color: color-mix(in srgb, var(--text-on-primary, #ffffff) 84%, var(--secondary-color, #ffc107)) !important;
 }
+
+/* Keep tracker widget text readable even when theme picks dark text-on-primary */
+.cr-track-card,
+.cr-track-card .cr-sb-head,
+.cr-track-card .cr-sb-head h4,
+.cr-track-card .cr-sb-head p,
+.cr-track-card .cr-sb-head i {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+.cr-track-card .cr-sb-head p {
+    opacity: .9 !important;
+}
+
+/* Mobile submenu: keep icon + text left-aligned and readable */
+@media (max-width: 991px) {
+    .main-nav .nav-menu .dropdown li a,
+    .main-nav .nav-menu .sub-menu li a,
+    .main-nav .dropdown li a,
+    .main-nav .sub-menu li a {
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        text-align: left !important;
+        white-space: normal !important;
+        line-height: 1.35 !important;
+    }
+
+    .main-nav .nav-menu .dropdown li a i,
+    .main-nav .nav-menu .sub-menu li a i,
+    .main-nav .dropdown li a i,
+    .main-nav .sub-menu li a i,
+    .main-nav .nav-menu .dropdown li a .lucide-icon,
+    .main-nav .nav-menu .sub-menu li a .lucide-icon {
+        width: 18px !important;
+        min-width: 18px !important;
+        flex: 0 0 18px !important;
+        text-align: center !important;
+        margin-top: 1px !important;
+        opacity: 1 !important;
+    }
+}
