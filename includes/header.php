@@ -438,14 +438,6 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 width: 100%;
             }
 
-            /* Header-v2 mobile drawer only — disable legacy public menu/overlay */
-            body.header-v2 #mainNav,
-            body.header-v2 #mobileMenuToggle,
-            body.header-v2 #closeMenu,
-            body.header-v2 #menuOverlay {
-                display: none !important;
-            }
-
             /* Overlay backdrop — below main-nav; backdrop-filter removed (mobile rendering fix) */
             .mobile-nav-backdrop {
                 display: none;
@@ -692,8 +684,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
     <style id="public-embed-frame-css">
     /* Member portal भित्र iframe — mixed/ठूलो हेडर बिना फारम देखिने */
     body.embed-in-member-portal { overflow: auto !important; padding-top: 0 !important; }
-    body.embed-in-member-portal .pfl-header-wrapper,
-    body.embed-in-member-portal .main-header { display: none !important; }
+    body.embed-in-member-portal .pfl-header-wrapper { display: none !important; }
     body.embed-in-member-portal .page-banner { display: none !important; }
     body.embed-in-member-portal .main-footer { display: none !important; }
     </style>
@@ -721,11 +712,10 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
     </div>
     <?php endif; ?>
 
-    <!-- ═══════════════════════════════════════════════
-         HEADER v2 — Pokhara Finance Style (Testing)
-         body.header-v2 ले old top-bar र main-header hide गर्छ
-         Rollback: admin → body class बाट "header-v2" हटाउनुस्
-         ═══════════════════════════════════════════════ -->
+        <!-- ═══════════════════════════════════════════════
+            HEADER v2 — Pokhara Finance Style
+            Public pages now render only the v2 header path here.
+            ═══════════════════════════════════════════════ -->
 
     <!-- PFL Sticky Wrapper — utility bar + main header stick together -->
     <div class="pfl-header-wrapper">

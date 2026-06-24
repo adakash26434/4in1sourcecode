@@ -15957,12 +15957,6 @@ body.header-v2 .pfl-nav-area .nav-menu .dropdown li a i {
     .pfl-brand-logo { max-height: 40px; }
 }
 
-/* ═══════════════════════════════════════════
-   HIDE OLD HEADER WHEN v2 ACTIVE
-   ═══════════════════════════════════════════ */
-body.header-v2 .top-bar    { display: none !important; }
-body.header-v2 .main-header { display: none !important; }
-
 /* ── Dark mode ── */
 body.dark-mode .pfl-brand-area {
     background: #1c1c2e !important;
