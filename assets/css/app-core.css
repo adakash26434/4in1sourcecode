@@ -2243,17 +2243,6 @@ h6 { font-size: .88rem;                         font-weight: 600; }
     border-style: dashed;
 }
 
-/* Checkboxes + switches */
-.form-check {
-    padding-left: 1.85em;
-    min-height: 1.6rem;
-    margin-bottom: .35rem;
-}
-.form-check .form-check-input { margin-left: -1.85em; margin-top: .2em; flex-shrink: 0; }
-.form-check-label { cursor: pointer; line-height: 1.45; padding-left: 4px; }
-.form-switch { padding-left: 2.8em; }
-.form-switch .form-check-input { margin-left: -2.8em; width: 2.2em; height: 1.15em; margin-top: .15em; }
-
 /* — Nav pills / tabs — */
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
