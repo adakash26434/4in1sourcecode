@@ -11,7 +11,7 @@
  *     [
  *       'label'  => 'कुल सदस्य',
  *       'value'  => $stats['members'],
- *       'icon'   => 'fa-users',
+ *       'icon'   => 'users',       // Lucide icon (without fa- prefix)
  *       'color'  => 'primary',   // primary | success | warning | danger | info | secondary
  *       'link'   => 'members.php',  // optional
  *       'badge'  => 'नयाँ',         // optional small badge text
@@ -45,14 +45,14 @@ $_iconMap = [
     $_link  = htmlspecialchars($_card['link']  ?? '', ENT_QUOTES, 'UTF-8');
     $_label = htmlspecialchars($_card['label'] ?? '', ENT_QUOTES, 'UTF-8');
     $_value = htmlspecialchars((string)($_card['value'] ?? '0'), ENT_QUOTES, 'UTF-8');
-    $_icon  = htmlspecialchars($_card['icon']  ?? 'fa-chart-bar', ENT_QUOTES, 'UTF-8');
+    $_icon  = htmlspecialchars(str_replace('fa-', '', $_card['icon']  ?? 'bar-chart-3'), ENT_QUOTES, 'UTF-8');
     $_badge = !empty($_card['badge']) ? htmlspecialchars($_card['badge'], ENT_QUOTES, 'UTF-8') : '';
     $_trend = !empty($_card['trend']) ? htmlspecialchars($_card['trend'], ENT_QUOTES, 'UTF-8') : '';
     $_tag   = $_link ? 'a' : 'div';
     $_href  = $_link ? ' href="' . $_link . '"' : '';
 ?>
     <<?php echo $_tag; ?><?php echo $_href; ?> class="stat-mini text-decoration-none">
-        <div class="sm-icon" style="background:<?php echo $_cm['bg']; ?>;color:<?php echo $_cm['color']; ?>;"><i class="fas <?php echo $_icon; ?>"></i></div>
+        <div class="sm-icon" style="background:<?php echo $_cm['bg']; ?>;color:<?php echo $_cm['color']; ?>;"><i data-lucide="<?php echo $_icon; ?>"></i></div>
         <div class="sm-val"><?php echo $_value; ?></div>
         <div class="sm-lbl">
             <?php echo $_label; ?>

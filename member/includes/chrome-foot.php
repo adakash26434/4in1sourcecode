@@ -97,7 +97,7 @@ $_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-glo
     <a href="<?php echo htmlspecialchars($_fnItem['href']); ?>"
        class="mp-bottom-nav__item<?php echo ($_fnActive === $_fnItem['active']) ? ' active' : ''; ?>"
        aria-label="<?php echo htmlspecialchars($_fnItem['label']); ?>">
-        <i class="fas <?php echo $_fnItem['icon']; ?>"></i>
+        <i data-lucide="<?php echo str_replace('fa-', '', $_fnItem['icon']); ?>"></i>
         <span><?php echo htmlspecialchars($_fnItem['label']); ?></span>
         <?php if (!empty($_fnItem['badge']) && $_fnItem['badge'] > 0): ?>
         <span class="mp-bn-badge"><?php echo (int)$_fnItem['badge'] > 9 ? '9+' : (int)$_fnItem['badge']; ?></span>
@@ -107,7 +107,7 @@ $_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-glo
 
     <!-- More button -->
     <button class="mp-bn-more" id="mpMoreBtn" type="button" aria-label="<?php echo $_footT('थप नेभिगेसन','More Navigation'); ?>">
-        <i class="fas fa-grip"></i>
+        <i data-lucide="more-horizontal"></i>
         <span><?php echo $_footT('थप', 'More'); ?></span>
     </button>
 
@@ -120,7 +120,7 @@ $_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-glo
 <div class="mp-more-drawer" id="mpMoreDrawer">
     <div class="mp-more-drag" aria-hidden="true"></div>
     <div class="mp-more-head">
-        <span><i class="fas fa-grip" style="font-size:.8rem;margin-right:6px;"></i><?php echo $_footT('सबै सेवाहरू', 'All Services'); ?></span>
+        <span><i data-lucide="grid-2x2" style="font-size:.8rem;margin-right:6px;"></i><?php echo $_footT('सबै सेवाहरू', 'All Services'); ?></span>
         <button class="mp-more-close" id="mpMoreClose" type="button" aria-label="<?php echo $_footT('बन्द गर्नुहोस्','Close'); ?>">×</button>
     </div>
     <div class="mp-more-grid">
@@ -131,7 +131,7 @@ $_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-glo
            class="mp-more-item<?php echo $_fnIsActive ? ' active' : ''; ?>"
            <?php if (!empty($_fnSec['target'])): ?>target="<?php echo htmlspecialchars($_fnSec['target']); ?>" rel="noopener"<?php endif; ?>
            aria-label="<?php echo htmlspecialchars($_fnSec['label']); ?>">
-            <span class="mp-mi-icon"><i class="fas <?php echo htmlspecialchars($_fnSec['icon']); ?>"></i></span>
+            <span class="mp-mi-icon"><i data-lucide="<?php echo htmlspecialchars(str_replace('fa-', '', $_fnSec['icon'])); ?>"></i></span>
             <span><?php echo htmlspecialchars($_fnSec['label']); ?></span>
         </a>
         <?php endforeach; ?>
