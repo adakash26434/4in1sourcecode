@@ -380,4 +380,37 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php require_once 'includes/admin-footer.php'; ?>
+<?php 
+
+
+
+
+/* ── Client-side search (खोज बक्स) ── */
+(function() {
+    var inp = document.querySelector('#faq-list .admin-table-search');
+    var cnt = document.querySelector('#faq-list .search-count');
+    if (!inp) return;
+    
+    function filter() {
+        var q = inp.value.toLowerCase();
+        var pane = document.querySelector('#faq-list .tab-pane.active');
+        if (!pane) return;
+        var rows = pane.querySelectorAll('tbody tr');
+        var vis = 0;
+        rows.forEach(function(r) {
+            var show = r.textContent.toLowerCase().includes(q);
+            r.style.display = show ? '' : 'none';
+            if (show) vis++;
+        });
+        if (cnt) cnt.textContent = vis + ' / ' + rows.length;
+    }
+    
+    inp.addEventListener('input', filter);
+    document.addEventListener('shown.bs.tab', function(e) {
+        if (e.target.id === 'faq-sub-live' || e.target.id === 'faq-sub-arch') filter();
+    });
+    filter();
+})();
+
+
+<?php require_once 'includes/admin-footer.php'; ?> ?>
