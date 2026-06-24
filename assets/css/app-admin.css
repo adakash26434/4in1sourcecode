@@ -16766,3 +16766,46 @@ html.pwa-installed  .mem-pwa-btn { display: none !important; }
 .admin-info .admin-menu a i {
     opacity: 1 !important;
 }
+
+/* =====================================================
+   v10.7.3 — Active/Compact Header Safety Overrides
+   - Keep active dashboard tab text/icon readable
+   - Prevent chopped user text in compact header
+   - Ensure lucide icons remain visible in active states
+   ===================================================== */
+
+.ds-tab.active,
+.ds-tab.active i,
+.ds-tab.active .lucide-icon,
+.ds-tab.active [data-lucide] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+.ds-tab.active svg,
+.ds-tab.active .lucide {
+    stroke: #ffffff !important;
+}
+
+/* Respect Bootstrap utility visibility to avoid forced clipped labels */
+.admin-header .admin-name-inline.d-none {
+    display: none !important;
+}
+
+/* Small screens: icon-first user chip, hide clipped text/badges */
+@media (max-width: 992px) {
+    .admin-header .admin-info {
+        max-width: fit-content !important;
+        min-width: 36px !important;
+        padding: 3px 6px !important;
+    }
+
+    .admin-header .admin-name-inline,
+    .admin-header .superadmin-pill,
+    .admin-header .admin-info .role-badge,
+    .admin-header .admin-info .badge,
+    .admin-header .admin-info-chevron {
+        display: none !important;
+    }
+}
