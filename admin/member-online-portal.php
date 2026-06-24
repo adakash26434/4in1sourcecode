@@ -161,7 +161,8 @@ $viewMember = null;
 $viewCard   = null; /* CVV / Verification code */
 $viewPartnerHistory = [];
 if ($viewId) {
-    $st = $db->prepare("SELECT m.*,
+    try {
+        $st = $db->prepare("SELECT m.*,
                                k.full_name AS kyc_full_name,
                                k.email AS kyc_email,
                                k.mobile AS kyc_mobile,
@@ -169,8 +170,13 @@ if ($viewId) {
                           FROM members m
                           LEFT JOIN kyc_applications k ON k.id = m.kyc_application_id
                          WHERE m.id=?");
-    $st->execute([$viewId]);
-    $viewMember = $st->fetch(PDO::FETCH_ASSOC);
+        $st->execute([$viewId]);
+        $viewMember = $st->fetch(PDO::FETCH_ASSOC);
+    } catch (Throwable $e) {
+        error_log('[member-online-portal view-member] ' . $e->getMessage());
+        $viewMember = null;
+    }
+
     if ($viewMember && $hasMemberIdCards) {
         try {
             $cs = $db->prepare(
@@ -253,10 +259,8 @@ if ($search) {
     $t = "%$search%"; $params = array_merge($params, [$t,$t,$t,$t,$t]);
 }
 
-$countStmt = $db->prepare("SELECT COUNT(*) FROM members WHERE $where");
-$countStmt->execute($params);
-$totalCount = (int)$countStmt->fetchColumn();
-$totalPages = max(1, ceil($totalCount / $limit));
+$totalCount = 0;
+$totalPages = 1;
 
 $cardSelectSql = "NULL AS card_no_db, NULL AS card_cvv";
 $cardJoinSql = "";
@@ -282,22 +286,36 @@ if ($hasMemberIdCards) {
                ORDER BY id DESC LIMIT 1
           )";
 }
-$memberStmt = $db->prepare(
-    "SELECT m.*,
-            COALESCE(NULLIF(k.full_name,''), m.name) AS display_name,
-            COALESCE(NULLIF(k.mobile,''), m.phone) AS display_phone,
-            COALESCE(NULLIF(k.email,''), m.email) AS display_email,
-            COALESCE(NULLIF(k.photo,''), NULLIF(m.avatar_url,'')) AS display_avatar,
-            {$cardSelectSql}
-       FROM members m
-      LEFT JOIN kyc_applications k ON k.id = m.kyc_application_id
-      {$cardJoinSql}
-      WHERE $where
-      ORDER BY m.created_at DESC
-      LIMIT $limit OFFSET $offset"
-);
-$memberStmt->execute($params);
-$members = $memberStmt->fetchAll(PDO::FETCH_ASSOC);
+$members = [];
+try {
+    $countStmt = $db->prepare("SELECT COUNT(*) FROM members WHERE $where");
+    $countStmt->execute($params);
+    $totalCount = (int)$countStmt->fetchColumn();
+    $totalPages = max(1, ceil($totalCount / $limit));
+
+    $memberStmt = $db->prepare(
+        "SELECT m.*,
+                COALESCE(NULLIF(k.full_name,''), m.name) AS display_name,
+                COALESCE(NULLIF(k.mobile,''), m.phone) AS display_phone,
+                COALESCE(NULLIF(k.email,''), m.email) AS display_email,
+                COALESCE(NULLIF(k.photo,''), NULLIF(m.avatar_url,'')) AS display_avatar,
+                {$cardSelectSql}
+           FROM members m
+          LEFT JOIN kyc_applications k ON k.id = m.kyc_application_id
+          {$cardJoinSql}
+          WHERE $where
+          ORDER BY m.created_at DESC
+          LIMIT $limit OFFSET $offset"
+    );
+    $memberStmt->execute($params);
+    $members = $memberStmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Throwable $e) {
+    error_log('[member-online-portal list-query] ' . $e->getMessage());
+    $totalCount = 0;
+    $totalPages = 1;
+    $members = [];
+    setFlash('error', 'Member portal data load गर्दा schema mismatch/DB समस्या भेटियो। Database Setup/Migration एकपटक run गर्नुहोस्।');
+}
 
 /* Approval status badge helper */
 function approvalBadge($status) {
