@@ -117,7 +117,7 @@ input, select, textarea, button {
 /* ── Universal Form Field (.field-coop) ── */
 .field-coop {
     border: 1.5px solid var(--border-color);
-    background: #fafbfa; color: var(--text-primary);
+    color: var(--text-primary);
     transition: border .2s, box-shadow .2s;
 }
 .field-coop:focus {
