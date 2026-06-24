@@ -180,6 +180,11 @@ if (document.readyState !== "loading" && typeof lucide !== "undefined") {
         /* ── 2. Load UI/UX enhancements (color fixes, contrast, accessibility) ── */
         coopThemeLink('assets/css/ui-ux-enhancements.css');
 
+        /* ── 2.5. Load Admin Layout & Icon Color Fixes (tab display, icon colors) ── */
+        if (in_array($panel, ['admin', 'admin-auth', 'shell'], true)) {
+            coopThemeLink('assets/css/admin-layout-icon-fixes.css');
+        }
+
         /* ── 3. Load Lucide icons (AkashDigital-style, local vendor) ── */
         if (empty($options['skip_lucide'])) {
             coopThemeLucide();
