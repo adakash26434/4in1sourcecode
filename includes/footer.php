@@ -886,7 +886,11 @@ try {
     <a href="<?php echo SITE_URL; ?>member/" class="mob-bn-item"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i><span><?php echo isEnglish()?'Member':'सदस्य'; ?></span></a>
 </nav>
 <script>document.body.classList.add('has-bottomnav');</script>
-    <script src="<?php echo SITE_URL; ?>assets/js/v9-mobile-fix.js?v=9.11" defer></script>
+<?php
+$__v9MobileFixVer = (defined('ROOT_PATH') ? @filemtime(ROOT_PATH . 'assets/js/v9-mobile-fix.js') : false);
+if (!$__v9MobileFixVer) { $__v9MobileFixVer = time(); }
+?>
+    <script src="<?php echo SITE_URL; ?>assets/js/v9-mobile-fix.js?v=<?php echo (int)$__v9MobileFixVer; ?>" defer></script>
 <script>
 function copyTrk(id,btn){
     var el=document.getElementById(id);
@@ -949,6 +953,95 @@ function copyTrk(id,btn){
         });
     })();
 </script>
+
+<?php
+$__uiTestMode = isset($_GET['ui_test']) && (string)$_GET['ui_test'] === '1';
+if ($__uiTestMode):
+?>
+<script>
+(function(){
+    function q(sel){ return document.querySelector(sel); }
+    function byId(id){ return document.getElementById(id); }
+    function log(msg){
+        var out = byId('uiTestOut');
+        if (!out) return;
+        var t = new Date().toLocaleTimeString();
+        out.textContent = '[' + t + '] ' + msg + '\n' + out.textContent;
+    }
+    function menuState(){
+        var toggle = byId('mobileMenuToggle2');
+        var nav = byId('mainNavV2');
+        if (!toggle || !nav) return { ok:false, msg:'mobile toggle/nav not found' };
+        var icon = toggle.querySelector('i');
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        var open = nav.classList.contains('nav-open') || nav.classList.contains('open') || nav.classList.contains('active');
+        var iconX = !!(icon && icon.classList.contains('fa-xmark'));
+        var iconBars = !!(icon && icon.classList.contains('fa-bars'));
+        var ok = (expanded === open) && ((open && iconX) || (!open && iconBars));
+        return {
+            ok: ok,
+            msg: 'expanded=' + expanded + ', open=' + open + ', iconX=' + iconX + ', iconBars=' + iconBars
+        };
+    }
+    function checkSizes(){
+        var dark = byId('topbarDarkModeToggle');
+        var langDot = q('.pfl-lang-wrap .pfl-lang-dot');
+        var res = [];
+        if (dark) {
+            var b = dark.getBoundingClientRect();
+            res.push('dark=' + Math.round(b.width) + 'x' + Math.round(b.height));
+        }
+        if (langDot) {
+            var d = langDot.getBoundingClientRect();
+            res.push('langDot=' + d.width.toFixed(1) + 'x' + d.height.toFixed(1));
+        }
+        if (!res.length) res.push('target elements not found');
+        return res.join(', ');
+    }
+    function forceReset(){
+        if (typeof window.__pflMobileMenuClose === 'function') window.__pflMobileMenuClose();
+        var toggle = byId('mobileMenuToggle2');
+        if (toggle) {
+            toggle.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded','false');
+            var i = toggle.querySelector('i');
+            if (i) { i.classList.remove('fa-xmark'); i.classList.add('fa-bars'); }
+        }
+        var nav = byId('mainNavV2');
+        if (nav) {
+            nav.classList.remove('nav-open','open','active');
+            nav.setAttribute('aria-hidden','true');
+        }
+        document.body.classList.remove('mobile-nav-open');
+        document.documentElement.classList.remove('mobile-nav-open');
+        log('force reset done');
+    }
+    function buildPanel(){
+        var panel = document.createElement('aside');
+        panel.id = 'uiTestPanel';
+        panel.style.cssText = 'position:fixed;right:10px;bottom:84px;z-index:2147483647;width:min(92vw,320px);background:#0f172a;color:#e5e7eb;border:1px solid #334155;border-radius:12px;box-shadow:0 12px 26px rgba(2,6,23,.45);font:12px/1.35 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;';
+        panel.innerHTML = '' +
+            '<div style="padding:8px 10px;border-bottom:1px solid #334155;font-weight:700;display:flex;justify-content:space-between;align-items:center;">UI Test Mode <button id="uiTestClose" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;border-radius:8px;padding:2px 8px;">hide</button></div>' +
+            '<div style="padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
+            '<button id="uiChkState" style="padding:7px;border-radius:8px;border:1px solid #334155;background:#111827;color:#e5e7eb;">Check State</button>' +
+            '<button id="uiChkSizes" style="padding:7px;border-radius:8px;border:1px solid #334155;background:#111827;color:#e5e7eb;">Check Sizes</button>' +
+            '<button id="uiOpenMenu" style="padding:7px;border-radius:8px;border:1px solid #334155;background:#0b5;color:#f8fffb;">Open Menu</button>' +
+            '<button id="uiReset" style="padding:7px;border-radius:8px;border:1px solid #334155;background:#7f1d1d;color:#fee2e2;">Force Reset</button>' +
+            '</div>' +
+            '<pre id="uiTestOut" style="margin:0;padding:8px;max-height:170px;overflow:auto;background:#020617;border-top:1px solid #334155;white-space:pre-wrap;"></pre>';
+        document.body.appendChild(panel);
+        byId('uiTestClose').addEventListener('click', function(){ panel.style.display = 'none'; });
+        byId('uiChkState').addEventListener('click', function(){ var s = menuState(); log((s.ok ? 'OK ' : 'WARN ') + s.msg); });
+        byId('uiChkSizes').addEventListener('click', function(){ log(checkSizes()); });
+        byId('uiOpenMenu').addEventListener('click', function(){ if (typeof window.__pflMobileMenuOpen === 'function') window.__pflMobileMenuOpen(); var s = menuState(); log('open-> ' + s.msg); });
+        byId('uiReset').addEventListener('click', forceReset);
+        setTimeout(function(){ var s = menuState(); log((s.ok ? 'OK ' : 'WARN ') + s.msg); log(checkSizes()); }, 350);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildPanel);
+    else buildPanel();
+})();
+</script>
+<?php endif; ?>
 <!-- v12 — Quick Actions FAB (loan, account, contact, tracker, branches, login + help items) -->
 <div class="qh-launcher" id="qhLauncher" aria-label="Quick Actions">
   <div class="qh-menu" role="menu">
