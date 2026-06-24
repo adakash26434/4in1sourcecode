@@ -38,9 +38,7 @@ register_shutdown_function(function () {
     @http_response_code(500);
     header('Content-Type: text/html; charset=utf-8');
 
-    $isDebug = function_exists('core_is_debug_request')
-        ? core_is_debug_request()
-        : (isset($_GET['debug']) && (string)$_GET['debug'] === '1');
+    $isDebug = core_is_debug_request();
     $msg = $isDebug
         ? htmlspecialchars($err['message'] . ' @ ' . basename($err['file']) . ':' . $err['line'])
         : 'अप्रत्याशित त्रुटि भयो। कार्यालयमा सम्पर्क गर्नुहोस्।';
