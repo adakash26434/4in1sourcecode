@@ -914,9 +914,9 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                     </div>
                 </li>
                 <li class="pfl-lang-wrap">
-                    <a href="?lang=en" class="<?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
-                    <span>|</span>
-                    <a href="?lang=np" class="<?php echo $currentLang === 'np' ? 'active' : ''; ?>">NP</a>
+                    <a href="?lang=en" class="pfl-lang-link <?php echo $currentLang === 'en' ? 'active' : ''; ?>"><span class="pfl-lang-dot" aria-hidden="true"></span><span>EN</span></a>
+                    <span class="pfl-lang-divider">|</span>
+                    <a href="?lang=np" class="pfl-lang-link <?php echo $currentLang === 'np' ? 'active' : ''; ?>"><span class="pfl-lang-dot" aria-hidden="true"></span><span>NP</span></a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" id="topbarSearchBtn" title="<?php echo isEnglish() ? 'Search' : 'खोज्नुहोस्'; ?>">

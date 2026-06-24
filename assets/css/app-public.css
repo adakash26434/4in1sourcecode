@@ -22143,6 +22143,118 @@ footer.main-footer,
 .form-check .form-check-label{
   line-height: 1.35 !important;
 }
+
+/* v12.2 — Round selector style (coop member options + EN/NP toggle) */
+.ds-coop-card {
+    border-color: color-mix(in srgb, var(--primary-color, #1a5f2a) 20%, #d1d5db) !important;
+}
+.ds-coop-radio-row {
+    gap: 10px !important;
+}
+.ds-coop-option {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    padding: 10px 14px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    color: #1f2937 !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease;
+}
+.ds-coop-option .form-check-input {
+    margin: 0 !important;
+    width: 1.08em !important;
+    height: 1.08em !important;
+    min-width: 1.08em !important;
+    min-height: 1.08em !important;
+    border: 2px solid #cbd5e1 !important;
+}
+.ds-coop-option:hover {
+    border-color: color-mix(in srgb, var(--primary-color, #1a5f2a) 48%, #cbd5e1) !important;
+    background: color-mix(in srgb, var(--primary-color, #1a5f2a) 7%, #fff) !important;
+}
+.ds-coop-option:has(.form-check-input:checked) {
+    border-color: var(--primary-color, #1a5f2a) !important;
+    background: color-mix(in srgb, var(--primary-color, #1a5f2a) 12%, #fff) !important;
+    box-shadow: 0 0 0 3px rgba(26,95,42,.10) !important;
+}
+
+.pfl-lang-wrap {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    border-left: 1px solid rgba(255,255,255,.26) !important;
+    padding-left: 10px !important;
+    margin-left: 4px !important;
+}
+.pfl-lang-wrap .pfl-lang-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 4px 8px !important;
+    border-radius: 8px !important;
+    color: rgba(255,255,255,.88) !important;
+    text-decoration: none !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+.pfl-lang-wrap .pfl-lang-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    border: 2px solid rgba(255,255,255,.78);
+    background: transparent;
+    box-sizing: border-box;
+}
+.pfl-lang-wrap .pfl-lang-link.active,
+.pfl-lang-wrap .pfl-lang-link:hover {
+    background: rgba(255,255,255,.16) !important;
+    color: #fff !important;
+}
+.pfl-lang-wrap .pfl-lang-link.active .pfl-lang-dot {
+    background: #fff !important;
+    border-color: #fff !important;
+}
+.pfl-lang-wrap .pfl-lang-divider {
+    color: rgba(255,255,255,.52) !important;
+    font-size: 11px !important;
+}
+
+@media (max-width: 575px) {
+    .ds-coop-option {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 9px 12px !important;
+        font-size: .92rem !important;
+    }
+    .pfl-top-right > li > a,
+    .pfl-bell-btn,
+    .pfl-pwa-wrap a.pwa-install-btn,
+    .pfl-dark-wrap > a {
+        padding: 4px 6px !important;
+        min-width: 30px !important;
+        min-height: 30px !important;
+        font-size: 13px !important;
+    }
+    .pfl-lang-wrap {
+        gap: 4px !important;
+        padding-left: 6px !important;
+        margin-left: 2px !important;
+    }
+    .pfl-lang-wrap .pfl-lang-link {
+        gap: 4px !important;
+        padding: 3px 6px !important;
+        font-size: 11px !important;
+    }
+    .pfl-lang-wrap .pfl-lang-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
 select.form-control,
 select.form-select,
 select.field-coop{
