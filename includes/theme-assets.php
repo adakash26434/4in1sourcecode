@@ -200,6 +200,11 @@ if (document.readyState !== "loading" && typeof lucide !== "undefined") {
             coopThemeLink('assets/css/bootstrap-admin-overrides.css');
         }
 
+        /* ── 4.6. PRIORITY ICON COLOR FIX - Load AFTER all other CSS for maximum priority ── */
+        if (in_array($panel, ['admin', 'admin-auth', 'shell'], true)) {
+            coopThemeLink('assets/css/admin-icon-colors-priority.css');
+        }
+
         /* ── 5. DB-computed brand colors AFTER static CSS so !important wins ── */
         coopThemeRequireGlobal();
     }
