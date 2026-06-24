@@ -5955,9 +5955,8 @@ textarea.form-control {
 }
 
 @media (max-width: 767px) {
-    .member-login-btn,
-    a[href*="member/login"],
-    a[href$="/member/"] {
+    .pfl-login-menu a[href*="member/login"],
+    .pfl-login-menu a[href$="/member/"] {
         position: relative;
         z-index: 3;
         margin-left: 4px !important;
