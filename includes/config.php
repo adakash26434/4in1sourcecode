@@ -12,9 +12,17 @@
  * =====================================================
  */
 
-// Output Buffering - Prevents header errors
-ob_start();
+// Output buffering - prevent header issues without stacking nested buffers unnecessarily.
+if (!ob_get_level()) {
+    ob_start();
+}
 /* Security HTTP headers — तल session block पछि एकै ठाउँमा (दोहोरो header नपठाउनु) */
+
+if (!defined('ENVIRONMENT')) {
+    $__env = strtolower(trim((string)(getenv('APP_ENV') ?: getenv('APPLICATION_ENV') ?: '')));
+    define('ENVIRONMENT', in_array($__env, ['development', 'staging', 'production'], true) ? $__env : 'production');
+    unset($__env);
+}
 
 // PHP Version Check + Polyfills
 // (सबै version-related code: includes/compatibility.php मा छ)
@@ -127,9 +135,9 @@ if (!defined('CRED_MASTER_KEY')) {
  * यो Production को लागि सही सेटिङ हो।
  * =====================================================
  */
-error_reporting(E_ALL);              /* Production मा सबै errors log गर्ने; screen मा नदेखाउने */
-ini_set('display_startup_errors', 0);
-ini_set('display_errors', 0);     /* Screen मा error देखाउने? 0 = नदेखाउने (production) */
+error_reporting(E_ALL);              /* सबै errors log गर्ने; screen visibility env अनुसार */
+ini_set('display_startup_errors', ENVIRONMENT === 'development' ? '1' : '0');
+ini_set('display_errors', ENVIRONMENT === 'development' ? '1' : '0');
 ini_set('log_errors', 1);         /* Log file मा errors save गर्ने? 1 = हो */
 ini_set('log_errors_max_len', 1024); /* Prevent excessively large log entries */
 
