@@ -27,6 +27,15 @@ try {
     $profiles = [];
 }
 
+$fiscalYears = [];
+foreach ($profiles as $_pRow) {
+    $fy = trim((string)($_pRow['fiscal_year'] ?? ''));
+    if ($fy !== '') {
+        $fiscalYears[$fy] = true;
+    }
+}
+$fiscalYears = array_keys($fiscalYears);
+
 /* Helper: short amount display */
 function ipShortAmt(float $v): string {
     if ($v >= 1e7) return 'रू. ' . number_format($v / 1e7, 2) . ' करोड';
@@ -39,6 +48,87 @@ function ipNepaliNumber(int $number): string {
     return strtr((string)$number, ['0'=>'०','1'=>'१','2'=>'२','3'=>'३','4'=>'४','5'=>'५','6'=>'६','7'=>'७','8'=>'८','9'=>'९']);
 }
 ?>
+
+<style>
+.ip-filter-wrap {
+    background: #f8fbf9;
+    border: 1px solid #d9e8de;
+    border-radius: 14px;
+    padding: 12px;
+    margin: 0 0 14px;
+}
+.ip-filter-bar {
+    display: grid;
+    grid-template-columns: 180px minmax(180px, 1fr) auto auto;
+    gap: 10px;
+    align-items: center;
+}
+.ip-filter-input,
+.ip-filter-select {
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #cfe2d5;
+    background: #fff;
+    color: #1f2937;
+    font-size: 0.92rem;
+    padding: 0 12px;
+}
+.ip-filter-input:focus,
+.ip-filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color, #1a5f2a);
+    box-shadow: 0 0 0 3px rgba(26, 95, 42, 0.14);
+}
+.ip-filter-reset {
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary-color, #1a5f2a);
+    color: #fff;
+    font-weight: 600;
+    padding: 0 14px;
+}
+.ip-filter-reset:hover {
+    background: #14532d;
+}
+.ip-filter-count {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #166534;
+    background: #e8f7ed;
+    border: 1px solid #bbf7d0;
+    border-radius: 999px;
+    padding: 7px 11px;
+    white-space: nowrap;
+}
+.ip-filter-empty {
+    display: none;
+    margin-top: 12px;
+    border: 1px dashed #c9d8cf;
+    border-radius: 12px;
+    background: #fbfdfc;
+    color: #4b5563;
+    text-align: center;
+    padding: 18px 14px;
+    font-size: 0.92rem;
+}
+.ip-month-tile.is-hidden {
+    display: none !important;
+}
+@media (max-width: 991px) {
+    .ip-filter-bar {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 640px) {
+    .ip-filter-bar {
+        grid-template-columns: 1fr;
+    }
+    .ip-filter-count {
+        text-align: center;
+    }
+}
+</style>
 
 <!-- Page Banner -->
 <section class="page-banner">
@@ -86,6 +176,30 @@ function ipNepaliNumber(int $number): string {
         </div>
     </div>
 
+    <div class="ip-filter-wrap" data-testid="institutional-profile-filters">
+        <div class="ip-filter-bar">
+            <select id="ipFiscalYearFilter" class="ip-filter-select" aria-label="Fiscal Year Filter">
+                <option value=""><?php echo isEnglish() ? 'All Fiscal Years' : 'सबै आ.व.'; ?></option>
+                <?php foreach ($fiscalYears as $fy): ?>
+                <option value="<?php echo htmlspecialchars($fy, ENT_QUOTES, 'UTF-8'); ?>">आ.व. <?php echo htmlspecialchars($fy, ENT_QUOTES, 'UTF-8'); ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <input id="ipFinancialSearch" type="search" class="ip-filter-input"
+                   placeholder="<?php echo isEnglish() ? 'Search by FY, date, or keyword' : 'आ.व., मिति वा संकेतक खोज्नुहोस्'; ?>"
+                   aria-label="Financial search">
+
+            <button id="ipFilterReset" type="button" class="ip-filter-reset">
+                <i class="fas fa-rotate-left me-1"></i><?php echo isEnglish() ? 'Reset' : 'रिसेट'; ?>
+            </button>
+
+            <span id="ipFilterCount" class="ip-filter-count"></span>
+        </div>
+        <div id="ipFilterEmpty" class="ip-filter-empty">
+            <i class="fas fa-filter-circle-xmark me-1"></i><?php echo isEnglish() ? 'No matching record found.' : 'मिल्दो रेकर्ड भेटिएन।'; ?>
+        </div>
+    </div>
+
     <div class="ip-month-grid" data-testid="institutional-profile-month-wise-grid">
         <?php foreach ($profiles as $idx => $p): ?>
         <?php
@@ -96,8 +210,14 @@ function ipNepaliNumber(int $number): string {
             $fixedAssets = (float)($p['fixed_assets'] ?? 0);
             $_ipDocUrl  = !empty($p['attachment_path']) ? htmlspecialchars(SITE_URL . ltrim($p['attachment_path'], '/'), ENT_QUOTES, 'UTF-8') : '';
             $_ipDocExt  = !empty($p['attachment_path']) ? strtolower(pathinfo($p['attachment_path'], PATHINFO_EXTENSION)) : '';
+            $_fy = trim((string)($p['fiscal_year'] ?? ''));
+            $_dateBs = trim((string)($p['report_date_bs'] ?? ''));
+            $_filterText = strtolower(trim($_fy . ' ' . $_dateBs . ' कुल सदस्य शेयर पूँजी जगेडा कोष कुल बचत ऋण लगानी बैंक नगद स्थिर सम्पत्ति कुल सम्पत्ति'));
         ?>
-        <article class="ip-month-tile" data-testid="institutional-profile-month-card-<?php echo $rowNo; ?>">
+        <article class="ip-month-tile"
+                 data-fy="<?php echo htmlspecialchars($_fy, ENT_QUOTES, 'UTF-8'); ?>"
+                 data-filter="<?php echo htmlspecialchars($_filterText, ENT_QUOTES, 'UTF-8'); ?>"
+                 data-testid="institutional-profile-month-card-<?php echo $rowNo; ?>">
             <div class="ip-month-tile-head">
                 <div>
                     <strong data-testid="institutional-profile-fiscal-year-<?php echo $rowNo; ?>">आ.व. <?php echo htmlspecialchars($p['fiscal_year']); ?></strong>
@@ -223,6 +343,48 @@ function ipNepaliNumber(int $number): string {
 
 <script>
 (function () {
+    var fyFilter = document.getElementById('ipFiscalYearFilter');
+    var textFilter = document.getElementById('ipFinancialSearch');
+    var resetBtn = document.getElementById('ipFilterReset');
+    var countEl = document.getElementById('ipFilterCount');
+    var emptyEl = document.getElementById('ipFilterEmpty');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.ip-month-grid .ip-month-tile'));
+
+    function applyIpFilters() {
+        var fy = fyFilter ? (fyFilter.value || '').trim().toLowerCase() : '';
+        var q = textFilter ? (textFilter.value || '').trim().toLowerCase() : '';
+        var visible = 0;
+
+        cards.forEach(function (card) {
+            var cardFy = (card.getAttribute('data-fy') || '').toLowerCase();
+            var blob = (card.getAttribute('data-filter') || '').toLowerCase();
+            var fyOk = !fy || cardFy === fy;
+            var qOk = !q || blob.indexOf(q) !== -1;
+            var show = fyOk && qOk;
+            card.classList.toggle('is-hidden', !show);
+            if (show) visible++;
+        });
+
+        if (countEl) {
+            countEl.textContent = (visible + ' / ' + cards.length + ' ' + '<?php echo isEnglish() ? 'shown' : 'देखाइयो'; ?>');
+        }
+        if (emptyEl) {
+            emptyEl.style.display = visible === 0 ? 'block' : 'none';
+        }
+    }
+
+    if (fyFilter) fyFilter.addEventListener('change', applyIpFilters);
+    if (textFilter) textFilter.addEventListener('input', applyIpFilters);
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+            if (fyFilter) fyFilter.value = '';
+            if (textFilter) textFilter.value = '';
+            applyIpFilters();
+            if (textFilter) textFilter.focus();
+        });
+    }
+    applyIpFilters();
+
     function ipOpenDoc(url, ext) {
         var modal  = document.getElementById('ipDocModal');
         var body   = document.getElementById('ipDocBody');
