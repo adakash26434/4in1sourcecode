@@ -58,7 +58,7 @@
     </div><!-- End admin-wrapper -->
 
     <!-- Bootstrap JS -->
-    <script src="assets/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo defined('SITE_URL') ? SITE_URL : '../'; ?>assets/vendor/bootstrap.bundle.min.js"></script>
 
     <!-- jQuery (Bootstrap भन्दा पछि, DataTables र Nepali Datepicker को लागि) -->
     <script src="../assets/vendor/jquery.min.js"></script>
