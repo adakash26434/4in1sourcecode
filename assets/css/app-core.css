@@ -4279,13 +4279,10 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     overflow: hidden;
 }
 .modal-header {
-    background: var(--bg-soft);
     border-bottom: 1px solid var(--border-soft);
     padding: 1.1rem 1.5rem;
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 .modal-header .modal-title {
-    font-weight: 700;
     font-size: var(--font-size-lg);
     color: var(--primary-color);
 }
