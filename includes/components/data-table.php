@@ -31,23 +31,26 @@ if (!isset($tableId))     $tableId     = '';
 if (!isset($tableClass))  $tableClass  = '';
 if (!isset($tableEmpty))  $tableEmpty  = 'कुनै रेकर्ड फेला परेन।';
 if (!isset($tableSearch)) $tableSearch = false;
+if (!isset($tableSortable)) $tableSortable = false;
+if (!isset($tablePaginated)) $tablePaginated = false;
 
 $_idAttr    = $tableId    ? " id=\"{$tableId}\""    : '';
 $_classAttr = $tableClass ? " {$tableClass}"          : '';
+$_sortClass = $tableSortable ? ' table-sortable' : '';
 ?>
 <?php if ($tableSearch): ?>
-<div class="d-flex justify-content-end mb-2">
-    <div class="input-group" style="max-width:280px;">
-        <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted" style="font-size:.82rem;"></i></span>
-        <input type="text" class="form-control border-start-0 ps-0"
+<div class="table-search-wrapper mb-3 d-flex justify-content-end">
+    <div class="table-search-box">
+        <span class="table-search-icon"><i class="fas fa-search"></i></span>
+        <input type="text" class="table-search-input"
                placeholder="खोज्नुहोस्…"
-               onkeyup="(function(v){document.querySelectorAll('#<?php echo $tableId ?: 'dataTable'; ?> tbody tr').forEach(function(r){r.style.display=r.textContent.toLowerCase().includes(v)?'':'none';});})(this.value.toLowerCase())"
-               style="min-height:38px;">
+               data-table-id="<?php echo htmlspecialchars($tableId ?: 'dataTable', ENT_QUOTES); ?>"
+               aria-label="<?php echo htmlspecialchars(adminUiT('तालिका खोज्नुहोस्', 'Search table'), ENT_QUOTES); ?>">
     </div>
 </div>
 <?php endif; ?>
-<div class="v9-table-scroll">
-<table<?php echo $_idAttr; ?> class="table table-striped table-hover align-middle coop-table table-responsive-stack<?php echo $_classAttr; ?>">
+<div class="table-scroll-wrapper">
+<table<?php echo $_idAttr; ?> class="table table-striped table-hover align-middle coop-table table-responsive-stack<?php echo $_classAttr . $_sortClass; ?>" role="table">
 <thead>
     <tr>
     <?php foreach ($tableHeaders as $_h): ?>
