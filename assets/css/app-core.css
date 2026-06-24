@@ -663,7 +663,6 @@ p {
 
 :focus-visible {
     outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1049,14 +1048,6 @@ a.btn, a.btn:hover, a.btn:focus { text-decoration: none !important; }
 
 .hover-scale-lg:hover {
     transform: scale(1.1);
-}
-
-/* ────────────────────────────────────────────────────────────────────────────
-   Smooth Scrolling & Scroll Effects
-   ────────────────────────────────────────────────────────────────────────────  */
-
-html {
-    scroll-behavior: smooth;
 }
 
 /* Fade in on scroll (using AOS library compatibility) */
