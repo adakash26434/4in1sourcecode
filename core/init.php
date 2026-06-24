@@ -73,6 +73,17 @@ if (!function_exists('core_is_debug_request')) {
     }
 }
 
+if (!function_exists('core_apply_runtime_error_policy')) {
+    function core_apply_runtime_error_policy(): void {
+        $displayErrors = (defined('ENVIRONMENT') && ENVIRONMENT === 'development') ? '1' : '0';
+        @ini_set('display_errors', $displayErrors);
+        @ini_set('display_startup_errors', $displayErrors);
+        @ini_set('log_errors', '1');
+        @ini_set('log_errors_max_len', '1024');
+        error_reporting(E_ALL);
+    }
+}
+
 // ─── Root path detect — init.php कहाँ छ त्यसबाट ───
 if (!defined('CORE_PATH')) {
     define('CORE_PATH', __DIR__);

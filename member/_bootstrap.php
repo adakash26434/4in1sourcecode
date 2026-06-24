@@ -20,13 +20,9 @@ if (function_exists('site_license_public_guard')) {
 }
 
 /* Follow shared environment policy while keeping production safe by default. */
-$_displayErrors = (defined('ENVIRONMENT') && ENVIRONMENT === 'development') ? '1' : '0';
-@ini_set('display_errors', $_displayErrors);
-@ini_set('display_startup_errors', $_displayErrors);
-@ini_set('log_errors', '1');
-@ini_set('log_errors_max_len', '1024');
-error_reporting(E_ALL);
-unset($_displayErrors);
+if (function_exists('core_apply_runtime_error_policy')) {
+    core_apply_runtime_error_policy();
+}
 
 /* Friendly fatal handler — white screen कहिल्यै नदेखियोस् */
 register_shutdown_function(function () {
