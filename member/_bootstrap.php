@@ -40,7 +40,7 @@ register_shutdown_function(function () {
 
     $isDebug = core_is_debug_request();
     $msg = $isDebug
-        ? htmlspecialchars($err['message'] . ' @ ' . basename($err['file']) . ':' . $err['line'])
+        ? ($err['message'] . ' @ ' . basename($err['file']) . ':' . $err['line'])
         : 'अप्रत्याशित त्रुटि भयो। कार्यालयमा सम्पर्क गर्नुहोस्।';
     $home = defined('SITE_URL') ? SITE_URL : '/';
     error_log('[member-panel-fatal] ' . $err['message'] . ' @ ' . $err['file'] . ':' . $err['line']);

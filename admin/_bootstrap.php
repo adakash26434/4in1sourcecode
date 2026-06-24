@@ -46,7 +46,7 @@ register_shutdown_function(function () {
 
     $isDebug = core_is_debug_request();
     $msg = $isDebug
-        ? htmlspecialchars($err['message'] . ' @ ' . basename($err['file']) . ':' . $err['line'])
+        ? ($err['message'] . ' @ ' . basename($err['file']) . ':' . $err['line'])
         : 'अप्रत्याशित त्रुटि भयो। कृपया पछि पुनः प्रयास गर्नुहोस्।';
     $home = defined('ADMIN_URL') ? ADMIN_URL : '/admin/';
     error_log('[admin-panel-fatal] ' . $err['message'] . ' @ ' . $err['file'] . ':' . $err['line']);
