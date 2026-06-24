@@ -16841,6 +16841,42 @@ html.pwa-installed  .mem-pwa-btn { display: none !important; }
 }
 
 /* =====================================================
+   v10.7.5 — Legacy FA Action Icon Visibility
+   - Keep edit/delete/view icons visible in action column buttons
+   - Normalize icon-only button rendering across admin pages
+   ===================================================== */
+
+.table td .btn i,
+.table td .btn .fas,
+.table td .btn .far,
+.table td .btn .fa,
+.table td .btn .fa-solid,
+.table td .btn .fa-regular {
+    display: inline-block !important;
+    width: 1em !important;
+    height: 1em !important;
+    line-height: 1 !important;
+    font-size: 0.95rem !important;
+    font-style: normal !important;
+    font-weight: 900 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: currentColor !important;
+}
+
+.table td .btn.btn-outline-secondary,
+.table td .btn.btn-outline-light,
+.table td .btn.btn-light {
+    color: #334155 !important;
+}
+
+.table td .btn.btn-primary,
+.table td .btn.btn-success,
+.table td .btn.btn-danger {
+    color: #ffffff !important;
+}
+
+/* =====================================================
    v10.7.3 — Active/Compact Header Safety Overrides
    - Keep active dashboard tab text/icon readable
    - Prevent chopped user text in compact header
