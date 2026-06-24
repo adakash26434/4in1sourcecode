@@ -808,12 +808,6 @@ a.btn, a.btn:hover, a.btn:focus { text-decoration: none !important; }
                 background-color var(--anim-fast) var(--ease-out);
 }
 
-.form-control:focus,
-.form-select:focus {
-    border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 0.2rem rgba(45, 90, 61, 0.15) !important;
-}
-
 .form-control::placeholder {
     transition: color var(--anim-fast) var(--ease-out);
 }
@@ -2201,8 +2195,6 @@ h6 { font-size: .88rem;                         font-weight: 600; }
 .alert-light    { background: #f8fafc !important; color: #334155 !important;  border-color: #e2e8f0 !important; }
 
 /* — Form focus ring (cross-portal) — */
-.form-control:focus,
-.form-select:focus,
 .form-check-input:focus,
 .admin-input:focus,
 .admin-select:focus,
