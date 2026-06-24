@@ -1015,8 +1015,12 @@ function facebookOAuthUrl() {
  */
 $_memberLock = __DIR__ . '/../.member-schema.lock';
 if (!file_exists($_memberLock)) {
-    ensureMemberTables();
-    @file_put_contents($_memberLock, "Member schema initialized at " . date('Y-m-d H:i:s') . "\n");
+    try {
+        ensureMemberTables();
+        @file_put_contents($_memberLock, "Member schema initialized at " . date('Y-m-d H:i:s') . "\n");
+    } catch (\Throwable $e) {
+        error_log('member-auth: schema bootstrap skipped - ' . $e->getMessage());
+    }
 }
 unset($_memberLock);
 
