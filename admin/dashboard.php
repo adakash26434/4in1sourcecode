@@ -65,25 +65,23 @@ try {
     error_log('[dashboard stats batch] ' . $e->getMessage());
 }
 if (!$statsBatchOk) {
-    try { $stats['members']  = (int)$pdo->query("SELECT COUNT(*) FROM members WHERE approval_status='approved'")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
-    try { $stats['pending']  = (int)$pdo->query("SELECT COUNT(*) FROM kyc_applications WHERE status IN ('pending','incomplete')")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
-    try { $stats['kycDue']   = (int)$pdo->query("SELECT COUNT(*) FROM kyc_applications WHERE status='approved' AND risk_review_status='due_review'")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
-    try { $stats['loans']    = (int)$pdo->query("SELECT COUNT(*) FROM loan_applications WHERE status='pending'")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
-    try { $stats['notices']  = (int)$pdo->query("SELECT COUNT(*) FROM notices WHERE is_active = 1")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
-    try { $stats['requests'] = (int)$pdo->query("SELECT COUNT(*) FROM members WHERE approval_status='pending'")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
-    try { $stats['pwResets'] = (int)$pdo->query("SELECT COUNT(*) FROM member_password_reset_requests WHERE status='pending'")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
-    try { $stats['programAttend'] = (int)$pdo->query("SELECT COUNT(*) FROM member_program_attendance")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
-    try { $stats['programUnique'] = (int)$pdo->query("SELECT COUNT(DISTINCT member_id) FROM member_program_attendance")->fetchColumn(); } catch (Throwable $e) { error_log("[dashboard] " . $e->getMessage()); }
+  $stats['members']       = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(*) FROM members WHERE approval_status='approved'", '[dashboard]') : $stats['members'];
+  $stats['pending']       = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(*) FROM kyc_applications WHERE status IN ('pending','incomplete')", '[dashboard]') : $stats['pending'];
+  $stats['kycDue']        = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(*) FROM kyc_applications WHERE status='approved' AND risk_review_status='due_review'", '[dashboard]') : $stats['kycDue'];
+  $stats['loans']         = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(*) FROM loan_applications WHERE status='pending'", '[dashboard]') : $stats['loans'];
+  $stats['notices']       = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(*) FROM notices WHERE is_active = 1", '[dashboard]') : $stats['notices'];
+  $stats['requests']      = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(*) FROM members WHERE approval_status='pending'", '[dashboard]') : $stats['requests'];
+  $stats['pwResets']      = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(*) FROM member_password_reset_requests WHERE status='pending'", '[dashboard]') : $stats['pwResets'];
+  $stats['programAttend'] = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(*) FROM member_program_attendance", '[dashboard]') : $stats['programAttend'];
+  $stats['programUnique'] = function_exists('sqCount') ? sqCount($pdo, "SELECT COUNT(DISTINCT member_id) FROM member_program_attendance", '[dashboard]') : $stats['programUnique'];
 }
 
 $dashPendingAttendanceReq = 0;
 $dashAttendRecent = [];
 $dashAttendTopPrograms = [];
-try {
-    $dashPendingAttendanceReq = (int)$pdo->query("SELECT COUNT(*) FROM member_program_attendance_requests WHERE status='pending'")->fetchColumn();
-} catch (Throwable $e) {
-    error_log("[dashboard attend-req] " . $e->getMessage());
-}
+$dashPendingAttendanceReq = function_exists('sqCount')
+  ? sqCount($pdo, "SELECT COUNT(*) FROM member_program_attendance_requests WHERE status='pending'", '[dashboard attend-req]')
+  : 0;
 try {
     $dashAttendRecent = $pdo->query(
         "SELECT a.program_title, a.member_card_no, a.attended_at, COALESCE(NULLIF(m.name,''), '') AS member_name

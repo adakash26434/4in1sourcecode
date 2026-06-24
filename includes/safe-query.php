@@ -66,3 +66,18 @@ if (!function_exists('sqOrderBy')) {
         return "ORDER BY `{$col}` {$dir}";
     }
 }
+
+if (!function_exists('sqCount')) {
+    /**
+     * Run a COUNT-style query safely and return 0 on failure.
+     * Useful for dashboards/widgets where partial schema is acceptable.
+     */
+    function sqCount(PDO $db, string $sql, string $logPrefix = '[sqCount]'): int {
+        try {
+            return (int)($db->query($sql)->fetchColumn() ?: 0);
+        } catch (Throwable $e) {
+            error_log($logPrefix . ' ' . $e->getMessage());
+            return 0;
+        }
+    }
+}

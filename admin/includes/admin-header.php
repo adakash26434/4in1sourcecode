@@ -149,36 +149,36 @@ try {
     /* पुरानो DB मा job_applications.is_read नहुन सक्छ — fallback */
     $hasJobIsRead = function_exists('safeColumnExists') ? safeColumnExists('job_applications', 'is_read') : false;
     if ($hasJobIsRead) {
-        $adminAlertCounts['job'] = (int)($db->query("SELECT COUNT(*) as count FROM job_applications WHERE is_read = 0")->fetch()['count'] ?? 0);
+        $adminAlertCounts['job'] = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM job_applications WHERE is_read = 0", '[admin-header job]') : 0;
     } else {
-        $adminAlertCounts['job'] = (int)($db->query("SELECT COUNT(*) as count FROM job_applications WHERE status = 'pending'")->fetch()['count'] ?? 0);
+        $adminAlertCounts['job'] = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM job_applications WHERE status = 'pending'", '[admin-header job]') : 0;
     }
 } catch (\Throwable $e) {}
-try { $adminAlertCounts['kyc'] = (int)($db->query("SELECT COUNT(*) as count FROM kyc_applications WHERE status IN ('pending','incomplete')")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['loan'] = (int)($db->query("SELECT COUNT(*) as count FROM loan_applications WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['feedback'] = (int)($db->query("SELECT COUNT(*) as count FROM member_feedback WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['grievance'] = (int)($db->query("SELECT COUNT(*) as count FROM grievances WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['welfare'] = (int)($db->query("SELECT COUNT(*) as count FROM member_welfare_claims WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['auction'] = (int)($db->query("SELECT COUNT(*) as count FROM auction_bids WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['vendor'] = (int)($db->query("SELECT COUNT(*) as count FROM vendors WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['account'] = (int)($db->query("SELECT COUNT(*) as count FROM account_applications WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['digital']      = (int)($db->query("SELECT COUNT(*) as count FROM digital_service_requests WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['kyc_risk'] = (int)($db->query("SELECT COUNT(*) as count FROM kyc_applications WHERE status='approved' AND risk_review_status='due_review'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['appointment'] = (int)($db->query("SELECT COUNT(*) as count FROM appointments WHERE status = 'pending'")->fetch()['count'] ?? 0); } catch (\Throwable $e) {}
+$adminAlertCounts['kyc']         = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM kyc_applications WHERE status IN ('pending','incomplete')", '[admin-header kyc]') : 0;
+$adminAlertCounts['loan']        = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM loan_applications WHERE status = 'pending'", '[admin-header loan]') : 0;
+$adminAlertCounts['feedback']    = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM member_feedback WHERE status = 'pending'", '[admin-header feedback]') : 0;
+$adminAlertCounts['grievance']   = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM grievances WHERE status = 'pending'", '[admin-header grievance]') : 0;
+$adminAlertCounts['welfare']     = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM member_welfare_claims WHERE status = 'pending'", '[admin-header welfare]') : 0;
+$adminAlertCounts['auction']     = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM auction_bids WHERE status = 'pending'", '[admin-header auction]') : 0;
+$adminAlertCounts['vendor']      = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM vendors WHERE status = 'pending'", '[admin-header vendor]') : 0;
+$adminAlertCounts['account']     = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM account_applications WHERE status = 'pending'", '[admin-header account]') : 0;
+$adminAlertCounts['digital']     = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM digital_service_requests WHERE status = 'pending'", '[admin-header digital]') : 0;
+$adminAlertCounts['kyc_risk']    = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM kyc_applications WHERE status='approved' AND risk_review_status='due_review'", '[admin-header kyc-risk]') : 0;
+$adminAlertCounts['appointment'] = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM appointments WHERE status = 'pending'", '[admin-header appointment]') : 0;
 try {
     /* member_survey पुरानो schema मा is_read नहुन सक्छ — fallback */
     $hasSurveyRead = function_exists('safeColumnExists') ? safeColumnExists('member_survey', 'is_read') : false;
     if ($hasSurveyRead) {
-        $adminAlertCounts['survey'] = (int)($db->query("SELECT COUNT(*) as count FROM member_survey WHERE is_read = 0")->fetch()['count'] ?? 0);
+        $adminAlertCounts['survey'] = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM member_survey WHERE is_read = 0", '[admin-header survey]') : 0;
     } else {
-        $adminAlertCounts['survey'] = (int)($db->query("SELECT COUNT(*) as count FROM member_survey")->fetch()['count'] ?? 0);
+        $adminAlertCounts['survey'] = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM member_survey", '[admin-header survey]') : 0;
     }
 } catch (\Throwable $e) {}
 /* Member Online Portal badges */
 $adminAlertCounts['mem_pending']  = 0;
 $adminAlertCounts['mem_resets']   = 0;
-try { $adminAlertCounts['mem_pending'] = (int)($db->query("SELECT COUNT(*) FROM members WHERE approval_status='pending'")->fetchColumn() ?? 0); } catch (\Throwable $e) {}
-try { $adminAlertCounts['mem_resets']  = (int)($db->query("SELECT COUNT(*) FROM member_password_reset_requests WHERE status='pending'")->fetchColumn() ?? 0); } catch (\Throwable $e) {}
+$adminAlertCounts['mem_pending'] = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM members WHERE approval_status='pending'", '[admin-header mem-pending]') : 0;
+$adminAlertCounts['mem_resets']  = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM member_password_reset_requests WHERE status='pending'", '[admin-header mem-resets]') : 0;
 $memPortalBadge = $adminAlertCounts['mem_pending'] + $adminAlertCounts['mem_resets'];
 
 /* अस्थायी पासवर्ड — अनिवार्य परिवर्तन (public reset URL छैन)।
