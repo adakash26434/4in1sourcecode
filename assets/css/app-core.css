@@ -4276,7 +4276,6 @@ textarea.form-control { min-height: 100px; resize: vertical; }
    10. MODALS — सबै panel मा एकरूप
    ════════════════════════════════════════════════════════════ */
 .modal-content {
-    box-shadow: var(--shadow-xl);
     overflow: hidden;
 }
 .modal-header {
