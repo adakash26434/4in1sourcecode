@@ -771,14 +771,14 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         <i class="fas fa-caret-down ms-1" style="font-size:10px;"></i>
                     </a>
                     <div class="pfl-drop">
-                        <a href="<?php echo SITE_URL; ?>emi-calculator.php"><i class="fas fa-calculator me-1"></i><?php echo isEnglish() ? 'EMI Calculator' : 'ईएमआई क्याल्कुलेटर'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>exchange-rate.php"><i class="fas fa-exchange-alt me-1"></i><?php echo isEnglish() ? 'Exchange Rate' : 'विनिमय दर'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>date-converter.php"><i class="fas fa-calendar-alt me-1"></i><?php echo isEnglish() ? 'Date Converter' : 'मिति परिवर्तन'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>partner-facilities.php"><i class="lucide-icon" aria-hidden="true" data-lucide="handshake"></i><?php echo isEnglish() ? 'Partner Facilities' : 'अन्य सुविधा'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="lucide-icon" aria-hidden="true" data-lucide="search"></i><?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>service-centers.php"><i class="fas fa-map-marker-alt me-1"></i><?php echo isEnglish() ? 'Branches' : 'शाखाहरू'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>reports.php"><i class="lucide-icon" aria-hidden="true" data-lucide="chart-bar"></i><?php echo isEnglish() ? 'Reports' : 'प्रतिवेदन'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>faqs.php"><i class="fas fa-question-circle me-1"></i><?php echo isEnglish() ? 'FAQs' : 'प्रश्नोत्तर'; ?></a>
+                        <a href="<?php echo SITE_URL; ?>emi-calculator.php"><i class="fas fa-calculator me-1"></i><span class="pfl-drop-label"><?php echo isEnglish() ? 'EMI Calculator' : 'ईएमआई क्याल्कुलेटर'; ?></span></a>
+                        <a href="<?php echo SITE_URL; ?>exchange-rate.php"><i class="fas fa-exchange-alt me-1"></i><span class="pfl-drop-label"><?php echo isEnglish() ? 'Exchange Rate' : 'विनिमय दर'; ?></span></a>
+                        <a href="<?php echo SITE_URL; ?>date-converter.php"><i class="fas fa-calendar-alt me-1"></i><span class="pfl-drop-label"><?php echo isEnglish() ? 'Date Converter' : 'मिति परिवर्तन'; ?></span></a>
+                        <a href="<?php echo SITE_URL; ?>partner-facilities.php"><i class="lucide-icon" aria-hidden="true" data-lucide="handshake"></i><span class="pfl-drop-label"><?php echo isEnglish() ? 'Partner Facilities' : 'अन्य सुविधा'; ?></span></a>
+                        <a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="lucide-icon" aria-hidden="true" data-lucide="search"></i><span class="pfl-drop-label"><?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></span></a>
+                        <a href="<?php echo SITE_URL; ?>service-centers.php"><i class="fas fa-map-marker-alt me-1"></i><span class="pfl-drop-label"><?php echo isEnglish() ? 'Branches' : 'शाखाहरू'; ?></span></a>
+                        <a href="<?php echo SITE_URL; ?>reports.php"><i class="lucide-icon" aria-hidden="true" data-lucide="chart-bar"></i><span class="pfl-drop-label"><?php echo isEnglish() ? 'Reports' : 'प्रतिवेदन'; ?></span></a>
+                        <a href="<?php echo SITE_URL; ?>faqs.php"><i class="fas fa-question-circle me-1"></i><span class="pfl-drop-label"><?php echo isEnglish() ? 'FAQs' : 'प्रश्नोत्तर'; ?></span></a>
                     </div>
                 </li>
             </ul>
