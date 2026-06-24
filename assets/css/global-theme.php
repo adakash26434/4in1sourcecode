@@ -2355,3 +2355,8 @@ button > i:only-child, a > i:only-child                {
 }
 
 </style>
+
+/* Ticker animation protection — never suppress */
+.ticker-scroll, .notice-ticker .ticker-scroll {
+    animation: tickerScroll 30s linear infinite !important;
+}

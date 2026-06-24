@@ -649,7 +649,7 @@ try {
     <script src="assets/vendor/bootstrap.bundle.min.js"></script>
 
     <!-- jQuery (required for Nepali Datepicker) -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/vendor/jquery.min.js"></script>
 
     <!-- Nepali Datepicker JS v5 (self-hosted) -->
     <script src="<?php echo SITE_URL; ?>assets/js/nepali.datepicker.min.js"></script>
@@ -678,7 +678,7 @@ try {
     </script>
 
     <!-- AOS Animation JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/vendor/aos.min.js"></script>
     <script>
         /* AOS — existing data-aos attributes का लागि */
         AOS.init({
