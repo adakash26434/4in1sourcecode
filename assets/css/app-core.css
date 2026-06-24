@@ -4168,9 +4168,6 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     vertical-align: middle;
     border-color: var(--border-soft, #f0f0f0);
 }
-.table-striped > tbody > tr:nth-of-type(odd) > * {
-    background-color: rgba(var(--primary-rgb, 26,95,42), 0.025);
-}
 .table-hover > tbody > tr:hover > * {
     background-color: rgba(var(--primary-rgb, 26,95,42), 0.05);
     transition: background var(--transition-fast);
