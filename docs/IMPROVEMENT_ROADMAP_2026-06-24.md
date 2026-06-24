@@ -45,6 +45,25 @@ custom PHP + PDO + shared CSS architecture मा बनेको छ।
 - `includes/config.php` output buffer + environment policy align गरिएको
 - `admin/_bootstrap.php` र `member/_bootstrap.php` लाई `core/init.php` मा delegate गराइएको
 
+### Execution Update (Latest)
+
+- `assets/css/app-core.css` मा orphaned legacy comment cleanup गरिएको
+- duplicated `.container-coop` early block remove गरेर canonical blockमा consolidate गरिएको
+- exact duplicate utility/reset blocks machine-scan गरी safe prune गरिएको
+- remaining exact duplicate rule groups पनि prune गरी re-scan पछि duplicate groups `0` confirm गरिएको
+
+Recent pushed commits (safe CSS dedupe stream):
+
+- `bbe133d` — orphaned field-coop comment cleanup
+- `ac525be` — duplicated container-coop consolidation
+- `a1aef96` — exact duplicate utility/reset block removal
+- `f324d1f` — remaining exact duplicate rules prune
+
+Validation notes:
+
+- प्रत्येक step पछि `assets/css/app-core.css` diagnostics मा error-free result आएको छ
+- edits ले business logic वा runtime PHP flow नछोई CSS redundancy मात्र घटाएको छ
+
 ---
 
 ## 2. Priority Model
