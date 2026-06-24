@@ -48,11 +48,9 @@ register_shutdown_function(function () {
     @http_response_code(500);
     header('Content-Type: text/html; charset=utf-8');
 
-    $hostLc = strtolower((string)($_SERVER['HTTP_HOST'] ?? ''));
-    $allowDebugUrl = str_starts_with($hostLc, '127.0.0.1')
-        || str_starts_with($hostLc, 'localhost')
-        || str_starts_with($hostLc, '[::1]');
-    $isDebug = $allowDebugUrl && isset($_GET['debug']) && (string) $_GET['debug'] === '1';
+    $isDebug = function_exists('core_is_debug_request')
+        ? core_is_debug_request()
+        : (isset($_GET['debug']) && (string)$_GET['debug'] === '1');
     $msg = $isDebug
         ? htmlspecialchars($err['message'] . ' @ ' . basename($err['file']) . ':' . $err['line'])
         : 'अप्रत्याशित त्रुटि भयो। कृपया पछि पुनः प्रयास गर्नुहोस्।';

@@ -56,6 +56,23 @@ if (!defined('PORTAL')) {
     define('PORTAL', 'public');
 }
 
+if (!function_exists('core_allow_local_debug_url')) {
+    function core_allow_local_debug_url(): bool {
+        $hostLc = strtolower((string)($_SERVER['HTTP_HOST'] ?? ''));
+        return str_starts_with($hostLc, '127.0.0.1')
+            || str_starts_with($hostLc, 'localhost')
+            || str_starts_with($hostLc, '[::1]');
+    }
+}
+
+if (!function_exists('core_is_debug_request')) {
+    function core_is_debug_request(): bool {
+        return core_allow_local_debug_url()
+            && isset($_GET['debug'])
+            && (string)$_GET['debug'] === '1';
+    }
+}
+
 // ─── Root path detect — init.php कहाँ छ त्यसबाट ───
 if (!defined('CORE_PATH')) {
     define('CORE_PATH', __DIR__);
