@@ -1273,15 +1273,17 @@ body.dark-mode .hero-section                    {
 }
 
 /* ── Z13. CONTACT SECTION — text on primary-coloured bg ─────── */
-.contact-details, .contact-details p,
-.contact-details p a, .contact-info-box .contact-details p a {
+.contact-info-box .contact-details,
+.contact-info-box .contact-details p,
+.contact-info-box .contact-details p a {
     color: var(--text-on-primary) !important;
 }
-.contact-details p a:hover                      {
+.contact-info-box .contact-details p a:hover   {
     opacity: .82 !important;
     color: var(--text-on-primary) !important;
 }
-.contact-icon, .contact-icon i                  {
+.contact-info-box .contact-icon,
+.contact-info-box .contact-icon i              {
     color: var(--text-on-primary) !important;
 }
 
