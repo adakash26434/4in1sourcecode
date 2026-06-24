@@ -114,12 +114,6 @@ input, select, textarea, button {
     border: 1px solid var(--border-soft);
 }
 
-/* ── Container ── */
-.container-coop {
-    max-width: var(--container-max);
-    margin: 0 auto; padding: 0 var(--container-pad);
-}
-
 /* ═══════════════════════════════════════════════════
    ✅ CHECKBOX / RADIO / SWITCH — generous gap + clean align
    Bootstrap's default 1.5em padding leaves a tight 4px gap
@@ -3767,6 +3761,7 @@ img { max-width: 100%; height: auto; }
    ════════════════════════════════════════════════════════════ */
 .container-coop {
     max-width: var(--container-max, 1280px);
+    margin: 0 auto;
     padding: 0 var(--container-pad, 20px);
     width: 100%;
 }
