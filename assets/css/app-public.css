@@ -23030,3 +23030,70 @@ body.auth-page,
         opacity: 1 !important;
     }
 }
+
+/* Mobile menu stability guard: keep toggle visible even after future CSS merges */
+@media (max-width: 991.98px) {
+    body.header-v2 .pfl-nav-area {
+        position: relative !important;
+        z-index: 2147483002 !important;
+    }
+
+    body.header-v2 #mobileMenuToggle2.pfl-mobile-toggle {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255, 255, 255, .20) !important;
+        background: linear-gradient(180deg, #1a6f35 0%, #14532d 100%) !important;
+        color: #ffffff !important;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, .18), inset 0 1px 0 rgba(255, 255, 255, .22) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: relative !important;
+        z-index: 2147483003 !important;
+    }
+
+    body.header-v2 #mobileMenuToggle2.pfl-mobile-toggle > i {
+        display: none !important;
+    }
+
+    body.header-v2 #mobileMenuToggle2.pfl-mobile-toggle::before {
+        content: "";
+        width: 17px;
+        height: 2px;
+        border-radius: 2px;
+        background: #ffffff;
+        box-shadow: 0 -6px 0 #ffffff, 0 6px 0 #ffffff;
+        display: block;
+    }
+
+    body.header-v2 #mobileMenuToggle2.pfl-mobile-toggle[aria-expanded="true"]::before {
+        width: 16px;
+        box-shadow: none;
+        transform: rotate(45deg);
+    }
+
+    body.header-v2 #mobileMenuToggle2.pfl-mobile-toggle[aria-expanded="true"]::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 2px;
+        border-radius: 2px;
+        background: #ffffff;
+        transform: rotate(-45deg);
+    }
+
+    body.header-v2 #mainNavV2.main-nav,
+    body.header-v2 .pfl-nav-area #mainNavV2.main-nav {
+        z-index: 2147483004 !important;
+    }
+
+    body.header-v2 #pflMobileBackdrop,
+    body.header-v2 .mobile-nav-backdrop {
+        z-index: 2147483001 !important;
+    }
+}
