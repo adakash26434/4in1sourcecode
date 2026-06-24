@@ -23507,18 +23507,39 @@ body.auth-page,
     }
 
     body.header-v2 #mainNavV2 .nav-menu > li > a .mnav-main-icon {
-        width: 23px !important;
-        min-width: 23px !important;
-        height: 23px !important;
-        margin-right: 10px !important;
+        width: 20px !important;
+        min-width: 20px !important;
+        height: 20px !important;
+        margin-right: 8px !important;
         border-radius: 7px !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
         background: #e9f4ed !important;
         color: #1f8b46 !important;
-        font-size: .8rem !important;
-        flex: 0 0 23px !important;
+        font-size: .76rem !important;
+        flex: 0 0 20px !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li > a {
+        justify-content: flex-start !important;
+        text-align: left !important;
+        gap: 8px !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li > a .mnav-main-label {
+        flex: 0 1 auto !important;
+        min-width: 0 !important;
+        text-align: left !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a > .lucide-chevron-down,
+    body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a > .lucide-chevron-down,
+    body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a > .fa-chevron-down,
+    body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a > .fa-chevron-down,
+    body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a > i[data-lucide="chevron-down"],
+    body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a > i[data-lucide="chevron-down"] {
+        margin-left: auto !important;
     }
 
     body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a::before,
