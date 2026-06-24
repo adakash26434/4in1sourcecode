@@ -1423,6 +1423,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             var nav = document.getElementById('mainNavV2');
             var closeBtn = document.getElementById('closeMenuV2');
             var backdrop = document.getElementById('pflMobileBackdrop');
+            var toggleIcon = toggle ? toggle.querySelector('i') : null;
             if (!toggle || !nav || toggle.dataset.emgMobileBound === '1') return;
             toggle.dataset.emgMobileBound = '1';
             toggle.dataset.v96Bound = '1';
@@ -1449,6 +1450,11 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 document.body.style.top = '-' + savedY + 'px';
                 document.body.style.overflow = 'hidden';
                 toggle.setAttribute('aria-expanded','true');
+                toggle.classList.add('is-open');
+                if (toggleIcon) {
+                    toggleIcon.classList.remove('fa-bars');
+                    toggleIcon.classList.add('fa-xmark');
+                }
                 nav.setAttribute('aria-hidden','false');
             }
             function closeNav(){
@@ -1459,6 +1465,11 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 document.body.style.top = '';
                 document.body.style.overflow = '';
                 toggle.setAttribute('aria-expanded','false');
+                toggle.classList.remove('is-open');
+                if (toggleIcon) {
+                    toggleIcon.classList.remove('fa-xmark');
+                    toggleIcon.classList.add('fa-bars');
+                }
                 nav.setAttribute('aria-hidden','true');
                 nav.querySelectorAll('.open').forEach(function(el){ el.classList.remove('open'); });
                 nav.querySelectorAll('.dd-chevron-btn[aria-expanded="true"]').forEach(function(btn){ btn.setAttribute('aria-expanded','false'); });
