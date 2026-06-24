@@ -20,9 +20,7 @@ if (function_exists('site_license_public_guard')) {
 }
 
 /* Follow shared environment policy while keeping production safe by default. */
-if (function_exists('core_apply_runtime_error_policy')) {
-    core_apply_runtime_error_policy();
-}
+core_apply_runtime_error_policy();
 
 /* Friendly fatal + exception handlers — shared core registrar */
 $memberHome = (defined('SITE_URL') ? SITE_URL : '/') . 'member/login.php';

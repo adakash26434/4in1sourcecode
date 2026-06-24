@@ -27,9 +27,7 @@ try {
 }
 
 /* Follow shared environment policy while keeping production safe by default. */
-if (function_exists('core_apply_runtime_error_policy')) {
-    core_apply_runtime_error_policy();
-}
+core_apply_runtime_error_policy();
 
 /* Friendly fatal + exception handlers — shared core registrar */
 core_register_portal_fatal_handler([
