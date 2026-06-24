@@ -444,12 +444,12 @@ body {
             <div class="card-logo-wrap">
                 <img src="<?php echo htmlspecialchars($logoSrc); ?>" alt="<?php echo htmlspecialchars($siteName); ?>"
                      onerror="this.classList.add('card-logo-hide');var f=document.getElementById('loginLogoFallback');if(f)f.style.display='grid';">
-                <div id="loginLogoFallback" class="card-logo-icon login-logo-fallback" aria-hidden="true"><i data-lucide="building-2" class="-columns"></i></div>
+                <div id="loginLogoFallback" class="card-logo-icon login-logo-fallback" aria-hidden="true"><i data-lucide="building-columns"></i></div>
             </div>
         <?php else: ?>
-            <div class="card-logo-icon"><i data-lucide="building-2" class="-columns"></i></div>
+            <div class="card-logo-icon"><i data-lucide="building-columns"></i></div>
         <?php endif; ?>
-        <span class="card-portal-label"><i data-lucide="user" class="-circle"></i>&nbsp;<?php echo $_t('सदस्य पोर्टल', 'Member Portal'); ?></span>
+        <span class="card-portal-label"><i data-lucide="user-circle"></i>&nbsp;<?php echo $_t('सदस्य पोर्टल', 'Member Portal'); ?></span>
     </div>
 
     <div class="card-body">
@@ -466,7 +466,7 @@ body {
             <div class="alert alert-error"><i data-lucide="circle-alert" class=""></i> <?php echo $error; ?></div>
         <?php endif; ?>
         <?php if ($success): ?>
-            <div class="alert alert-success"><i data-lucide="check" class="-circle"></i> <?php echo htmlspecialchars($success); ?></div>
+            <div class="alert alert-success"><i data-lucide="circle-check"></i> <?php echo htmlspecialchars($success); ?></div>
         <?php endif; ?>
         <?php if ($info === 'pending'): ?>
             <div class="alert alert-warning">
@@ -478,7 +478,7 @@ body {
             <div class="alert alert-warning"><i data-lucide="smartphone" class=""></i> 2FA setup आवश्यक छ। Google Authenticator मा secret add गरेर code verify गर्नुहोस्।</div>
         <?php endif; ?>
         <?php if ($info === 'twofa_verify_required'): ?>
-            <div class="alert alert-info"><i data-lucide="shield" class="-halved"></i> 2FA code verify गरेपछि मात्र login हुन्छ।</div>
+            <div class="alert alert-info"><i data-lucide="shield-halved"></i> 2FA code verify गरेपछि मात्र login हुन्छ।</div>
         <?php endif; ?>
 
         <?php if (is_array($member2faPending)): ?>
@@ -503,7 +503,7 @@ body {
                 <label>2FA Code</label>
                 <input type="text" name="twofa_code" placeholder="123456 वा BACKUPCODE" required autofocus>
             </div>
-            <button type="submit" class="submit-btn"><i data-lucide="shield" class="-check"></i> Verify 2FA</button>
+            <button type="submit" class="submit-btn"><i data-lucide="shield-check"></i> Verify 2FA</button>
             <?php if (!empty($_SESSION['member_2fa_backup_plain']) && is_array($_SESSION['member_2fa_backup_plain'])): ?>
                 <div class="alert alert-warning" style="margin-top:12px;">
                     <i class="fas fa-triangle-exclamation"></i> Backup codes (safe राख्नुहोस्):<br>
@@ -519,7 +519,7 @@ body {
                 <i data-lucide="log-in" class=""></i> <?php echo $_t('लगिन', 'Login'); ?>
             </button>
                 <button class="tab-btn <?php echo $tab==='register'?'active':''; ?>" onclick="switchTab('register')">
-                <i data-lucide="user" class="-plus"></i> <?php echo $_t('दर्ता', 'Register'); ?>
+                <i data-lucide="user-plus"></i> <?php echo $_t('दर्ता', 'Register'); ?>
             </button>
         </div>
 
@@ -603,7 +603,7 @@ body {
                 <div class="field-feedback" id="fbConfirm"></div>
             </div>
             <button type="submit" class="submit-btn" id="regSubmitBtn">
-                <i data-lucide="user" class="-plus"></i> <?php echo $_t('दर्ता गर्नुहोस्', 'Register'); ?>
+                <i data-lucide="user-plus"></i> <?php echo $_t('दर्ता गर्नुहोस्', 'Register'); ?>
             </button>
             <div class="foot-link">
                 <?php echo $_t('पहिले नै दर्ता?', 'Already registered?'); ?> <a href="#" onclick="switchTab('login');return false;"><?php echo $_t('लगिन गर्नुहोस्', 'Login'); ?></a>

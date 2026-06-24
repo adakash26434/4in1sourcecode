@@ -421,7 +421,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
                 <img src="<?php echo htmlspecialchars($logoSrc); ?>" alt="<?php echo htmlspecialchars($siteName); ?>">
             </div>
         <?php else: ?>
-            <div class="card-logo-icon"><i data-lucide="shield-halved""></i></div>
+            <div class="card-logo-icon"><i data-lucide="shield-halved"></i></div>
         <?php endif; ?>
         <span class="card-portal-label"><i data-lucide="lock"></i>&nbsp;Admin Portal</span>
     </div>
@@ -465,7 +465,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <?php endif; ?>
             <?php if ($renewalNoticeSent): ?>
             <div class="license-renew-success">
-                <strong><i data-lucide="circle-check" me-1"></i>भुक्तानी सूचना पठाइयो।</strong>
+                <strong><i data-lucide="circle-check" class="me-1"></i>भुक्तानी सूचना पठाइयो।</strong>
                 भुक्तानी सूचना प्राप्त भएको छ। कृपया पुष्टि/सक्रिय हुन केही समय प्रतीक्षा गर्नुहोस् वा विक्रेता सम्पर्क गर्नुहोस्।
             </div>
             <?php else: ?>
@@ -501,7 +501,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             </form>
             <?php endif; ?>
             <div class="sub">
-                <i data-lucide="user-check" me-1"></i>यो फारम कार्यालय प्रतिनिधिका लागि हो; व्यवस्थापन पहुँच भएको खाताले माथिको लग इन प्रयोग गर्नुहोस्।
+                <i data-lucide="user-check" class="me-1"></i>यो फारम कार्यालय प्रतिनिधिका लागि हो; व्यवस्थापन पहुँच भएको खाताले माथिको लग इन प्रयोग गर्नुहोस्।
             </div>
         </div>
         <?php endif; ?>
@@ -530,7 +530,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <div class="field">
                 <label>2FA Code / Backup Code</label>
                 <div class="input-icon">
-                    <i data-lucide="shield-halved""></i>
+                    <i data-lucide="shield-halved"></i>
                     <input type="text" name="twofa_code" placeholder="123456 वा BACKUPCODE" required autofocus>
                 </div>
             </div>
@@ -576,7 +576,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
         <?php endif; ?>
 
         <div class="security-note">
-            <i data-lucide="shield-halved""></i>
+            <i data-lucide="shield-halved"></i>
             यो सुरक्षित Admin क्षेत्र हो। सबै गतिविधि audit log मा record हुन्छ।
         </div>
     </div>

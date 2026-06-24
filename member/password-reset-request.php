@@ -179,7 +179,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
 <body>
 <div class="card">
   <div class="card-header">
-    <div style="font-size:2rem;margin-bottom:6px;"><i data-lucide="shield" class="-alt"></i></div>
+    <div style="font-size:2rem;margin-bottom:6px;"><i data-lucide="shield-alt"></i></div>
     <h4><?php echo $_t('पासवर्ड रिसेट', 'Password Reset'); ?></h4>
     <p class="mb-0 mt-1 opacity-75 small"><?php echo htmlspecialchars($siteName); ?> — <?php echo $_t('सदस्य पोर्टल', 'Member Portal'); ?></p>
   </div>
@@ -254,7 +254,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
         <input type="hidden" name="action" value="admin_fallback">
         <input type="hidden" name="identifier" value="<?php echo htmlspecialchars($_POST['identifier'] ?? ''); ?>">
         <button type="submit" class="btn btn-outline-secondary btn-sm">
-          <i data-lucide="user" class="-shield me-1"></i>Admin लाई अनुरोध पठाउनुहोस्
+          <i data-lucide="user-shield me-1"></i>Admin लाई अनुरोध पठाउनुहोस्
         </button>
       </form>
       <div class="form-text mt-2"><?php echo $_t('माथि email/sadasyata नम्बर भर्नुहोस्, अनि यो button थिच्नुहोस्।', 'Fill email/member number above and click this button.'); ?></div>
@@ -262,7 +262,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
 
     <?php elseif ($step === 'done'): ?>
     <div class="text-center py-3">
-      <div style="font-size:3rem;color:#16a34a;"><i data-lucide="check" class="-circle"></i></div>
+      <div style="font-size:3rem;color:#16a34a;"><i data-lucide="check-circle"></i></div>
       <h5 class="mt-2"><?php echo $_t('अनुरोध सफलतापूर्वक पठाइयो!', 'Request sent successfully!'); ?></h5>
       <p class="text-muted small">Admin ले तपाईंको अनुरोध समीक्षा गर्नेछन्। नयाँ पासवर्द कार्यालयबाट प्राप्त गर्न सकिन्छ।</p>
       <a href="login.php" class="btn btn-g mt-2"><i data-lucide="log-in" class=" me-1"></i><?php echo $_t('Login मा फर्कनुहोस्', 'Back to Login'); ?></a>
@@ -284,7 +284,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
                inputmode="numeric" autofocus required>
       </div>
       <button class="btn btn-g w-100 py-2 fw-semibold mb-2">
-        <i data-lucide="check" class="-circle me-2"></i>OTP Verify गर्नुहोस्
+        <i data-lucide="check-circle" class=" me-2"></i>OTP Verify गर्नुहोस्
       </button>
     </form>
     <div class="d-flex gap-2">
@@ -304,7 +304,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
 
     <?php elseif ($step == 3): /* ═══ STEP 3 ═══ */ ?>
     <div class="alert alert-success border-0 small py-2 text-center">
-      <i data-lucide="check" class="-circle me-1"></i><?php echo $_t('OTP verified! अब नयाँ पासवर्ड राख्नुहोस्।', 'OTP verified! Now set your new password.'); ?>
+      <i data-lucide="check-circle" class=" me-1"></i><?php echo $_t('OTP verified! अब नयाँ पासवर्ड राख्नुहोस्।', 'OTP verified! Now set your new password.'); ?>
     </div>
     <form method="POST" novalidate class="needs-validation" autocomplete="off">
       <?php echo csrfField(); ?>
@@ -336,7 +336,7 @@ body{background:linear-gradient(135deg,var(--bg-muted,#e8f5e9),var(--bg-soft,#f0
 
     <?php elseif ($step === 'done'): /* ═══ DONE ═══ */ ?>
     <div class="text-center py-4">
-      <div style="font-size:3.5rem;color:#22c55e"><i data-lucide="check" class="-circle"></i></div>
+      <div style="font-size:3.5rem;color:#22c55e"><i data-lucide="check-circle"></i></div>
       <h5 class="mt-3 fw-bold"><?php echo $_t('पासवर्ड सफलतापूर्वक परिवर्तन!', 'Password changed successfully!'); ?></h5>
       <p class="text-muted small mt-2"><?php echo $_t('तपाईं अब नयाँ पासवर्डले login गर्न सक्नुहुन्छ।', 'You can now login with your new password.'); ?></p>
       <a href="login.php" class="btn btn-g px-4 py-2 fw-semibold mt-2">
