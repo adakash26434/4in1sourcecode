@@ -3242,26 +3242,6 @@ body.auth-portal-page:not(.verify-auth-page) .auth-lang-toggle { left: 20px; }
 }
 .loading-overlay .spinner-border { color: var(--primary-color, #1a5f2a); width: 2.5rem; height: 2.5rem; }
 
-/* Custom buttons */
-.btn-coop {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 10px 22px; border-radius: var(--radius-md, 10px);
-    font-family: inherit; font-weight: 600; font-size: .95rem;
-    border: none; cursor: pointer; text-decoration: none;
-    background: var(--primary-color, #1a5f2a); color: var(--text-on-primary, #fff);
-    transition: all .25s ease; box-shadow: var(--shadow-sm, 0 1px 4px rgba(0,0,0,.08));
-}
-.btn-coop:hover {
-    background: var(--primary-dark, #144a21);
-    box-shadow: var(--shadow-primary, 0 4px 20px rgba(26,95,42,.16));
-    transform: translateY(-1px); color: var(--text-on-primary, #fff);
-}
-.btn-coop.btn-outline {
-    background: transparent; color: var(--primary-color, #1a5f2a);
-    border: 1.5px solid var(--primary-color, #1a5f2a); box-shadow: none;
-}
-.btn-coop.btn-outline:hover { background: var(--primary-color, #1a5f2a); color: #fff; }
-
 /* Divider */
 .divider-icon {
     display: flex; align-items: center; gap: .75rem;
