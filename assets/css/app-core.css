@@ -2104,9 +2104,6 @@ h6 { font-size: .88rem;                         font-weight: 600; }
 .bg-success { background-color: var(--color-success, #28a745) !important; color: #fff !important; }
 
 /* — Badges (soft pill style) — */
-.badge {
-    font-family: inherit;
-}
 .badge.bg-primary, .badge.bg-success {
     background: #f0fdf4 !important; color: var(--primary-color, #1a5f2a) !important;
     border: 1px solid #bbf7d0;
