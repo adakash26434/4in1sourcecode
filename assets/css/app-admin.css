@@ -16707,3 +16707,62 @@ html.pwa-installed  .mem-pwa-btn { display: none !important; }
         font-size: 0.82rem !important;
     }
 }
+
+/* =====================================================
+   v10.7.2 — Readability rescue (admin)
+   - Force crisp text/icon contrast in compact header
+   - Prevent faded tab/stat text in dashboard panels
+   ===================================================== */
+.admin-header,
+.admin-header * {
+    text-shadow: none !important;
+}
+
+.admin-header .page-title,
+.admin-header .header-date-pill,
+.admin-header .admin-name,
+.admin-header .admin-name-inline,
+.admin-header .admin-header-icon,
+.admin-header .admin-header-icon i,
+.admin-header .notification-bell,
+.admin-header .notification-bell i,
+.admin-header .admin-info-chevron {
+    color: #1f2937 !important;
+    opacity: 1 !important;
+}
+
+.admin-header .admin-header-icon,
+.admin-header .notification-bell {
+    background: #f8faf9 !important;
+    border-color: #d4e5da !important;
+}
+
+.admin-nav-tabs .nav-link,
+.nav-tabs .nav-link {
+    color: #334155 !important;
+    opacity: 1 !important;
+}
+
+.admin-nav-tabs .nav-link.active,
+.nav-tabs .nav-link.active {
+    background: #eaf5ee !important;
+    border-color: #9dcab0 !important;
+    color: #14532d !important;
+}
+
+.dashboard-stat-card .stat-value,
+.dashboard-stat-card .stat-label,
+.stat-mini .sm-val,
+.stat-mini .sm-lbl,
+.admin-stat-card .stat-value,
+.admin-stat-card .stat-label {
+    color: #1f2937 !important;
+    opacity: 1 !important;
+}
+
+.notif-item-label,
+.notif-item-icon,
+.admin-info .admin-menu a,
+.admin-info .admin-menu a i {
+    opacity: 1 !important;
+}

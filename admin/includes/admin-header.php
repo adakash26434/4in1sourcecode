@@ -966,7 +966,7 @@ set_exception_handler(function (\Throwable $ex) {
                                 <a href="<?php echo ADMIN_URL . htmlspecialchars($ni['href']); ?>"
                                    class="notif-item">
                                     <span class="notif-item-icon notif-tone-<?php echo htmlspecialchars($ni['tone'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        <i class="lucide-icon echo htmlspecialchars(fa_to_lucide($ni['icon']), ENT_QUOTES, 'UTF-8'); ?>" aria-hidden="true" data-lucide="<?php"></i>
+                                        <i class="lucide-icon" aria-hidden="true" data-lucide="<?php echo htmlspecialchars(fa_to_lucide($ni['icon']), ENT_QUOTES, 'UTF-8'); ?>"></i>
                                     </span>
                                     <span class="notif-item-label"><?php echo $ni['label']; ?></span>
                                     <span class="notif-item-count notif-tone-bg-<?php echo htmlspecialchars($ni['tone'], ENT_QUOTES, 'UTF-8'); ?>">
@@ -1032,7 +1032,7 @@ set_exception_handler(function (\Throwable $ex) {
                   $fIcon  = $fIcons[$fType] ?? 'fa-circle-info';
               ?>
               <div class="alert alert-<?php echo $fType; ?> alert-dismissible fade show mx-3 mt-3" role="alert">
-                  <i class="lucide-icon fa-fw flex-shrink-0 echo htmlspecialchars(fa_to_lucide($fIcon), ENT_QUOTES, 'UTF-8'); ?>" aria-hidden="true" data-lucide="<?php"></i>
+                  <i class="lucide-icon fa-fw flex-shrink-0" aria-hidden="true" data-lucide="<?php echo htmlspecialchars(fa_to_lucide($fIcon), ENT_QUOTES, 'UTF-8'); ?>"></i>
                   <span><?php echo htmlspecialchars($flash['message']); ?></span>
                   <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
               </div>
