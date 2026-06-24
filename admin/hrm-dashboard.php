@@ -13,17 +13,36 @@ require_role('admin');
 $db = getDB();
 ensureHrmTables($db);
 
-// Guard: Check if HRM tables exist before querying
+// Guard: robust HRM table check (avoid false negative when SHOW TABLES is restricted)
 $hasHrmTables = false;
 try {
-    $result = $db->query("SHOW TABLES LIKE 'hrm_employees'")->fetch();
-    $hasHrmTables = !empty($result);
-} catch (Exception $e) {
-    $hasHrmTables = false;
+  $db->query("SELECT 1 FROM hrm_employees LIMIT 1");
+  $hasHrmTables = true;
+} catch (Throwable $e) {
+  $err = (string)$e->getMessage();
+
+  // If table truly missing, try one more ensure+probe cycle.
+  if (stripos($err, '42S02') !== false || stripos($err, 'base table or view not found') !== false) {
+    try {
+      ensureHrmTables($db);
+      $db->query("SELECT 1 FROM hrm_employees LIMIT 1");
+      $hasHrmTables = true;
+    } catch (Throwable $e2) {
+      $hasHrmTables = false;
+    }
+  } else {
+    // Fallback for DB users where SELECT probe fails but SHOW TABLES works.
+    try {
+      $exists = $db->query("SHOW TABLES LIKE 'hrm_employees'")->fetchColumn();
+      $hasHrmTables = !empty($exists);
+    } catch (Throwable $e3) {
+      $hasHrmTables = false;
+    }
+  }
 }
 
 if (!$hasHrmTables) {
-    echo '<div class="admin-content"><div class="alert alert-warning"><h4>HRM Module Not Installed</h4><p>The HRM tables have not been installed yet. Please run the database installer from Admin > Database Setup.</p></div></div>';
+  echo '<div class="admin-content"><div class="alert alert-warning"><h4>HRM Module Not Installed</h4><p>The HRM tables were not detected in the current app database connection. Please run Admin &gt; Database Setup once, and verify phpMyAdmin तथा app दुवै एउटै database (DB_NAME) प्रयोग गरिरहेका छन्।</p></div></div>';
     return;
 }
 
