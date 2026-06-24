@@ -13,15 +13,14 @@
  * ════════════════════════════════════════════════════════════
  */
 
+define('PORTAL', 'admin');
 define('IS_ADMIN_PAGE', true);
 
-require_once __DIR__ . '/../includes/config.php';
-
-/* Admin auth helpers (requireAdminLogin) config.php मै define भएको छ */
+require_once __DIR__ . '/../core/init.php';
 
 /* Global $pdo — admin pages ले direct query गर्न मिल्ने गरि */
 try {
-    $pdo = getDB();
+    $pdo = isset($db) && $db instanceof PDO ? $db : getDB();
 } catch (Throwable $e) {
     error_log('[admin-bootstrap-db-fail] ' . $e->getMessage());
     $pdo = null;

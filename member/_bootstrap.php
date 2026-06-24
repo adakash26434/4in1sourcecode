@@ -12,13 +12,11 @@
  * ════════════════════════════════════════════════════════════
  */
 
-require_once __DIR__ . '/../includes/config.php';
+define('PORTAL', 'member');
+
+require_once __DIR__ . '/../core/init.php';
 if (function_exists('site_license_public_guard')) {
     site_license_public_guard();
-}
-require_once __DIR__ . '/../includes/member-auth.php';
-if (file_exists(__DIR__ . '/../includes/panel-uniform.php')) {
-    require_once __DIR__ . '/../includes/panel-uniform.php';
 }
 
 /* Follow shared environment policy while keeping production safe by default. */
