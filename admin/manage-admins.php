@@ -181,7 +181,7 @@ $activeTab = in_array($tabRaw, ['list', 'add'], true) ? $tabRaw : 'list';
 ════════════════════════════════════════════════ -->
 <?php echo adminPageHeader('Admin व्यवस्थापन','fa-user-shield','Admin accounts — थप्नुहोस्, पासवर्ड रिसेट, सक्रिय/निष्क्रिय।',
       '<span class="badge admin-stat-badge bg-success-subtle text-success border border-success border-opacity-25 me-2"><i class="fas fa-users me-1"></i>जम्मा: ' . count($admins) . ' Admins</span>'
-      . '<button class="btn btn-primary btn-sm" id="btnAddAdmin"><i class="fas fa-plus me-1"></i>नयाँ Admin</button>'
+    . '<button type="button" class="btn btn-primary btn-sm" id="btnAddAdmin"><i class="fas fa-plus me-1"></i>नयाँ Admin</button>'
   ); ?>
 
 <!-- Flash Messages -->
@@ -727,6 +727,20 @@ document.querySelectorAll('[id^="resetModal"]').forEach(function (modal) {
 var tabAddBtn = document.getElementById('tabAddBtn');
 if (tabAddBtn) {
     tabAddBtn.addEventListener('show.bs.tab', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+/* Header "नयाँ Admin" button -> reliably open Add tab */
+var btnAddAdmin = document.getElementById('btnAddAdmin');
+if (btnAddAdmin && tabAddBtn) {
+    btnAddAdmin.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        if (window.bootstrap && bootstrap.Tab) {
+            bootstrap.Tab.getOrCreateInstance(tabAddBtn).show();
+        } else {
+            tabAddBtn.click();
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }

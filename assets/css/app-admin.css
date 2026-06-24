@@ -16768,6 +16768,79 @@ html.pwa-installed  .mem-pwa-btn { display: none !important; }
 }
 
 /* =====================================================
+   v10.7.4 — Admin Click + Icon Safety Net
+   - Prevent hidden overlays from stealing tab clicks
+   - Keep header action button/icon visible
+   - Preserve icon contrast in admin nav tabs
+   ===================================================== */
+
+.admin-page-header {
+    position: relative;
+    z-index: 2;
+}
+
+.admin-page-header .btn,
+.admin-page-header a,
+.admin-page-header .badge,
+.admin-page-header .admin-page-header-icon {
+    position: relative;
+    z-index: 3;
+    pointer-events: auto !important;
+}
+
+.admin-page-header .btn:empty {
+    display: none !important;
+}
+
+.admin-page-header #btnAddAdmin {
+    background: linear-gradient(135deg, #1f7a46, #176238) !important;
+    border-color: #176238 !important;
+    color: #ffffff !important;
+}
+
+.admin-page-header #btnAddAdmin i,
+.admin-page-header #btnAddAdmin .lucide-icon,
+.admin-page-header #btnAddAdmin svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+    opacity: 1 !important;
+}
+
+.admin-nav-tabs,
+.nav-tabs {
+    position: relative;
+    z-index: 4;
+}
+
+.admin-nav-tabs .nav-link,
+.nav-tabs .nav-link {
+    position: relative;
+    z-index: 5;
+    pointer-events: auto !important;
+}
+
+.admin-nav-tabs .nav-link i,
+.admin-nav-tabs .nav-link .lucide-icon,
+.admin-nav-tabs .nav-link svg,
+.nav-tabs .nav-link i,
+.nav-tabs .nav-link .lucide-icon,
+.nav-tabs .nav-link svg {
+    color: currentColor !important;
+    stroke: currentColor !important;
+    opacity: 1 !important;
+}
+
+.admin-nav-tabs .nav-link.active i,
+.admin-nav-tabs .nav-link.active .lucide-icon,
+.admin-nav-tabs .nav-link.active svg,
+.nav-tabs .nav-link.active i,
+.nav-tabs .nav-link.active .lucide-icon,
+.nav-tabs .nav-link.active svg {
+    color: #14532d !important;
+    stroke: #14532d !important;
+}
+
+/* =====================================================
    v10.7.3 — Active/Compact Header Safety Overrides
    - Keep active dashboard tab text/icon readable
    - Prevent chopped user text in compact header
