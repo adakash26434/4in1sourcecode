@@ -584,10 +584,6 @@ p {
 .border-danger { border-color: var(--color-danger); }
 
 /* ══════════════════════════════════════════════════════════════
-   Button Theming
-   ══════════════════════════════════════════════════════════════ */
-
-/* ══════════════════════════════════════════════════════════════
    Card & Container Styling
    ══════════════════════════════════════════════════════════════ */
 
@@ -621,20 +617,12 @@ p {
 .alert-danger { background-color: var(--color-danger-light); border-color: var(--color-danger); color: #721c24; }
 
 /* ══════════════════════════════════════════════════════════════
-   Form Elements
-   ══════════════════════════════════════════════════════════════ */
-
-/* ══════════════════════════════════════════════════════════════
    Tables
    ══════════════════════════════════════════════════════════════ */
 
 .table {
     --bs-table-border-color: var(--border-light);
     color: var(--text-primary);
-}
-
-.table-hover tbody tr:hover {
-    background-color: var(--bg-secondary);
 }
 
 .table thead {
