@@ -2889,7 +2889,6 @@ body.auth-portal-page:not(.verify-auth-page) .auth-lang-toggle { left: 20px; }
 .text-nepali         { font-family: var(--font-nepali, 'Noto Sans Devanagari', 'Mukta', sans-serif); }
 
 /* Background */
-.coop-bg-muted { background: var(--bg-muted, #e8f5e9); }
 
 /* Borders */
 
