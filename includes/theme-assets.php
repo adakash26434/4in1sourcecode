@@ -185,6 +185,11 @@ if (document.readyState !== "loading" && typeof lucide !== "undefined") {
             coopThemeLink($rel);
         }
 
+        /* ── 4.5. BOOTSTRAP ADMIN OVERRIDES (LAST) - Override ALL Bootstrap defaults ── */
+        if (in_array($panel, ['admin', 'admin-auth', 'shell'], true)) {
+            coopThemeLink('assets/css/bootstrap-admin-overrides.css');
+        }
+
         /* ── 5. DB-computed brand colors AFTER static CSS so !important wins ── */
         coopThemeRequireGlobal();
     }
