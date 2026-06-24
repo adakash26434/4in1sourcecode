@@ -26,12 +26,12 @@
         @media (min-width: 900px) { .mob-bottomnav { display: none; } body.has-bottomnav { padding-bottom: 0 !important; } }
         </style>
         <nav class="mob-bottomnav" aria-label="Admin quick nav">
-            <a href="<?php echo ADMIN_URL; ?>dashboard.php" class="mob-bn-item <?php echo ($currentPage??'')==='dashboard'?'active':''; ?>"><i class="fas fa-gauge-high"></i><span><?php echo !empty($adminIsEnglish) ? 'Dashboard' : 'ड्यासबोर्ड'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>notices.php" class="mob-bn-item"><i class="fas fa-bullhorn"></i><span><?php echo !empty($adminIsEnglish) ? 'Notices' : 'सूचना'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>members.php" class="mob-bn-item"><i class="fas fa-users"></i><span><?php echo !empty($adminIsEnglish) ? 'Members' : 'सदस्य'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>hrm-employees.php" class="mob-bn-item <?php echo (in_array(($currentPage??''), ['hrm-dashboard','hrm-employees','hrm-employee-directory','hrm-departments','hrm-contracts','hrm-documents','hrm-messenger']) ? 'active' : ''); ?>"><i class="fas fa-id-badge"></i><span><?php echo !empty($adminIsEnglish) ? 'HRM' : 'HRM'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>settings.php" class="mob-bn-item"><i class="fas fa-gear"></i><span><?php echo !empty($adminIsEnglish) ? 'Settings' : 'सेटिङ'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>logout.php" class="mob-bn-item"><i class="fas fa-right-from-bracket"></i><span><?php echo !empty($adminIsEnglish) ? 'Logout' : 'लगआउट'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>dashboard.php" class="mob-bn-item <?php echo ($currentPage??'')==='dashboard'?'active':''; ?>"><i data-lucide="layout-dashboard"></i><span><?php echo !empty($adminIsEnglish) ? 'Dashboard' : 'ड्यासबोर्ड'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>notices.php" class="mob-bn-item"><i data-lucide="megaphone"></i><span><?php echo !empty($adminIsEnglish) ? 'Notices' : 'सूचना'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>members.php" class="mob-bn-item"><i data-lucide="users"></i><span><?php echo !empty($adminIsEnglish) ? 'Members' : 'सदस्य'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>hrm-employees.php" class="mob-bn-item <?php echo (in_array(($currentPage??''), ['hrm-dashboard','hrm-employees','hrm-employee-directory','hrm-departments','hrm-contracts','hrm-documents','hrm-messenger']) ? 'active' : ''); ?>"><i data-lucide="badge-check"></i><span><?php echo !empty($adminIsEnglish) ? 'HRM' : 'HRM'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>settings.php" class="mob-bn-item"><i data-lucide="settings"></i><span><?php echo !empty($adminIsEnglish) ? 'Settings' : 'सेटिङ'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>logout.php" class="mob-bn-item"><i data-lucide="log-out"></i><span><?php echo !empty($adminIsEnglish) ? 'Logout' : 'लगआउट'; ?></span></a>
         </nav>
         <script>document.body.classList.add('has-bottomnav');</script>
 
@@ -40,7 +40,7 @@
            class="admin-fab-msg"
            title="<?php echo !empty($adminIsEnglish) ? 'Internal Chat' : 'आन्तरिक च्याट'; ?>"
            aria-label="Internal Chat">
-          <i class="fas fa-comments"></i>
+          <i data-lucide="message-circle"></i>
         </a>
         <style>
           .admin-fab-msg{

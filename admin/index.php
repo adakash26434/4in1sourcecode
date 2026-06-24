@@ -398,23 +398,19 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login — <?php echo htmlspecialchars($siteName); ?></title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('admin-auth', ['skip_fonts' => true]); } ?>
+    <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('admin-auth'); } ?>
 </head>
 <body class="auth-portal-page admin-auth-page">
 
 <?php if (function_exists('portalLangToggleUrl') && function_exists('portalLangToggleBadge')): ?>
 <?php $__lt = function_exists('appGetText') ? appGetText('भाषा परिवर्तन', 'Switch language') : (function_exists('isEnglish') && isEnglish() ? 'Switch language' : 'भाषा परिवर्तन'); ?>
 <a href="<?php echo htmlspecialchars(portalLangToggleUrl(), ENT_QUOTES, 'UTF-8'); ?>" class="auth-lang-toggle" title="<?php echo htmlspecialchars($__lt, ENT_QUOTES, 'UTF-8'); ?>" aria-label="<?php echo htmlspecialchars($__lt, ENT_QUOTES, 'UTF-8'); ?>">
-    <i class="fas fa-language"></i> <?php echo htmlspecialchars(portalLangToggleBadge()); ?>
+    <i data-lucide="languages"></i> <?php echo htmlspecialchars(portalLangToggleBadge()); ?>
 </a>
 <?php endif; ?>
 
 <a href="../index.php" class="page-back">
-    <i class="fas fa-arrow-left"></i> वेबसाइट
+    <i data-lucide="arrow-left"></i> वेबसाइट
 </a>
 
 <div class="auth-card">
@@ -425,9 +421,9 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
                 <img src="<?php echo htmlspecialchars($logoSrc); ?>" alt="<?php echo htmlspecialchars($siteName); ?>">
             </div>
         <?php else: ?>
-            <div class="card-logo-icon"><i class="fas fa-shield-halved"></i></div>
+            <div class="card-logo-icon"><i data-lucide="shield-halved""></i></div>
         <?php endif; ?>
-        <span class="card-portal-label"><i class="fas fa-lock"></i>&nbsp;Admin Portal</span>
+        <span class="card-portal-label"><i data-lucide="lock"></i>&nbsp;Admin Portal</span>
     </div>
 
     <div class="card-body">
@@ -438,7 +434,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
 
         <?php if ($error): ?>
             <div class="alert-error">
-                <i class="fas fa-exclamation-circle"></i>
+                <i data-lucide="circle-alert""></i>
                 <?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
             </div>
         <?php endif; ?>
@@ -446,9 +442,9 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
         <?php if ($showLicenseRenewalOnLogin): ?>
         <div class="license-renew-on-login" style="margin: 0 0 18px;">
             <h4>
-                <i class="fas fa-building"></i> लाइसेन्स नवीकरण — कार्यालय Admin
+                <i data-lucide="building-2"></i> लाइसेन्स नवीकरण — कार्यालय Admin
                 <a class="mini-login-link" href="?login=1" title="लग इन पृष्ठमा जानुहोस्" aria-label="लग इन">
-                    <i class="fas fa-lock"></i>
+                    <i data-lucide="lock"></i>
                 </a>
             </h4>
             <div class="license-renew-vendor">
@@ -469,7 +465,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <?php endif; ?>
             <?php if ($renewalNoticeSent): ?>
             <div class="license-renew-success">
-                <strong><i class="fas fa-check-circle me-1"></i>भुक्तानी सूचना पठाइयो।</strong>
+                <strong><i data-lucide="circle-check" me-1"></i>भुक्तानी सूचना पठाइयो।</strong>
                 भुक्तानी सूचना प्राप्त भएको छ। कृपया पुष्टि/सक्रिय हुन केही समय प्रतीक्षा गर्नुहोस् वा विक्रेता सम्पर्क गर्नुहोस्।
             </div>
             <?php else: ?>
@@ -501,11 +497,11 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
                     <label for="renew_note">टिप्पणी</label>
                     <textarea name="renewal_note" id="renew_note" maxlength="2000" placeholder="ऐच्छिक"></textarea>
                 </div>
-                <button type="submit" class="lr-submit"><i class="fas fa-paper-plane"></i> Pay SSL certificates तथा domain active Charge now</button>
+                <button type="submit" class="lr-submit"><i data-lucide="send""></i> Pay SSL certificates तथा domain active Charge now</button>
             </form>
             <?php endif; ?>
             <div class="sub">
-                <i class="fas fa-user-shield me-1"></i>यो फारम कार्यालय प्रतिनिधिका लागि हो; व्यवस्थापन पहुँच भएको खाताले माथिको लग इन प्रयोग गर्नुहोस्।
+                <i data-lucide="user-check" me-1"></i>यो फारम कार्यालय प्रतिनिधिका लागि हो; व्यवस्थापन पहुँच भएको खाताले माथिको लग इन प्रयोग गर्नुहोस्।
             </div>
         </div>
         <?php endif; ?>
@@ -516,12 +512,12 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <input type="hidden" name="do_admin_2fa" value="1">
             <?php if (($admin2faPending['mode'] ?? '') === 'setup'): ?>
                 <div class="alert-error alert-info-soft">
-                    <i class="fas fa-qrcode"></i> Google Authenticator setup आवश्यक छ।
+                    <i data-lucide="qr-code""></i> Google Authenticator setup आवश्यक छ।
                 </div>
                 <div class="field">
                     <label>Manual Secret</label>
                     <div class="input-icon">
-                        <i class="fas fa-key"></i>
+                        <i data-lucide="key-round"></i>
                         <input type="text" readonly value="<?php echo htmlspecialchars((string)($admin2faPending['secret'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>">
                     </div>
                 </div>
@@ -534,16 +530,16 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <div class="field">
                 <label>2FA Code / Backup Code</label>
                 <div class="input-icon">
-                    <i class="fas fa-shield-halved"></i>
+                    <i data-lucide="shield-halved""></i>
                     <input type="text" name="twofa_code" placeholder="123456 वा BACKUPCODE" required autofocus>
                 </div>
             </div>
             <button type="submit" class="submit-btn">
-                <i class="fas fa-shield-check"></i> 2FA Verify
+                <i data-lucide="shield-check""></i> 2FA Verify
             </button>
             <?php if (!empty($_SESSION['admin_2fa_backup_plain']) && is_array($_SESSION['admin_2fa_backup_plain'])): ?>
                 <div class="security-note security-note-warning">
-                    <i class="fas fa-triangle-exclamation"></i>
+                    <i data-lucide="triangle-alert""></i>
                     Backup codes: <code><?php echo htmlspecialchars(implode(' , ', $_SESSION['admin_2fa_backup_plain']), ENT_QUOTES, 'UTF-8'); ?></code>
                 </div>
                 <?php unset($_SESSION['admin_2fa_backup_plain']); ?>
@@ -555,19 +551,19 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <div class="field">
                 <label>युजरनेम</label>
                 <div class="input-icon">
-                    <i class="fas fa-user"></i>
+                    <i data-lucide="user"></i>
                     <input type="text" name="username" placeholder="युजरनेम राख्नुहोस्" required autofocus>
                 </div>
             </div>
             <div class="field">
                 <label>पासवर्ड</label>
                 <div class="input-icon">
-                    <i class="fas fa-lock"></i>
+                    <i data-lucide="lock"></i>
                     <input type="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
                 </div>
             </div>
             <button type="submit" class="submit-btn">
-                <i class="fas fa-sign-in-alt"></i> लग इन गर्नुहोस्
+                <i data-lucide="log-in""></i> लग इन गर्नुहोस्
             </button>
         </form>
         <?php else: ?>
@@ -580,7 +576,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
         <?php endif; ?>
 
         <div class="security-note">
-            <i class="fas fa-shield-halved"></i>
+            <i data-lucide="shield-halved""></i>
             यो सुरक्षित Admin क्षेत्र हो। सबै गतिविधि audit log मा record हुन्छ।
         </div>
     </div>
