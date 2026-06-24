@@ -570,21 +570,10 @@ p {
    Utility Classes - Color Helpers
    ══════════════════════════════════════════════════════════════ */
 
-.text-primary { color: var(--color-primary); }
-.text-success { color: var(--color-success); }
-.text-info { color: var(--color-info); }
-.text-warning { color: var(--color-warning); }
-.text-danger { color: var(--color-danger); }
-.text-secondary { color: var(--text-secondary); }
 .text-muted { color: var(--text-muted); }
 .text-light { color: var(--text-light); }
 .text-dark { color: var(--text-dark); }
 
-.bg-primary { background-color: var(--color-primary); }
-.bg-success { background-color: var(--color-success); }
-.bg-info { background-color: var(--color-info); }
-.bg-warning { background-color: var(--color-warning); }
-.bg-danger { background-color: var(--color-danger); }
 .bg-light { background-color: var(--bg-light); }
 .bg-dark { background-color: var(--bg-dark); }
 
