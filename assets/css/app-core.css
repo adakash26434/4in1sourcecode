@@ -115,17 +115,6 @@ input, select, textarea, button {
 }
 
 /* ── Universal Form Field (.field-coop) ── */
-.field-coop {
-    border: 1.5px solid var(--border-color);
-    color: var(--text-primary);
-    transition: border .2s, box-shadow .2s;
-}
-.field-coop:focus {
-    outline: none; border-color: var(--primary-color);
-    background: #fff;
-    box-shadow: 0 0 0 3px rgba(26,95,42,.12);
-}
-
 /* ── Container ── */
 .container-coop {
     max-width: var(--container-max);
