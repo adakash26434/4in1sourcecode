@@ -16877,6 +16877,48 @@ html.pwa-installed  .mem-pwa-btn { display: none !important; }
 }
 
 /* =====================================================
+   v10.7.6 — Nepali Datepicker Visibility Fix
+   - Keep month/year header text visible without hover
+   - Prevent popup top edge from being visually chopped
+   ===================================================== */
+
+.ndp-container,
+.nepali-datepicker-calendar,
+.ndp-calendar,
+.nepDatePickerWrapper {
+    z-index: 100100 !important;
+    margin-top: 6px !important;
+    border-top: 1px solid #d4e8da !important;
+}
+
+.ndp-container .ndp-header,
+.ndp-container .ndp-header-link,
+.ndp-container .ndp-header-display,
+.ndp-container .ndp-header-display-english,
+.ndp-container .ndp-header button,
+.ndp-container .ndp-header a,
+.ndp-container .ndp-nav-header,
+.ndp-container .ndp-day-of-week {
+    background: #1f6b36 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+.ndp-container .ndp-header-display-english {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.ndp-container .ndc-chevron::before,
+.ndp-container .ndc-nav-button .ndc-chevron::before {
+    border-color: #ffffff !important;
+}
+
+.ndp-container .ndc-nav-button:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+}
+
+/* =====================================================
    v10.7.3 — Active/Compact Header Safety Overrides
    - Keep active dashboard tab text/icon readable
    - Prevent chopped user text in compact header
