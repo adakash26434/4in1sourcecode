@@ -172,6 +172,11 @@ if (document.readyState !== "loading" && typeof lucide !== "undefined") {
             coopThemeLink('assets/css/admin-serious-fix.css');
         }
 
+        /* ── 1.7. Load Admin Auth Login Page UI/UX Fixes (Form labels, inputs, buttons, alerts) ── */
+        if (in_array($panel, ['admin-auth'], true)) {
+            coopThemeLink('assets/css/admin-auth-login-fixes.css');
+        }
+
         /* ── 2. Load UI/UX enhancements (color fixes, contrast, accessibility) ── */
         coopThemeLink('assets/css/ui-ux-enhancements.css');
 
