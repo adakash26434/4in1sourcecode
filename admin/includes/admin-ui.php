@@ -234,13 +234,11 @@ function adminAddBtn(string $label, string $href = '#', string $icon = 'fa-plus'
 function adminToggleBtn(int $recordId, $isActive, string $csrfToken, string $extraFields = ''): string {
     if ($isActive) {
         $btn = '<button type="submit" class="btn btn-sm btn-success" '
-             . 'title="' . htmlspecialchars(adminUiT('सक्रिय छ — थिच्दा लुकाइन्छ', 'Currently active — click to hide')) . '" '
              . 'aria-label="' . htmlspecialchars(adminUiT('सक्रिय छ — थिच्दा लुकाइन्छ', 'Currently active — click to hide'), ENT_QUOTES) . '" '
              . 'style="min-width:82px;">'
              . '<i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i> ' . htmlspecialchars(adminUiT('सक्रिय', 'Active')) . '</button>';
     } else {
         $btn = '<button type="submit" class="btn btn-sm btn-outline-secondary" '
-             . 'title="' . htmlspecialchars(adminUiT('लुकाइएको छ — थिच्दा सक्रिय हुन्छ', 'Currently hidden — click to activate')) . '" '
              . 'aria-label="' . htmlspecialchars(adminUiT('लुकाइएको छ — थिच्दा सक्रिय हुन्छ', 'Currently hidden — click to activate'), ENT_QUOTES) . '" '
              . 'style="min-width:82px;">'
              . '<i class="lucide-icon" aria-hidden="true" data-lucide="eye-off"></i> ' . htmlspecialchars(adminUiT('लुकाइएको', 'Hidden')) . '</button>';
