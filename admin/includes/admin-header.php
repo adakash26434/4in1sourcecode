@@ -261,7 +261,7 @@ set_exception_handler(function (\Throwable $ex) {
     <link rel="stylesheet" href="assets/vendor/bootstrap.min.css">
 
     <!-- DataTables CSS (required for admin table pages) -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="assets/vendor/datatables/dataTables.bootstrap5.min.css">
 
     <!-- Nepali Datepicker CSS (self-hosted) -->
     <link rel="stylesheet" href="../assets/css/nepali.datepicker.min.css">
@@ -434,7 +434,7 @@ set_exception_handler(function (\Throwable $ex) {
                                 <a href="hrm-employees.php"><span class="nav-icon-wrap"><i data-lucide="users"></i></span><span><?php echo $adminT('कर्मचारीहरू', 'Employees'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='hrm-employee-directory' ? 'active' : ''; ?>">
-                                <a href="hrm-employee-directory.php"><span class="nav-icon-wrap"><i data-lucide="address-book" class="nav-icon-accent nav-icon-cyan"></i></span><span><?php echo $adminT('कर्मचारी डाइरेक्टरी', 'Employee Directory'); ?></span></a>
+                                <a href="hrm-employee-directory.php"><span class="nav-icon-wrap"><i data-lucide="book-user" class="nav-icon-accent nav-icon-cyan"></i></span><span><?php echo $adminT('कर्मचारी डाइरेक्टरी', 'Employee Directory'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='hrm-departments' ? 'active' : ''; ?>">
                                 <a href="hrm-departments.php"><span class="nav-icon-wrap"><i data-lucide="network"></i></span><span><?php echo $adminT('विभागहरू', 'Departments'); ?></span></a>
@@ -867,7 +867,7 @@ set_exception_handler(function (\Throwable $ex) {
             <header class="admin-header admin-header--compact">
                 <div class="header-left">
                     <button class="sidebar-toggle" id="sidebarToggle">
-                        <i data-lucide="bars"></i>
+                        <i data-lucide="menu"></i>
                     </button>
                     <a href="<?php echo ADMIN_URL; ?>dashboard.php" class="admin-topbar-brand <?php echo $hasSiteLogo ? 'has-logo' : 'no-logo'; ?>">
                         <!-- Always keep a fallback UI; if logo fails to load, show this -->
@@ -888,7 +888,7 @@ set_exception_handler(function (\Throwable $ex) {
                     <div class="page-title-wrap">
                         <h1 class="page-title"><?php echo $pageTitle ?? $adminT('ड्यासबोर्ड', 'Dashboard'); ?></h1>
                         <span class="header-date-pill" title="<?php echo $adminT('आजको मिति', 'Today'); ?>">
-                            <i data-lucide="calendar-day"></i>
+                            <i data-lucide="calendar"></i>
                             <?php echo function_exists('formatNepaliDate') ? formatNepaliDate(date('Y-m-d')) : date('Y-m-d'); ?>
                         </span>
                     </div>
@@ -959,7 +959,7 @@ set_exception_handler(function (\Throwable $ex) {
                             <div class="notif-dropdown-body">
                                 <?php if (empty($activeNotifs)): ?>
                                 <div class="notif-empty">
-                                    <i data-lucide="check-circle" class="text-success fa-2x mb-2"></i>
+                                    <i data-lucide="circle-check" class="text-success fa-2x mb-2"></i>
                                     <p class="mb-0"><?php echo $adminT('सबै हेरिएको छ!', 'All caught up!'); ?></p>
                                 </div>
                                 <?php else: ?>

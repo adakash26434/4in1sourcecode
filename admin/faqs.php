@@ -132,7 +132,7 @@ $faqsArch = $faqPart['archived'];
                     <div class="tab-content admin-table-subtab-content">
                     <div class="tab-pane fade show active" id="faq-sub-live" role="tabpanel">
                     <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
+                    <table class="table table-hover align-middle mb-0 coop-table">
                         <thead>
                             <tr>
                                 <th width="40" class="text-center"><input type="checkbox" onclick="document.querySelectorAll('#faq-sub-live .faq-select').forEach(c=>c.checked=this.checked)"></th>
@@ -193,7 +193,7 @@ $faqsArch = $faqPart['archived'];
                     </div>
                     <div class="tab-pane fade" id="faq-sub-arch" role="tabpanel">
                     <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
+                    <table class="table table-hover align-middle mb-0 coop-table">
                         <thead>
                             <tr>
                                 <th width="40" class="text-center"><input type="checkbox" onclick="document.querySelectorAll('#faq-sub-arch .faq-select').forEach(c=>c.checked=this.checked)"></th>

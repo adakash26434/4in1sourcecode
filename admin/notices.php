@@ -163,7 +163,7 @@ $flash = getFlash();
                                 <i class="fas fa-ban me-1"></i><?php echo $__t('Bulk निष्क्रिय', 'Bulk Inactive'); ?>
                             </button>
                         </div>
-                    <table class="table table-responsive-stack table-hover align-middle mb-0 table-responsive-stack" id="noticesTable">
+                    <table class="table table-hover align-middle mb-0" id="noticesTable">
                         <thead>
                             <tr>
                                 <th width="40" class="text-center"><input type="checkbox" onclick="document.querySelectorAll('.nt-select').forEach(c=>c.checked=this.checked)"></th>

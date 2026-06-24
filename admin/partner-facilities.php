@@ -133,7 +133,7 @@ $facilitiesArch = $pfPart['archived'];
                     <div class="tab-content admin-table-subtab-content">
                     <div class="tab-pane fade show active" id="pf-sub-live" role="tabpanel">
                     <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0 pf-data-table">
+                    <table class="table table-hover align-middle mb-0 pf-data-table coop-table">
                         <thead class="table-light">
                             <tr>
                                 <th class="ps-3" width="50">क्र.स.</th>
@@ -222,7 +222,7 @@ $facilitiesArch = $pfPart['archived'];
                     </div>
                     <div class="tab-pane fade" id="pf-sub-arch" role="tabpanel">
                     <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0 pf-data-table">
+                    <table class="table table-hover align-middle mb-0 pf-data-table coop-table">
                         <thead class="table-light">
                             <tr>
                                 <th class="ps-3" width="50">क्र.स.</th>
