@@ -647,11 +647,6 @@ p {
    Modal & Dropdown
    ══════════════════════════════════════════════════════════════ */
 
-.modal-content {
-    border-radius: var(--radius-lg);
-    border-color: var(--border-light);
-}
-
 .dropdown-menu {
     border-radius: var(--radius-md);
     border-color: var(--border-light);
