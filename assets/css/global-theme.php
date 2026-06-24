@@ -2348,24 +2348,31 @@ button > i:only-child, a > i:only-child                {
 /* Lucide compatibility after FA migration */
 .lucide-icon {
     display: inline-flex !important;
-    vertical-align: middle;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    min-width: 1rem !important;
+    min-height: 1rem !important;
+    flex: 0 0 auto !important;
+    vertical-align: -0.125em !important;
     line-height: 1 !important;
 }
 .lucide-icon.fa-lg {
-    width: 1.333333em !important;
-    height: 1.333333em !important;
+    width: 1.125rem !important;
+    height: 1.125rem !important;
 }
 .lucide-icon.fa-2x {
-    width: 2em !important;
-    height: 2em !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
 }
 .lucide-icon.fa-3x {
-    width: 3em !important;
-    height: 3em !important;
+    width: 2rem !important;
+    height: 2rem !important;
 }
 .lucide-icon.fa-4x {
-    width: 4em !important;
-    height: 4em !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
 }
 
 </style>

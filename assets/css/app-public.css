@@ -15411,7 +15411,16 @@ body.dark-mode .scroll-btn.down {
     border: none !important;
     font-weight: 400 !important;
     font-family: 'Mukta', 'Noto Sans Devanagari', sans-serif;
+    width: 100%;
     min-height: 42px;
+}
+.pfl-login-menu li a .pfl-lm-text {
+    color: inherit !important;
+    min-width: 0 !important;
+}
+.pfl-login-menu li a .pfl-lm-text strong,
+.pfl-login-menu li a .pfl-lm-text small {
+    color: inherit !important;
 }
 .pfl-login-menu li a:hover { background: #f4faf5 !important; }
 
@@ -22007,9 +22016,31 @@ select:focus{
 }
 .pfl-quick-links > li.has-drop .pfl-drop a,
 .pfl-quick-links .pfl-drop a{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    width: 100% !important;
   min-height: 34px !important;
   padding: 7px 10px !important;
   font-size: .84rem !important;
+    color: var(--text-primary, #1f2937) !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+.pfl-quick-links > li.has-drop .pfl-drop a i,
+.pfl-quick-links .pfl-drop a i{
+    width: 1.15rem !important;
+    min-width: 1.15rem !important;
+    height: 1.15rem !important;
+    margin: 0 !important;
+    flex: 0 0 1.15rem !important;
+}
+.pfl-quick-links > li.has-drop .pfl-drop a > span,
+.pfl-quick-links .pfl-drop a > span{
+    min-width: 0 !important;
 }
 .verify-shell,
 .verify-card,

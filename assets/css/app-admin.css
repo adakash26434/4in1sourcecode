@@ -147,15 +147,24 @@ body.admin-shell {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: var(--space-3);
   margin-bottom: var(--space-5);
-}
+    color: #2c3e50;
 .admin-stat-card {
   background: var(--surface-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: var(--space-4);
   display: flex;
+    width: 100%;
   align-items: center;
   gap: var(--space-3);
+.pfl-login-menu li a .pfl-lm-text {
+    color: inherit !important;
+    min-width: 0 !important;
+}
+.pfl-login-menu li a .pfl-lm-text strong,
+.pfl-login-menu li a .pfl-lm-text small {
+    color: inherit !important;
+}
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .admin-stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
@@ -15752,9 +15761,31 @@ select:focus{
 }
 .pfl-quick-links > li.has-drop .pfl-drop a,
 .pfl-quick-links .pfl-drop a{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    width: 100% !important;
   min-height: 34px !important;
   padding: 7px 10px !important;
   font-size: .84rem !important;
+    color: var(--text-primary, #1f2937) !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+.pfl-quick-links > li.has-drop .pfl-drop a i,
+.pfl-quick-links .pfl-drop a i{
+    width: 1.15rem !important;
+    min-width: 1.15rem !important;
+    height: 1.15rem !important;
+    margin: 0 !important;
+    flex: 0 0 1.15rem !important;
+}
+.pfl-quick-links > li.has-drop .pfl-drop a > span,
+.pfl-quick-links .pfl-drop a > span{
+    min-width: 0 !important;
 }
 .verify-shell,
 .verify-card,
