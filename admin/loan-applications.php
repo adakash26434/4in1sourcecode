@@ -168,10 +168,10 @@ try {
     $totalAmount = $db->query("SELECT SUM(loan_amount) FROM loan_applications WHERE status='pending'")->fetchColumn();
 } catch (Exception $e) { $applications = []; $total = 0; $totalPages = 0; $totalAmount = 0; }
 
-$pendingCount    = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM loan_applications WHERE status='pending'", '[loan-applications pending]') : 0;
-$approvedCount   = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM loan_applications WHERE status='approved'", '[loan-applications approved]') : 0;
-$rejectedCount   = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM loan_applications WHERE status='rejected'", '[loan-applications rejected]') : 0;
-$processingCount = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM loan_applications WHERE status='processing'", '[loan-applications processing]') : 0;
+$pendingCount    = core_safe_count($db, "SELECT COUNT(*) FROM loan_applications WHERE status='pending'", '[loan-applications pending]');
+$approvedCount   = core_safe_count($db, "SELECT COUNT(*) FROM loan_applications WHERE status='approved'", '[loan-applications approved]');
+$rejectedCount   = core_safe_count($db, "SELECT COUNT(*) FROM loan_applications WHERE status='rejected'", '[loan-applications rejected]');
+$processingCount = core_safe_count($db, "SELECT COUNT(*) FROM loan_applications WHERE status='processing'", '[loan-applications processing]');
 
 /* ─── Single view ─── */
 $viewApp = null;
