@@ -493,4 +493,37 @@ function previewPhotoMot(input) {
 }
 </script>
 
-<?php require_once 'includes/admin-footer.php'; ?>
+<?php 
+
+
+
+
+/* ── Client-side search (खोज बक्स) ── */
+(function() {
+    var inp = document.querySelector('#mot-list .admin-table-search');
+    var cnt = document.querySelector('#mot-list .search-count');
+    if (!inp) return;
+    
+    function filter() {
+        var q = inp.value.toLowerCase();
+        var pane = document.querySelector('#mot-list .tab-pane.active');
+        if (!pane) return;
+        var rows = pane.querySelectorAll('tbody tr');
+        var vis = 0;
+        rows.forEach(function(r) {
+            var show = r.textContent.toLowerCase().includes(q);
+            r.style.display = show ? '' : 'none';
+            if (show) vis++;
+        });
+        if (cnt) cnt.textContent = vis + ' / ' + rows.length;
+    }
+    
+    inp.addEventListener('input', filter);
+    document.addEventListener('shown.bs.tab', function(e) {
+        if (e.target.id === 'mot-sub-live' || e.target.id === 'mot-sub-arch') filter();
+    });
+    filter();
+})();
+
+
+<?php require_once 'includes/admin-footer.php'; ?> ?>
