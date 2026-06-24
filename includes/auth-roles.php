@@ -5,7 +5,7 @@
  * तपाईंको existing `isAdminLoggedIn()` र `requireAdminLogin()`
  * (config.php मा छन्) लाई extend गरेर role hierarchy add गर्छ।
  *
- * Hierarchy:  superadmin (3)  >  admin (2)  >  staff (1)
+ * Hierarchy:  superadmin (3)  >  admin (2)  >  staff/editor (1)
  *
  * Usage:
  *   require_role('admin');     // staff blocked, admin+ allowed
@@ -23,7 +23,11 @@ if (!function_exists('admin_db_role_is_superadmin')) {
 
 if (!function_exists('current_admin_role')) {
     function current_admin_role(): string {
-        return $_SESSION['admin_role'] ?? 'admin';
+        if (!empty($_SESSION['admin_role'])) {
+            return strtolower(trim((string) $_SESSION['admin_role']));
+        }
+
+        return !empty($_SESSION['is_superadmin']) ? 'superadmin' : 'admin';
     }
 }
 
@@ -36,7 +40,7 @@ if (!function_exists('role_level')) {
         if ($r === 'admin') {
             return 2;
         }
-        if ($r === 'staff') {
+        if ($r === 'staff' || $r === 'editor') {
             return 1;
         }
         return 0;

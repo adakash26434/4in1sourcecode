@@ -187,6 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string) ($_POST['action'] ?? '') =
                                 $_SESSION['admin_id']        = $user['id'];
                                 $_SESSION['admin_username']  = $user['username'];
                                 $_SESSION['admin_name']      = $user['full_name'] ?: $user['username'];
+                                $_SESSION['admin_role']      = (string)($user['role'] ?? 'admin');
                                 $_SESSION['is_superadmin']   = admin_db_role_is_superadmin($user['role'] ?? '');
                                 $_SESSION['admin_last_login']    = $user['last_login'] ?? null;
                                 $_SESSION['admin_last_activity'] = time();
@@ -335,6 +336,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string) ($_POST['action'] ?? '') =
                         $_SESSION['admin_id']        = $user['id'];
                         $_SESSION['admin_username']  = $user['username'];
                         $_SESSION['admin_name']      = $user['full_name'] ?: $user['username'];
+                        $_SESSION['admin_role']      = (string)($user['role'] ?? 'admin');
                         $_SESSION['is_superadmin']   = admin_db_role_is_superadmin($user['role'] ?? '');
                         $_SESSION['admin_last_login']    = $user['last_login'] ?? null;
                         $_SESSION['admin_last_activity'] = time();
