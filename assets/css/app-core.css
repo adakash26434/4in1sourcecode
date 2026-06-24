@@ -288,7 +288,6 @@ input, select, textarea, button {
     --z-sidebar:            950;
     --z-modal:              1040;
     --z-toast:              1060;
-    --z-tooltip:            1070;
 
     /* Transition defaults */
     --transition-fast:      all .15s ease;
