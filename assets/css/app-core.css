@@ -116,7 +116,6 @@ input, select, textarea, button {
 
 /* ── Universal Form Field (.field-coop) ── */
 .field-coop {
-    padding: 11px 14px;
     border: 1.5px solid var(--border-color);
     border-radius: var(--radius-md, 10px);
     font-family: inherit; font-size: .95rem;
