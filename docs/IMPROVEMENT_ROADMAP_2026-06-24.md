@@ -64,6 +64,29 @@ Validation notes:
 - प्रत्येक step पछि `assets/css/app-core.css` diagnostics मा error-free result आएको छ
 - edits ले business logic वा runtime PHP flow नछोई CSS redundancy मात्र घटाएको छ
 
+### Execution Update (Bootstrap Consolidation)
+
+- `core/init.php` मा shared bootstrap helpers विस्तार गरिएको:
+	- local debug request detection
+	- runtime error policy apply helper
+	- optional include loader helper
+	- member-auth include helper
+	- exception forwarding helper
+	- fatal type detection + shared fatal page renderer
+- `admin/_bootstrap.php` र `member/_bootstrap.php` बाट repeated shutdown/exception logic significantly dedupe गरिएको
+- fatal UI/flow behavior preserve गरिएको, र debug-detail escaping correctness bug पनि fix गरिएको
+
+Recent pushed commits (bootstrap stream):
+
+- `561b1b5` — local debug-request detection centralized
+- `311d3ab` — runtime error policy shared across wrappers
+- `ec8ac7d` — debug helper call simplification
+- `6714bb6` — member-auth include consolidation
+- `9893e18` — optional include dedupe in core init
+- `68f5735` — exception forwarding shared
+- `f29540d` — portal fatal-page renderer centralized
+- `e073fdc` — debug-detail escaping fix post-consolidation
+
 ---
 
 ## 2. Priority Model
