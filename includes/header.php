@@ -998,7 +998,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                             <li><a href="<?php echo SITE_URL; ?>about.php#values"><i class="fas fa-heart"></i> <?php echo htmlspecialchars(isEnglish() ? $valuesMenuLabelEn : $valuesMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>about.php#chairman"><i class="fas fa-user-tie"></i> <?php echo htmlspecialchars(isEnglish() ? $chairmanMenuLabelEn : $chairmanMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>about.php#ceo-message"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i> <?php echo htmlspecialchars(isEnglish() ? $ceoMenuLabelEn : $ceoMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>institutional-profile.php"><i class="lucide-icon" aria-hidden="true" data-lucide="building-columns"></i> <?php echo isEnglish() ? 'Institutional Profile' : 'संस्थागत प्रोफाइल'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>institutional-profile.php"><i class="fas fa-building-columns"></i> <?php echo isEnglish() ? 'Institutional Profile' : 'संस्थागत प्रोफाइल'; ?></a></li>
                         </ul>
                     </li>
                     <li class="has-dropdown <?php echo $currentPage == 'services' ? 'active' : ''; ?>">
@@ -1224,7 +1224,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                                     <li><a href="<?php echo SITE_URL; ?>about.php#values"><i class="fas fa-heart"></i> <?php echo htmlspecialchars(isEnglish() ? $valuesMenuLabelEn : $valuesMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
                                     <li><a href="<?php echo SITE_URL; ?>about.php#chairman"><i class="fas fa-user-tie"></i> <?php echo htmlspecialchars(isEnglish() ? $chairmanMenuLabelEn : $chairmanMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
                                     <li><a href="<?php echo SITE_URL; ?>about.php#ceo-message"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i> <?php echo htmlspecialchars(isEnglish() ? $ceoMenuLabelEn : $ceoMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>institutional-profile.php"><i class="lucide-icon" aria-hidden="true" data-lucide="building-columns"></i> <?php echo isEnglish() ? 'Institutional Profile' : 'संस्थागत प्रोफाइल'; ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>institutional-profile.php"><i class="fas fa-building-columns"></i> <?php echo isEnglish() ? 'Institutional Profile' : 'संस्थागत प्रोफाइल'; ?></a></li>
                                     <?php
                                     // Fetch dynamic pages that should show in about menu
                                     // Safe query with error handling for missing columns
