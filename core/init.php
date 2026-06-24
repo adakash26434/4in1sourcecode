@@ -57,8 +57,12 @@ if (!defined('PORTAL')) {
 }
 
 // ─── Root path detect — init.php कहाँ छ त्यसबाट ───
-define('CORE_PATH', __DIR__);
-define('ROOT_PATH', dirname(__DIR__) . '/');
+if (!defined('CORE_PATH')) {
+    define('CORE_PATH', __DIR__);
+}
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', dirname(__DIR__) . '/');
+}
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 1: PHP Version + Extension Check
