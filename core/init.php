@@ -153,6 +153,63 @@ if (!function_exists('core_render_portal_fatal_page')) {
     }
 }
 
+if (!function_exists('core_register_portal_fatal_handler')) {
+    function core_register_portal_fatal_handler(array $opts): void {
+        $title = (string)($opts['title'] ?? 'त्रुटि');
+        $heading = (string)($opts['heading'] ?? 'केहि गलत भयो');
+        $message = (string)($opts['message'] ?? 'अप्रत्याशित त्रुटि भयो।');
+        $home = (string)($opts['home'] ?? '/');
+        $buttonText = (string)($opts['buttonText'] ?? 'होमपेजमा फर्किनुहोस्');
+        $logPrefix = (string)($opts['logPrefix'] ?? 'portal-fatal');
+
+        register_shutdown_function(static function () use ($title, $heading, $message, $home, $buttonText, $logPrefix): void {
+            $err = error_get_last();
+            if (!$err || !core_is_fatal_error_type((int)($err['type'] ?? 0))) {
+                return;
+            }
+            if (headers_sent()) {
+                echo "\n<!-- Fatal: see server error log -->\n";
+                return;
+            }
+
+            @http_response_code(500);
+            header('Content-Type: text/html; charset=utf-8');
+
+            $isDebug = core_is_debug_request();
+            $debugDetail = ($err['message'] ?? 'Unknown error')
+                . ' @ '
+                . basename((string)($err['file'] ?? 'unknown'))
+                . ':'
+                . (string)($err['line'] ?? 0);
+
+            error_log('[' . $logPrefix . '] '
+                . ($err['message'] ?? 'Unknown error')
+                . ' @ '
+                . (string)($err['file'] ?? 'unknown')
+                . ':'
+                . (string)($err['line'] ?? 0));
+
+            core_render_portal_fatal_page([
+                'title' => $title,
+                'heading' => $heading,
+                'message' => $message,
+                'home' => $home,
+                'buttonText' => $buttonText,
+                'showDetail' => $isDebug,
+                'detail' => $debugDetail,
+            ]);
+        });
+    }
+}
+
+if (!function_exists('core_register_portal_exception_handler')) {
+    function core_register_portal_exception_handler(string $logPrefix): void {
+        set_exception_handler(static function ($e) use ($logPrefix): void {
+            core_forward_exception_to_shutdown($e, $logPrefix);
+        });
+    }
+}
+
 // ─── Root path detect — init.php कहाँ छ त्यसबाट ───
 if (!defined('CORE_PATH')) {
     define('CORE_PATH', __DIR__);

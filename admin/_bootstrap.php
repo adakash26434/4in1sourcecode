@@ -31,37 +31,13 @@ if (function_exists('core_apply_runtime_error_policy')) {
     core_apply_runtime_error_policy();
 }
 
-/* Friendly fatal handler — white screen कहिल्यै नदेखियोस् */
-register_shutdown_function(function () {
-    $err = error_get_last();
-    if (!$err || !core_is_fatal_error_type((int)$err['type'])) {
-        return;
-    }
-    if (headers_sent()) {
-        echo "\n<!-- Fatal: see server error log -->\n";
-        return;
-    }
-    @http_response_code(500);
-    header('Content-Type: text/html; charset=utf-8');
-
-    $isDebug = core_is_debug_request();
-    $msg = $isDebug
-        ? ($err['message'] . ' @ ' . basename($err['file']) . ':' . $err['line'])
-        : 'अप्रत्याशित त्रुटि भयो। कृपया पछि पुनः प्रयास गर्नुहोस्।';
-    $home = defined('ADMIN_URL') ? ADMIN_URL : '/admin/';
-    error_log('[admin-panel-fatal] ' . $err['message'] . ' @ ' . $err['file'] . ':' . $err['line']);
-    core_render_portal_fatal_page([
-        'title' => 'त्रुटि — Admin Panel',
-        'heading' => 'केहि गलत भयो',
-        'message' => 'Admin panel मा अप्रत्याशित त्रुटि भयो। केहि समय पछि पुनः प्रयास गर्नुहोस्।',
-        'home' => $home,
-        'buttonText' => 'लगिन पृष्ठमा फर्किनुहोस्',
-        'showDetail' => $isDebug,
-        'detail' => $msg,
-    ]);
-});
-
-/* Uncaught exception handler */
-set_exception_handler(function ($e) {
-    core_forward_exception_to_shutdown($e, 'admin-panel-exception');
-});
+/* Friendly fatal + exception handlers — shared core registrar */
+core_register_portal_fatal_handler([
+    'title' => 'त्रुटि — Admin Panel',
+    'heading' => 'केहि गलत भयो',
+    'message' => 'Admin panel मा अप्रत्याशित त्रुटि भयो। केहि समय पछि पुनः प्रयास गर्नुहोस्।',
+    'home' => (defined('ADMIN_URL') ? ADMIN_URL : '/admin/'),
+    'buttonText' => 'लगिन पृष्ठमा फर्किनुहोस्',
+    'logPrefix' => 'admin-panel-fatal',
+]);
+core_register_portal_exception_handler('admin-panel-exception');

@@ -24,38 +24,14 @@ if (function_exists('core_apply_runtime_error_policy')) {
     core_apply_runtime_error_policy();
 }
 
-/* Friendly fatal handler — white screen कहिल्यै नदेखियोस् */
-register_shutdown_function(function () {
-    $err = error_get_last();
-    if (!$err || !core_is_fatal_error_type((int)$err['type'])) {
-        return;
-    }
-    /* Output पहिले नै केहि गइसकेको छ भने rewrite गर्न सकिन्न */
-    if (headers_sent()) {
-        echo "\n<!-- Fatal: see server error log -->\n";
-        return;
-    }
-    @http_response_code(500);
-    header('Content-Type: text/html; charset=utf-8');
-
-    $isDebug = core_is_debug_request();
-    $msg = $isDebug
-        ? ($err['message'] . ' @ ' . basename($err['file']) . ':' . $err['line'])
-        : 'अप्रत्याशित त्रुटि भयो। कार्यालयमा सम्पर्क गर्नुहोस्।';
-    $home = defined('SITE_URL') ? SITE_URL : '/';
-    error_log('[member-panel-fatal] ' . $err['message'] . ' @ ' . $err['file'] . ':' . $err['line']);
-    core_render_portal_fatal_page([
-        'title' => 'त्रुटि — Member Portal',
-        'heading' => 'केहि गलत भयो',
-        'message' => 'हाम्रो team लाई स्वतः सूचित गरियो। केहि समय पछि पुनः प्रयास गर्नुहोस्।',
-        'home' => $home . 'member/login.php',
-        'buttonText' => 'लगिन पृष्ठमा फर्किनुहोस्',
-        'showDetail' => $isDebug,
-        'detail' => $msg,
-    ]);
-});
-
-/* Uncaught exception handler */
-set_exception_handler(function ($e) {
-    core_forward_exception_to_shutdown($e, 'member-panel-exception');
-});
+/* Friendly fatal + exception handlers — shared core registrar */
+$memberHome = (defined('SITE_URL') ? SITE_URL : '/') . 'member/login.php';
+core_register_portal_fatal_handler([
+    'title' => 'त्रुटि — Member Portal',
+    'heading' => 'केहि गलत भयो',
+    'message' => 'हाम्रो team लाई स्वतः सूचित गरियो। केहि समय पछि पुनः प्रयास गर्नुहोस्।',
+    'home' => $memberHome,
+    'buttonText' => 'लगिन पृष्ठमा फर्किनुहोस्',
+    'logPrefix' => 'member-panel-fatal',
+]);
+core_register_portal_exception_handler('member-panel-exception');
