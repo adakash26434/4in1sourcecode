@@ -2449,10 +2449,28 @@ img {
 .page-banner .breadcrumb-item.active { color: var(--white); }
 .page-banner .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,0.6); }
 @media (max-width: 768px) {
-    .page-banner h1 { font-size: 1.42rem; }
-    .page-banner .breadcrumb { font-size: 0.82rem; }
-}
+    body.header-v2 #mainNavV2 .nav-menu > li > a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        text-align: left !important;
+        white-space: nowrap !important;
+        position: relative !important;
+        padding: 12px 44px 12px 16px !important;
+    }
 
+    body.header-v2 #mainNavV2 .nav-menu > li > a .mnav-main-label {
+        display: block !important;
+        margin: 0 !important;
+        text-align: left !important;
+        white-space: nowrap !important;
+    }
+
+    .page-banner h1 { font-size: 1.42rem; }
+        width: 18px !important;
+        min-width: 18px !important;
+        height: 18px !important;
 /* ==============================================
    UNIFORM SUCCESS / TRACKING UI (Public Forms)
    ============================================== */
@@ -2460,8 +2478,8 @@ img {
     padding: 3rem 0;
     background: linear-gradient(135deg,#e8f5e9,#f1f8e9);
 }
-.form-success-card {
-    text-align: center;
+        font-size: .72rem !important;
+        flex: 0 0 18px !important;
 }
 .form-success-icon {
     font-size: 3.6rem;
@@ -23539,7 +23557,11 @@ body.auth-page,
     body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a > .fa-chevron-down,
     body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a > i[data-lucide="chevron-down"],
     body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a > i[data-lucide="chevron-down"] {
-        margin-left: auto !important;
+        position: absolute !important;
+        right: 14px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin: 0 !important;
     }
 
     body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a::before,

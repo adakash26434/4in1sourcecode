@@ -585,19 +585,20 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
 
             /* Nav items — bigger touch targets, cleaner look */
             .main-nav .nav-menu > li > a {
-                padding: 13px 16px 13px 20px !important;
+                padding: 12px 44px 12px 16px !important;
                 font-size: 0.97rem !important;
                 font-weight: 500 !important;
                 line-height: 1.4 !important;
-                display: grid !important;
-                grid-template-columns: 20px minmax(0, 1fr) auto !important;
+                display: flex !important;
                 align-items: center !important;
-                column-gap: 8px !important;
+                justify-content: flex-start !important;
+                gap: 8px !important;
                 border-bottom: 1px solid rgba(255,255,255,.07) !important;
                 border-radius: 0 !important;
                 transition: background .15s !important;
                 text-align: left !important;
                 white-space: nowrap !important;
+                position: relative !important;
             }
             .main-nav .nav-menu > li > a > .mnav-main-label {
                 text-align: left !important;
@@ -606,9 +607,9 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             .main-nav .nav-menu > li > a .mnav-main-icon,
             .main-nav .nav-menu > li > a > .lucide-icon:first-child,
             .main-nav .nav-menu > li > a > svg:first-child {
-                width: 20px !important;
-                min-width: 20px !important;
-                height: 20px !important;
+                width: 18px !important;
+                min-width: 18px !important;
+                height: 18px !important;
             }
             .main-nav .nav-menu > li.has-dropdown > a > .lucide-chevron-down,
             .main-nav .nav-menu > li.has-sub > a > .lucide-chevron-down,
@@ -616,8 +617,11 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             .main-nav .nav-menu > li.has-sub > a > .fa-chevron-down,
             .main-nav .nav-menu > li.has-dropdown > a > i[data-lucide="chevron-down"],
             .main-nav .nav-menu > li.has-sub > a > i[data-lucide="chevron-down"] {
-                justify-self: end !important;
-                margin-left: 0 !important;
+                position: absolute !important;
+                right: 14px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                margin: 0 !important;
             }
             .main-nav .nav-menu > li:last-child > a { border-bottom: none !important; }
 
