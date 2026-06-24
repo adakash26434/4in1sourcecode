@@ -84,6 +84,15 @@ if (!function_exists('core_apply_runtime_error_policy')) {
     }
 }
 
+if (!function_exists('core_require_member_auth')) {
+    function core_require_member_auth(): void {
+        $memberAuthPath = ROOT_PATH . 'includes/member-auth.php';
+        if (file_exists($memberAuthPath)) {
+            require_once $memberAuthPath;
+        }
+    }
+}
+
 // ─── Root path detect — init.php कहाँ छ त्यसबाट ───
 if (!defined('CORE_PATH')) {
     define('CORE_PATH', __DIR__);
@@ -232,9 +241,7 @@ switch (PORTAL) {
 
     case 'member':
         // Member auth helpers
-        if (file_exists(ROOT_PATH . 'includes/member-auth.php')) {
-            require_once ROOT_PATH . 'includes/member-auth.php';
-        }
+        core_require_member_auth();
         // Member-specific security headers
         if (function_exists('memberSecurityHeaders')) {
             memberSecurityHeaders();
@@ -252,9 +259,7 @@ switch (PORTAL) {
             site_license_public_guard();
         }
         // Member auth helpers (for nav badge, logged-in member check)
-        if (file_exists(ROOT_PATH . 'includes/member-auth.php')) {
-            require_once ROOT_PATH . 'includes/member-auth.php';
-        }
+        core_require_member_auth();
         break;
 }
 
