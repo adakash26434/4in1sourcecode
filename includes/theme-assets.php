@@ -167,9 +167,9 @@ if (document.readyState !== "loading" && typeof lucide !== "undefined") {
         coopThemeLink('assets/css/forms-tables.css');
         coopThemeLink('assets/css/admin-ui-unified.css');
 
-        /* ── 1.6. Load admin-specific fixes (tabs, forms, tables, buttons) ── */
+        /* ── 1.6. Load SERIOUS admin-specific overrides (targets actual CSS classes) ── */
         if (in_array($panel, ['admin', 'admin-auth', 'shell'], true)) {
-            coopThemeLink('assets/css/admin-fixes-deep.css');
+            coopThemeLink('assets/css/admin-serious-fix.css');
         }
 
         /* ── 2. Load UI/UX enhancements (color fixes, contrast, accessibility) ── */
