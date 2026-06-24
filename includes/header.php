@@ -486,7 +486,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             .pfl-top-right .pfl-lang-wrap {
                 display: inline-flex !important;
                 align-items: center;
-                gap: 2px;
+                gap: 4px;
                 background: transparent;
                 border: 0;
                 box-shadow: none;
@@ -494,11 +494,14 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 padding: 0;
             }
             .pfl-top-right .pfl-lang-wrap a {
-                min-width: 24px;
+                width: 30px !important;
+                min-width: 30px !important;
+                height: 30px !important;
+                min-height: 30px !important;
                 text-align: center;
-                padding: 2px 6px;
+                padding: 0 !important;
                 border-radius: 999px;
-                font-size: 9px;
+                font-size: 10px;
                 line-height: 1;
                 font-weight: 800;
                 letter-spacing: .1px;
@@ -506,6 +509,13 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 border: 1px solid rgba(255,255,255,.2);
                 background: rgba(255,255,255,.10);
                 transition: all .18s ease;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 0 !important;
+            }
+            .pfl-top-right .pfl-lang-wrap .pfl-lang-link .pfl-lang-dot {
+                display: none !important;
             }
             .pfl-top-right .pfl-lang-wrap a.active {
                 background: #fff !important;
@@ -665,25 +675,23 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             .pfl-top-right { gap: 4px !important; }
             .pfl-top-right .pfl-lang-wrap { display: inline-flex !important; }
             .pfl-top-right .pfl-lang-wrap .pfl-lang-divider { display: none !important; }
-            .pfl-top-right .pfl-lang-wrap { padding: 2px 3px; gap: 2px; }
+            .pfl-top-right .pfl-lang-wrap { padding: 0 !important; gap: 4px !important; }
             .pfl-top-right .pfl-lang-wrap a {
-                min-width: 26px;
-                font-size: 10px;
-                padding: 3px 5px;
+                width: 28px !important;
+                min-width: 28px !important;
+                height: 28px !important;
+                min-height: 28px !important;
+                font-size: 9px !important;
+                padding: 0 !important;
             }
             .pfl-top-right .pfl-lang-wrap .pfl-lang-link {
-                gap: 3px !important;
+                gap: 0 !important;
                 border-radius: 999px !important;
-                min-height: 22px !important;
-            }
-            .pfl-top-right .pfl-lang-wrap .pfl-lang-link .pfl-lang-dot {
-                width: 6px !important;
-                height: 6px !important;
-                border-width: 1.35px !important;
+                min-height: 28px !important;
             }
             .pfl-top-right .pfl-lang-wrap .pfl-lang-link span:not(.pfl-lang-dot) {
                 display: inline !important;
-                font-size: 10px !important;
+                font-size: 9px !important;
                 line-height: 1 !important;
             }
             .pfl-top-right .pfl-login-toggle { padding: 0 8px; }

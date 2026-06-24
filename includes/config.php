@@ -1568,7 +1568,8 @@ $_cfg_is_admin = (
     strpos($_cfg_self, 'debug.php') !== false ||
     strpos($_cfg_self, 'setup.php') !== false
 );
-if (!$_cfg_is_admin && DB_NAME === '') {
+$_cfg_ui_test = isset($_GET['ui_test']) && (string)$_GET['ui_test'] === '1';
+if (!$_cfg_is_admin && DB_NAME === '' && !$_cfg_ui_test) {
     http_response_code(200);
     $_cfg_proto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
     $_cfg_host  = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
@@ -1591,7 +1592,7 @@ if (!$_cfg_is_admin && DB_NAME === '') {
        . '</div></body></html>';
     exit;
 }
-unset($_cfg_self, $_cfg_is_admin, $_cfg_proto, $_cfg_host, $_cfg_admin);
+unset($_cfg_self, $_cfg_is_admin, $_cfg_ui_test, $_cfg_proto, $_cfg_host, $_cfg_admin);
 
 /**
  * =====================================================

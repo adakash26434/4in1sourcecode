@@ -55,6 +55,12 @@
         toggleIcon.classList.toggle('fa-xmark', isOpen);
         toggleIcon.classList.toggle('fa-bars', !isOpen);
       }
+      if (closeBtn) {
+        // JS-level safety so leaked CSS cannot leave a floating close icon visible.
+        closeBtn.style.visibility = isOpen ? 'visible' : 'hidden';
+        closeBtn.style.opacity = isOpen ? '1' : '0';
+        closeBtn.style.pointerEvents = isOpen ? 'auto' : 'none';
+      }
       nav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     }
 

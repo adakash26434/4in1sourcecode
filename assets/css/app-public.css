@@ -23319,3 +23319,53 @@ body.auth-page,
         display: none !important;
     }
 }
+
+/* ════════════════════════════════════════════════════════════
+   v13.2 — Compact Language Chips (header-v2 mobile)
+   EN/NP should appear as small round pills, not a large switch.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 991.98px) {
+    body.header-v2 .pfl-top-right .pfl-lang-wrap {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    body.header-v2 .pfl-top-right .pfl-lang-wrap .pfl-lang-divider {
+        display: none !important;
+    }
+
+    body.header-v2 .pfl-top-right .pfl-lang-wrap .pfl-lang-link {
+        width: 30px !important;
+        min-width: 30px !important;
+        height: 30px !important;
+        min-height: 30px !important;
+        padding: 0 !important;
+        border-radius: 999px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        font-size: 10px !important;
+        line-height: 1 !important;
+        font-weight: 800 !important;
+        letter-spacing: .2px !important;
+        border: 1px solid rgba(255,255,255,.22) !important;
+        background: rgba(255,255,255,.10) !important;
+    }
+
+    body.header-v2 .pfl-top-right .pfl-lang-wrap .pfl-lang-link .pfl-lang-dot {
+        display: none !important;
+    }
+
+    body.header-v2 .pfl-top-right .pfl-lang-wrap .pfl-lang-link.active {
+        background: #fff !important;
+        color: #14532d !important;
+        border-color: rgba(255,255,255,.75) !important;
+    }
+}
