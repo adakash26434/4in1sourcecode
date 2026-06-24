@@ -481,33 +481,43 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 display: inline-flex !important;
                 align-items: center;
                 gap: 2px;
-                background: rgba(255,255,255,.16);
-                border: 1px solid rgba(255,255,255,.24);
-                box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+                background: transparent;
+                border: 0;
+                box-shadow: none;
                 border-radius: 999px;
-                padding: 2px 3px;
+                padding: 0;
             }
             .pfl-top-right .pfl-lang-wrap a {
-                min-width: 26px;
+                min-width: 24px;
                 text-align: center;
-                padding: 3px 7px;
+                padding: 2px 6px;
                 border-radius: 999px;
-                font-size: 9.5px;
+                font-size: 9px;
                 line-height: 1;
                 font-weight: 800;
                 letter-spacing: .1px;
                 color: rgba(255,255,255,.92) !important;
+                border: 1px solid rgba(255,255,255,.2);
+                background: rgba(255,255,255,.10);
                 transition: all .18s ease;
             }
             .pfl-top-right .pfl-lang-wrap a.active {
                 background: #fff !important;
                 color: #14532d !important;
-                box-shadow: 0 1px 3px rgba(0,0,0,.18);
+                border-color: rgba(255,255,255,.72);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
             }
             .pfl-top-right .pfl-lang-wrap a:not(.active):hover {
                 background: rgba(255,255,255,.22) !important;
             }
-            .pfl-top-right .pfl-dark-wrap > a i { font-size: 14px; }
+            .pfl-top-right .pfl-dark-wrap > a {
+                min-width: 30px !important;
+                width: 30px !important;
+                height: 30px !important;
+                padding: 0 !important;
+                border-radius: 8px !important;
+            }
+            .pfl-top-right .pfl-dark-wrap > a i { font-size: 13px; }
             .pfl-login-drop-wrap { position: relative; z-index: 210000; }
             .pfl-login-menu { z-index: 210001; right: 0; left: auto; }
             .pfl-top-right a,
@@ -658,10 +668,11 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             .pfl-top-right .pfl-lang-wrap .pfl-lang-link {
                 gap: 3px !important;
                 border-radius: 999px !important;
+                min-height: 22px !important;
             }
             .pfl-top-right .pfl-lang-wrap .pfl-lang-link .pfl-lang-dot {
-                width: 8px !important;
-                height: 8px !important;
+                width: 6px !important;
+                height: 6px !important;
                 border-width: 1.35px !important;
             }
             .pfl-top-right .pfl-lang-wrap .pfl-lang-link span:not(.pfl-lang-dot) {

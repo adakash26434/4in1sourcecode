@@ -1012,9 +1012,25 @@ if ($__uiTestMode):
             nav.classList.remove('nav-open','open','active');
             nav.setAttribute('aria-hidden','true');
         }
+        ['menuOverlay','pflMobileBackdrop'].forEach(function(id){
+            var el = byId(id);
+            if (el) el.classList.remove('active');
+        });
+        q('.mobile-nav-backdrop') && q('.mobile-nav-backdrop').classList.remove('active');
         document.body.classList.remove('mobile-nav-open');
         document.documentElement.classList.remove('mobile-nav-open');
+        document.body.style.top = '';
+        document.body.style.overflow = '';
+        if (nav) {
+            nav.querySelectorAll('.has-dropdown.open, .has-sub.open').forEach(function (el) {
+                el.classList.remove('open');
+            });
+        }
         log('force reset done');
+        setTimeout(function(){
+            var s = menuState();
+            log((s.ok ? 'OK ' : 'WARN ') + 'after reset -> ' + s.msg);
+        }, 60);
     }
     function buildPanel(){
         var panel = document.createElement('aside');
