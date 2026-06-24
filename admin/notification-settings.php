@@ -498,7 +498,7 @@ require_once 'includes/admin-ui.php';
                                    id="smtpPass"
                                    placeholder="<?php echo getSetting('smtp_password','') ? '(सुरक्षित छ — बदल्न नयाँ password लेख्नुहोस्)' : 'Password यहाँ राख्नुहोस्'; ?>">
                             <button class="btn btn-outline-secondary" type="button"
-                                    onclick="let f=document.getElementById('smtpPass');f.type=f.type=='password'?'text':'password';">
+                                    onclick="let f=document.getElementById('smtpPass');f.type=f.type=='password'?'text':'password';" aria-label="View" title="View">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>

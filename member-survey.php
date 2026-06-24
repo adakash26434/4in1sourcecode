@@ -115,7 +115,7 @@ require_once 'includes/header.php';
                     <div class="text-muted small mb-2"><?php echo isEnglish() ? 'Your Tracking ID — save this!' : 'तपाईंको Tracking ID — सुरक्षित राख्नुहोस्!'; ?></div>
                     <div class="d-flex align-items-center gap-2 mb-2">
                         <div class="form-tracking-id" id="srvTrkId"><?php echo e($trackingId); ?></div>
-                        <button type="button" onclick="copyTrk('srvTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i data-lucide="copy"></i></button>
+                        <button type="button" onclick="copyTrk('srvTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i></button>
                     </div>
                     <div class="form-tracking-help"><a href="application-tracker.php" class="text-success text-decoration-none fw-semibold">यहाँ बाट</a> Application Tracker मा स्थिति हेर्नुहोस्।</div>
                 </div>

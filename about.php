@@ -208,7 +208,7 @@ $valuesTitleEn = getSetting('values_content_title_en', 'Our Core Values');
         <div class="section-header text-center mb-5" data-aos="fade-up">
             <div class="section-badge-wrap">
                 <span class="section-badge">
-                    <i class="fas fa-eye"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i>
                     <?php echo isEnglish() ? 'Our Purpose' : 'हाम्रो उद्देश्य'; ?>
                 </span>
             </div>
@@ -220,7 +220,7 @@ $valuesTitleEn = getSetting('values_content_title_en', 'Our Core Values');
                 <div class="vision-card-v2 vision">
                     <div class="vision-card-glow"></div>
                     <div class="vision-icon-v2">
-                        <i class="fas fa-eye"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i>
                     </div>
                     <div class="vision-card-content coop-prose">
                         <h4><?php echo htmlspecialchars(isEnglish() ? $visionTitleEn : $visionTitleNp, ENT_QUOTES, 'UTF-8'); ?></h4>
@@ -356,7 +356,7 @@ $ceoDesignationEn = trim((string)getSetting('ceo_designation_en', 'Chief Executi
             <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
                 <div class="value-card">
                     <div class="value-icon">
-                        <i class="fas fa-handshake"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="handshake"></i>
                     </div>
                     <h5><?php echo isEnglish() ? 'Integrity' : 'इमानदारिता'; ?></h5>
                 </div>
@@ -364,7 +364,7 @@ $ceoDesignationEn = trim((string)getSetting('ceo_designation_en', 'Chief Executi
             <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="value-card">
                     <div class="value-icon">
-                        <i class="fas fa-eye"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i>
                     </div>
                     <h5><?php echo isEnglish() ? 'Transparency' : 'पारदर्शिता'; ?></h5>
                 </div>
@@ -372,7 +372,7 @@ $ceoDesignationEn = trim((string)getSetting('ceo_designation_en', 'Chief Executi
             <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="value-card">
                     <div class="value-icon">
-                        <i class="fas fa-users"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="users"></i>
                     </div>
                     <h5><?php echo isEnglish() ? 'Cooperation' : 'सहयोग'; ?></h5>
                 </div>
@@ -380,7 +380,7 @@ $ceoDesignationEn = trim((string)getSetting('ceo_designation_en', 'Chief Executi
             <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="value-card">
                     <div class="value-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="star"></i>
                     </div>
                     <h5><?php echo isEnglish() ? 'Excellence' : 'उत्कृष्टता'; ?></h5>
                 </div>
@@ -411,7 +411,7 @@ $ceoDesignationEn = trim((string)getSetting('ceo_designation_en', 'Chief Executi
                         <?php if ($member['photo']): ?>
                             <img src="<?php echo $member['photo']; ?>" loading="lazy"  alt="<?php echo $member['name']; ?>">
                         <?php else: ?>
-                            <div class="team-placeholder-circular"><i class="fas fa-user"></i></div>
+                            <div class="team-placeholder-circular"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i></div>
                         <?php endif; ?>
                     </div>
                     <div class="team-info-circular">
@@ -438,7 +438,7 @@ $ceoDesignationEn = trim((string)getSetting('ceo_designation_en', 'Chief Executi
 
         <div class="text-center mt-4" data-aos="fade-up">
             <a href="team.php" class="btn btn-outline-primary btn-lg">
-                <i class="fas fa-users"></i> <?php echo isEnglish() ? 'View All Team Members' : 'सबै सदस्यहरू हेर्नुहोस्'; ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="users"></i> <?php echo isEnglish() ? 'View All Team Members' : 'सबै सदस्यहरू हेर्नुहोस्'; ?>
             </a>
         </div>
     </div>

@@ -41,7 +41,7 @@ $_sortClass = $tableSortable ? ' table-sortable' : '';
 <?php if ($tableSearch): ?>
 <div class="table-search-wrapper mb-3 d-flex justify-content-end">
     <div class="table-search-box">
-        <span class="table-search-icon"><i class="fas fa-search"></i></span>
+        <span class="table-search-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="search"></i></span>
         <input type="text" class="table-search-input"
                placeholder="खोज्नुहोस्…"
                data-table-id="<?php echo htmlspecialchars($tableId ?: 'dataTable', ENT_QUOTES); ?>"

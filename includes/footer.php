@@ -170,14 +170,14 @@ try {
         <div class="footer-bottom">
             <div class="container">
                 <p class="copyright">
-                    <i class="far fa-copyright"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="copyright"></i>
                     <?php echo $footerText; ?>
                 </p>
 
                 <!-- v10.3 (Issue #10): Footer policy links — admin बाट pages.php मा edit गर्न मिल्छ -->
                 <div class="footer-policy-links">
-                    <a href="<?php echo SITE_URL; ?>page.php?slug=privacy-policy">
-                        <i class="fas fa-shield-halved"></i>
+                        <a href="<?php echo SITE_URL; ?>page.php?slug=privacy-policy">
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="shield-halved"></i>
                         <?php echo isEnglish() ? 'Privacy Policy' : 'गोपनीयता नीति'; ?>
                     </a>
                     <span class="footer-policy-dot">•</span>
@@ -205,7 +205,7 @@ try {
                         </div>
                         <div class="visitor-counter">
                             <div class="visitor-item" title="<?php echo isEnglish() ? 'Total Visitors' : 'कुल भ्रमणकर्ता'; ?>">
-                                <i class="fas fa-users"></i>
+                                <i class="lucide-icon" aria-hidden="true" data-lucide="users"></i>
                                 <span><?php echo number_format($totalVisitors); ?></span>
                             </div>
                             <div class="visitor-item today" title="<?php echo isEnglish() ? "Today's Visitors" : 'आजका भ्रमणकर्ता'; ?>">
@@ -250,8 +250,8 @@ try {
         </button>
 
         <div class="useful-links-popup-box" id="usefulLinksBox">
-            <div class="useful-links-header">
-                <h5><i class="fas fa-link"></i> <?php echo isEnglish() ? 'Useful Links' : 'उपयोगी लिंकहरू'; ?></h5>
+                <div class="useful-links-header">
+                    <h5><i class="lucide-icon" aria-hidden="true" data-lucide="link"></i> <?php echo isEnglish() ? 'Useful Links' : 'उपयोगी लिंकहरू'; ?></h5>
                 <button type="button" class="useful-links-close" id="usefulLinksClose" aria-label="<?php echo isEnglish() ? 'Close' : 'बन्द गर्नुहोस्'; ?>"><i class="fas fa-times"></i></button>
             </div>
             <div class="useful-links-body">
@@ -259,7 +259,7 @@ try {
                 <a href="<?php echo $link['url']; ?>"
                    class="useful-link-row"
                    target="_blank">
-                    <i class="<?php echo $link['icon'] ?? 'fas fa-link'; ?>"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="link"></i>
                     <span><?php echo isEnglish() ? ($link['title'] ?? $link['title_np']) : ($link['title_np'] ?? $link['title']); ?></span>
                     <i class="fas fa-external-link-alt link-arrow"></i>
                 </a>
@@ -297,7 +297,7 @@ try {
                     <i class="fas fa-robot"></i>
                     <span><?php echo isEnglish() ? 'Help Assistant' : 'सहायता केन्द्र'; ?></span>
                 </div>
-                <button class="chatbot-close" id="chatbotClose">
+                <button class="chatbot-close" id="chatbotClose" aria-label="Close" title="Close">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -309,11 +309,11 @@ try {
 
                 <div class="chatbot-quick-actions">
                     <a href="<?php echo SITE_URL; ?>appointment.php" class="quick-action-btn">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="calendar-check"></i>
                         <?php echo isEnglish() ? 'Book Appointment' : 'भेटघाट बुक गर्नुहोस्'; ?>
                     </a>
                     <a href="<?php echo SITE_URL; ?>online-account.php" class="quick-action-btn">
-                        <i class="fas fa-user-plus"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="user-plus"></i>
                         <?php echo isEnglish() ? 'Open Account' : 'खाता खोल्नुहोस्'; ?>
                     </a>
                     <a href="<?php echo SITE_URL; ?>grievance.php" class="quick-action-btn">
@@ -333,7 +333,7 @@ try {
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFaq(this)">
                             <span><?php echo isEnglish() ? $faq['question_en'] : $faq['question']; ?></span>
-                            <i class="fas fa-chevron-down"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i>
                         </div>
                         <div class="faq-answer">
                             <?php echo isEnglish() ? $faq['answer_en'] : $faq['answer']; ?>
@@ -482,7 +482,7 @@ try {
 
                 <!-- Animated icon ring: search / mic state -->
                 <div class="smb-icon-ring" id="smbIconRing">
-                    <i class="fas fa-search" id="smbIconSearch"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="search"></i>
                     <i class="fas fa-microphone" id="smbIconMic" style="display:none;"></i>
                 </div>
 
@@ -827,6 +827,9 @@ try {
     <!-- Custom JS -->
     <script src="<?php echo SITE_URL; ?>assets/js/main.js"></script>
 
+    <!-- Init uniformity helpers (datepicker init + conservative a11y fixes) -->
+    <script src="<?php echo SITE_URL; ?>assets/js/init-uniformity.js"></script>
+
     <!-- Universal Phone/Email Validation — सबै public forms मा automatic -->
     <script src="<?php echo SITE_URL; ?>assets/js/form-validation.js"></script>
 
@@ -877,10 +880,10 @@ try {
 <!-- v9.6 Mobile bottom-nav (public) -->
 <nav class="mob-bottomnav" aria-label="Quick nav">
     <a href="<?php echo SITE_URL; ?>" class="mob-bn-item <?php echo ($currentPage??'')==='index'?'active':''; ?>"><i class="fas fa-house"></i><span><?php echo isEnglish()?'Home':'गृह'; ?></span></a>
-    <a href="<?php echo SITE_URL; ?>services.php" class="mob-bn-item <?php echo ($currentPage??'')==='services'?'active':''; ?>"><i class="fas fa-briefcase"></i><span><?php echo isEnglish()?'Services':'सेवा'; ?></span></a>
+    <a href="<?php echo SITE_URL; ?>services.php" class="mob-bn-item <?php echo ($currentPage??'')==='services'?'active':''; ?>"><i class="lucide-icon" aria-hidden="true" data-lucide="briefcase"></i><span><?php echo isEnglish()?'Services':'सेवा'; ?></span></a>
     <a href="<?php echo SITE_URL; ?>notices.php" class="mob-bn-item <?php echo ($currentPage??'')==='notices'?'active':''; ?>"><i class="fas fa-bullhorn"></i><span><?php echo isEnglish()?'Notices':'सूचना'; ?></span></a>
     <a href="<?php echo SITE_URL; ?>contact.php" class="mob-bn-item <?php echo ($currentPage??'')==='contact'?'active':''; ?>"><i class="fas fa-phone"></i><span><?php echo isEnglish()?'Contact':'सम्पर्क'; ?></span></a>
-    <a href="<?php echo SITE_URL; ?>member/" class="mob-bn-item"><i class="fas fa-user"></i><span><?php echo isEnglish()?'Member':'सदस्य'; ?></span></a>
+    <a href="<?php echo SITE_URL; ?>member/" class="mob-bn-item"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i><span><?php echo isEnglish()?'Member':'सदस्य'; ?></span></a>
 </nav>
 <script>document.body.classList.add('has-bottomnav');</script>
     <script src="<?php echo SITE_URL; ?>assets/js/v9-mobile-fix.js?v=9.11" defer></script>
@@ -891,7 +894,7 @@ function copyTrk(id,btn){
     navigator.clipboard.writeText(el.innerText.trim()).then(function(){
         btn.innerHTML='<i class="fas fa-check"></i>';
         btn.classList.add('btn-success');btn.classList.remove('btn-outline-success');
-        setTimeout(function(){btn.innerHTML='<i data-lucide="copy"></i>';btn.classList.remove('btn-success');btn.classList.add('btn-outline-success');},1800);
+        setTimeout(function(){btn.innerHTML='<i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i>';btn.classList.remove('btn-success');btn.classList.add('btn-outline-success');},1800);
     }).catch(function(){
         var r=document.createRange();r.selectNode(el);window.getSelection().removeAllRanges();window.getSelection().addRange(r);
     });
@@ -963,7 +966,7 @@ function copyTrk(id,btn){
     <!-- Open Account -->
     <a class="qh-item" role="menuitem"
        href="<?php echo SITE_URL; ?>online-account.php">
-      <span class="qh-ic qh-account"><i class="fas fa-landmark"></i></span>
+      <span class="qh-ic qh-account"><i class="lucide-icon" aria-hidden="true" data-lucide="landmark"></i></span>
       <span>खाता खोल्नुहोस्</span>
     </a>
 
@@ -1013,7 +1016,7 @@ function copyTrk(id,btn){
     </button>
     <button type="button" class="qh-item" role="menuitem"
       onclick="var t=document.getElementById('chatbotToggle');if(t)t.click();document.getElementById('qhLauncher').classList.remove('open');">
-      <span class="qh-ic help"><i class="fas fa-circle-question"></i></span>
+      <span class="qh-ic help"><i class="lucide-icon" aria-hidden="true" data-lucide="circle-question"></i></span>
       <span>सहायता / FAQ</span>
     </button>
     <?php if (!empty($usefulLinks)): ?>
@@ -1041,7 +1044,7 @@ function copyTrk(id,btn){
 </script>
 <div id="publicChatPanel" role="dialog" aria-label="Live Chat">
   <div class="pcp-h">
-    <i class="fas fa-headset"></i>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="headset"></i>
     <div>
       <div class="pcp-title">सहयोग केन्द्र</div>
       <div class="pcp-sub">हाम्रो टोलीसँग सिधा सम्पर्क</div>

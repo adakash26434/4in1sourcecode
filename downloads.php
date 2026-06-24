@@ -58,7 +58,7 @@ foreach ($downloads as $download) {
             <?php foreach ($categorizedDownloads as $category => $items): ?>
             <div class="download-category mb-5">
                 <h4 class="category-title">
-                    <i class="fas fa-folder-open"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="folder-open"></i>
                     <?php echo $categoryLabels[$category] ?? ucfirst($category); ?>
                 </h4>
                 <div class="row">

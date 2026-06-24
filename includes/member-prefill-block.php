@@ -30,7 +30,7 @@ if ($_pfMemNo === '' && is_array($_krow) && !empty($_krow['sadasyata_number'])) 
 $_pfAddr    = trim((string)(is_array($_krow) && !empty($_krow['permanent_address']) ? $_krow['permanent_address'] : ''));
 ?>
 <div class="coop-prefill-banner">
-    <i class="fas fa-circle-check"></i>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="circle-check"></i>
     <div><?php echo $_pEn
         ? 'Your name, member no., phone and email are <strong>auto-filled from KYC / Profile</strong>. Fill only the request details below.'
         : 'तपाईंको नाम, सदस्य नं., फोन र इमेल <strong>KYC / प्रोफाइलबाट auto-fill</strong> भएको छ। तल केवल अनुरोधको विवरण भर्नुहोस्।'; ?></div>
@@ -38,7 +38,7 @@ $_pfAddr    = trim((string)(is_array($_krow) && !empty($_krow['permanent_address
 
 <div class="coop-prefill-block">
     <div class="coop-prefill-head">
-        <i class="fas fa-user-check"></i>
+        <i class="lucide-icon" aria-hidden="true" data-lucide="user-check"></i>
         <?php echo htmlspecialchars($_pt, ENT_QUOTES, 'UTF-8'); ?>
     </div>
     <div class="coop-prefill-grid">

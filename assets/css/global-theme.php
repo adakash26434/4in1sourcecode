@@ -1,17 +1,6 @@
 <?php
-/**
- * ═══════════════════════════════════════════════════════════════
- * 🎨 GLOBAL THEME — Dynamic CSS Variable Injector
- * ═══════════════════════════════════════════════════════════════
- * फाइल: assets/css/global-theme.php
- *
- * यो एउटै फाइलले Public Website, Admin Portal, Member Portal र
- * Verify Portal — सबैको color theme handle गर्छ।
- *
- * 📌 प्रयोग गर्ने तरिका — includes/theme-assets.php → coopThemeHeadAssets()
- *   (यो file स्वतः design-tokens पछि load हुन्छ; सिधै require नगर्नुहोस्)
- *
- * ✅ यसले admin/Settings बाट बदलिएको color तुरुन्त सबैतिर reflect गर्छ।
+
+/* ══════════════════════════════════════════════════════════════════
  * ✅ कतै पनि color hardcode नगर्नुस् — सधैं CSS variable प्रयोग गर्नुस्।
  * ═══════════════════════════════════════════════════════════════
  */
@@ -122,48 +111,68 @@ if (defined('IS_ADMIN_PAGE') && IS_ADMIN_PAGE) {
 } elseif (!empty($_SERVER['PHP_SELF']) && str_contains((string)$_SERVER['PHP_SELF'], '/verify')) {
     $_panel = 'verify';
 }
+
+$__p = $_p ?? '#1a5f2a';
+$__pDark = $_pDark ?? '#164d22';
+$__pLight = $_pLight ?? '#3b7a47';
+$__pXLight = $_pXLight ?? '#5f9b67';
+$__pRgb = $_pRgb ?? '26, 95, 42';
+$__s = $_s ?? '#c0392b';
+$__sDark = $_sDark ?? '#9f3025';
+$__sRgb = $_sRgb ?? '192, 57, 43';
+$__h = $_h ?? $__s;
+$__hDark = $_hDark ?? $__sDark;
+$__f = $_f ?? $__p;
+$__fDark = $_fDark ?? '#134826';
+$__onP = $_onP ?? '#ffffff';
+$__onS = $_onS ?? '#ffffff';
+$__onH = $_onH ?? '#ffffff';
+$__onF = $_onF ?? '#ffffff';
+$__shadowP = $_shadowP ?? '0 4px 20px rgba(26,95,42,0.20)';
+$__shadowS = $_shadowS ?? '0 4px 16px rgba(192,57,43,0.20)';
+$__shadowFocus = $_shadowFocus ?? '0 0 0 3px rgba(26,95,42,0.18)';
 ?>
-<style id="coop-global-theme" data-panel="<?= htmlspecialchars($_panel, ENT_QUOTES) ?>">
+<style id="coop-global-theme" data-panel="<?= htmlspecialchars($_panel ?? 'public', ENT_QUOTES) ?>">
 /* ═══════════════════════════════════════════════════════════
    🎨 GLOBAL THEME — Admin बाट DB मा save गरिएका रङहरू
-   Portal: <?= $_panel ?> | Version: <?= THEME_VERSION ?>
+    Portal: <?= htmlspecialchars($_panel ?? 'public', ENT_QUOTES) ?> | Version: <?= htmlspecialchars(defined('THEME_VERSION') ? THEME_VERSION : '2.0', ENT_QUOTES) ?>
    ═══════════════════════════════════════════════════════════ */
 :root {
     /* ── Brand Colors ── */
-    --primary-color:    <?= $_p ?>;
-    --primary-dark:     <?= $_pDark ?>;
-    --primary-light:    <?= $_pLight ?>;
-    --primary-xlight:   <?= $_pXLight ?>;
-    --primary-rgb:      <?= $_pRgb ?>;
+    --primary-color:    <?= $__p ?>;
+    --primary-dark:     <?= $__pDark ?>;
+    --primary-light:    <?= $__pLight ?>;
+    --primary-xlight:   <?= $__pXLight ?>;
+    --primary-rgb:      <?= $__pRgb ?>;
 
-    --secondary-color:  <?= $_s ?>;
-    --secondary-dark:   <?= $_sDark ?>;
-    --secondary-rgb:    <?= $_sRgb ?>;
+    --secondary-color:  <?= $__s ?>;
+    --secondary-dark:   <?= $__sDark ?>;
+    --secondary-rgb:    <?= $__sRgb ?>;
 
-    --header-color:     <?= $_h ?>;
-    --header-dark:      <?= $_hDark ?>;
-    --topbar-bg:        <?= $_h ?>;
+    --header-color:     <?= $__h ?>;
+    --header-dark:      <?= $__hDark ?>;
+    --topbar-bg:        <?= $__h ?>;
 
-    --footer-color:     <?= $_f ?>;
-    --footer-dark:      <?= $_fDark ?>;
+    --footer-color:     <?= $__f ?>;
+    --footer-dark:      <?= $__fDark ?>;
 
     /* ── Text on brand backgrounds ── */
-    --text-on-primary:   <?= $_onP ?>;
-    --text-on-secondary: <?= $_onS ?>;
-    --text-on-header:    <?= $_onH ?>;
-    --text-on-footer:    <?= $_onF ?>;
+    --text-on-primary:   <?= $__onP ?>;
+    --text-on-secondary: <?= $__onS ?>;
+    --text-on-header:    <?= $__onH ?>;
+    --text-on-footer:    <?= $__onF ?>;
 
     /* ── Shadows derived from brand ── */
-    --shadow-primary:  <?= $_shadowP ?>;
-    --shadow-secondary:<?= $_shadowS ?>;
-    --shadow-focus:    <?= $_shadowFocus ?>;
+    --shadow-primary:  <?= $__shadowP ?>;
+    --shadow-secondary:<?= $__shadowS ?>;
+    --shadow-focus:    <?= $__shadowFocus ?>;
 
     /* ── Semantic surface colors (light mode defaults) ── */
     --bg-page:         #f8faf9;
     --bg-card:         #ffffff;
     --bg-soft:         #f5faf6;
     --bg-muted:        #e8f5e9;
-    --bg-hover:        rgba(<?= $_pRgb ?>, 0.04);
+    --bg-hover:        rgba(<?= $__pRgb ?>, 0.04);
 
     /* ── Text scale ── */
     --text-primary:    #1a2e1f;
@@ -174,7 +183,7 @@ if (defined('IS_ADMIN_PAGE') && IS_ADMIN_PAGE) {
     /* ── Borders ── */
     --border-color:    #e5e7eb;
     --border-soft:     #f0f0f0;
-    --border-focus:    <?= $_p ?>;
+    --border-focus:    <?= $__p ?>;
 
     /* ── Status Colors (fixed, not brand-dependent) ── */
     --color-success:   #16a34a;
@@ -434,12 +443,6 @@ table.table-primary thead th,
 .nav-group-header.open .nav-arrow {
     transform: rotate(90deg) !important;
 }
-
-/* Card headers that use primary/secondary backgrounds */
-.card-header.bg-primary,
-.card-header.bg-secondary                  { color: var(--text-on-primary) !important; }
-.card-header.bg-secondary                  { background: var(--secondary-color) !important;
-                                             color: var(--text-on-secondary) !important; }
 
 /* Badges & pills */
 .badge.bg-primary, .badge-primary          { color: var(--text-on-primary) !important; }
@@ -982,8 +985,7 @@ footer h5, footer h6,
 }
 
 /* ── P. CARD HEADERS WITH BRAND COLOR ──────────────────────── */
-.card-header.bg-primary,
-.card-header.bg-secondary                       {
+.card-header.bg-primary                        {
     color: var(--text-on-primary) !important;
 }
 .card-header.bg-secondary                       {
@@ -1000,16 +1002,6 @@ body.auth-portal-page                           {
     ) !important;
     color: var(--text-primary, #1a2e1f) !important;
     min-height: 100dvh;
-}
-
-/* ── R. VERIFY PAGE LOGO ────────────────────────────────────── */
-.vp-page-logo img,
-body.auth-portal-page .vp-page-logo img         {
-    max-height: 70px !important;
-    max-width:  200px !important;
-    width:  auto !important;
-    height: auto !important;
-    object-fit: contain !important;
 }
 
 /* ── S. ALERT MESSAGES ──────────────────────────────────────── */
@@ -1062,13 +1054,6 @@ body.auth-portal-page .vp-page-logo img         {
 .dropdown-item.active, .dropdown-item:active    {
     background: var(--primary-color)      !important;
     color:      var(--text-on-primary)    !important;
-}
-
-/* ── V. TABLES ──────────────────────────────────────────────── */
-.table th                                       { color: var(--text-secondary) !important; }
-.table-hover tbody tr:hover td                  {
-    background-color: var(--bg-hover) !important;
-    color:            var(--text-primary) !important;
 }
 
 /* ── W. OAUTH / SOCIAL BUTTONS ──────────────────────────────── */
@@ -2358,6 +2343,29 @@ button > i:only-child, a > i:only-child                {
 .ticker-scroll,
 .notice-ticker .ticker-scroll {
     animation: tickerScroll 30s linear infinite !important;
+}
+
+/* Lucide compatibility after FA migration */
+.lucide-icon {
+    display: inline-flex !important;
+    vertical-align: middle;
+    line-height: 1 !important;
+}
+.lucide-icon.fa-lg {
+    width: 1.333333em !important;
+    height: 1.333333em !important;
+}
+.lucide-icon.fa-2x {
+    width: 2em !important;
+    height: 2em !important;
+}
+.lucide-icon.fa-3x {
+    width: 3em !important;
+    height: 3em !important;
+}
+.lucide-icon.fa-4x {
+    width: 4em !important;
+    height: 4em !important;
 }
 
 </style>

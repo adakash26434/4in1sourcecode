@@ -164,7 +164,7 @@ try {
 
 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
   <h1 class="dash-title-main">
-    <i class="fas fa-gauge"></i> <?php echo $__t('कार्यालय ड्यासबोर्ड', 'Office Dashboard'); ?>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="gauge"></i> <?php echo $__t('कार्यालय ड्यासबोर्ड', 'Office Dashboard'); ?>
   </h1>
   <div class="d-flex gap-2 flex-wrap">
     <a href="member-online-portal.php?status=pending" class="btn dash-btn-outline-warn btn-sm position-relative">
@@ -187,18 +187,18 @@ try {
     <i class="fas fa-gauge-high"></i> <?php echo $__t('कार्यालय ड्यासबोर्ड', 'Office Dashboard'); ?>
   </button>
   <button type="button" class="ds-tab" data-tab="creds" role="tab">
-    <i class="fas fa-key"></i> <?php echo $__t('स्मार्ट क्रेडेन्सियल म्यानेजर', 'Smart Credential Manager'); ?>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="key"></i> <?php echo $__t('स्मार्ट क्रेडेन्सियल म्यानेजर', 'Smart Credential Manager'); ?>
   </button>
   <button type="button" class="ds-tab" data-tab="requests" role="tab">
     <i class="fas fa-user-clock"></i> <?php echo $__t('सदस्य अनुरोध', 'Member Requests'); ?>
     <?php if ($sadasyaBadge > 0): ?><span class="badge-pill"><?= $sadasyaBadge ?></span><?php endif; ?>
   </button>
   <button type="button" class="ds-tab" data-tab="welfare" role="tab">
-    <i class="fas fa-hand-holding-heart"></i> <?php echo $__t('कल्याण दाबी', 'Welfare Claims'); ?>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="hand-holding-heart"></i> <?php echo $__t('कल्याण दाबी', 'Welfare Claims'); ?>
     <?php if ($welfareBadge > 0): ?><span class="badge-pill"><?= $welfareBadge ?></span><?php endif; ?>
   </button>
   <button type="button" class="ds-tab" data-tab="programs" role="tab">
-    <i class="fas fa-clipboard-check"></i> <?php echo $__t('कार्यक्रम उपस्थिति', 'Program Attendance'); ?>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="clipboard-check"></i> <?php echo $__t('कार्यक्रम उपस्थिति', 'Program Attendance'); ?>
     <?php if ($dashPendingAttendanceReq > 0): ?><span class="badge-pill"><?= (int)$dashPendingAttendanceReq ?></span><?php endif; ?>
   </button>
 </div>
@@ -222,13 +222,13 @@ try {
     <h2><i class="fas fa-bolt"></i> <?php echo $__t('छिटो कार्यहरू', 'Quick Actions'); ?></h2>
     <div class="d-flex flex-wrap gap-2">
       <a href="kyc-applications.php" class="btn dash-btn-primary btn-sm"><i class="fas fa-id-card-clip"></i> <?php echo $__t('KYC आवेदन', 'KYC Applications'); ?></a>
-      <a href="members.php" class="btn dash-btn-outline-primary btn-sm"><i class="fas fa-user-plus"></i> <?php echo $__t('सदस्य', 'Members'); ?></a>
+      <a href="members.php" class="btn dash-btn-outline-primary btn-sm"><i class="lucide-icon" aria-hidden="true" data-lucide="user-plus"></i> <?php echo $__t('सदस्य', 'Members'); ?></a>
       <a href="notices.php" class="btn dash-btn-outline-primary btn-sm"><i class="fas fa-bullhorn"></i> <?php echo $__t('सूचना', 'Notices'); ?></a>
       <a href="loan-applications.php" class="btn dash-btn-outline-primary btn-sm"><i class="fas fa-coins"></i> <?php echo $__t('ऋण', 'Loans'); ?></a>
-      <a href="reports.php" class="btn dash-btn-outline-primary btn-sm"><i class="fas fa-chart-line"></i> <?php echo $__t('रिपोर्ट', 'Reports'); ?></a>
-      <a href="programs.php" class="btn dash-btn-outline-primary btn-sm"><i class="fas fa-calendar-plus"></i> <?php echo $__t('कार्यक्रम', 'Programs'); ?></a>
-      <a href="program-attendance.php" class="btn dash-btn-outline-primary btn-sm"><i class="fas fa-clipboard-check"></i> <?php echo $__t('उपस्थिति रिपोर्ट', 'Attendance Report'); ?></a>
-      <a href="../verify.php" target="_blank" class="btn dash-btn-outline-primary btn-sm"><i class="fas fa-shield-halved"></i> <?php echo $__t('सदस्य प्रमाणीकरण', 'Member Verify'); ?></a>
+      <a href="reports.php" class="btn dash-btn-outline-primary btn-sm"><i class="lucide-icon" aria-hidden="true" data-lucide="chart-line"></i> <?php echo $__t('रिपोर्ट', 'Reports'); ?></a>
+      <a href="programs.php" class="btn dash-btn-outline-primary btn-sm"><i class="lucide-icon" aria-hidden="true" data-lucide="calendar-plus"></i> <?php echo $__t('कार्यक्रम', 'Programs'); ?></a>
+      <a href="program-attendance.php" class="btn dash-btn-outline-primary btn-sm"><i class="lucide-icon" aria-hidden="true" data-lucide="clipboard-check"></i> <?php echo $__t('उपस्थिति रिपोर्ट', 'Attendance Report'); ?></a>
+      <a href="../verify.php" target="_blank" class="btn dash-btn-outline-primary btn-sm"><i class="lucide-icon" aria-hidden="true" data-lucide="shield-halved"></i> <?php echo $__t('सदस्य प्रमाणीकरण', 'Member Verify'); ?></a>
     </div>
   </div>
 
@@ -236,7 +236,7 @@ try {
     <h2><i class="fas fa-clock-rotate-left"></i> <?php echo $__t('हालैको गतिविधि', 'Recent Activity'); ?></h2>
     <?php if (empty($log)): ?>
       <div class="text-center py-4 dash-muted-block">
-        <div class="dash-empty-icon-lg"><i class="fas fa-inbox"></i></div>
+        <div class="dash-empty-icon-lg"><i class="lucide-icon" aria-hidden="true" data-lucide="inbox"></i></div>
         <div><?php echo $__t('हाल कुनै गतिविधि छैन।', 'No recent activity.'); ?></div>
       </div>
     <?php else: ?>
@@ -263,7 +263,7 @@ try {
 <div class="ds-pane" id="pane-creds">
   <div class="ds-section ds-no-top-gap">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-      <h2 class="dash-section-title"><i class="fas fa-key"></i> <?php echo $__t('स्मार्ट क्रेडेन्सियल म्यानेजर', 'Smart Credential Manager'); ?></h2>
+      <h2 class="dash-section-title"><i class="lucide-icon" aria-hidden="true" data-lucide="key"></i> <?php echo $__t('स्मार्ट क्रेडेन्सियल म्यानेजर', 'Smart Credential Manager'); ?></h2>
       <a href="credentials.php" class="btn dash-btn-primary btn-sm">
         <i class="fas fa-arrow-up-right-from-square"></i> <?php echo $__t('पूरै पेज खोल्नुहोस्', 'Open Full Page'); ?>
       </a>
@@ -273,7 +273,7 @@ try {
       <div class="alert alert-warning mb-3"><i class="fas fa-triangle-exclamation"></i> <?= $credsError ?></div>
     <?php elseif (empty($creds)): ?>
       <div class="text-center py-5 dash-muted-block">
-        <div class="dash-empty-icon-xl"><i class="fas fa-key"></i></div>
+        <div class="dash-empty-icon-xl"><i class="lucide-icon" aria-hidden="true" data-lucide="key"></i></div>
         <div><?php echo $__t('अहिलेसम्म कुनै credential save गरिएको छैन।', 'No credentials saved yet.'); ?></div>
         <a href="credentials.php" class="btn dash-btn-primary btn-sm mt-3">
           <i class="fas fa-plus"></i> <?php echo $__t('नयाँ Credential थप्नुहोस्', 'Add New Credential'); ?>
@@ -288,7 +288,7 @@ try {
                 <?php if (!empty($c['site_logo'])): ?>
                   <img src="<?= htmlspecialchars($c['site_logo']) ?>" alt="">
                 <?php else: ?>
-                  <i class="fas fa-globe"></i>
+                  <i class="lucide-icon" aria-hidden="true" data-lucide="globe"></i>
                 <?php endif; ?>
               </div>
               <div class="dash-flex-grow">
@@ -299,14 +299,14 @@ try {
               </div>
             </div>
             <div class="text-truncate dash-meta-sm">
-              <i class="fas fa-user"></i> <?= htmlspecialchars($c['username']) ?>
+              <i class="lucide-icon" aria-hidden="true" data-lucide="user"></i> <?= htmlspecialchars($c['username']) ?>
             </div>
             <div class="cred-actions">
               <a href="<?= htmlspecialchars($c['site_url']) ?>" target="_blank" rel="noopener" class="cred-btn">
                 <i class="fas fa-up-right-from-square"></i> <?php echo $__t('खोल्नुहोस्', 'Open'); ?>
               </a>
               <a href="credentials.php#cred-<?= (int)$c['id'] ?>" class="cred-btn">
-                <i class="fas fa-eye"></i> <?php echo $__t('विवरण', 'Details'); ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i> <?php echo $__t('विवरण', 'Details'); ?>
               </a>
             </div>
           </div>
@@ -336,11 +336,11 @@ try {
     ?>
 
     <h2 class="dash-subtitle-row">
-      <i class="fas fa-clock"></i> <?php echo $__t('हालैका दर्ता अनुरोधहरू', 'Recent Registration Requests'); ?>
+      <i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> <?php echo $__t('हालैका दर्ता अनुरोधहरू', 'Recent Registration Requests'); ?>
     </h2>
     <?php if (empty($pendingMembers)): ?>
       <div class="text-center py-4 dash-muted-block">
-        <div class="dash-empty-icon-lg"><i class="fas fa-circle-check"></i></div>
+        <div class="dash-empty-icon-lg"><i class="lucide-icon" aria-hidden="true" data-lucide="circle-check"></i></div>
         <div><?php echo $__t('कुनै पेन्डिङ अनुरोध छैन।', 'No pending requests.'); ?></div>
       </div>
     <?php else: ?>
@@ -362,7 +362,7 @@ try {
             </div>
           </div>
           <a href="member-online-portal.php?view=<?= (int)$m['id'] ?>" class="btn btn-sm dash-btn-outline-primary">
-            <i class="fas fa-eye"></i> <?php echo $__t('हेर्नुहोस्', 'View'); ?>
+            <i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i> <?php echo $__t('हेर्नुहोस्', 'View'); ?>
           </a>
         </div>
       <?php endforeach; ?>
@@ -374,7 +374,7 @@ try {
 <div class="ds-pane" id="pane-welfare">
   <div class="ds-section ds-no-top-gap">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-      <h2 class="dash-section-title"><i class="fas fa-hand-holding-heart dash-heart-icon"></i> <?php echo $__t('कल्याण दाबी व्यवस्थापन', 'Welfare Claims Management'); ?></h2>
+      <h2 class="dash-section-title"><i class="lucide-icon dash-heart-icon" aria-hidden="true" data-lucide="hand-holding-heart"></i> <?php echo $__t('कल्याण दाबी व्यवस्थापन', 'Welfare Claims Management'); ?></h2>
       <a href="welfare-claims.php" class="btn btn-sm dash-btn-outline-primary"><i class="fas fa-arrow-up-right-from-square"></i> <?php echo $__t('सबै दाबी', 'All Claims'); ?></a>
     </div>
     <?php
@@ -417,7 +417,7 @@ try {
                 <td><span class="badge dash-badge-alert"><?= htmlspecialchars((string)($wr['status'] ?? ''), ENT_QUOTES, 'UTF-8') ?></span></td>
                 <td><?= $wr['claim_amount'] !== null && $wr['claim_amount'] !== '' ? htmlspecialchars((string)$wr['claim_amount'], ENT_QUOTES, 'UTF-8') : '—' ?></td>
                 <td class="small dash-muted-inline"><?= !empty($wr['created_at']) ? htmlspecialchars(date('Y-m-d H:i', strtotime((string)$wr['created_at'])), ENT_QUOTES, 'UTF-8') : '—' ?></td>
-                <td><a class="btn btn-sm dash-btn-outline-primary" href="welfare-claims.php?action=view&id=<?= (int)($wr['id'] ?? 0) ?>"><i class="fas fa-eye"></i></a></td>
+                <td><a class="btn btn-sm dash-btn-outline-primary" href="welfare-claims.php?action=view&id=<?= (int)($wr['id'] ?? 0) ?>"><i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i></a></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -431,10 +431,10 @@ try {
 <div class="ds-pane" id="pane-programs">
   <div class="ds-section ds-no-top-gap">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-      <h2 class="dash-section-title"><i class="fas fa-clipboard-check"></i> <?php echo $__t('कार्यक्रम उपस्थिति', 'Program Attendance'); ?></h2>
+      <h2 class="dash-section-title"><i class="lucide-icon" aria-hidden="true" data-lucide="clipboard-check"></i> <?php echo $__t('कार्यक्रम उपस्थिति', 'Program Attendance'); ?></h2>
       <div class="d-flex flex-wrap gap-2">
         <a href="program-attendance.php" class="btn dash-btn-primary btn-sm"><i class="fas fa-table"></i> <?php echo $__t('पूरै रिपोर्ट', 'Full Report'); ?></a>
-        <a href="programs.php" class="btn dash-btn-outline-primary btn-sm"><i class="fas fa-calendar-plus"></i> <?php echo $__t('कार्यक्रम व्यवस्थापन', 'Program Management'); ?></a>
+        <a href="programs.php" class="btn dash-btn-outline-primary btn-sm"><i class="lucide-icon" aria-hidden="true" data-lucide="calendar-plus"></i> <?php echo $__t('कार्यक्रम व्यवस्थापन', 'Program Management'); ?></a>
       </div>
     </div>
     <p class="small dash-muted-inline mb-3"><?php echo $__t('कुल रेकर्ड, खोज/मिति फिल्टर, पृष्ठ-पृष्ठ हेर्ने र Excel निर्यात उपस्थिति रिपोर्ट पृष्ठमा छन्।', 'Total records, search/date filters, pagination, and Excel export are available on the attendance report page.'); ?> <a href="program-attendance.php"><?php echo $__t('उपस्थिति रिपोर्ट', 'Attendance Report'); ?></a></p>
@@ -449,7 +449,7 @@ try {
     ?>
     <div class="row g-3">
       <div class="col-lg-6">
-        <h3 class="dash-subtitle-row dash-subtitle-tight"><i class="fas fa-chart-bar"></i> <?php echo $__t('बढी उपस्थिति भएका कार्यक्रम', 'Top Programs by Attendance'); ?></h3>
+        <h3 class="dash-subtitle-row dash-subtitle-tight"><i class="lucide-icon" aria-hidden="true" data-lucide="chart-bar"></i> <?php echo $__t('बढी उपस्थिति भएका कार्यक्रम', 'Top Programs by Attendance'); ?></h3>
         <?php if (empty($dashAttendTopPrograms)): ?>
           <div class="text-center py-4 dash-empty-note-md"><?php echo $__t('अहिलेसम्म कुनै उपस्थिति रेकर्ड छैन।', 'No attendance records yet.'); ?></div>
         <?php else: ?>
@@ -464,7 +464,7 @@ try {
         <?php endif; ?>
       </div>
       <div class="col-lg-6">
-        <h3 class="dash-subtitle-row dash-subtitle-tight"><i class="fas fa-clock"></i> <?php echo $__t('पछिल्लो उपस्थिति', 'Recent Attendance'); ?></h3>
+        <h3 class="dash-subtitle-row dash-subtitle-tight"><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> <?php echo $__t('पछिल्लो उपस्थिति', 'Recent Attendance'); ?></h3>
         <?php if (empty($dashAttendRecent)): ?>
           <div class="text-center py-4 dash-empty-note-md"><?php echo $__t('डाटा छैन।', 'No data.'); ?></div>
         <?php else: ?>

@@ -309,7 +309,7 @@ if ($viewGrv):
             <!-- ── LEFT: Member Info + Message + Previous Response ── -->
             <div class="col-lg-5">
                 <div class="adm-info-group">
-                    <div class="adm-info-group-header"><i class="fas fa-user"></i><?php echo $__t('गुनासोकर्ताको जानकारी', 'Complainant Information'); ?></div>
+                    <div class="adm-info-group-header"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i><?php echo $__t('गुनासोकर्ताको जानकारी', 'Complainant Information'); ?></div>
                     <table class="table adm-detail-table">
                         <?php if (!$viewGrv['is_anonymous']): ?>
                         <tr><th><?php echo $__t('नाम', 'Name'); ?></th>
@@ -390,7 +390,7 @@ if ($viewGrv):
                             <?php echo csrfField(); ?>
                             <input type="hidden" name="remove_attachment" value="1">
                             <input type="hidden" name="id" value="<?php echo $viewGrv['id']; ?>">
-                            <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                            <button type="submit" class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                         </form>
                     </div>
                 </div>
@@ -487,10 +487,10 @@ if ($viewGrv):
                             <!-- Submit -->
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary px-4">
-                                    <i class="fas fa-save me-1"></i><?php echo $__t('अपडेट गर्नुहोस्', 'Update'); ?>
+                                    <i class="lucide-icon me-1" aria-hidden="true" data-lucide="save"></i><?php echo $__t('अपडेट गर्नुहोस्', 'Update'); ?>
                                 </button>
                                 <a href="grievances.php" class="btn btn-outline-secondary">
-                                    <i class="fas fa-arrow-left me-1"></i>सूचीमा फर्किनुहोस्
+                                    <i class="lucide-icon me-1" aria-hidden="true" data-lucide="arrow-left"></i>सूचीमा फर्किनुहोस्
                                 </a>
                             </div>
                         </form>
@@ -523,7 +523,7 @@ if ($viewGrv):
         <div class="sm-lbl"><?php echo $__t('जम्मा गुनासो', 'Total Grievances'); ?></div>
     </a>
     <a href="?status=pending" class="stat-mini <?php echo $statusFilter==='pending'?'active-filter':''; ?>">
-        <div class="sm-icon ic-pending"><i class="fas fa-clock"></i></div>
+        <div class="sm-icon ic-pending"><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i></div>
         <div class="sm-val"><?php echo $counts['pending']; ?></div>
         <div class="sm-lbl"><?php echo $__t('पेन्डिङ', 'Pending'); ?></div>
     </a>
@@ -533,12 +533,12 @@ if ($viewGrv):
         <div class="sm-lbl"><?php echo $__t('प्रक्रियामा', 'In Progress'); ?></div>
     </a>
     <a href="?status=resolved" class="stat-mini <?php echo $statusFilter==='resolved'?'active-filter':''; ?>">
-        <div class="sm-icon ic-resolved"><i class="fas fa-check-circle"></i></div>
+        <div class="sm-icon ic-resolved"><i class="lucide-icon" aria-hidden="true" data-lucide="check-circle"></i></div>
         <div class="sm-val"><?php echo $counts['resolved']; ?></div>
         <div class="sm-lbl"><?php echo $__t('समाधान', 'Resolved'); ?></div>
     </a>
     <a href="?status=closed" class="stat-mini <?php echo $statusFilter==='closed'?'active-filter':''; ?>">
-        <div class="sm-icon ic-anon"><i class="fas fa-lock"></i></div>
+        <div class="sm-icon ic-anon"><i class="lucide-icon" aria-hidden="true" data-lucide="lock"></i></div>
         <div class="sm-val"><?php echo $counts['closed']; ?></div>
         <div class="sm-lbl"><?php echo $__t('बन्द', 'Closed'); ?></div>
     </a>
@@ -560,14 +560,14 @@ if ($viewGrv):
         <div class="col-md-7 col-12">
             <label><?php echo $__t('खोज्नुहोस्', 'Search'); ?></label>
             <div class="input-group input-group-sm">
-                <span class="input-group-text bg-white"><i class="fas fa-search text-muted"></i></span>
+                <span class="input-group-text bg-white"><i class="lucide-icon text-muted" aria-hidden="true" data-lucide="search"></i></span>
                 <input type="text" name="search" class="form-control" value="<?php echo htmlspecialchars($search); ?>"
                        placeholder="<?php echo $__t('नाम, फोन, इमेल, Tracking ID, विषय...', 'name, phone, email, Tracking ID, subject...'); ?>">
                 <?php if ($search): ?><a href="?status=<?php echo urlencode($statusFilter); ?>" class="btn btn-outline-secondary btn-sm"><i class="fas fa-times"></i></a><?php endif; ?>
             </div>
         </div>
         <div class="col-md-2 col-6">
-            <button type="submit" class="btn btn-primary btn-sm w-100"><i class="fas fa-search me-1"></i><?php echo $__t('खोज', 'Search'); ?></button>
+            <button type="submit" class="btn btn-primary btn-sm w-100"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="search"></i><?php echo $__t('खोज', 'Search'); ?></button>
         </div>
     </form>
     <script>document.getElementById('qf_grv_status').addEventListener('change',function(){this.closest('form').submit();});</script>
@@ -594,7 +594,7 @@ if ($viewGrv):
             </thead>
             <tbody>
             <?php if (empty($grievances)): ?>
-            <tr class="no-results-row"><td colspan="7"><i class="fas fa-inbox fa-2x d-block mb-2"></i><?php echo $__t('कुनै गुनासो फेला परेन।', 'No grievances found.'); ?></td></tr>
+            <tr class="no-results-row"><td colspan="7"><i class="lucide-icon fa-2x d-block mb-2" aria-hidden="true" data-lucide="inbox"></i><?php echo $__t('कुनै गुनासो फेला परेन।', 'No grievances found.'); ?></td></tr>
             <?php else: foreach ($grievances as $grv):
                 $tId = $grv['tracking_id'] ?? 'GRV-' . str_pad($grv['id'], 6, '0', STR_PAD_LEFT);
                 $initLetter = $grv['is_anonymous'] ? '?' : mb_strtoupper(mb_substr($grv['name'] ?? 'G', 0, 1));
@@ -625,7 +625,7 @@ if ($viewGrv):
                 <td><span class="badge-status badge-<?php echo htmlspecialchars($grv['status']); ?>"><?php echo $statusLabel[$grv['status']] ?? $grv['status']; ?></span></td>
                 <td class="no-print">
                     <div class="adm-action-icons">
-                        <a href="grievances.php?view=<?php echo $grv['id']; ?>" class="adm-icon-btn adm-icon-btn--view" title="<?php echo $__t('विस्तृत / अपडेट', 'Details / Update'); ?>" aria-label="View"><i class="fas fa-eye"></i></a>
+                        <a href="grievances.php?view=<?php echo $grv['id']; ?>" class="adm-icon-btn adm-icon-btn--view" title="<?php echo $__t('विस्तृत / अपडेट', 'Details / Update'); ?>" aria-label="View"><i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i></a>
                         <?php if ($grv['status'] === 'pending' || $grv['status'] === 'in_progress'): ?>
                         <form method="POST" class="qaction-form" onsubmit="return confirm('<?php echo $__t('यो गुनासो समाधान भएको मान्नुहुन्छ?', 'Mark this grievance as resolved?'); ?>')">
                             <?php echo csrfField(); ?>

@@ -1,4 +1,3 @@
-<?php
 /**
  * प्रश्नोत्तर व्यवस्थापन — FAQs Management
  * Tab UI: सूची + Add/Edit form (modal popup हटाइएको)
@@ -84,8 +83,8 @@ $faqsArch = $faqPart['archived'];
     'fa-circle-question',
     'सदस्यहरूको सामान्य प्रश्न र उत्तरहरू।',
     '<span class="badge admin-stat-badge bg-success-subtle text-success border border-success border-opacity-25 me-2"><i class="fas fa-layer-group me-1"></i>जम्मा: ' . count($faqs) . '</span>'
-    . '<span class="badge admin-stat-badge bg-primary-subtle text-primary border border-primary border-opacity-25 me-2"><i class="fas fa-check-circle me-1"></i>सक्रिय: ' . count($faqsLive) . '</span>'
-    . '<span class="badge admin-stat-badge bg-secondary-subtle text-secondary border border-secondary border-opacity-25"><i class="fas fa-archive me-1"></i>अभिलेख: ' . count($faqsArch) . '</span>'
+    . '<span class="badge admin-stat-badge bg-primary-subtle text-primary border border-primary border-opacity-25 me-2"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="check-circle"></i>सक्रिय: ' . count($faqsLive) . '</span>'
+    . '<span class="badge admin-stat-badge bg-secondary-subtle text-secondary border border-secondary border-opacity-25"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="archive"></i>अभिलेख: ' . count($faqsArch) . '</span>'
 );
 ?>
 <?php echo adminHelpTip('यो पृष्ठबाट Frequently Asked Questions (FAQ) थप्न र अपडेट गर्न सकिन्छ।', ['FAQ थप्न: "+" बटन थिच्नुहोस्।', 'नेपाली र अंग्रेजी दुवैमा लेख्नुहोस् ताकि सबैलाई बुझिओस्।', 'Display Order: सानो number = पहिला देखिन्छ।']); ?>
@@ -115,7 +114,7 @@ $faqsArch = $faqPart['archived'];
             <!-- खोज बक्स — client-side filter -->
             <div class="admin-search-wrap px-3 py-2 border-bottom bg-light d-flex align-items-center gap-3" style="flex-wrap:wrap">
                 <div class="input-group input-group-sm" style="max-width:300px">
-                    <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                    <span class="input-group-text bg-white border-end-0"><i class="lucide-icon text-muted" aria-hidden="true" data-lucide="search"></i></span>
                     <input type="text" class="form-control border-start-0 admin-table-search" placeholder="नाम, विवरण अनुसार खोज्नुहोस्..." autocomplete="off">
                 </div>
                 <small class="text-muted search-count"></small>
@@ -151,7 +150,7 @@ $faqsArch = $faqPart['archived'];
                             </td></tr>
                             <?php elseif (empty($faqsLive)): ?>
                             <tr><td colspan="6" class="text-center py-5 text-muted">
-                                <i class="fas fa-check-circle fa-3x mb-2 d-block opacity-25 text-success"></i>
+                                <i class="lucide-icon fa-3x mb-2 d-block opacity-25 text-success" aria-hidden="true" data-lucide="check-circle"></i>
                                 सक्रिय प्रश्नोत्तर छैन। अभिलेख हेर्नुहोस्।
                             </td></tr>
                             <?php endif; ?>
@@ -207,7 +206,7 @@ $faqsArch = $faqPart['archived'];
                         <tbody>
                             <?php if (empty($faqsArch)): ?>
                             <tr><td colspan="6" class="text-center py-5 text-muted">
-                                <i class="fas fa-folder-open fa-3x mb-2 d-block opacity-25"></i>
+                                <i class="lucide-icon fa-3x mb-2 d-block opacity-25" aria-hidden="true" data-lucide="folder-open"></i>
                                 अभिलेखमा कुनै प्रश्नोत्तर छैन।
                             </td></tr>
                             <?php endif; ?>
@@ -261,7 +260,7 @@ $faqsArch = $faqPart['archived'];
                     <i class="fas fa-plus-circle me-2"></i>नयाँ प्रश्नोत्तर थप्नुहोस्
                 </h5>
                 <button type="button" class="btn btn-light btn-sm" id="btnCancelFaq">
-                    <i class="fas fa-arrow-left me-1"></i>सूचीमा फर्कनुहोस्
+                    <i class="lucide-icon me-1" aria-hidden="true" data-lucide="arrow-left"></i>सूचीमा फर्कनुहोस्
                 </button>
             </div>
             <div class="card-body p-4">
@@ -325,9 +324,9 @@ $faqsArch = $faqPart['archived'];
 
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
 
+
+/* ── Client-side search (खोज बक्स) ── */
     var listBtn = document.getElementById('faq-list-btn');
     var formBtn = document.getElementById('faq-form-btn');
 
@@ -371,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
             for (var i=0; i<sel.options.length; i++) {
                 if (sel.options[i].value === d.category) { sel.selectedIndex = i; break; }
             }
-            document.getElementById('faqf_submit').innerHTML = '<i class="fas fa-save me-2"></i>अपडेट गर्नुहोस्';
+            document.getElementById('faqf_submit').innerHTML = '<i class="lucide-icon me-2" aria-hidden="true" data-lucide="save"></i>अपडेट गर्नुहोस्';
             document.getElementById('faqFormTitle').innerHTML = '<i class="fas fa-edit me-2"></i>प्रश्नोत्तर सम्पादन';
             document.getElementById('faqFormTabLabel').textContent = 'सम्पादन';
             switchToForm();
@@ -380,7 +379,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php 
 
 
 
@@ -413,4 +411,4 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 
-<?php require_once 'includes/admin-footer.php'; ?> ?>
+<?php require_once 'includes/admin-footer.php'; ?>

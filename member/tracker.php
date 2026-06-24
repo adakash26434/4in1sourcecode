@@ -174,7 +174,7 @@ require __DIR__ . '/includes/chrome.php';
                 <div style="display:flex;align-items:center;gap:10px;">
                     <span class="mem-tracking-id" id="trkId"><?php echo htmlspecialchars($viewApp['tracking_id']); ?></span>
                     <button onclick="copyTrk('trkId',this)" class="mem-topbar-btn" style="background:var(--primary-color);border:none;font-size:0.72rem;padding:5px 12px;cursor:pointer;">
-                        <i data-lucide="copy" class="me-1"></i><?php echo $_t('कपी', 'Copy'); ?>
+                        <i class="lucide-icon me-1" aria-hidden="true" data-lucide="copy"></i><?php echo $_t('कपी', 'Copy'); ?>
                     </button>
                 </div>
             </div>
@@ -359,7 +359,7 @@ function copyTrk(id, btn) {
     var el = document.getElementById(id);
     navigator.clipboard.writeText(el.textContent.trim()).then(function(){
         btn.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
-        setTimeout(function(){ btn.innerHTML = '<i data-lucide="copy" class="me-1"></i>Copy'; }, 2000);
+        setTimeout(function(){ btn.innerHTML = '<i class="lucide-icon me-1" aria-hidden="true" data-lucide="copy"></i>Copy'; }, 2000);
     });
 }
 </script>

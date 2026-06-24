@@ -773,7 +773,7 @@ try {
                 <div class="text-muted small mb-2"><?php echo isEnglish() ? 'Your Tracking ID — save this!' : 'तपाईंको Tracking ID — सुरक्षित राख्नुहोस्!'; ?></div>
                 <div class="d-flex align-items-center gap-2 mb-2">
                   <div class="form-tracking-id" id="kycTrkId"><?php echo e($kycTrackingId); ?></div>
-                  <button type="button" onclick="copyTrk('kycTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i data-lucide="copy"></i></button>
+                  <button type="button" onclick="copyTrk('kycTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i></button>
                 </div>
                 <div class="form-tracking-help"><a href="application-tracker.php" class="text-success text-decoration-none fw-semibold">यहाँ बाट</a> Application Tracker मा स्थिति हेर्नुहोस्।</div>
               </div>
@@ -945,7 +945,7 @@ try {
                                 <div class="col-12">
                                     <label class="kyc-same-toggle">
                                         <input type="checkbox" name="same_as_permanent" id="kycSameAddress" value="1" data-testid="kyc-same-as-permanent-checkbox">
-                                        <span><i data-lucide="copy" class="text-success me-1"></i><strong>अस्थायी ठेगाना स्थायी ठेगाना जस्तै हो</strong> (Same as Permanent)</span>
+                                        <span><i class="lucide-icon text-success me-1" aria-hidden="true" data-lucide="copy"></i><strong>अस्थायी ठेगाना स्थायी ठेगाना जस्तै हो</strong> (Same as Permanent)</span>
                                     </label>
                                 </div>
 
@@ -1727,7 +1727,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 '<td>' + (relationMap[row.relation] || row.relation || '-') + '</td>' +
                 '<td>' + (row.name || '-') + '</td>' +
                 '<td>' + (row.phone || '-') + '</td>' +
-                '<td><button type="button" class="btn btn-sm btn-outline-danger" data-remove-family="' + idx + '"><i class="fas fa-trash"></i></button></td>';
+                '<td><button type="button" class="btn btn-sm btn-outline-danger" data-remove-family="' + idx + '" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button></td>';
             tbody.appendChild(tr);
         });
         buildHiddenInputs();
@@ -1807,7 +1807,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tr.innerHTML =
                 '<td>' + (row.name || '-') + '</td>' +
                 '<td>' + amt.toFixed(2) + '</td>' +
-                '<td><button type="button" class="btn btn-sm btn-outline-danger" data-remove-source="' + opts.type + ':' + idx + '"><i class="fas fa-trash"></i></button></td>';
+                '<td><button type="button" class="btn btn-sm btn-outline-danger" data-remove-source="' + opts.type + ':' + idx + '" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button></td>';
             tbodyEl.appendChild(tr);
 
             var n = document.createElement('input');

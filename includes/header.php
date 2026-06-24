@@ -735,7 +735,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             <ul class="pfl-quick-links">
                 <li>
                     <a href="<?php echo SITE_URL; ?>auction.php">
-                        <i class="fas fa-gavel"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="gavel"></i>
                         <?php echo isEnglish() ? 'Auction Portal' : 'लिलामी पोर्टल'; ?>
                     </a>
                 </li>
@@ -746,11 +746,11 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo SITE_URL; ?>career.php">
-                        <i class="fas fa-briefcase"></i>
-                        <?php echo isEnglish() ? 'Career' : 'बिज्ञापन'; ?>
-                        <?php echo nav_submenu_count_badge_html($navMenuBadges['career_open']); ?>
-                    </a>
+                      <a href="<?php echo SITE_URL; ?>career.php">
+                          <i class="lucide-icon" aria-hidden="true" data-lucide="briefcase"></i>
+                          <?php echo isEnglish() ? 'Career' : 'बिज्ञापन'; ?>
+                          <?php echo nav_submenu_count_badge_html($navMenuBadges['career_open']); ?>
+                      </a>
                 </li>
                 <li>
                     <a href="<?php echo SITE_URL; ?>contact.php">
@@ -774,10 +774,10 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         <a href="<?php echo SITE_URL; ?>emi-calculator.php"><i class="fas fa-calculator me-1"></i><?php echo isEnglish() ? 'EMI Calculator' : 'ईएमआई क्याल्कुलेटर'; ?></a>
                         <a href="<?php echo SITE_URL; ?>exchange-rate.php"><i class="fas fa-exchange-alt me-1"></i><?php echo isEnglish() ? 'Exchange Rate' : 'विनिमय दर'; ?></a>
                         <a href="<?php echo SITE_URL; ?>date-converter.php"><i class="fas fa-calendar-alt me-1"></i><?php echo isEnglish() ? 'Date Converter' : 'मिति परिवर्तन'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>partner-facilities.php"><i class="fas fa-handshake me-1"></i><?php echo isEnglish() ? 'Partner Facilities' : 'अन्य सुविधा'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="fas fa-search me-1"></i><?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></a>
+                        <a href="<?php echo SITE_URL; ?>partner-facilities.php"><i class="lucide-icon" aria-hidden="true" data-lucide="handshake"></i><?php echo isEnglish() ? 'Partner Facilities' : 'अन्य सुविधा'; ?></a>
+                        <a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="lucide-icon" aria-hidden="true" data-lucide="search"></i><?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></a>
                         <a href="<?php echo SITE_URL; ?>service-centers.php"><i class="fas fa-map-marker-alt me-1"></i><?php echo isEnglish() ? 'Branches' : 'शाखाहरू'; ?></a>
-                        <a href="<?php echo SITE_URL; ?>reports.php"><i class="fas fa-chart-bar me-1"></i><?php echo isEnglish() ? 'Reports' : 'प्रतिवेदन'; ?></a>
+                        <a href="<?php echo SITE_URL; ?>reports.php"><i class="lucide-icon" aria-hidden="true" data-lucide="chart-bar"></i><?php echo isEnglish() ? 'Reports' : 'प्रतिवेदन'; ?></a>
                         <a href="<?php echo SITE_URL; ?>faqs.php"><i class="fas fa-question-circle me-1"></i><?php echo isEnglish() ? 'FAQs' : 'प्रश्नोत्तर'; ?></a>
                     </div>
                 </li>
@@ -788,7 +788,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 <!-- Login Dropdown -->
                 <li class="pfl-login-btn pfl-login-drop-wrap">
                     <a href="javascript:void(0);" class="pfl-login-toggle" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user-circle"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="user-circle"></i>
                         <?php echo isEnglish() ? 'Login' : 'लगिन'; ?>
                         <i class="fas fa-caret-down pfl-login-caret"></i>
                     </a>
@@ -796,7 +796,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         <?php $ibUrl = getSetting('internet_banking_url',''); if($ibUrl): ?>
                         <li>
                             <a href="<?php echo $ibUrl; ?>" target="_blank" rel="noopener">
-                                <span class="pfl-lm-icon pfl-lm-web"><i class="fas fa-globe"></i></span>
+                                <span class="pfl-lm-icon pfl-lm-web"><i class="lucide-icon" aria-hidden="true" data-lucide="globe"></i></span>
                                 <span class="pfl-lm-text">
                                     <strong><?php echo isEnglish() ? 'E‑banking login' : 'इ‑बैंकिङ लगिन'; ?></strong>
                                     <small><?php echo isEnglish() ? 'Secure web banking' : 'अनलाइन बैंकिङ प्रवेश'; ?></small>
@@ -834,7 +834,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                             $memberPortalHref = $isMemberLoggedIn ? SITE_URL . 'member/' : SITE_URL . 'member/login.php';
                             ?>
                             <a href="<?php echo $memberPortalHref; ?>">
-                                <span class="pfl-lm-icon pfl-lm-member"><i class="fas fa-user-check"></i></span>
+                                <span class="pfl-lm-icon pfl-lm-member"><i class="lucide-icon" aria-hidden="true" data-lucide="user-check"></i></span>
                                 <span class="pfl-lm-text">
                                     <strong><?php echo isEnglish() ? 'Member login' : 'सदस्य लगिन'; ?></strong>
                                     <small><?php echo $isMemberLoggedIn ? htmlspecialchars($_SESSION['member_name'] ?? 'Member') : (isEnglish() ? 'Sign in · New registration' : 'लगिन · नयाँ दर्ता'); ?></small>
@@ -848,7 +848,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         <!-- Member Verify (public card verification — for hospitals, vendors, etc.) -->
                         <li>
                             <a href="<?php echo SITE_URL; ?>verify.php">
-                                <span class="pfl-lm-icon pfl-lm-verify"><i class="fas fa-shield-halved"></i></span>
+                                <span class="pfl-lm-icon pfl-lm-verify"><i class="lucide-icon" aria-hidden="true" data-lucide="shield-halved"></i></span>
                                 <span class="pfl-lm-text">
                                     <strong><?php echo isEnglish() ? 'Member verify' : 'सदस्य परिचयपत्र जाँच'; ?></strong>
                                     <small><?php echo isEnglish() ? 'ID card check — code & CVV' : 'कोड र CVV ले प्रमाणित गर्नुहोस्'; ?></small>
@@ -872,7 +872,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                     <button class="pfl-bell-btn" id="pflBellBtn"
                             aria-label="<?php echo isEnglish() ? 'Notifications' : 'सूचनाहरू'; ?>"
                             aria-expanded="false">
-                        <i class="fas fa-bell"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="bell"></i>
                         <?php if ($bellNewCount > 0): ?>
                         <span class="pfl-bell-badge"><?php echo $bellNewCount; ?></span>
                         <?php endif; ?>
@@ -880,7 +880,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                     <!-- Dropdown panel -->
                     <div class="pfl-bell-drop" id="pflBellDrop" role="dialog" aria-label="सूचनाहरू">
                         <div class="pfl-bell-header">
-                            <span><i class="fas fa-bell me-1"></i><?php echo isEnglish() ? 'Notices' : 'सूचनाहरू'; ?></span>
+                            <span><i class="lucide-icon" aria-hidden="true" data-lucide="bell"></i><?php echo isEnglish() ? 'Notices' : 'सूचनाहरू'; ?></span>
                             <?php if ($bellNewCount > 0): ?>
                             <span class="pfl-bell-new-chip"><?php echo $bellNewCount; ?> New</span>
                             <?php endif; ?>
@@ -929,7 +929,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 </li>
                 <li>
                     <a href="javascript:void(0);" id="topbarSearchBtn" title="<?php echo isEnglish() ? 'Search' : 'खोज्नुहोस्'; ?>">
-                        <i class="fas fa-search"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="search"></i>
                     </a>
                 </li>
                 <li class="pfl-dark-wrap">
@@ -960,7 +960,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                      class="pfl-brand-logo"
                      onerror="this.style.display='none';var p=this.parentElement;p.classList.remove('has-logo');p.classList.add('no-logo');if(!p.querySelector('.pfl-brand-logo-fallback')){var fb=document.createElement('div');fb.className='pfl-brand-logo-fallback';fb.innerHTML='<i class=\'fas fa-landmark\'></i>';p.insertBefore(fb,this);}">
                 <?php else: ?>
-                <div class="pfl-brand-logo-fallback"><i class="fas fa-landmark"></i></div>
+                <div class="pfl-brand-logo-fallback"><i class="lucide-icon" aria-hidden="true" data-lucide="landmark"></i></div>
                 <?php endif; ?>
                 <?php if (empty($logo)): ?>
                 <div class="pfl-brand-text">
@@ -999,19 +999,19 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         <a href="<?php echo SITE_URL; ?>index.php"><?php echo $L['home']; ?></a>
                     </li>
                     <li class="has-dropdown <?php echo $currentPage == 'about' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>about.php"><?php echo $L['about']; ?> <i class="fas fa-chevron-down"></i></a>
+                        <a href="<?php echo SITE_URL; ?>about.php"><?php echo $L['about']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <li><a href="<?php echo SITE_URL; ?>about.php"><i class="fas fa-info-circle"></i> <?php echo isEnglish() ? 'About Us' : 'हाम्रो बारेमा'; ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>about.php#history"><i class="fas fa-clock"></i> <?php echo isEnglish() ? 'History' : 'हाम्रो इतिहास'; ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>about.php#vision"><i class="fas fa-eye"></i> <?php echo htmlspecialchars(isEnglish() ? $visionMissionMenuEn : $visionMissionMenuNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>about.php#history"><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> <?php echo isEnglish() ? 'History' : 'हाम्रो इतिहास'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>about.php#vision"><i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i> <?php echo htmlspecialchars(isEnglish() ? $visionMissionMenuEn : $visionMissionMenuNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>about.php#values"><i class="fas fa-heart"></i> <?php echo htmlspecialchars(isEnglish() ? $valuesMenuLabelEn : $valuesMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>about.php#chairman"><i class="fas fa-user-tie"></i> <?php echo htmlspecialchars(isEnglish() ? $chairmanMenuLabelEn : $chairmanMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>about.php#ceo-message"><i class="fas fa-user"></i> <?php echo htmlspecialchars(isEnglish() ? $ceoMenuLabelEn : $ceoMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>institutional-profile.php"><i class="fas fa-building-columns text-success me-1"></i> <?php echo isEnglish() ? 'Institutional Profile' : 'संस्थागत प्रोफाइल'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>about.php#ceo-message"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i> <?php echo htmlspecialchars(isEnglish() ? $ceoMenuLabelEn : $ceoMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>institutional-profile.php"><i class="lucide-icon" aria-hidden="true" data-lucide="building-columns"></i> <?php echo isEnglish() ? 'Institutional Profile' : 'संस्थागत प्रोफाइल'; ?></a></li>
                         </ul>
                     </li>
                     <li class="has-dropdown <?php echo $currentPage == 'services' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>services.php"><?php echo $L['services']; ?> <i class="fas fa-chevron-down"></i></a>
+                        <a href="<?php echo SITE_URL; ?>services.php"><?php echo $L['services']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <?php if (!empty($navServiceLinks)): ?>
                                 <?php foreach ($navServiceLinks as $_svc): ?>
@@ -1028,10 +1028,10 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         <a href="<?php echo SITE_URL; ?>interest-rates.php"><?php echo $L['interest_rates']; ?></a>
                     </li>
                     <li class="has-dropdown <?php echo in_array($currentPage, ['notices', 'cooperative-programs', 'election-information']) ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>notices.php"><?php echo $L['notices']; ?> <i class="fas fa-chevron-down"></i></a>
+                        <a href="<?php echo SITE_URL; ?>notices.php"><?php echo $L['notices']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <li><a href="<?php echo SITE_URL; ?>notices.php"><i class="fas fa-bullhorn"></i> <?php echo isEnglish() ? 'Latest Notices' : 'नवीनतम सूचना'; ?><?php if ($hasRecentNotice): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>cooperative-programs.php"><i class="fas fa-calendar-check"></i> <?php echo isEnglish() ? 'Cooperative Programs' : 'सहकारी कार्यक्रम'; ?><?php if ($hasRecentProgram): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?><?php if ($activeProgramCount > 0): ?><span class="nav-new-badge"><?php echo (int)$activeProgramCount; ?></span><?php endif; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>cooperative-programs.php"><i class="lucide-icon" aria-hidden="true" data-lucide="calendar-check"></i> <?php echo isEnglish() ? 'Cooperative Programs' : 'सहकारी कार्यक्रम'; ?><?php if ($hasRecentProgram): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?><?php if ($activeProgramCount > 0): ?><span class="nav-new-badge"><?php echo (int)$activeProgramCount; ?></span><?php endif; ?></a></li>
                             <?php if ($electionNavOn): ?>
                             <li><a href="<?php echo SITE_URL; ?>election-information.php"><i class="fas fa-check-to-slot"></i> <?php echo htmlspecialchars($L['election_information'] ?? 'निर्वाचन जानकारी'); ?><?php if ($hasRecentElectionMilestone): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?></a></li>
                             <?php endif; ?>
@@ -1041,7 +1041,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         <a href="<?php echo SITE_URL; ?>gallery.php"><?php echo $L['gallery']; ?></a>
                     </li>
                     <li class="has-dropdown <?php echo in_array($currentPage, ['team', 'committees']) ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>team.php"><?php echo $L['team']; ?> <i class="fas fa-chevron-down"></i></a>
+                        <a href="<?php echo SITE_URL; ?>team.php"><?php echo $L['team']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <li><a href="<?php echo SITE_URL; ?>team.php"><i class="fas fa-id-card-clip"></i> <?php echo isEnglish() ? 'Contact Officers' : 'सम्पर्क अधिकारी'; ?></a></li>
                             <?php /* Admin बाट 'मेनुमा देखाउनुहोस्' check गरिएका committees मात्र */ ?>
@@ -1054,17 +1054,17 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         </ul>
                     </li>
                     <li class="has-dropdown">
-                        <a href="javascript:void(0);"><?php echo isEnglish() ? 'More' : 'थप'; ?> <i class="fas fa-chevron-down"></i></a>
+                        <a href="javascript:void(0);"><?php echo isEnglish() ? 'More' : 'थप'; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
-                            <li><a href="<?php echo SITE_URL; ?>news.php"><i class="fas fa-newspaper"></i> <?php echo isEnglish() ? 'News & Activities' : 'समाचार'; ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>career.php"><i class="fas fa-briefcase"></i> <?php echo isEnglish() ? 'Career' : 'बिज्ञापन'; ?><?php echo nav_submenu_count_badge_html($navMenuBadges['career_open']); ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>reports.php"><i class="fas fa-chart-line"></i> <?php echo isEnglish() ? 'Reports & Publications' : 'प्रतिवेदन'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>news.php"><i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i> <?php echo isEnglish() ? 'News & Activities' : 'समाचार'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>career.php"><i class="lucide-icon" aria-hidden="true" data-lucide="briefcase"></i> <?php echo isEnglish() ? 'Career' : 'बिज्ञापन'; ?><?php echo nav_submenu_count_badge_html($navMenuBadges['career_open']); ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>reports.php"><i class="lucide-icon" aria-hidden="true" data-lucide="chart-line"></i> <?php echo isEnglish() ? 'Reports & Publications' : 'प्रतिवेदन'; ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>downloads.php"><i class="fas fa-download"></i> <?php echo isEnglish() ? 'Downloads' : 'डाउनलोड'; ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>service-centers.php"><i class="fas fa-map-marker-alt"></i> <?php echo isEnglish() ? 'Branches' : 'शाखाहरू'; ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>faqs.php"><i class="fas fa-question-circle"></i> <?php echo isEnglish() ? 'FAQs' : 'प्रश्नोत्तर'; ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>member-survey.php"><i class="fas fa-comment-dots"></i> <?php echo isEnglish() ? 'Suggestion Box' : 'सुझाव बक्स'; ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>partner-facilities.php"><i class="fas fa-handshake"></i> <?php echo isEnglish() ? 'Partner Facilities' : 'अन्य सुविधा'; ?></a></li>
-                            <li><a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="fas fa-search"></i> <?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>partner-facilities.php"><i class="lucide-icon" aria-hidden="true" data-lucide="handshake"></i> <?php echo isEnglish() ? 'Partner Facilities' : 'अन्य सुविधा'; ?></a></li>
+                            <li><a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="lucide-icon" aria-hidden="true" data-lucide="search"></i> <?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></a></li>
                         </ul>
                     </li>
                     <li class="<?php echo $currentPage == 'contact' ? 'active' : ''; ?>">
@@ -1176,7 +1176,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         <li><a href="mailto:<?php echo $email; ?>"><i class="fas fa-envelope"></i></a></li>
                             <li class="topbar-search-btn d-none d-lg-inline-block">
                                 <a href="javascript:void(0);" id="topbarSearchBtn" title="<?php echo isEnglish() ? 'Search' : 'खोज्नुहोस्'; ?>">
-                                <i class="fas fa-search"></i>
+                                <i class="lucide-icon" aria-hidden="true" data-lucide="search"></i>
                             </a>
                         </li>
                             <li class="topbar-darkmode-btn d-none d-lg-inline-block">
@@ -1216,7 +1216,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
 
                     <!-- Navigation -->
                     <nav class="main-nav" id="mainNav">
-                        <button class="close-menu d-lg-none" id="closeMenu">
+                        <button class="close-menu d-lg-none" id="closeMenu" aria-label="Close" title="Close">
                             <i class="fas fa-times"></i>
                         </button>
                         <ul class="nav-menu">
@@ -1224,15 +1224,15 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                                 <a href="<?php echo SITE_URL; ?>index.php"><?php echo $L['home']; ?></a>
                             </li>
                             <li class="has-dropdown <?php echo $currentPage == 'about' ? 'active' : ''; ?>">
-                                <a href="<?php echo SITE_URL; ?>about.php"><?php echo $L['about']; ?> <i class="fas fa-chevron-down"></i></a>
+                                <a href="<?php echo SITE_URL; ?>about.php"><?php echo $L['about']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                                 <ul class="dropdown">
                                     <li><a href="<?php echo SITE_URL; ?>about.php"><i class="fas fa-info-circle"></i> <?php echo isEnglish() ? 'About Us' : 'हाम्रो बारेमा'; ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>about.php#history"><i class="fas fa-clock"></i> <?php echo isEnglish() ? 'History' : 'हाम्रो इतिहास'; ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>about.php#vision"><i class="fas fa-eye"></i> <?php echo htmlspecialchars(isEnglish() ? $visionMissionMenuEn : $visionMissionMenuNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>about.php#history"><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> <?php echo isEnglish() ? 'History' : 'हाम्रो इतिहास'; ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>about.php#vision"><i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i> <?php echo htmlspecialchars(isEnglish() ? $visionMissionMenuEn : $visionMissionMenuNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
                                     <li><a href="<?php echo SITE_URL; ?>about.php#values"><i class="fas fa-heart"></i> <?php echo htmlspecialchars(isEnglish() ? $valuesMenuLabelEn : $valuesMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
                                     <li><a href="<?php echo SITE_URL; ?>about.php#chairman"><i class="fas fa-user-tie"></i> <?php echo htmlspecialchars(isEnglish() ? $chairmanMenuLabelEn : $chairmanMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>about.php#ceo-message"><i class="fas fa-user"></i> <?php echo htmlspecialchars(isEnglish() ? $ceoMenuLabelEn : $ceoMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>institutional-profile.php"><i class="fas fa-building-columns text-success me-1"></i> <?php echo isEnglish() ? 'Institutional Profile' : 'संस्थागत प्रोफाइल'; ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>about.php#ceo-message"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i> <?php echo htmlspecialchars(isEnglish() ? $ceoMenuLabelEn : $ceoMenuLabelNp, ENT_QUOTES, 'UTF-8'); ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>institutional-profile.php"><i class="lucide-icon" aria-hidden="true" data-lucide="building-columns"></i> <?php echo isEnglish() ? 'Institutional Profile' : 'संस्थागत प्रोफाइल'; ?></a></li>
                                     <?php
                                     // Fetch dynamic pages that should show in about menu
                                     // Safe query with error handling for missing columns
@@ -1259,7 +1259,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                                 </ul>
                             </li>
                             <li class="has-dropdown <?php echo $currentPage == 'services' ? 'active' : ''; ?>">
-                                <a href="<?php echo SITE_URL; ?>services.php"><?php echo $L['services']; ?> <i class="fas fa-chevron-down"></i></a>
+                                <a href="<?php echo SITE_URL; ?>services.php"><?php echo $L['services']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                                 <ul class="dropdown">
                                     <?php if (!empty($navServiceLinks)): ?>
                                         <?php foreach ($navServiceLinks as $_svc): ?>
@@ -1297,10 +1297,10 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                                 <a href="<?php echo SITE_URL; ?>interest-rates.php"><?php echo $L['interest_rates']; ?></a>
                             </li>
                             <li class="has-dropdown <?php echo in_array($currentPage, ['notices', 'cooperative-programs', 'election-information']) ? 'active' : ''; ?>">
-                                <a href="<?php echo SITE_URL; ?>notices.php"><?php echo $L['notices']; ?> <i class="fas fa-chevron-down"></i></a>
+                                <a href="<?php echo SITE_URL; ?>notices.php"><?php echo $L['notices']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                                 <ul class="dropdown">
                                     <li><a href="<?php echo SITE_URL; ?>notices.php"><i class="fas fa-bullhorn"></i> <?php echo isEnglish() ? 'Latest Notices' : 'नवीनतम सूचना'; ?><?php if ($hasRecentNotice): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>cooperative-programs.php"><i class="fas fa-calendar-check"></i> <?php echo isEnglish() ? 'Cooperative Programs' : 'सहकारी कार्यक्रम'; ?><?php if ($hasRecentProgram): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?><?php if ($activeProgramCount > 0): ?><span class="nav-new-badge"><?php echo (int)$activeProgramCount; ?></span><?php endif; ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>cooperative-programs.php"><i class="lucide-icon" aria-hidden="true" data-lucide="calendar-check"></i> <?php echo isEnglish() ? 'Cooperative Programs' : 'सहकारी कार्यक्रम'; ?><?php if ($hasRecentProgram): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?><?php if ($activeProgramCount > 0): ?><span class="nav-new-badge"><?php echo (int)$activeProgramCount; ?></span><?php endif; ?></a></li>
                                     <?php if ($electionNavOn): ?>
                                     <li><a href="<?php echo SITE_URL; ?>election-information.php"><i class="fas fa-check-to-slot"></i> <?php echo htmlspecialchars($L['election_information'] ?? 'निर्वाचन जानकारी'); ?><?php if ($hasRecentElectionMilestone): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?></a></li>
                                     <?php endif; ?>
@@ -1310,7 +1310,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                                 <a href="<?php echo SITE_URL; ?>gallery.php"><?php echo $L['gallery']; ?></a>
                             </li>
                             <li class="has-dropdown <?php echo in_array($currentPage, ['team', 'committees']) ? 'active' : ''; ?>">
-                                <a href="<?php echo SITE_URL; ?>team.php"><?php echo $L['team']; ?> <i class="fas fa-chevron-down"></i></a>
+                                <a href="<?php echo SITE_URL; ?>team.php"><?php echo $L['team']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                                 <ul class="dropdown">
                                     <li><a href="<?php echo SITE_URL; ?>team.php"><i class="fas fa-id-card-clip"></i> <?php echo isEnglish() ? 'Contact Officers' : 'सम्पर्क अधिकारी'; ?></a></li>
                                     <?php foreach ($navCommittees as $_nc): ?>
@@ -1322,17 +1322,17 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                                 </ul>
                             </li>
                             <li class="has-dropdown">
-                                <a href="javascript:void(0);"><?php echo isEnglish() ? 'More' : 'थप'; ?> <i class="fas fa-chevron-down"></i></a>
+                                <a href="javascript:void(0);"><?php echo isEnglish() ? 'More' : 'थप'; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                                 <ul class="dropdown">
-                                    <li><a href="<?php echo SITE_URL; ?>news.php"><i class="fas fa-newspaper"></i> <?php echo isEnglish() ? 'News & Activities' : 'समाचार'; ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>career.php"><i class="fas fa-briefcase"></i> <?php echo isEnglish() ? 'Career' : 'बिज्ञापन'; ?><?php echo nav_submenu_count_badge_html($navMenuBadges['career_open']); ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>reports.php"><i class="fas fa-chart-line"></i> <?php echo isEnglish() ? 'Reports & Publications' : 'प्रतिवेदन तथा प्रकाशनहरू'; ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>news.php"><i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i> <?php echo isEnglish() ? 'News & Activities' : 'समाचार'; ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>career.php"><i class="lucide-icon" aria-hidden="true" data-lucide="briefcase"></i> <?php echo isEnglish() ? 'Career' : 'बिज्ञापन'; ?><?php echo nav_submenu_count_badge_html($navMenuBadges['career_open']); ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>reports.php"><i class="lucide-icon" aria-hidden="true" data-lucide="chart-line"></i> <?php echo isEnglish() ? 'Reports & Publications' : 'प्रतिवेदन तथा प्रकाशनहरू'; ?></a></li>
                                     <li><a href="<?php echo SITE_URL; ?>downloads.php"><i class="fas fa-download"></i> <?php echo isEnglish() ? 'Downloads' : 'डाउनलोड'; ?></a></li>
                                     <li><a href="<?php echo SITE_URL; ?>service-centers.php"><i class="fas fa-map-marker-alt"></i> <?php echo isEnglish() ? 'Branches' : 'शाखाहरू'; ?></a></li>
                                     <li><a href="<?php echo SITE_URL; ?>faqs.php"><i class="fas fa-question-circle"></i> <?php echo isEnglish() ? 'FAQs' : 'प्रश्नोत्तर'; ?></a></li>
                                     <li><a href="<?php echo SITE_URL; ?>member-survey.php"><i class="fas fa-comment-dots"></i> <?php echo isEnglish() ? 'Suggestion Box' : 'सुझाव बक्स'; ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>partner-facilities.php"><i class="fas fa-handshake"></i> <?php echo isEnglish() ? 'Partner Facilities' : 'अन्य सुविधा'; ?></a></li>
-                                    <li><a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="fas fa-search"></i> <?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>partner-facilities.php"><i class="lucide-icon" aria-hidden="true" data-lucide="handshake"></i> <?php echo isEnglish() ? 'Partner Facilities' : 'अन्य सुविधा'; ?></a></li>
+                                    <li><a href="<?php echo SITE_URL; ?>application-tracker.php"><i class="lucide-icon" aria-hidden="true" data-lucide="search"></i> <?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?></a></li>
                                     <?php
                                     // Fetch dynamic pages for more menu
                                     try {
@@ -1444,7 +1444,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 btn.className = 'dd-chevron-btn';
                 btn.setAttribute('aria-label', 'Toggle submenu');
                 btn.setAttribute('aria-expanded', 'false');
-                btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                btn.innerHTML = '<i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i>';
                 li.insertBefore(btn, link.nextSibling);
             });
             function openNav(){
@@ -1625,7 +1625,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                     <?php endforeach; ?>
                 </div>
                 <button type="button" class="popup-nav-btn popup-next" id="popupNext" title="<?php echo isEnglish() ? 'Next' : 'अर्को'; ?>" data-testid="notice-popup-next-button">
-                    <i class="fas fa-chevron-right"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-right"></i>
                 </button>
             </div>
             <!-- Progress Bar for Auto-rotate -->

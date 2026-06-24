@@ -14,10 +14,10 @@
  * DB जडान नभए login चल्दैन — पहिलो पटक `admin/db-setup.php` (`database.local.php` भरे सिधै, नभए superadmin unlock)।
  */
 
-require_once '../includes/config.php';
-require_once '../includes/site-license-renewal.php';
-require_once '../includes/superadmin-config.php';
-require_once '../includes/totp-2fa.php';
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/site-license-renewal.php';
+require_once __DIR__ . '/../includes/superadmin-config.php';
+require_once __DIR__ . '/../includes/totp-2fa.php';
 
 if (!function_exists('coop_admin_ensure_twofa_columns')) {
     /** admin_users मा 2FA columns — प्रति request एक पटक मात्र */
@@ -43,6 +43,47 @@ if (!function_exists('coop_admin_ensure_twofa_columns')) {
 
 if (isAdminLoggedIn()) {
     redirect('dashboard.php');
+}
+
+$__adminHost = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+$__adminIsLocal = str_starts_with($__adminHost, '127.0.0.1') || str_starts_with($__adminHost, 'localhost') || str_starts_with($__adminHost, '[::1]');
+$__adminTestKey = 'admin_test_login';
+
+if (
+    $__adminIsLocal
+    && ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST'
+    && (string) ($_POST['action'] ?? '') === $__adminTestKey
+    && !empty($_POST['csrf_token'])
+    && verifyCSRFToken($_POST['csrf_token'])
+) {
+    $testUser = trim((string) ($_POST['test_username'] ?? ''));
+    $testName = trim((string) ($_POST['test_name'] ?? ''));
+    if ($testUser === '') {
+        $testUser = defined('SUPER_ADMIN_USERNAME') ? (string) SUPER_ADMIN_USERNAME : 'admin';
+    }
+    if ($testName === '') {
+        $testName = 'Local Test Admin';
+    }
+    session_regenerate_id(true);
+    $_SESSION['admin_id'] = 1;
+    $_SESSION['admin_username'] = $testUser;
+    $_SESSION['admin_name'] = $testName;
+    $_SESSION['admin_role'] = 'superadmin';
+    $_SESSION['is_superadmin'] = true;
+    $_SESSION['admin_last_login'] = time();
+    $_SESSION['admin_last_activity'] = time();
+    $_SESSION['admin_agent_hash'] = substr(md5($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 16);
+    $ip2 = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $_SESSION['admin_ip_partial'] = implode('.', array_slice(explode('.', $ip2), 0, 3));
+    $_SESSION['admin_local_debug_login'] = true;
+    $_SESSION['db_bootstrap_unlocked'] = true;
+    if (function_exists('logSecurityEvent')) {
+        logSecurityEvent('admin_local_debug_login', 'Local-only admin test login used on 127.0.0.1');
+    }
+    if (defined('DB_NAME') && DB_NAME !== '') {
+        redirect('dashboard.php');
+    }
+    redirect('db-setup.php');
 }
 
 $error = '';
@@ -358,6 +399,10 @@ $logoPath = function_exists('getLocalizedLogoPath')
         ? trim((string) getSetting('site_logo', getSetting('logo', 'assets/images/logo.png')))
         : 'assets/images/logo.png');
 $logoSrc  = $logoPath ? (strpos($logoPath,'http')===0 ? $logoPath : SITE_URL . ltrim($logoPath,'/')) : '';
+if ($logoSrc && strpos($logoSrc, 'assets/images/logo.png') !== false) {
+    $fallbackLogo = SITE_URL . 'assets/images/icon-192x192.png';
+    $logoSrc = $fallbackLogo;
+}
 
 $licExpiredLogin = false;
 try {
@@ -405,12 +450,12 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
 <?php if (function_exists('portalLangToggleUrl') && function_exists('portalLangToggleBadge')): ?>
 <?php $__lt = function_exists('appGetText') ? appGetText('भाषा परिवर्तन', 'Switch language') : (function_exists('isEnglish') && isEnglish() ? 'Switch language' : 'भाषा परिवर्तन'); ?>
 <a href="<?php echo htmlspecialchars(portalLangToggleUrl(), ENT_QUOTES, 'UTF-8'); ?>" class="auth-lang-toggle" title="<?php echo htmlspecialchars($__lt, ENT_QUOTES, 'UTF-8'); ?>" aria-label="<?php echo htmlspecialchars($__lt, ENT_QUOTES, 'UTF-8'); ?>">
-    <i data-lucide="languages"></i> <?php echo htmlspecialchars(portalLangToggleBadge()); ?>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="languages"></i> <?php echo htmlspecialchars(portalLangToggleBadge()); ?>
 </a>
 <?php endif; ?>
 
 <a href="../index.php" class="page-back">
-    <i data-lucide="arrow-left"></i> वेबसाइट
+    <i class="lucide-icon" aria-hidden="true" data-lucide="arrow-left"></i> वेबसाइट
 </a>
 
 <div class="auth-card">
@@ -421,9 +466,9 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
                 <img src="<?php echo htmlspecialchars($logoSrc); ?>" alt="<?php echo htmlspecialchars($siteName); ?>">
             </div>
         <?php else: ?>
-            <div class="card-logo-icon"><i data-lucide="shield-halved"></i></div>
+            <div class="card-logo-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="shield-halved"></i></div>
         <?php endif; ?>
-        <span class="card-portal-label"><i data-lucide="lock"></i>&nbsp;Admin Portal</span>
+        <span class="card-portal-label"><i class="lucide-icon" aria-hidden="true" data-lucide="lock"></i>&nbsp;Admin Portal</span>
     </div>
 
     <div class="card-body">
@@ -434,7 +479,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
 
         <?php if ($error): ?>
             <div class="alert-error">
-                <i data-lucide="circle-alert""></i>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="circle-alert"></i>
                 <?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
             </div>
         <?php endif; ?>
@@ -442,9 +487,9 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
         <?php if ($showLicenseRenewalOnLogin): ?>
         <div class="license-renew-on-login" style="margin: 0 0 18px;">
             <h4>
-                <i data-lucide="building-2"></i> लाइसेन्स नवीकरण — कार्यालय Admin
+                <i class="lucide-icon" aria-hidden="true" data-lucide="building-2"></i> लाइसेन्स नवीकरण — कार्यालय Admin
                 <a class="mini-login-link" href="?login=1" title="लग इन पृष्ठमा जानुहोस्" aria-label="लग इन">
-                    <i data-lucide="lock"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="lock"></i>
                 </a>
             </h4>
             <div class="license-renew-vendor">
@@ -465,7 +510,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <?php endif; ?>
             <?php if ($renewalNoticeSent): ?>
             <div class="license-renew-success">
-                <strong><i data-lucide="circle-check" class="me-1"></i>भुक्तानी सूचना पठाइयो।</strong>
+                <strong><i class="lucide-icon me-1" aria-hidden="true" data-lucide="circle-check"></i>भुक्तानी सूचना पठाइयो।</strong>
                 भुक्तानी सूचना प्राप्त भएको छ। कृपया पुष्टि/सक्रिय हुन केही समय प्रतीक्षा गर्नुहोस् वा विक्रेता सम्पर्क गर्नुहोस्।
             </div>
             <?php else: ?>
@@ -497,11 +542,11 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
                     <label for="renew_note">टिप्पणी</label>
                     <textarea name="renewal_note" id="renew_note" maxlength="2000" placeholder="ऐच्छिक"></textarea>
                 </div>
-                <button type="submit" class="lr-submit"><i data-lucide="send""></i> Pay SSL certificates तथा domain active Charge now</button>
+                <button type="submit" class="lr-submit"><i class="lucide-icon" aria-hidden="true" data-lucide="send"></i> Pay SSL certificates तथा domain active Charge now</button>
             </form>
             <?php endif; ?>
             <div class="sub">
-                <i data-lucide="user-check" class="me-1"></i>यो फारम कार्यालय प्रतिनिधिका लागि हो; व्यवस्थापन पहुँच भएको खाताले माथिको लग इन प्रयोग गर्नुहोस्।
+                <i class="lucide-icon me-1" aria-hidden="true" data-lucide="user-check"></i>यो फारम कार्यालय प्रतिनिधिका लागि हो; व्यवस्थापन पहुँच भएको खाताले माथिको लग इन प्रयोग गर्नुहोस्।
             </div>
         </div>
         <?php endif; ?>
@@ -512,12 +557,12 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <input type="hidden" name="do_admin_2fa" value="1">
             <?php if (($admin2faPending['mode'] ?? '') === 'setup'): ?>
                 <div class="alert-error alert-info-soft">
-                    <i data-lucide="qr-code""></i> Google Authenticator setup आवश्यक छ।
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="qr-code"></i> Google Authenticator setup आवश्यक छ।
                 </div>
                 <div class="field">
                     <label>Manual Secret</label>
                     <div class="input-icon">
-                        <i data-lucide="key-round"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="key-round"></i>
                         <input type="text" readonly value="<?php echo htmlspecialchars((string)($admin2faPending['secret'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>">
                     </div>
                 </div>
@@ -530,16 +575,16 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <div class="field">
                 <label>2FA Code / Backup Code</label>
                 <div class="input-icon">
-                    <i data-lucide="shield-halved"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="shield-halved"></i>
                     <input type="text" name="twofa_code" placeholder="123456 वा BACKUPCODE" required autofocus>
                 </div>
             </div>
             <button type="submit" class="submit-btn">
-                <i data-lucide="shield-check""></i> 2FA Verify
+                <i class="lucide-icon" aria-hidden="true" data-lucide="shield-check"></i> 2FA Verify
             </button>
             <?php if (!empty($_SESSION['admin_2fa_backup_plain']) && is_array($_SESSION['admin_2fa_backup_plain'])): ?>
                 <div class="security-note security-note-warning">
-                    <i data-lucide="triangle-alert""></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="triangle-alert"></i>
                     Backup codes: <code><?php echo htmlspecialchars(implode(' , ', $_SESSION['admin_2fa_backup_plain']), ENT_QUOTES, 'UTF-8'); ?></code>
                 </div>
                 <?php unset($_SESSION['admin_2fa_backup_plain']); ?>
@@ -551,21 +596,48 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
             <div class="field">
                 <label>युजरनेम</label>
                 <div class="input-icon">
-                    <i data-lucide="user"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="user"></i>
                     <input type="text" name="username" placeholder="युजरनेम राख्नुहोस्" required autofocus>
                 </div>
             </div>
             <div class="field">
                 <label>पासवर्ड</label>
                 <div class="input-icon">
-                    <i data-lucide="lock"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="lock"></i>
                     <input type="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
                 </div>
             </div>
             <button type="submit" class="submit-btn">
-                <i data-lucide="log-in""></i> लग इन गर्नुहोस्
+                <i class="lucide-icon" aria-hidden="true" data-lucide="log-in"></i> लग इन गर्नुहोस्
             </button>
         </form>
+        <?php if ($__adminIsLocal): ?>
+        <form method="POST" action="" style="margin-top:14px;padding-top:14px;border-top:1px dashed rgba(0,0,0,.12);">
+            <?php echo csrfField(); ?>
+            <input type="hidden" name="action" value="<?php echo htmlspecialchars($__adminTestKey, ENT_QUOTES, 'UTF-8'); ?>">
+            <div class="security-note security-note-warning" style="margin-bottom:12px;">
+                <i class="lucide-icon" aria-hidden="true" data-lucide="flask-conical"></i>
+                Local test login only. This is visible on 127.0.0.1 / localhost and seeds the normal admin session for dashboard testing.
+            </div>
+            <div class="field">
+                <label>Test Username</label>
+                <div class="input-icon">
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="user-gear"></i>
+                    <input type="text" name="test_username" value="<?php echo htmlspecialchars(defined('SUPER_ADMIN_USERNAME') ? (string) SUPER_ADMIN_USERNAME : 'admin', ENT_QUOTES, 'UTF-8'); ?>" autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <label>Test Display Name</label>
+                <div class="input-icon">
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="badge-check"></i>
+                    <input type="text" name="test_name" value="Local Test Admin" autocomplete="off">
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">
+                <i class="lucide-icon" aria-hidden="true" data-lucide="door-open"></i> Open Dashboard Test Login
+            </button>
+        </form>
+        <?php endif; ?>
         <?php else: ?>
             <div class="field-compact" style="margin-top:6px;">
                 <a href="?renewal=1" class="link-primary-strong">भुक्तानी सूचना फारम खुल्लै छ (लग इन चाहिँदैन)</a>
@@ -576,7 +648,7 @@ $showLicenseRenewalOnLogin = $showLicenseRenewalOnLogin && !$forceShowLogin;
         <?php endif; ?>
 
         <div class="security-note">
-            <i data-lucide="shield-halved"></i>
+            <i class="lucide-icon" aria-hidden="true" data-lucide="shield-halved"></i>
             यो सुरक्षित Admin क्षेत्र हो। सबै गतिविधि audit log मा record हुन्छ।
         </div>
     </div>

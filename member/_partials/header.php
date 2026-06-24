@@ -139,24 +139,24 @@ $memInitial = mb_substr($memName, 0, 1);
       <?php if ($_mpLogoSrc !== ''): ?>
         <img src="<?= htmlspecialchars($_mpLogoSrc, ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($siteName, ENT_QUOTES, 'UTF-8') ?>">
       <?php else: ?>
-        <i class="fas fa-landmark" style="color:var(--primary-color,#1a5f2a);font-size:.95rem;"></i>
+        <i style="color:var(--primary-color,#1a5f2a);font-size:.95rem;" class="lucide-icon" aria-hidden="true" data-lucide="landmark"></i>
       <?php endif; ?>
     </span>
     <div class="mp-company-meta">
       <div class="mp-company-name"><?= htmlspecialchars($memName) ?></div>
-      <div class="mp-company-sub"><?= htmlspecialchars($memberT('सदस्य', 'Member')) ?> <i class="fas fa-circle-check"></i></div>
+      <div class="mp-company-sub"><?= htmlspecialchars($memberT('सदस्य', 'Member')) ?> <i class="lucide-icon" aria-hidden="true" data-lucide="circle-check"></i></div>
     </div>
   </div>
 
   <form class="mp-search" method="get" action="/member/tracker.php" role="search">
-    <i class="fas fa-search"></i>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="search"></i>
     <input type="search" name="q" placeholder="<?= htmlspecialchars($memberT('खोज्नुहोस् ...', 'Search ...')) ?>" autocomplete="off">
   </form>
 
   <div class="mp-actions">
     <a href="<?= htmlspecialchars($memberLangToggleUrl, ENT_QUOTES, 'UTF-8') ?>" class="mp-lang" title="<?= htmlspecialchars($memberT('भाषा', 'Language')) ?>"><?= htmlspecialchars($memberLangBadge) ?></a>
     <a href="/member/scan.php" class="mp-icon" title="<?= htmlspecialchars($memberT('QR स्क्यान','Scan QR')) ?>"><i class="fas fa-qrcode"></i></a>
-    <a href="/member/notifications.php" class="mp-icon" title="<?= htmlspecialchars($memberT('सूचना', 'Notifications')) ?>"><i class="fas fa-bell"></i><span class="mp-dot"></span></a>
+    <a href="/member/notifications.php" class="mp-icon" title="<?= htmlspecialchars($memberT('सूचना', 'Notifications')) ?>"><i class="lucide-icon" aria-hidden="true" data-lucide="bell"></i><span class="mp-dot"></span></a>
     <a href="/member/profile.php" class="mp-avatar" title="<?= htmlspecialchars($memName) ?>">
       <?php if ($memberPhotoUrl !== ''): ?>
         <img src="<?= htmlspecialchars($memberPhotoUrl) ?>" alt="" onerror="this.parentNode.textContent=<?= json_encode(mb_strtoupper($memInitial)) ?>;">

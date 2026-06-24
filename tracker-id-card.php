@@ -83,6 +83,7 @@ header('Referrer-Policy: no-referrer');
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="description" content="Secure digital ID card preview for verified cooperative members.">
 <meta name="robots" content="noindex,nofollow">
 <title><?php echo htmlspecialchars($_t('डिजिटल परिचयपत्र पूर्वावलोकन', 'Digital ID Card Preview')); ?> — <?php echo htmlspecialchars($siteName); ?></title>
 

@@ -226,7 +226,7 @@ try {
         <div class="row justify-content-center">
             <div class="col-lg-7">
                 <div class="form-success-card text-center py-5 px-4 rounded-4 shadow-sm" style="border:2px solid #c8e6c9;">
-                    <div class="form-success-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="form-success-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="check-circle"></i></div>
                     <h3 class="mt-3 fw-bold text-success"><?php echo isEnglish() ? 'Account Application Submitted!' : 'खाता खोल्ने आवेदन पेश भयो!'; ?></h3>
                     <p class="text-muted mb-3"><?php echo isEnglish() ? 'We will contact you shortly to complete the process.' : 'हामी प्रक्रिया पूरा गर्न छिट्टै सम्पर्क गर्नेछौं।'; ?></p>
                     <?php if ($accTrackingId): ?>
@@ -234,14 +234,14 @@ try {
                         <div class="text-muted small mb-2"><?php echo isEnglish() ? 'Your Tracking ID — save this!' : 'तपाईंको Tracking ID — सुरक्षित राख्नुहोस्!'; ?></div>
                         <div class="d-flex align-items-center gap-2 mb-2">
                             <div class="form-tracking-id" id="accTrkId"><?php echo e($accTrackingId); ?></div>
-                            <button type="button" onclick="copyTrk('accTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i data-lucide="copy"></i></button>
+                            <button type="button" onclick="copyTrk('accTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i></button>
                         </div>
                         <div class="form-tracking-help"><a href="<?php echo e($trackerUrl); ?>" class="text-success text-decoration-none fw-semibold"><?php echo isEnglish() ? 'Click here' : 'यहाँ बाट'; ?></a> <?php echo isEnglish() ? 'to check status in Tracker.' : 'Tracker मा स्थिति हेर्नुहोस्।'; ?></div>
                     </div>
                     <?php endif; ?>
                     <div class="mt-3">
                         <a href="<?php echo e($trackerUrl); ?>" class="btn btn-success px-4 me-2">
-                            <i class="fas fa-search me-1"></i><?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?>
+                            <i class="lucide-icon me-1" aria-hidden="true" data-lucide="search"></i><?php echo isEnglish() ? 'Track Application' : 'आवेदन ट्र्याक'; ?>
                         </a>
                         <a href="online-account.php" class="btn btn-outline-secondary px-4">
                             <i class="fas fa-plus me-1"></i><?php echo isEnglish() ? 'New Application' : 'नयाँ आवेदन'; ?>
@@ -264,7 +264,7 @@ try {
             <div class="col-lg-10">
                 <div class="account-form-box">
                     <div class="form-header text-center mb-4">
-                        <div class="form-icon"><i class="fas fa-user-plus"></i></div>
+                        <div class="form-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="user-plus"></i></div>
                         <h3><?php echo isEnglish() ? 'Open Your Account Online' : 'अनलाइन खाता खोल्नुहोस्'; ?></h3>
                         <p><?php echo isEnglish() ? 'Fill the form below to open a new account' : 'नयाँ खाता खोल्न तलको फारम भर्नुहोस्'; ?></p>
                     </div>
@@ -319,7 +319,7 @@ try {
                         <!-- Personal Info -->
                         <?php if (!$loggedMember): ?>
                         <div class="form-section">
-                            <h5><i class="fas fa-user"></i> <?php echo isEnglish() ? 'Personal Information' : 'व्यक्तिगत जानकारी'; ?></h5>
+                            <h5><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i> <?php echo isEnglish() ? 'Personal Information' : 'व्यक्तिगत जानकारी'; ?></h5>
                             <div class="row">
                                 <div class="col-md-6 mb-3 js-acc-mid-wrap" style="display:none;">
                                     <label class="form-label"><?php echo isEnglish() ? 'Member ID (KYC)' : 'सदस्यता नम्बर (KYC)'; ?> <span class="text-danger">*</span></label>
@@ -408,7 +408,7 @@ try {
 
                         <!-- Citizenship Info -->
                         <div class="form-section js-acc-kyc-hide">
-                            <h5><i class="fas fa-id-card"></i> <?php echo isEnglish() ? 'Citizenship Details' : 'नागरिकता विवरण'; ?></h5>
+                            <h5><i class="lucide-icon" aria-hidden="true" data-lucide="id-card"></i> <?php echo isEnglish() ? 'Citizenship Details' : 'नागरिकता विवरण'; ?></h5>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label"><?php echo isEnglish() ? 'Citizenship No.' : 'नागरिकता नं.'; ?> <span class="text-danger">*</span></label>

@@ -616,7 +616,7 @@ $activeTab = in_array($tabRaw, ['list', 'add'], true) ? $tabRaw : 'list';
                                        placeholder="कम्तिमा ८ अक्षर" required
                                        autocomplete="new-password">
                                 <button type="button" class="btn btn-outline-secondary"
-                                        onclick="togglePwd('cp_new','cp_eye1')">
+                                        onclick="togglePwd('cp_new','cp_eye1')" aria-label="View" title="View">
                                     <i class="fas fa-eye" id="cp_eye1"></i>
                                 </button>
                             </div>
@@ -636,7 +636,7 @@ $activeTab = in_array($tabRaw, ['list', 'add'], true) ? $tabRaw : 'list';
                                        placeholder="माथिकै पासवर्ड फेरि" required
                                        autocomplete="new-password">
                                 <button type="button" class="btn btn-outline-secondary"
-                                        onclick="togglePwd('cp_confirm','cp_eye2')">
+                                        onclick="togglePwd('cp_confirm','cp_eye2')" aria-label="View" title="View">
                                     <i class="fas fa-eye" id="cp_eye2"></i>
                                 </button>
                             </div>

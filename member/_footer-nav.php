@@ -6,7 +6,7 @@
   </a>
 
   <a href="<?php echo defined('MEMBER_URL') ? MEMBER_URL : SITE_URL . 'member/'; ?>profile.php" class="<?php echo (basename($_SERVER['PHP_SELF']) === 'profile.php' ? 'active' : ''); ?>" title="Profile">
-    <i class="fas fa-user-circle"></i>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="user-circle"></i>
     <span>Profile</span>
   </a>
 

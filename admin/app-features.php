@@ -150,7 +150,7 @@ $flash = getFlash();
     <?php echo csrfField(); ?>
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $f['id']; ?>">
-                                        <button class="btn btn-sm appfeat-btn-delete"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm appfeat-btn-delete" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

@@ -19,7 +19,7 @@ unset($GLOBALS['__dt_empty'], $GLOBALS['__dt_cols']);
 <?php if ($_rowCount === 0): ?>
 <tr>
     <td colspan="<?php echo $_emptyCols; ?>" class="text-center text-muted py-5">
-        <i class="fas fa-inbox d-block mb-2" style="font-size:2.2rem;opacity:.22;"></i>
+        <i class="lucide-icon" aria-hidden="true" data-lucide="inbox"></i>
         <span style="font-size:.88rem;"><?php echo htmlspecialchars($_emptyMsg, ENT_QUOTES, 'UTF-8'); ?></span>
     </td>
 </tr>

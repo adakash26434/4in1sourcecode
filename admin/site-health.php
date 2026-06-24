@@ -621,7 +621,7 @@ function htmlEsc(s) {
                               <label class="form-label fw-semibold small">With button</label>
                               <div class="input-group input-group-sm">
                                   <input type="text" class="form-control" placeholder="खोज्नुहोस्…">
-                                  <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                                  <button class="btn btn-primary" type="button" aria-label="Search" title="Search"><i class="fas fa-search"></i></button>
                               </div>
                           </div>
                           <div class="col-md-6">
@@ -648,7 +648,7 @@ function htmlEsc(s) {
                               <div class="input-group input-group-sm">
                                   <input type="text" class="form-control" id="fp-copy-field" value="MEMBER-<?php echo str_pad(rand(1000,9999),6,'0',STR_PAD_LEFT); ?>" readonly>
                                   <button class="btn btn-outline-secondary" type="button" id="fp-copy-btn" title="Copy">
-                                      <i data-lucide="copy"></i>
+                                      <i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i>
                                   </button>
                               </div>
                           </div>

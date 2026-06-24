@@ -194,7 +194,7 @@ $flash = getFlash();
                         <i class="fas fa-filter me-1"></i><?php echo $__t('फिल्टर', 'Filter'); ?>
                     </button>
                     <?php if ($filterAdmin || $filterAction || $filterFrom || $filterTo): ?>
-                        <a href="audit-log.php" class="btn btn-outline-secondary btn-sm">
+                        <a href="audit-log.php" class="btn btn-outline-secondary btn-sm" aria-label="Close" title="Close">
                             <i class="fas fa-times"></i>
                         </a>
                     <?php endif; ?>

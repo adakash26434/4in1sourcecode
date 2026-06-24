@@ -207,14 +207,14 @@ if ($db instanceof PDO) {
                     <?php endif; ?>
                 </a>
                 <a href="reports.php?type=annual" class="report-quick-link annual">
-                    <i class="fas fa-calendar"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="calendar"></i>
                     <span><?php echo isEnglish() ? 'Annual Reports' : 'वार्षिक प्रतिवेदन'; ?></span>
                     <?php if ($latestAnnualReport): ?>
                     <small class="latest-badge"><?php echo isEnglish() ? 'Latest' : 'नयाँ'; ?></small>
                     <?php endif; ?>
                 </a>
                 <a href="reports.php" class="report-quick-link all">
-                    <i class="fas fa-folder-open"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="folder-open"></i>
                     <span><?php echo isEnglish() ? 'All Reports' : 'सबै प्रतिवेदन'; ?></span>
                 </a>
             </div>
@@ -227,7 +227,7 @@ if ($db instanceof PDO) {
     <div class="container">
         <div class="section-header section-header-unified text-center" data-aos="fade-up">
             <div class="section-badge-wrap">
-                <span class="section-badge"><i class="fas fa-hand-holding-heart"></i> <?php echo isEnglish() ? 'Services' : 'सेवाहरू'; ?></span>
+                <span class="section-badge"><i class="lucide-icon" aria-hidden="true" data-lucide="hand-holding-heart"></i> <?php echo isEnglish() ? 'Services' : 'सेवाहरू'; ?></span>
             </div>
             <h2><?php echo isEnglish() ? 'Our Services' : 'हामीले प्रदान गर्ने सेवाहरू'; ?></h2>
             <div class="section-divider"></div>
@@ -273,7 +273,7 @@ if ($db instanceof PDO) {
             </div>
             <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-lock"></i></div>
+                    <div class="service-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="lock"></i></div>
                     <h4>मुद्दती निक्षेप</h4>
                     <p>उच्च प्रतिफलको लागि मुद्दती निक्षेप।</p>
                     <a href="services.php" class="service-link">थप जान्नुहोस् <i class="fas fa-arrow-right"></i></a>
@@ -314,7 +314,7 @@ if ($db instanceof PDO) {
                     <h5 data-aos="fade-up"><i class="fas fa-file-signature me-2"></i><?php echo isEnglish() ? 'Online Forms' : 'अनलाइन फारमहरू'; ?></h5>
                     <div class="tools-links-grid">
                         <a href="online-kyc.php" class="tools-mini-link" data-aos="fade-up" data-aos-delay="40">
-                            <i class="fas fa-user-check"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="user-check"></i>
                             <span><?php echo isEnglish() ? 'Online KYC' : 'अनलाइन केवाइसी'; ?></span>
                             <small class="tools-mini-more"><?php echo isEnglish() ? 'More details' : 'थप विवरण'; ?></small>
                         </a>
@@ -324,12 +324,12 @@ if ($db instanceof PDO) {
                             <small class="tools-mini-more"><?php echo isEnglish() ? 'More details' : 'थप विवरण'; ?></small>
                         </a>
                         <a href="online-account.php" class="tools-mini-link" data-aos="fade-up" data-aos-delay="140">
-                            <i class="fas fa-user-plus"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="user-plus"></i>
                             <span><?php echo isEnglish() ? 'Open Account' : 'खाता खोल्नुहोस्'; ?></span>
                             <small class="tools-mini-more"><?php echo isEnglish() ? 'More details' : 'थप विवरण'; ?></small>
                         </a>
                         <a href="appointment.php" class="tools-mini-link" data-aos="fade-up" data-aos-delay="190">
-                            <i class="fas fa-calendar-check"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="calendar-check"></i>
                             <span><?php echo isEnglish() ? 'Book Appointment' : 'भेटघाट बुक'; ?></span>
                             <small class="tools-mini-more"><?php echo isEnglish() ? 'More details' : 'थप विवरण'; ?></small>
                         </a>
@@ -376,7 +376,7 @@ if ($db instanceof PDO) {
                             <small class="tools-link-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></small>
                         </a>
                         <a href="member-welfare.php" class="tools-mini-link" data-aos="fade-up" data-aos-delay="90">
-                            <i class="fas fa-hand-holding-heart"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="hand-holding-heart"></i>
                             <span><?php echo isEnglish() ? 'Member Welfare' : 'सदस्य सुविधा'; ?></span>
                             <small class="tools-mini-more"><?php echo isEnglish() ? 'More details' : 'थप विवरण'; ?></small>
                             <small class="tools-link-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></small>
@@ -387,7 +387,7 @@ if ($db instanceof PDO) {
                             <small class="tools-mini-more"><?php echo isEnglish() ? 'More details' : 'थप विवरण'; ?></small>
                         </a>
                         <a href="auction.php" class="tools-mini-link" data-aos="fade-up" data-aos-delay="190">
-                            <i class="fas fa-gavel"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="gavel"></i>
                             <span><?php echo isEnglish() ? 'Auction' : 'लिलामी'; ?></span>
                             <small class="tools-mini-more"><?php echo isEnglish() ? 'More details' : 'थप विवरण'; ?></small>
                             <small class="tools-link-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></small>
@@ -404,7 +404,7 @@ if ($db instanceof PDO) {
     <div class="container">
         <div class="section-header section-header-unified text-center mb-4" data-aos="fade-up">
             <div class="section-badge-wrap">
-                <span class="section-badge"><i class="fas fa-circle-info"></i> <?php echo isEnglish() ? 'Interest & Notice' : 'ब्याज र सूचना'; ?></span>
+                <span class="section-badge"><i class="lucide-icon" aria-hidden="true" data-lucide="circle-info"></i> <?php echo isEnglish() ? 'Interest & Notice' : 'ब्याज र सूचना'; ?></span>
             </div>
             <h2><?php echo isEnglish() ? 'Interest & Notice Details' : 'ब्याज तथा सूचना विवरण'; ?></h2>
             <div class="section-divider"></div>
@@ -415,7 +415,7 @@ if ($db instanceof PDO) {
             <div class="col-lg-8 mb-4" data-aos="fade-right">
                 <div class="rates-box-enhanced">
                     <div class="rates-header">
-                        <h3><i class="fas fa-chart-line"></i> <?php echo isEnglish() ? 'Interest Rates' : 'ब्याज दरहरू'; ?></h3>
+                        <h3><i class="lucide-icon" aria-hidden="true" data-lucide="chart-line"></i> <?php echo isEnglish() ? 'Interest Rates' : 'ब्याज दरहरू'; ?></h3>
                     </div>
                     <div class="rates-body">
                         <div class="row">
@@ -497,14 +497,14 @@ if ($db instanceof PDO) {
                                 </div>
                                 <div class="notice-content">
                                     <h6><a href="notices.php?id=<?php echo (int)$notice['id']; ?>"><?php echo e($notice['title']); ?></a></h6>
-                                    <span class="notice-meta"><i class="fas fa-clock"></i> <?php echo formatDate($notice['notice_date'], 'Y-m-d'); ?></span>
+                                    <span class="notice-meta"><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> <?php echo formatDate($notice['notice_date'], 'Y-m-d'); ?></span>
                                 </div>
                             </div>
                             <?php endforeach; ?>
 
                             <?php if (empty($notices)): ?>
                             <div class="text-center py-4">
-                                <i class="fas fa-inbox fa-3x home-muted-icon mb-3"></i>
+                                <i class="lucide-icon fa-3x home-muted-icon mb-3" aria-hidden="true" data-lucide="inbox"></i>
                                 <p class="text-muted mb-2"><?php echo isEnglish() ? 'No notices available' : 'कुनै सूचना छैन'; ?></p>
                                 <a href="notices.php" class="btn btn-sm home-btn-outline-primary">
                                     <?php echo isEnglish() ? 'View All Notices' : 'सबै सूचनाहरू हेर्नुहोस्'; ?>
@@ -549,7 +549,7 @@ if (empty($whyFeatures)) {
     <div class="container">
         <div class="section-header section-header-unified text-center" data-aos="fade-up">
             <div class="section-badge-wrap">
-                <span class="section-badge"><i class="fas fa-circle-check"></i> <?php echo isEnglish() ? 'Why Us' : 'किन हामी'; ?></span>
+                <span class="section-badge"><i class="lucide-icon" aria-hidden="true" data-lucide="circle-check"></i> <?php echo isEnglish() ? 'Why Us' : 'किन हामी'; ?></span>
             </div>
             <h2><?php echo isEnglish() ? 'Why Choose Us?' : 'किन हामीलाई छान्ने?'; ?></h2>
             <div class="section-divider"></div>
@@ -663,7 +663,7 @@ if ($db instanceof PDO) {
                         <img src="<?php echo $informationOfficer['photo']; ?>" loading="lazy"  alt="<?php echo $informationOfficer['name']; ?>">
                         <?php else: ?>
                         <div class="photo-placeholder">
-                            <i class="fas fa-user"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="user"></i>
                         </div>
                         <?php endif; ?>
                     </div>
@@ -695,7 +695,7 @@ if ($db instanceof PDO) {
                         <img src="<?php echo $grievanceOfficer['photo']; ?>" loading="lazy"  alt="<?php echo $grievanceOfficer['name']; ?>">
                         <?php else: ?>
                         <div class="photo-placeholder">
-                            <i class="fas fa-user"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="user"></i>
                         </div>
                         <?php endif; ?>
                     </div>
@@ -864,7 +864,7 @@ if (empty($appFeatures)) {
     <div class="container">
         <div class="section-header section-header-unified text-center" data-aos="fade-up">
             <div class="section-badge-wrap">
-                <span class="section-badge"><i class="fas fa-newspaper"></i> <?php echo isEnglish() ? 'News' : 'समाचार'; ?></span>
+                <span class="section-badge"><i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i> <?php echo isEnglish() ? 'News' : 'समाचार'; ?></span>
             </div>
             <h2><?php echo isEnglish() ? 'Latest News' : 'ताजा समाचार'; ?></h2>
             <p><?php echo isEnglish() ? 'Stay updated with our latest news and activities' : 'हाम्रो ताजा समाचार र क्रियाकलापहरूसँग अद्यावधिक रहनुहोस्'; ?></p>
@@ -879,7 +879,7 @@ if (empty($appFeatures)) {
                         <img src="<?php echo $news['image']; ?>" loading="lazy"  alt="<?php echo getLangField($news, 'title'); ?>">
                         <?php else: ?>
                         <div class="news-placeholder">
-                            <i class="fas fa-newspaper"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i>
                         </div>
                         <?php endif; ?>
                         <div class="news-date">
@@ -901,7 +901,7 @@ if (empty($appFeatures)) {
 
         <div class="text-center mt-4" data-aos="fade-up">
             <a href="news.php" class="btn home-btn-primary btn-lg">
-                <i class="fas fa-newspaper"></i> <?php echo isEnglish() ? 'View All News' : 'सबै समाचार हेर्नुहोस्'; ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i> <?php echo isEnglish() ? 'View All News' : 'सबै समाचार हेर्नुहोस्'; ?>
             </a>
         </div>
     </div>
@@ -947,7 +947,7 @@ if ($db instanceof PDO) {
                     </div>
                     <?php else: ?>
                     <div class="award-icon">
-                        <i class="fas fa-trophy"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="trophy"></i>
                     </div>
                     <?php endif; ?>
                     <div class="award-content">
@@ -973,7 +973,7 @@ if ($db instanceof PDO) {
         <?php if ($totalAwards > 3): ?>
         <div class="text-center mt-4" data-aos="fade-up">
             <a href="awards.php" class="btn home-btn-primary btn-lg">
-                <i class="fas fa-trophy"></i> <?php echo isEnglish() ? 'View All Awards' : 'सबै सम्मान हेर्नुहोस्'; ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="trophy"></i> <?php echo isEnglish() ? 'View All Awards' : 'सबै सम्मान हेर्नुहोस्'; ?>
             </a>
         </div>
         <?php endif; ?>
@@ -1013,7 +1013,7 @@ $hasPhoto = !empty($memberSpotlight['photo']) && file_exists(ROOT_PATH . $member
             <div class="section-badge-wrap">
                 <!-- Gold star badge -->
                 <span class="section-badge section-badge-spotlight">
-                    <i class="fas fa-trophy"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="trophy"></i>
                     <?php echo isEnglish() ? 'Annual Spotlight' : 'वार्षिक सम्मान'; ?>
                 </span>
             </div>
@@ -1046,13 +1046,13 @@ $hasPhoto = !empty($memberSpotlight['photo']) && file_exists(ROOT_PATH . $member
                                 <?php else: ?>
                                 <!-- Photo नभए decorative icon -->
                                 <div class="spotlight-photo-placeholder">
-                                    <i class="fas fa-user-circle"></i>
+                                    <i class="lucide-icon" aria-hidden="true" data-lucide="user-circle"></i>
                                 </div>
                                 <?php endif; ?>
 
                                 <!-- Year badge over photo -->
                                 <div class="spotlight-month-badge">
-                                    <i class="fas fa-trophy me-1"></i>
+                                    <i class="lucide-icon me-1" aria-hidden="true" data-lucide="trophy"></i>
                                     <?php echo htmlspecialchars($spotlightYearVal); ?>
                                 </div>
                             </div>
@@ -1062,7 +1062,7 @@ $hasPhoto = !empty($memberSpotlight['photo']) && file_exists(ROOT_PATH . $member
                         <div class="spotlight-info-col">
                             <!-- "Member of the Year" label -->
                             <div class="spotlight-tag">
-                                <i class="fas fa-trophy me-1"></i>
+                                <i class="lucide-icon me-1" aria-hidden="true" data-lucide="trophy"></i>
                                 <?php echo isEnglish() ? 'Member of the Year ' . $spotlightYearVal : $spotlightYearVal . ' को सदस्य'; ?>
                             </div>
 
@@ -1075,7 +1075,7 @@ $hasPhoto = !empty($memberSpotlight['photo']) && file_exists(ROOT_PATH . $member
                             <div class="spotlight-meta">
                                 <?php if ($memberSpotlight['member_since']): ?>
                                 <span class="spotlight-meta-item">
-                                    <i class="fas fa-calendar-check"></i>
+                                    <i class="lucide-icon" aria-hidden="true" data-lucide="calendar-check"></i>
                                     <?php echo isEnglish() ? 'Member since' : 'सदस्य बनेको'; ?>:
                                     <strong><?php echo htmlspecialchars($memberSpotlight['member_since']); ?></strong>
                                 </span>
@@ -1092,7 +1092,7 @@ $hasPhoto = !empty($memberSpotlight['photo']) && file_exists(ROOT_PATH . $member
                             <!-- Achievement badge -->
                             <?php if ($spotlightAchievement): ?>
                             <div class="spotlight-achievement">
-                                <i class="fas fa-trophy me-1"></i>
+                                <i class="lucide-icon me-1" aria-hidden="true" data-lucide="trophy"></i>
                                 <?php echo htmlspecialchars($spotlightAchievement); ?>
                             </div>
                             <?php endif; ?>
@@ -1109,9 +1109,9 @@ $hasPhoto = !empty($memberSpotlight['photo']) && file_exists(ROOT_PATH . $member
 
                     <!-- Decorative corner stars -->
                     <div class="spotlight-stars">
-                        <i class="fas fa-star star-1"></i>
-                        <i class="fas fa-star star-2"></i>
-                        <i class="fas fa-star star-3"></i>
+                        <i class="lucide-icon star-1" aria-hidden="true" data-lucide="star"></i>
+                        <i class="lucide-icon star-2" aria-hidden="true" data-lucide="star"></i>
+                        <i class="lucide-icon star-3" aria-hidden="true" data-lucide="star"></i>
                     </div>
                 </div><!-- /spotlight-card -->
             </div>
@@ -1135,7 +1135,7 @@ $hasPhoto = !empty($memberSpotlight['photo']) && file_exists(ROOT_PATH . $member
                 <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
                     <div class="cta-buttons">
                         <a href="online-kyc.php" class="btn btn-light btn-lg me-2 mb-2">
-                            <i class="fas fa-user-check"></i> <?php echo isEnglish() ? 'Fill KYC Form' : 'केवाइसी फारम भर्नुहोस्'; ?>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="user-check"></i> <?php echo isEnglish() ? 'Fill KYC Form' : 'केवाइसी फारम भर्नुहोस्'; ?>
                         </a>
                         <a href="contact.php" class="btn btn-outline-light btn-lg mb-2">
                             <i class="fas fa-phone-alt"></i> <?php echo isEnglish() ? 'Contact Us' : 'सम्पर्क गर्नुहोस्'; ?>

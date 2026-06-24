@@ -312,6 +312,7 @@ if ($logoPath) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Member login and registration portal for Aakash Cooperative.">
 <title><?php echo htmlspecialchars($_t('सदस्य लगिन', 'Member Login')); ?> — <?php echo htmlspecialchars($siteName); ?></title>
 
 <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('auth'); } ?>
@@ -429,12 +430,12 @@ body {
 
 <?php if (function_exists('portalLangToggleUrl') && function_exists('portalLangToggleBadge')): ?>
 <a href="<?php echo htmlspecialchars(portalLangToggleUrl(), ENT_QUOTES, 'UTF-8'); ?>" class="auth-lang-toggle" title="<?php echo htmlspecialchars($_t('भाषा परिवर्तन', 'Switch language'), ENT_QUOTES, 'UTF-8'); ?>" aria-label="<?php echo htmlspecialchars($_t('भाषा परिवर्तन', 'Switch language'), ENT_QUOTES, 'UTF-8'); ?>">
-    <i data-lucide="languages" class=""></i> <?php echo htmlspecialchars(portalLangToggleBadge()); ?>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="languages"></i> <?php echo htmlspecialchars(portalLangToggleBadge()); ?>
 </a>
 <?php endif; ?>
 
 <a href="<?php echo $siteUrl; ?>" class="page-back">
-    <i data-lucide="arrow-left" class=""></i> <?php echo $_t('गृहपृष्ठ', 'Homepage'); ?>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="arrow-left"></i> <?php echo $_t('गृहपृष्ठ', 'Homepage'); ?>
 </a>
 
 <div class="auth-card">
@@ -444,12 +445,12 @@ body {
             <div class="card-logo-wrap">
                 <img src="<?php echo htmlspecialchars($logoSrc); ?>" alt="<?php echo htmlspecialchars($siteName); ?>"
                      onerror="this.classList.add('card-logo-hide');var f=document.getElementById('loginLogoFallback');if(f)f.style.display='grid';">
-                <div id="loginLogoFallback" class="card-logo-icon login-logo-fallback" aria-hidden="true"><i data-lucide="building-columns"></i></div>
+                <div id="loginLogoFallback" class="card-logo-icon login-logo-fallback" aria-hidden="true"><i class="lucide-icon" aria-hidden="true" data-lucide="building-columns"></i></div>
             </div>
         <?php else: ?>
-            <div class="card-logo-icon"><i data-lucide="building-columns"></i></div>
+            <div class="card-logo-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="building-columns"></i></div>
         <?php endif; ?>
-        <span class="card-portal-label"><i data-lucide="user-circle"></i>&nbsp;<?php echo $_t('सदस्य पोर्टल', 'Member Portal'); ?></span>
+        <span class="card-portal-label"><i class="lucide-icon" aria-hidden="true" data-lucide="user-circle"></i>&nbsp;<?php echo $_t('सदस्य पोर्टल', 'Member Portal'); ?></span>
     </div>
 
     <div class="card-body">
@@ -463,22 +464,22 @@ body {
         </div>
 
         <?php if ($error): ?>
-            <div class="alert alert-error"><i data-lucide="circle-alert" class=""></i> <?php echo $error; ?></div>
+            <div class="alert alert-error"><i class="lucide-icon" aria-hidden="true" data-lucide="circle-alert"></i> <?php echo $error; ?></div>
         <?php endif; ?>
         <?php if ($success): ?>
-            <div class="alert alert-success"><i data-lucide="circle-check"></i> <?php echo htmlspecialchars($success); ?></div>
+            <div class="alert alert-success"><i class="lucide-icon" aria-hidden="true" data-lucide="circle-check"></i> <?php echo htmlspecialchars($success); ?></div>
         <?php endif; ?>
         <?php if ($info === 'pending'): ?>
             <div class="alert alert-warning">
-                <i data-lucide="clock" class=""></i> <strong><?php echo $_t('अनुमोदन प्रतीक्षामा!', 'Pending Approval!'); ?></strong>&nbsp;
+                <i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> <strong><?php echo $_t('अनुमोदन प्रतीक्षामा!', 'Pending Approval!'); ?></strong>&nbsp;
                 <?php echo $_t('तपाईंको खाता Admin को समीक्षामा छ। स्वीकृत भएपछि सूचना पठाइनेछ।', 'Your account is under admin review. You will be notified after approval.'); ?>
             </div>
         <?php endif; ?>
         <?php if ($info === 'twofa_setup_required'): ?>
-            <div class="alert alert-warning"><i data-lucide="smartphone" class=""></i> 2FA setup आवश्यक छ। Google Authenticator मा secret add गरेर code verify गर्नुहोस्।</div>
+            <div class="alert alert-warning"><i class="lucide-icon" aria-hidden="true" data-lucide="smartphone"></i> 2FA setup आवश्यक छ। Google Authenticator मा secret add गरेर code verify गर्नुहोस्।</div>
         <?php endif; ?>
         <?php if ($info === 'twofa_verify_required'): ?>
-            <div class="alert alert-info"><i data-lucide="shield-halved"></i> 2FA code verify गरेपछि मात्र login हुन्छ।</div>
+            <div class="alert alert-info"><i class="lucide-icon" aria-hidden="true" data-lucide="shield-halved"></i> 2FA code verify गरेपछि मात्र login हुन्छ।</div>
         <?php endif; ?>
 
         <?php if (is_array($member2faPending)): ?>
@@ -486,7 +487,7 @@ body {
             <input type="hidden" name="csrf_token" value="<?php echo $csrf; ?>">
             <input type="hidden" name="do_member_2fa" value="1">
             <?php if (($member2faPending['mode'] ?? '') === 'setup'): ?>
-                <div class="alert alert-info"><i data-lucide="qr-code" class=""></i> Google Authenticator app मा यो setup गर्नुहोस्:</div>
+                <div class="alert alert-info"><i class="lucide-icon" aria-hidden="true" data-lucide="qr-code"></i> Google Authenticator app मा यो setup गर्नुहोस्:</div>
                 <div class="field">
                     <label>Manual Secret Key</label>
                     <input type="text" readonly value="<?php echo htmlspecialchars((string)($member2faPending['secret'] ?? '')); ?>">
@@ -497,13 +498,13 @@ body {
                 </div>
                 <?php endif; ?>
             <?php else: ?>
-                <div class="alert alert-info"><i data-lucide="lock" class=""></i> Google Authenticator code वा backup code राख्नुहोस्।</div>
+                <div class="alert alert-info"><i class="lucide-icon" aria-hidden="true" data-lucide="lock"></i> Google Authenticator code वा backup code राख्नुहोस्।</div>
             <?php endif; ?>
             <div class="field">
                 <label>2FA Code</label>
                 <input type="text" name="twofa_code" placeholder="123456 वा BACKUPCODE" required autofocus>
             </div>
-            <button type="submit" class="submit-btn"><i data-lucide="shield-check"></i> Verify 2FA</button>
+            <button type="submit" class="submit-btn"><i class="lucide-icon" aria-hidden="true" data-lucide="shield-check"></i> Verify 2FA</button>
             <?php if (!empty($_SESSION['member_2fa_backup_plain']) && is_array($_SESSION['member_2fa_backup_plain'])): ?>
                 <div class="alert alert-warning" style="margin-top:12px;">
                     <i class="fas fa-triangle-exclamation"></i> Backup codes (safe राख्नुहोस्):<br>
@@ -516,10 +517,10 @@ body {
 
         <div class="tabs">
                 <button class="tab-btn <?php echo $tab==='login'?'active':''; ?>" onclick="switchTab('login')">
-                <i data-lucide="log-in" class=""></i> <?php echo $_t('लगिन', 'Login'); ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="log-in"></i> <?php echo $_t('लगिन', 'Login'); ?>
             </button>
                 <button class="tab-btn <?php echo $tab==='register'?'active':''; ?>" onclick="switchTab('register')">
-                <i data-lucide="user-plus"></i> <?php echo $_t('दर्ता', 'Register'); ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="user-plus"></i> <?php echo $_t('दर्ता', 'Register'); ?>
             </button>
         </div>
 
@@ -535,14 +536,14 @@ body {
                 <label><?php echo $_t('पासवर्ड', 'Password'); ?></label>
                 <div class="pw-wrap">
                     <input type="password" name="password" id="loginPw" placeholder="••••••••" required>
-                    <button type="button" class="pw-toggle" onclick="togglePw('loginPw',this)"><i data-lucide="eye" class=""></i></button>
+                    <button type="button" class="pw-toggle" onclick="togglePw('loginPw',this)" aria-label="Show password" aria-pressed="false" title="Show password"><i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i></button>
                 </div>
             </div>
             <div class="forgot-wrap">
                 <a href="<?php echo $siteUrl; ?>member/password-reset-request.php" class="forgot-link"><?php echo $_t('पासवर्ड बिर्सनुभयो?', 'Forgot password?'); ?></a>
             </div>
             <button type="submit" class="submit-btn">
-                <i data-lucide="log-in" class=""></i> <?php echo $_t('लगिन गर्नुहोस्', 'Login'); ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="log-in"></i> <?php echo $_t('लगिन गर्नुहोस्', 'Login'); ?>
             </button>
             <?php if ($googleUrl || $fbUrl): ?>
             <div class="oauth-divider"><?php echo $_t('वा यसबाट लगिन', 'Or login with'); ?></div>
@@ -587,7 +588,7 @@ body {
                 <label><?php echo $_t('पासवर्ड', 'Password'); ?> <span class="req-star">*</span></label>
                 <div class="pw-wrap">
                     <input type="password" name="password" id="regPw" placeholder="<?php echo $_t('८+ अक्षर, A-Z, a-z, 0-9 सहित', '8+ chars with A-Z, a-z, 0-9'); ?>" required minlength="8">
-                    <button type="button" class="pw-toggle" onclick="togglePw('regPw',this)"><i data-lucide="eye" class=""></i></button>
+                    <button type="button" class="pw-toggle" onclick="togglePw('regPw',this)" aria-label="Show password" aria-pressed="false" title="Show password"><i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i></button>
                 </div>
                 <div class="pw-strength" id="pwStrength"></div>
                 <ul class="pw-rules" id="pwRules">
@@ -603,7 +604,7 @@ body {
                 <div class="field-feedback" id="fbConfirm"></div>
             </div>
             <button type="submit" class="submit-btn" id="regSubmitBtn">
-                <i data-lucide="user-plus"></i> <?php echo $_t('दर्ता गर्नुहोस्', 'Register'); ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="user-plus"></i> <?php echo $_t('दर्ता गर्नुहोस्', 'Register'); ?>
             </button>
             <div class="foot-link">
                 <?php echo $_t('पहिले नै दर्ता?', 'Already registered?'); ?> <a href="#" onclick="switchTab('login');return false;"><?php echo $_t('लगिन गर्नुहोस्', 'Login'); ?></a>
@@ -645,6 +646,9 @@ function togglePw(id, btn) {
     var show = inp.type === 'password';
     inp.type = show ? 'text' : 'password';
     btn.querySelector('i').className = show ? 'fas fa-eye-slash' : 'fas fa-eye';
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    btn.setAttribute('title', show ? 'Hide password' : 'Show password');
 }
 /* Loading state — double-submit रोक्ने */
 document.querySelectorAll('form').forEach(function(form){
@@ -654,7 +658,7 @@ document.querySelectorAll('form').forEach(function(form){
         btn.dataset.submitting = '1';
         btn.dataset.original = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '<i data-lucide="loader-2" class=" fa-spin"></i> प्रशोधन हुँदै…';
+        btn.innerHTML = '<i class="lucide-icon fa-spin" aria-hidden="true" data-lucide="loader-2"></i> प्रशोधन हुँदै…';
         setTimeout(function(){
             if (btn.dataset.submitting === '1') {
                 btn.disabled = false;

@@ -308,7 +308,7 @@ if (count($allCycles) > 1):
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="action" value="delete_position">
                                     <input type="hidden" name="position_id" value="<?php echo (int)$p['id']; ?>">
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -405,7 +405,7 @@ if (count($allCycles) > 1):
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="action" value="delete_candidate">
                                     <input type="hidden" name="candidate_id" value="<?php echo (int)$cd['id']; ?>">
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
                         </tr>

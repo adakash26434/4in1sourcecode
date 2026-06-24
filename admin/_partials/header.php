@@ -153,12 +153,12 @@ if (function_exists('coopThemeHeadAssets')) {
     </span>
     <div class="hp-company-meta">
       <div class="hp-company-name"><?= htmlspecialchars($_apSiteName) ?></div>
-      <div class="hp-company-sub"><?= htmlspecialchars($page_title) ?> <?php if (function_exists('icon')) { echo icon('check-circle', 12, 'color:#10b981;'); } else { ?><i class="fas fa-circle-check"></i><?php } ?></div>
+      <div class="hp-company-sub"><?= htmlspecialchars($page_title) ?> <?php if (function_exists('icon')) { echo icon('check-circle', 12, 'color:#10b981;'); } else { ?><i class="lucide-icon" aria-hidden="true" data-lucide="circle-check"></i><?php } ?></div>
     </div>
   </div>
 
   <form class="hp-search" method="get" action="<?= $base ?>/search.php" role="search">
-    <?php if (function_exists('icon')) { echo icon('search', 16, 'color:var(--hp-muted,#6b7280);'); } else { ?><i class="fas fa-search"></i><?php } ?>
+    <?php if (function_exists('icon')) { echo icon('search', 16, 'color:var(--hp-muted,#6b7280);'); } else { ?><i class="lucide-icon" aria-hidden="true" data-lucide="search"></i><?php } ?>
     <input type="search" name="q" placeholder="<?= htmlspecialchars('Search ...') ?>" autocomplete="off">
   </form>
 
@@ -166,7 +166,7 @@ if (function_exists('coopThemeHeadAssets')) {
     <a href="<?= $base ?>/messages.php" class="hp-icon" title="Messages"><?php if (function_exists('icon')) { echo icon('message-circle', 18); } else { ?><i class="fas fa-comment-dots"></i><?php } ?></a>
     <a href="<?= $base ?>/scan.php" class="hp-icon" title="QR"><?php if (function_exists('icon')) { echo icon('qr-code', 18); } else { ?><i class="fas fa-qrcode"></i><?php } ?></a>
     <a href="<?= $base ?>/notifications.php" class="hp-icon" title="Notifications">
-      <?php if (function_exists('icon')) { echo icon('bell', 18); } else { ?><i class="fas fa-bell"></i><?php } ?>
+      <?php if (function_exists('icon')) { echo icon('bell', 18); } else { ?><i class="lucide-icon" aria-hidden="true" data-lucide="bell"></i><?php } ?>
       <?php $_n = (int)($_SESSION['admin_unread'] ?? 0); if ($_n > 0): ?>
         <span class="hp-badge"><?= $_n > 99 ? '99+' : $_n ?></span>
       <?php else: ?>

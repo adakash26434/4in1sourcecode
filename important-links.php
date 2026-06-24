@@ -23,7 +23,7 @@ $L = getLangStrings();
     <div class="container">
         <div class="section-header text-center mb-5" data-aos="fade-up">
             <div class="section-badge-wrap">
-                <span class="section-badge"><i class="fas fa-link"></i> <?php echo $L['important_links']; ?></span>
+                <span class="section-badge"><i class="lucide-icon" aria-hidden="true" data-lucide="link"></i> <?php echo $L['important_links']; ?></span>
             </div>
             <h2><?php echo isEnglish() ? 'Important Resources' : 'महत्त्वपूर्ण स्रोतहरू'; ?></h2>
             <div class="section-divider"></div>

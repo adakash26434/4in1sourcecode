@@ -224,7 +224,7 @@ $L = getLangStrings();
                     <div class="ds-muted small mb-2"><?php echo isEnglish() ? 'Your Tracking ID — save this!' : 'तपाईंको Tracking ID — सुरक्षित राख्नुहोस्!'; ?></div>
                     <div class="d-flex align-items-center gap-2 mb-2">
                         <div class="form-tracking-id" id="dsTrkId"><?php echo e($trackingId); ?></div>
-                        <button type="button" onclick="copyTrk('dsTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2 ds-track-copy" title="Copy"><i data-lucide="copy"></i></button>
+                        <button type="button" onclick="copyTrk('dsTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2 ds-track-copy" title="Copy"><i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i></button>
                     </div>
                     <div class="form-tracking-help"><a href="<?php echo e($trackerUrl); ?>" class="ds-track-help-link"><?php echo isEnglish() ? 'Click here' : 'यहाँ बाट'; ?></a> <?php echo isEnglish() ? 'to check status in Tracker.' : 'Tracker मा स्थिति हेर्नुहोस्।'; ?></div>
                 </div>

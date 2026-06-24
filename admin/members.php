@@ -203,7 +203,7 @@ try {
 <?php if ($viewMember): /* ── Single Member View ── */ ?>
 
 <div class="d-flex align-items-center gap-2 mb-3">
-    <a href="members.php" class="btn btn-outline-secondary btn-sm"><i class="fas fa-arrow-left me-1"></i>फिर्ता</a>
+    <a href="members.php" class="btn btn-outline-secondary btn-sm"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="arrow-left"></i>फिर्ता</a>
     <h4 class="mb-0">Member विवरण</h4>
 </div>
 
@@ -271,7 +271,7 @@ try {
             <?php if ($viewCard && (!empty($viewCard['cvv']) || !empty($viewCard['verification_code']))): ?>
             <div class="card-body border-top mem-card-secret">
                 <div class="fw-bold small text-warning-emphasis mb-2">
-                    <i class="fas fa-shield-halved"></i> ID Card गोप्य विवरण
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="shield-halved"></i> ID Card गोप्य विवरण
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="text-muted small">Card No.</span>
@@ -309,7 +309,7 @@ try {
         <!-- Send Notification -->
         <div class="card border-0 shadow-sm mb-3">
             <div class="card-header bg-white fw-bold text-success">
-                <i class="fas fa-bell me-2"></i>Member लाई Notification पठाउनुहोस्
+                <i class="lucide-icon me-2" aria-hidden="true" data-lucide="bell"></i>Member लाई Notification पठाउनुहोस्
             </div>
             <div class="card-body">
                 <form method="POST">
@@ -351,7 +351,7 @@ try {
                         <i class="fas fa-file-alt me-1"></i>आवेदनहरू (<?php echo count($viewApps); ?>)
                     </a></li>
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tabNotifs">
-                        <i class="fas fa-bell me-1"></i>Notifications (<?php echo count($viewNotifs); ?>)
+                        <i class="lucide-icon me-1" aria-hidden="true" data-lucide="bell"></i>Notifications (<?php echo count($viewNotifs); ?>)
                     </a></li>
                 </ul>
             </div>
@@ -359,7 +359,7 @@ try {
                 <!-- Applications tab -->
                 <div class="tab-pane fade show active p-3" id="tabApps">
                     <?php if (empty($viewApps)): ?>
-                    <div class="text-center text-muted py-4"><i class="fas fa-inbox fa-2x mb-2 d-block opacity-25"></i>कुनै आवेदन छैन</div>
+                    <div class="text-center text-muted py-4"><i class="lucide-icon fa-2x mb-2 d-block opacity-25" aria-hidden="true" data-lucide="inbox"></i>कुनै आवेदन छैन</div>
                     <?php else: ?>
                     <div class="table-responsive">
                         <table class="table table-sm table-hover">
@@ -391,7 +391,7 @@ try {
                     foreach ($viewNotifs as $n): ?>
                     <div class="d-flex align-items-start gap-2 mb-3 pb-3 border-bottom">
                         <span class="badge rounded-pill <?php echo $icMap[$n['type']] ?? 'bg-secondary'; ?> mem-notif-pill">
-                            <i class="fas fa-bell"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="bell"></i>
                         </span>
                         <div class="flex-grow-1">
                             <div class="fw-bold small"><?php echo htmlspecialchars($n['title']); ?>
@@ -415,11 +415,11 @@ try {
 <?php if (!empty($stats['pending']) && $stats['pending'] > 0): ?>
 <div class="alert alert-warning border-start border-warning border-4 d-flex align-items-center justify-content-between mb-3" role="alert">
     <div>
-        <i class="fas fa-clock me-2"></i>
+        <i class="lucide-icon me-2" aria-hidden="true" data-lucide="clock"></i>
         <strong><?php echo $stats['pending']; ?> Member</strong> दर्ता अनुमोदन प्रतीक्षामा छ।
     </div>
     <a href="member-online-portal.php?status=pending" class="btn btn-warning btn-sm fw-bold">
-        <i class="fas fa-check-circle me-1"></i>अनुमोदन गर्नुहोस् →
+        <i class="lucide-icon me-1" aria-hidden="true" data-lucide="check-circle"></i>अनुमोदन गर्नुहोस् →
     </a>
 </div>
 <?php endif; ?>
@@ -458,7 +458,7 @@ try {
         <form class="d-flex flex-wrap align-items-center gap-2 flex-grow-1" method="get" action="members.php">
             <input type="hidden" name="mem_sub" value="<?php echo htmlspecialchars($memSub, ENT_QUOTES, 'UTF-8'); ?>">
             <div class="input-group input-group-sm mem-search-group" style="max-width:min(100%, 320px)">
-                <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                <span class="input-group-text bg-white border-end-0"><i class="lucide-icon text-muted" aria-hidden="true" data-lucide="search"></i></span>
                 <input type="text" name="search" class="form-control border-start-0 mem-filter-search" placeholder="नाम / इमेल / फोन खोज्नुहोस्…"
                        value="<?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8'); ?>" autocomplete="off">
             </div>
@@ -467,7 +467,7 @@ try {
                 <option value="linked" <?php echo $kycFilter==='linked' ? 'selected' : ''; ?>>KYC Linked</option>
                 <option value="unlinked" <?php echo $kycFilter==='unlinked' ? 'selected' : ''; ?>>KYC Unlinked</option>
             </select>
-            <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-search me-1"></i>खोज</button>
+            <button type="submit" class="btn btn-sm btn-success"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="search"></i>खोज</button>
             <?php if ($search !== '' || $kycFilter !== 'all'): ?>
                 <a href="members.php<?php echo $memSub === 'arch' ? '?mem_sub=arch' : ''; ?>" class="btn btn-sm btn-outline-secondary">Clear</a>
             <?php endif; ?>
@@ -547,7 +547,7 @@ try {
                     </td>
                     <td>
                         <a href="member-online-portal.php?view=<?php echo $m['id']; ?>" class="btn btn-sm btn-outline-success" title="हेर्नुहोस्">
-                            <i class="fas fa-eye"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i>
                         </a>
                         <?php if ($as === 'pending' || $as === 'renewal_pending'): ?>
                         <a href="member-online-portal.php?status=<?php echo $as === 'renewal_pending' ? 'renewal_pending' : 'pending'; ?>" class="btn btn-sm btn-warning" title="अनुमोदन">
@@ -621,7 +621,7 @@ try {
                         <textarea name="notif_message" class="form-control" rows="4" maxlength="2000" placeholder="विस्तृत सन्देश यहाँ लेख्नुहोस्…"></textarea>
                     </div>
                     <div class="col-12">
-                        <label class="form-label fw-semibold"><i class="fas fa-users me-1 text-success"></i>कसलाई पठाउने (Audience)</label>
+                        <label class="form-label fw-semibold"><i class="lucide-icon me-1 text-success" aria-hidden="true" data-lucide="users"></i>कसलाई पठाउने (Audience)</label>
                         <select name="notif_audience" class="form-select">
                             <option value="active" selected>✅ सक्रिय + अनुमोदित सदस्य मात्र (recommended)</option>
                             <option value="all_active">🌐 सबै सक्रिय (अनुमोदन-स्थिति नहेरी)</option>

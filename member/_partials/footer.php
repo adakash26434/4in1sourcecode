@@ -9,9 +9,9 @@ $_mpT = static function (string $np, string $en) use ($_mpIsEn): string {
 
 <nav class="mp-bottom-nav">
   <a href="/member/index.php"><i class="fas fa-house"></i><span><?php echo $_mpT('गृह', 'Home'); ?></span></a>
-  <a href="/member/id-card.php"><i class="fas fa-id-card"></i><span><?php echo $_mpT('ID कार्ड', 'ID Card'); ?></span></a>
+  <a href="/member/id-card.php"><i class="lucide-icon" aria-hidden="true" data-lucide="id-card"></i><span><?php echo $_mpT('ID कार्ड', 'ID Card'); ?></span></a>
   <a href="/member/transactions.php"><i class="fas fa-money-bill-transfer"></i><span><?php echo $_mpT('कारोबार', 'Transactions'); ?></span></a>
-  <a href="/member/profile.php"><i class="fas fa-user"></i><span><?php echo $_mpT('प्रोफाइल', 'Profile'); ?></span></a>
+  <a href="/member/profile.php"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i><span><?php echo $_mpT('प्रोफाइल', 'Profile'); ?></span></a>
   <a href="/member/logout.php"><i class="fas fa-right-from-bracket"></i><span><?php echo $_mpT('लगआउट', 'Logout'); ?></span></a>
 </nav>
 

@@ -94,7 +94,7 @@ function adminAlert(string $type, string $msg, bool $dismiss = true): string {
         : '';
     $iconHtml = function_exists('icon')
         ? icon($lucideIcon, 18)
-        : '<i class="fas fa-circle-info"></i>';
+        : '<i class="lucide-icon" aria-hidden="true" data-lucide="circle-info"></i>';
     return '<div class="alert alert-' . $type . ' alert-dismissible fade show" role="alert">'
          . '<span class="flex-shrink-0">' . $iconHtml . '</span>'
          . '<span>' . htmlspecialchars($msg) . '</span>'
@@ -110,7 +110,7 @@ function adminEmptyRow(int $colspan = 6, string $msg = '', string $sub = ''): st
     if ($sub === '') $sub = adminUiT('माथिको बटनबाट नयाँ थप्नुहोस्।', 'Use the button above to add new records.');
     $iconHtml = function_exists('icon')
         ? icon('inbox', 40, 'color:#d1d5db;')
-        : '<i class="fas fa-inbox" style="font-size:2.2rem;"></i>';
+        : '<i class="lucide-icon" aria-hidden="true" data-lucide="inbox"></i>';
     return '<tr><td colspan="' . $colspan . '" class="text-center admin-empty-state">'
          . $iconHtml
          . '<div style="font-size:0.9rem;font-weight:600;color:#6b7280;margin-top:8px;">'
@@ -208,7 +208,7 @@ function adminStatLink(string $url, string $color, string $label, $count, bool $
          . 'border-radius:20px;padding:6px 14px;font-size:0.82rem;font-weight:600;'
          . 'border:1px solid rgba(0,0,0,0.06);'
          . 'transition:all 0.15s;box-shadow:0 1px 4px rgba(0,0,0,0.05);'
-         . '">' . htmlspecialchars($label) . ': <strong>' . (int)$count . '</strong></a>';
+            . '" aria-label="' . htmlspecialchars($label, ENT_QUOTES) . ': ' . (int)$count . '">' . htmlspecialchars($label) . ': <strong>' . (int)$count . '</strong></a>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -220,10 +220,10 @@ function adminAddBtn(string $label, string $href = '#', string $icon = 'fa-plus'
     $iconHtml = function_exists('icon') ? icon($lucideIcon, 15) : '<i class="fas ' . htmlspecialchars($icon) . '"></i>';
     $onclickAttr = $onclick ? ' onclick="' . htmlspecialchars($onclick, ENT_QUOTES) . '"' : '';
     if ($href !== '#') {
-        return '<a href="' . htmlspecialchars($href) . '" class="btn btn-primary"' . $onclickAttr . '>'
+        return '<a href="' . htmlspecialchars($href) . '" class="btn btn-primary" aria-label="' . htmlspecialchars($label, ENT_QUOTES) . '"' . $onclickAttr . '>'
              . $iconHtml . htmlspecialchars($label) . '</a>';
     }
-    return '<button type="button" class="btn btn-primary"' . $onclickAttr . '>'
+    return '<button type="button" class="btn btn-primary" aria-label="' . htmlspecialchars($label, ENT_QUOTES) . '"' . $onclickAttr . '>'
          . $iconHtml . htmlspecialchars($label) . '</button>';
 }
 
@@ -235,13 +235,15 @@ function adminToggleBtn(int $recordId, $isActive, string $csrfToken, string $ext
     if ($isActive) {
         $btn = '<button type="submit" class="btn btn-sm btn-success" '
              . 'title="' . htmlspecialchars(adminUiT('सक्रिय छ — थिच्दा लुकाइन्छ', 'Currently active — click to hide')) . '" '
+             . 'aria-label="' . htmlspecialchars(adminUiT('सक्रिय छ — थिच्दा लुकाइन्छ', 'Currently active — click to hide'), ENT_QUOTES) . '" '
              . 'style="min-width:82px;">'
-             . '<i data-lucide="eye"></i> ' . htmlspecialchars(adminUiT('सक्रिय', 'Active')) . '</button>';
+             . '<i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i> ' . htmlspecialchars(adminUiT('सक्रिय', 'Active')) . '</button>';
     } else {
         $btn = '<button type="submit" class="btn btn-sm btn-outline-secondary" '
              . 'title="' . htmlspecialchars(adminUiT('लुकाइएको छ — थिच्दा सक्रिय हुन्छ', 'Currently hidden — click to activate')) . '" '
+             . 'aria-label="' . htmlspecialchars(adminUiT('लुकाइएको छ — थिच्दा सक्रिय हुन्छ', 'Currently hidden — click to activate'), ENT_QUOTES) . '" '
              . 'style="min-width:82px;">'
-             . '<i data-lucide="eye-off"></i> ' . htmlspecialchars(adminUiT('लुकाइएको', 'Hidden')) . '</button>';
+             . '<i class="lucide-icon" aria-hidden="true" data-lucide="eye-off"></i> ' . htmlspecialchars(adminUiT('लुकाइएको', 'Hidden')) . '</button>';
     }
     return '<form method="POST" class="d-inline">'
          . '<input type="hidden" name="action" value="toggle">'
@@ -255,14 +257,14 @@ function adminToggleBtn(int $recordId, $isActive, string $csrfToken, string $ext
    Compact icon-only delete button with confirm
    ────────────────────────────────────────────────────────────── */
 function adminDeleteBtn(int $recordId, string $csrfToken, string $confirmMsg = 'यो record हटाउने? यो कार्य फिर्ता हुँदैन।', string $extraFields = ''): string {
-    $safeMsg = addslashes($confirmMsg);
-    return '<form method="POST" class="d-inline" onsubmit="return confirm(\'' . $safeMsg . '\')">'
+    $confirmJs = json_encode($confirmMsg, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    return '<form method="POST" class="d-inline" onsubmit="return confirm(' . $confirmJs . ')">'
          . '<input type="hidden" name="action" value="delete">'
          . '<input type="hidden" name="id" value="' . $recordId . '">'
          . '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($csrfToken) . '">'
          . $extraFields
-         . '<button type="submit" class="btn btn-sm btn-outline-danger admin-icon-btn" title="हटाउनुहोस्">'
-         . '<i data-lucide="trash-2"></i></button></form>';
+         . '<button type="submit" class="btn btn-sm btn-outline-danger admin-icon-btn" title="हटाउनुहोस्" aria-label="हटाउनुहोस्">'
+         . '<i class="lucide-icon" aria-hidden="true" data-lucide="trash-2"></i></button></form>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -273,12 +275,12 @@ function adminEditBtn(string $onclick = '', string $href = '#'): string {
     if ($onclick) {
         return '<button type="button" class="btn btn-sm btn-outline-primary" '
              . 'onclick="' . htmlspecialchars($onclick, ENT_QUOTES) . '" '
-             . 'title="सम्पादन" style="min-width:34px;">'
-             . '<i data-lucide="pencil"></i></button>';
+             . 'title="सम्पादन" aria-label="सम्पादन" style="min-width:34px;">'
+             . '<i class="lucide-icon" aria-hidden="true" data-lucide="pencil"></i></button>';
     }
     return '<a href="' . htmlspecialchars($href) . '" class="btn btn-sm btn-outline-primary" '
-         . 'title="सम्पादन" style="min-width:34px;">'
-         . '<i data-lucide="pencil"></i></a>';
+         . 'title="सम्पादन" aria-label="सम्पादन" style="min-width:34px;">'
+         . '<i class="lucide-icon" aria-hidden="true" data-lucide="pencil"></i></a>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -288,8 +290,8 @@ function adminEditBtn(string $onclick = '', string $href = '#'): string {
 function adminViewBtn(string $href, string $label = ''): string {
     $txt   = $label ? ' ' . htmlspecialchars($label) : '';
     return '<a href="' . htmlspecialchars($href) . '" class="btn btn-sm btn-outline-info" '
-         . 'title="हेर्नुहोस्" style="min-width:34px;">'
-         . '<i data-lucide="eye"></i>' . $txt . '</a>';
+         . 'title="हेर्नुहोस्" aria-label="हेर्नुहोस्" style="min-width:34px;">'
+         . '<i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i>' . $txt . '</a>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -322,8 +324,8 @@ function adminActionBtns(
    Back to list button
    ────────────────────────────────────────────────────────────── */
 function adminBackBtn(string $href, string $label = 'सूचीमा फर्किनुहोस्'): string {
-    return '<a href="' . htmlspecialchars($href) . '" class="btn btn-outline-secondary btn-sm">'
-         . '<i data-lucide="arrow-left" style="margin-right:4px;"></i>' . htmlspecialchars($label) . '</a>';
+    return '<a href="' . htmlspecialchars($href) . '" class="btn btn-outline-secondary btn-sm" aria-label="' . htmlspecialchars($label, ENT_QUOTES) . '">'
+         . '<i style="margin-right:4px;" class="lucide-icon" aria-hidden="true" data-lucide="arrow-left"></i>' . htmlspecialchars($label) . '</a>';
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -406,10 +408,10 @@ function adminListSubtabPills(string $panePrefix, int $liveCount, int $archCount
     return '<ul class="nav nav-pills admin-inner-tabstrip flex-wrap gap-2 px-3 py-2 mx-3 mt-2 mb-2" role="tablist">'
         . '<li class="nav-item" role="presentation">'
         . '<button class="nav-link active py-2" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#' . $p . '-live" aria-controls="' . $p . '-live" aria-selected="true">'
-        . '<i data-lucide="zap" style="margin-right:4px;"></i>' . $liveLbl . ' <span class="badge adm-subpill-count adm-subpill-count--live ms-1">' . (int) $liveCount . '</span></button></li>'
+        . '<i style="margin-right:4px;" class="lucide-icon" aria-hidden="true" data-lucide="zap"></i>' . $liveLbl . ' <span class="badge adm-subpill-count adm-subpill-count--live ms-1">' . (int) $liveCount . '</span></button></li>'
         . '<li class="nav-item" role="presentation">'
         . '<button class="nav-link py-2" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#' . $p . '-arch" aria-controls="' . $p . '-arch" aria-selected="false">'
-        . '<i data-lucide="archive" style="margin-right:4px;"></i>' . $archLbl . ' <span class="badge adm-subpill-count adm-subpill-count--arch ms-1">' . (int) $archCount . '</span></button></li>'
+        . '<i style="margin-right:4px;" class="lucide-icon" aria-hidden="true" data-lucide="archive"></i>' . $archLbl . ' <span class="badge adm-subpill-count adm-subpill-count--arch ms-1">' . (int) $archCount . '</span></button></li>'
         . '</ul>';
 }
 
@@ -453,9 +455,9 @@ function adminListSubtabQueryLinks(
     $paneAttr = ' data-subtab-pane="' . htmlspecialchars($panePrefix, ENT_QUOTES, 'UTF-8') . '"';
     return '<ul class="nav nav-pills admin-inner-tabstrip flex-wrap gap-2 px-3 py-2 mx-3 mt-2 mb-2" role="tablist"' . $paneAttr . '>'
         . '<li class="nav-item" role="presentation"><a class="nav-link py-2' . $liveActive . '" href="' . htmlspecialchars($mk('live'), ENT_QUOTES, 'UTF-8') . '">'
-        . '<i data-lucide="zap" style="margin-right:4px;"></i>सक्रिय <span class="badge adm-subpill-count adm-subpill-count--live ms-1">' . (int) $liveCount . '</span></a></li>'
+        . '<i style="margin-right:4px;" class="lucide-icon" aria-hidden="true" data-lucide="zap"></i>सक्रिय <span class="badge adm-subpill-count adm-subpill-count--live ms-1">' . (int) $liveCount . '</span></a></li>'
         . '<li class="nav-item" role="presentation"><a class="nav-link py-2' . $archActive . '" href="' . htmlspecialchars($mk('arch'), ENT_QUOTES, 'UTF-8') . '">'
-        . '<i data-lucide="archive" style="margin-right:4px;"></i>अभिलेख <span class="badge adm-subpill-count adm-subpill-count--arch ms-1">' . (int) $archCount . '</span></a></li>'
+        . '<i style="margin-right:4px;" class="lucide-icon" aria-hidden="true" data-lucide="archive"></i>अभिलेख <span class="badge adm-subpill-count adm-subpill-count--arch ms-1">' . (int) $archCount . '</span></a></li>'
         . '</ul>';
 }
 

@@ -210,6 +210,7 @@ $evDate       = $prog ? ($prog['event_date'] ? date('Y F d', strtotime($prog['ev
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="QR-based program attendance check-in for cooperative members.">
 <title><?php echo htmlspecialchars($_t('QR उपस्थिति', 'QR Attendance')); ?> — <?= htmlspecialchars($siteName) ?></title>
 
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700;800&display=swap" rel="stylesheet">

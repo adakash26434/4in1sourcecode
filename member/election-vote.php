@@ -18,6 +18,7 @@ memberSecurityHeaders();
  * Analyze voting pattern for member behavior tracking
  */
 function analyzeVotingPattern($selectedCandidates, $positions, $cycle) {
+    global $candByPos;
     $pattern = [
         'type' => 'mixed',
         'score' => 50,

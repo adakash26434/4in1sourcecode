@@ -206,7 +206,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?= csrfField() ?>
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
-                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                         </form>
                         <?php endif; ?>
                     </td>

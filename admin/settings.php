@@ -274,7 +274,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
     <ul class="nav admin-nav-tabs mb-4" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link <?php echo $panel === 'general' ? 'active' : ''; ?>" data-bs-toggle="tab" data-bs-target="#settings-general-tab" type="button" role="tab">
-                <i class="fas fa-sliders me-1"></i> <?php echo $__t('सामान्य सेटिङ्स', 'General Settings'); ?>
+                <i class="lucide-icon me-1" aria-hidden="true" data-lucide="sliders"></i> <?php echo $__t('सामान्य सेटिङ्स', 'General Settings'); ?>
             </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -286,21 +286,21 @@ if (!in_array($panel, ['general', 'branding'], true)) {
     <div class="tab-content">
         <div class="tab-pane fade <?php echo $panel === 'general' ? 'show active' : ''; ?>" id="settings-general-tab" role="tabpanel">
         <div class="alert alert-light border settings-tab-note mb-3">
-            <i class="fas fa-circle-info me-2 stg-ico-primary"></i>
+            <i class="lucide-icon me-2 stg-ico-primary" aria-hidden="true" data-lucide="circle-info"></i>
             <?php echo $__t('वेबसाइटको नाम, SEO, सम्पर्क, social links, banking links, नेतृत्व र footer सम्बन्धी मुख्य सेटिङ्स यही tab मा छन्।', 'Main settings for website name, SEO, contacts, social links, banking links, leadership and footer are in this tab.'); ?>
         </div>
         <div class="stg-subtabs mb-3" data-stg-panel="general">
-            <button type="button" class="stg-subtab-btn active" data-stg-group="identity"><i class="fas fa-globe me-1"></i> <?php echo $__t('साइट / SEO', 'Site / SEO'); ?></button>
+            <button type="button" class="stg-subtab-btn active" data-stg-group="identity"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="globe"></i> <?php echo $__t('साइट / SEO', 'Site / SEO'); ?></button>
             <button type="button" class="stg-subtab-btn" data-stg-group="contact"><i class="fas fa-address-book me-1"></i> <?php echo $__t('सम्पर्क / Maps', 'Contact / Maps'); ?></button>
-            <button type="button" class="stg-subtab-btn" data-stg-group="banking"><i class="fas fa-lock me-1"></i> <?php echo $__t('Banking / Security', 'Banking / Security'); ?></button>
-            <button type="button" class="stg-subtab-btn" data-stg-group="leadership"><i class="fas fa-users me-1"></i> <?php echo $__t('नेतृत्व / Footer', 'Leadership / Footer'); ?></button>
+            <button type="button" class="stg-subtab-btn" data-stg-group="banking"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="lock"></i> <?php echo $__t('Banking / Security', 'Banking / Security'); ?></button>
+            <button type="button" class="stg-subtab-btn" data-stg-group="leadership"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="users"></i> <?php echo $__t('नेतृत्व / Footer', 'Leadership / Footer'); ?></button>
             <button type="button" class="stg-subtab-btn" data-stg-group="all"><i class="fas fa-table-cells-large me-1"></i> <?php echo $__t('सबै देखाउनुहोस्', 'Show All'); ?></button>
         </div>
         <div class="row">
         <div class="col-lg-12">
             <div class="card mb-4 stg-section-card stg-filter-card" data-stg-panel="general" data-stg-group="identity" data-stg-order="1">
                 <div class="card-header stg-section-header">
-                    <h5 class="stg-section-title"><i class="fas fa-globe"></i> <?php echo $__t('साइट जानकारी', 'Site Information'); ?></h5>
+                    <h5 class="stg-section-title"><i class="lucide-icon" aria-hidden="true" data-lucide="globe"></i> <?php echo $__t('साइट जानकारी', 'Site Information'); ?></h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -363,7 +363,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
             <!-- SEO — प्रति डोमेन/सहकारी (Google, Facebook share) -->
             <div class="card mb-4 stg-section-card stg-filter-card" data-stg-panel="general" data-stg-group="identity" data-stg-order="2">
                 <div class="card-header stg-section-header">
-                    <h5 class="stg-section-title"><i class="fas fa-search"></i> <?php echo $__t('SEO (Google / सामाजिक साझेदारी)', 'SEO (Google / Social Sharing)'); ?></h5>
+                    <h5 class="stg-section-title"><i class="lucide-icon" aria-hidden="true" data-lucide="search"></i> <?php echo $__t('SEO (Google / सामाजिक साझेदारी)', 'SEO (Google / Social Sharing)'); ?></h5>
                 </div>
                 <div class="card-body">
                     <h6 class="stg-title-accent fw-bold mb-3"><i class="fas fa-bullseye me-2"></i>Search / Share Content</h6>
@@ -501,7 +501,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                     </div>
 
                     <!-- OAuth Settings -->
-                    <hr><h6 class="stg-title-accent fw-bold mt-3"><i class="fas fa-key me-2"></i><?php echo $__t('Member Portal — Social Login (OAuth)', 'Member Portal — Social Login (OAuth)'); ?></h6>
+                    <hr><h6 class="stg-title-accent fw-bold mt-3"><i class="lucide-icon me-2" aria-hidden="true" data-lucide="key"></i><?php echo $__t('Member Portal — Social Login (OAuth)', 'Member Portal — Social Login (OAuth)'); ?></h6>
                     <div class="alert alert-info py-2 px-3 stg-help-compact">
                         <i class="fas fa-info-circle me-1"></i>
                         <?php echo $__t('Google OAuth', 'Google OAuth'); ?>: <a href="https://console.cloud.google.com/apis/credentials" target="_blank">Google Cloud Console</a> <?php echo $__t('बाट Client ID र Secret लिनुहोस्।', 'to get Client ID and Secret.'); ?><br>
@@ -536,9 +536,9 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                     </div>
                     <?php if (!empty($_SESSION['is_superadmin'])): ?>
                     <hr>
-                    <h6 class="stg-title-accent fw-bold mt-3"><i class="fas fa-shield-halved me-2"></i><?php echo $__t('2FA नीति (Superadmin)', '2FA Policy (Superadmin)'); ?></h6>
+                    <h6 class="stg-title-accent fw-bold mt-3"><i class="lucide-icon me-2" aria-hidden="true" data-lucide="shield-halved"></i><?php echo $__t('2FA नीति (Superadmin)', '2FA Policy (Superadmin)'); ?></h6>
                     <div class="alert alert-warning py-2 px-3 stg-help-compact">
-                        <i class="fas fa-lock me-1"></i> <?php echo $__t('तलको toggle अनुसार Google Authenticator 2FA login मा लागू हुन्छ।', 'Google Authenticator 2FA is enforced on login based on toggles below.'); ?>
+                        <i class="lucide-icon me-1" aria-hidden="true" data-lucide="lock"></i> <?php echo $__t('तलको toggle अनुसार Google Authenticator 2FA login मा लागू हुन्छ।', 'Google Authenticator 2FA is enforced on login based on toggles below.'); ?>
                     </div>
                     <div class="form-check form-switch mb-2">
                         <input class="form-check-input" type="checkbox" id="twofa_admin_required" name="twofa_admin_required" value="1"
@@ -565,7 +565,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="stg-title-primary mb-3"><i class="fas fa-user"></i> <?php echo $__t('अध्यक्ष', 'Chairperson'); ?></h6>
+                            <h6 class="stg-title-primary mb-3"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i> <?php echo $__t('अध्यक्ष', 'Chairperson'); ?></h6>
                             <div class="mb-3">
                                 <label class="form-label"><?php echo $__t('अध्यक्षको नाम', 'Chairperson Name'); ?></label>
                                 <input type="text" name="chairman_name" class="form-control"
@@ -574,7 +574,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h6 class="stg-title-accent mb-3"><i class="fas fa-user"></i> <?php echo $__t('प्रमुख कार्यकारी अधिकृत', 'Chief Executive Officer'); ?></h6>
+                            <h6 class="stg-title-accent mb-3"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i> <?php echo $__t('प्रमुख कार्यकारी अधिकृत', 'Chief Executive Officer'); ?></h6>
                             <div class="mb-3">
                                 <label class="form-label"><?php echo $__t('CEO को नाम', 'CEO Name'); ?></label>
                                 <input type="text" name="ceo_name" class="form-control"
@@ -613,12 +613,12 @@ if (!in_array($panel, ['general', 'branding'], true)) {
             <!-- Footer -->
             <div class="card mb-4 stg-section-card stg-filter-card" data-stg-panel="general" data-stg-group="leadership" data-stg-order="2">
                 <div class="card-header stg-section-header">
-                    <h5 class="stg-section-title"><i data-lucide="copyright"></i> <?php echo $__t('फुटर', 'Footer'); ?></h5>
+                    <h5 class="stg-section-title"><i class="lucide-icon" aria-hidden="true" data-lucide="copyright"></i> <?php echo $__t('फुटर', 'Footer'); ?></h5>
                 </div>
                 <div class="card-body">
                     <?php if (!$canEditFooterDev): ?>
                     <div class="alert alert-warning py-2 mb-3">
-                        <i class="fas fa-lock me-1"></i> <?php echo $__t('Copyright/Developed By सेटिङ्स Super Admin ले मात्र परिवर्तन गर्न मिल्छ।', 'Only Super Admin can modify Copyright/Developed By settings.'); ?>
+                        <i class="lucide-icon me-1" aria-hidden="true" data-lucide="lock"></i> <?php echo $__t('Copyright/Developed By सेटिङ्स Super Admin ले मात्र परिवर्तन गर्न मिल्छ।', 'Only Super Admin can modify Copyright/Developed By settings.'); ?>
                     </div>
                     <?php endif; ?>
                     <div class="mb-3">
@@ -681,7 +681,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                                placeholder="https://www.google.com/maps/embed?pb=...">
                         <small class="stg-muted"><?php echo $__t('Google Maps बाट Embed URL copy गर्नुहोस्', 'Copy embed URL from Google Maps'); ?></small>
                     </div>
-                    <h6 class="stg-title-accent fw-bold mb-2"><i class="fas fa-eye me-2"></i><?php echo $__t('सार्वजनिक प्रदर्शन समय (वेबसाइटमा देखिने)', 'Public Display Hours (shown on website)'); ?></h6>
+                    <h6 class="stg-title-accent fw-bold mb-2"><i class="lucide-icon me-2" aria-hidden="true" data-lucide="eye"></i><?php echo $__t('सार्वजनिक प्रदर्शन समय (वेबसाइटमा देखिने)', 'Public Display Hours (shown on website)'); ?></h6>
                     <div class="alert alert-light border small py-2 mb-3"><i class="fas fa-info-circle me-1 text-primary"></i><?php echo $__t('यो text Footer / Contact पेजमा जस्ताको तस्तै देखिन्छ। मानिसले पढ्नका लागि — कुनै time-picker मा प्रयोग हुँदैन।', 'This text is shown as-is on the Footer / Contact page. For human reading only — not used by any time-picker.'); ?></div>
                     <div class="row">
                         <div class="col-md-6">
@@ -702,7 +702,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
                         </div>
                     </div>
                     <hr>
-                    <h6 class="stg-title-accent fw-bold mb-2"><i class="fas fa-calendar-check me-2"></i><?php echo $__t('Appointment समयसीमा (Time-picker मा प्रयोग)', 'Appointment Time Range (for time-picker)'); ?></h6>
+                    <h6 class="stg-title-accent fw-bold mb-2"><i class="lucide-icon me-2" aria-hidden="true" data-lucide="calendar-check"></i><?php echo $__t('Appointment समयसीमा (Time-picker मा प्रयोग)', 'Appointment Time Range (for time-picker)'); ?></h6>
                     <div class="alert alert-light border small py-2 mb-3"><i class="fas fa-info-circle me-1 text-primary"></i><?php echo $__t('यी मानहरूले Appointment booking फर्मको time-picker मा कति बजेदेखि कति बजेसम्म छनोट गर्न मिल्ने हो भन्ने सीमा तोक्छ। माथिको Display Hours सँग स्वतन्त्र हुन्छ।', 'These values define the from–to range of allowed times in the Appointment booking time-picker. Independent of the Display Hours above.'); ?></div>
                     <div class="row">
                         <div class="col-md-6">
@@ -725,7 +725,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
             <div class="card stg-save-card">
                 <div class="card-body py-3 admin-form-actions">
                     <button type="submit" class="btn stg-save-btn px-4">
-                        <i class="fas fa-save me-1"></i> <?php echo $__t('सेटिङ्स सेभ गर्नुहोस्', 'Save Settings'); ?>
+                        <i class="lucide-icon me-1" aria-hidden="true" data-lucide="save"></i> <?php echo $__t('सेटिङ्स सेभ गर्नुहोस्', 'Save Settings'); ?>
                     </button>
                 </div>
             </div>
@@ -735,11 +735,11 @@ if (!in_array($panel, ['general', 'branding'], true)) {
 
         <div class="tab-pane fade <?php echo $panel === 'branding' ? 'show active' : ''; ?>" id="settings-branding-tab" role="tabpanel">
         <div class="alert alert-light border settings-tab-note mb-3">
-            <i class="fas fa-circle-info me-2 stg-ico-primary"></i>
+            <i class="lucide-icon me-2 stg-ico-primary" aria-hidden="true" data-lucide="circle-info"></i>
             <?php echo $__t('लोगो, header image, about image, theme colors र version जस्ता branding/media सम्बन्धी सेटिङ्स यही tab मा छन्।', 'Branding/media settings like logo, header image, about image, theme colors and version are in this tab.'); ?>
         </div>
         <div class="stg-subtabs mb-3" data-stg-panel="branding">
-            <button type="button" class="stg-subtab-btn active" data-stg-group="media"><i class="fas fa-images me-1"></i> <?php echo $__t('मिडिया व्यवस्थापक', 'Media Manager'); ?></button>
+            <button type="button" class="stg-subtab-btn active" data-stg-group="media"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="images"></i> <?php echo $__t('मिडिया व्यवस्थापक', 'Media Manager'); ?></button>
             <button type="button" class="stg-subtab-btn" data-stg-group="colors"><i class="fas fa-palette me-1"></i> <?php echo $__t('थिम रङहरू', 'Theme Colors'); ?></button>
             <button type="button" class="stg-subtab-btn" data-stg-group="version"><i class="fas fa-code-branch me-1"></i> <?php echo $__t('संस्करण', 'Version'); ?></button>
             <button type="button" class="stg-subtab-btn" data-stg-group="all"><i class="fas fa-table-cells-large me-1"></i> <?php echo $__t('सबै देखाउनुहोस्', 'Show All'); ?></button>
@@ -750,7 +750,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
             <!-- Media Manager -->
             <div class="card mb-4 stg-section-card stg-accent-card stg-filter-card" data-stg-panel="branding" data-stg-group="media" data-stg-order="1">
                 <div class="card-header stg-section-header stg-soft-green-header">
-                    <h5 class="mb-0 stg-section-title"><i class="fas fa-images me-2"></i><?php echo $__t('मिडिया व्यवस्थापक (सबै fixed फोटो)', 'Media Manager (all fixed photos)'); ?></h5>
+                    <h5 class="mb-0 stg-section-title"><i class="lucide-icon me-2" aria-hidden="true" data-lucide="images"></i><?php echo $__t('मिडिया व्यवस्थापक (सबै fixed फोटो)', 'Media Manager (all fixed photos)'); ?></h5>
                 </div>
                 <div class="card-body">
                     <div class="row g-3">
@@ -975,13 +975,13 @@ if (!in_array($panel, ['general', 'branding'], true)) {
             <div class="stg-clr-preview flex-fill p-3 p-lg-4" style="background:#f1f5f9">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <span class="fw-semibold small" style="color:#374151">
-                        <i class="fas fa-eye me-1"></i><?php echo $__t('Live Preview', 'Live Preview'); ?>
+                        <i class="lucide-icon me-1" aria-hidden="true" data-lucide="eye"></i><?php echo $__t('Live Preview', 'Live Preview'); ?>
                     </span>
                     <div class="d-flex gap-1">
-                        <button type="button" class="btn btn-sm stg-device-btn active" data-device="desktop" style="padding:3px 10px;font-size:.72rem;border-radius:6px">
+                        <button type="button" class="btn btn-sm stg-device-btn active" data-device="desktop" style="padding:3px 10px;font-size:.72rem;border-radius:6px" aria-label="Desktop" title="Desktop">
                             <i class="fas fa-desktop"></i>
                         </button>
-                        <button type="button" class="btn btn-sm stg-device-btn" data-device="mobile" style="padding:3px 10px;font-size:.72rem;border-radius:6px">
+                        <button type="button" class="btn btn-sm stg-device-btn" data-device="mobile" style="padding:3px 10px;font-size:.72rem;border-radius:6px" aria-label="Mobile Alt" title="Mobile Alt">
                             <i class="fas fa-mobile-alt"></i>
                         </button>
                     </div>
@@ -1403,7 +1403,7 @@ $all('.stg-device-btn').forEach(function(btn) {
             <div class="card stg-save-card">
                 <div class="card-body py-3 admin-form-actions">
                     <button type="submit" class="btn stg-save-btn px-4">
-                        <i class="fas fa-save me-1"></i> सेटिङ्स सेभ गर्नुहोस्
+                        <i class="lucide-icon me-1" aria-hidden="true" data-lucide="save"></i> सेटिङ्स सेभ गर्नुहोस्
                     </button>
                 </div>
             </div>

@@ -33,7 +33,13 @@ if (!function_exists('coopThemeCssUrl')) {
         }
         $file = (defined('ROOT_PATH') ? ROOT_PATH : dirname(__DIR__) . '/') . 'assets/css/global-theme.php';
         if (is_file($file)) {
-            require $file;
+            try {
+                require $file;
+            } catch (Throwable $e) {
+                if (function_exists('error_log')) {
+                    error_log('[theme-global] ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
+                }
+            }
         }
     }
 

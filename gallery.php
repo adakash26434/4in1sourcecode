@@ -72,7 +72,7 @@ $L = getLangStrings();
         <div class="gallery-tabs-wrapper">
             <div class="gallery-tabs">
                 <a href="?type=photo" class="gallery-tab <?php echo $activeTab === 'photo' ? 'active' : ''; ?>">
-                    <i class="fas fa-images"></i>
+                    <i class="lucide-icon" aria-hidden="true" data-lucide="images"></i>
                     <span><?php echo isEnglish() ? 'Photos' : 'फोटोहरू'; ?></span>
                     <span class="tab-count"><?php echo count($photos); ?></span>
                 </a>
@@ -127,7 +127,7 @@ $L = getLangStrings();
                 <?php else: ?>
                     <div class="col-12">
                         <div class="empty-state text-center py-5">
-                            <i class="fas fa-images fa-4x text-muted mb-3"></i>
+                            <i class="lucide-icon fa-4x text-muted mb-3" aria-hidden="true" data-lucide="images"></i>
                             <h4><?php echo isEnglish() ? 'No photos available' : 'कुनै तस्विर छैन'; ?></h4>
                             <p class="text-muted"><?php echo isEnglish() ? 'No photos available at the moment.' : 'हाल कुनै तस्विर उपलब्ध छैन।'; ?></p>
                         </div>

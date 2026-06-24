@@ -579,6 +579,6 @@ if ($flash) echo adminAlert($flash['type'], $flash['message']);
     </div>
 </div>
 
+
 <?php pages_admin_tinymce(); ?>
 <?php require_once 'includes/admin-footer.php'; ?>
-

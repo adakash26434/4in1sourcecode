@@ -233,7 +233,7 @@ $claimTypes = [
                         <div class="text-muted small mb-2"><?php echo isEnglish() ? 'Your Tracking ID — save this!' : 'तपाईंको Tracking ID — सुरक्षित राख्नुहोस्!'; ?></div>
                         <div class="d-flex align-items-center gap-2 mb-2">
                             <div class="form-tracking-id" id="wlfTrkId"><?php echo e($trackingId); ?></div>
-                            <button type="button" onclick="copyTrk('wlfTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i data-lucide="copy"></i></button>
+                            <button type="button" onclick="copyTrk('wlfTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i></button>
                         </div>
                         <div class="form-tracking-help"><a href="application-tracker.php" class="text-success text-decoration-none fw-semibold">यहाँ बाट</a> Application Tracker मा स्थिति हेर्नुहोस्।</div>
                     </div>
@@ -284,7 +284,7 @@ $claimTypes = [
                         <form method="GET" action="">
                             <div class="input-group">
                                 <input type="text" name="track" class="form-control" placeholder="<?php echo isEnglish() ? 'Tracking ID / Phone' : 'ट्र्याकिङ ID / फोन'; ?>" value="<?php echo e($_GET['track'] ?? ''); ?>">
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                <button type="submit" class="btn btn-primary" aria-label="Search" title="Search"><i class="fas fa-search"></i></button>
                             </div>
                         </form>
 

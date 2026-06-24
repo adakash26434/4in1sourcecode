@@ -1,4 +1,3 @@
-<?php
 /**
  * उपयोगी लिंकहरू व्यवस्थापन — Useful Links Management
  * Tab UI: सूची + Add/Edit form (modal popup हटाइएको)
@@ -315,8 +314,7 @@ $linksArch = $lnkPart['archived'];
 
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+
 
     var listBtn = document.getElementById('link-list-btn');
     var formBtn = document.getElementById('link-form-btn');
@@ -372,7 +370,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php 
 
 
 
@@ -405,4 +402,4 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 
-<?php require_once 'includes/admin-footer.php'; ?> ?>
+<?php require_once 'includes/admin-footer.php'; ?>

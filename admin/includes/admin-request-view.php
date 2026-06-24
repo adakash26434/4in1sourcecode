@@ -174,7 +174,7 @@ if (!function_exists('renderAdminRequestView')) {
             : '';
 
         $back = '<a href="' . htmlspecialchars($backUrl, ENT_QUOTES, 'UTF-8') . '" class="arv-back-btn">'
-              . '<i class="fas fa-arrow-left"></i> '
+              . '<i class="lucide-icon" aria-hidden="true" data-lucide="arrow-left"></i> '
               . htmlspecialchars($backLabel, ENT_QUOTES, 'UTF-8') . '</a>';
 
         $card = '<div class="arv-card">'
@@ -295,7 +295,7 @@ if (!function_exists('arvLogList')) {
             } else {
                 $sent = !empty($h['notify_sent']);
                 $notifyHtml = $sent
-                    ? '<span class="arv-chip arv-chip--ok"><i class="fas fa-bell"></i> Sent</span>'
+                    ? '<span class="arv-chip arv-chip--ok"><i class="lucide-icon" aria-hidden="true" data-lucide="bell"></i> Sent</span>'
                     : '<span class="arv-chip arv-chip--none"><i class="fas fa-bell-slash"></i> Not sent</span>';
             }
 
@@ -307,7 +307,7 @@ if (!function_exists('arvLogList')) {
             }
             $out .= '<div class="arv-log-meta">'
                   . '<span><i class="fas fa-user-shield"></i> ' . $actor . '</span>'
-                  . '<span class="dot">·</span><span><i class="fas fa-clock"></i> ' . $whenH . '</span>'
+                  . '<span class="dot">·</span><span><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> ' . $whenH . '</span>'
                   . '</div>'
                   . '<div class="arv-log-notify">' . $notifyHtml . '</div>'
                   . '</div>';

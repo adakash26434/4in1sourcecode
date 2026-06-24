@@ -63,7 +63,7 @@ if (!$satisfactionEnabled || empty($satisfactionLinks)) {
             aria-expanded="false"
             aria-controls="satisfactionPopup"
             title="<?php echo isEnglish() ? 'Member Satisfaction' : 'सदस्य सन्तुष्टि'; ?>">
-        <i class="fas fa-smile" aria-hidden="true"></i>
+        <i class="lucide-icon" aria-hidden="true" data-lucide="smile"></i>
         <!-- Tooltip label — hover र active दुवैमा देखिन्छ -->
         <span class="satisfaction-label">
             <?php echo isEnglish() ? 'Feedback' : 'प्रतिक्रिया'; ?>
@@ -89,7 +89,7 @@ if (!$satisfactionEnabled || empty($satisfactionLinks)) {
            target="_blank"
            rel="noopener noreferrer"
            role="menuitem">
-            <i class="<?php echo htmlspecialchars($link['icon'] ?? 'fas fa-link'); ?>" aria-hidden="true"></i>
+            <i class="lucide-icon" aria-hidden="true" data-lucide="link"></i>
             <span><?php echo htmlspecialchars(
                 isEnglish()
                     ? ($link['title_en'] ?? $link['title'])

@@ -26,12 +26,12 @@
         @media (min-width: 900px) { .mob-bottomnav { display: none; } body.has-bottomnav { padding-bottom: 0 !important; } }
         </style>
         <nav class="mob-bottomnav" aria-label="Admin quick nav">
-            <a href="<?php echo ADMIN_URL; ?>dashboard.php" class="mob-bn-item <?php echo ($currentPage??'')==='dashboard'?'active':''; ?>"><i data-lucide="layout-dashboard"></i><span><?php echo !empty($adminIsEnglish) ? 'Dashboard' : 'ड्यासबोर्ड'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>notices.php" class="mob-bn-item"><i data-lucide="megaphone"></i><span><?php echo !empty($adminIsEnglish) ? 'Notices' : 'सूचना'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>members.php" class="mob-bn-item"><i data-lucide="users"></i><span><?php echo !empty($adminIsEnglish) ? 'Members' : 'सदस्य'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>hrm-employees.php" class="mob-bn-item <?php echo (in_array(($currentPage??''), ['hrm-dashboard','hrm-employees','hrm-employee-directory','hrm-departments','hrm-contracts','hrm-documents','hrm-messenger']) ? 'active' : ''); ?>"><i data-lucide="badge-check"></i><span><?php echo !empty($adminIsEnglish) ? 'HRM' : 'HRM'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>settings.php" class="mob-bn-item"><i data-lucide="settings"></i><span><?php echo !empty($adminIsEnglish) ? 'Settings' : 'सेटिङ'; ?></span></a>
-            <a href="<?php echo ADMIN_URL; ?>logout.php" class="mob-bn-item"><i data-lucide="log-out"></i><span><?php echo !empty($adminIsEnglish) ? 'Logout' : 'लगआउट'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>dashboard.php" class="mob-bn-item <?php echo ($currentPage??'')==='dashboard'?'active':''; ?>"><i class="lucide-icon" aria-hidden="true" data-lucide="layout-dashboard"></i><span><?php echo !empty($adminIsEnglish) ? 'Dashboard' : 'ड्यासबोर्ड'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>notices.php" class="mob-bn-item"><i class="lucide-icon" aria-hidden="true" data-lucide="megaphone"></i><span><?php echo !empty($adminIsEnglish) ? 'Notices' : 'सूचना'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>members.php" class="mob-bn-item"><i class="lucide-icon" aria-hidden="true" data-lucide="users"></i><span><?php echo !empty($adminIsEnglish) ? 'Members' : 'सदस्य'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>hrm-employees.php" class="mob-bn-item <?php echo (in_array(($currentPage??''), ['hrm-dashboard','hrm-employees','hrm-employee-directory','hrm-departments','hrm-contracts','hrm-documents','hrm-messenger']) ? 'active' : ''); ?>"><i class="lucide-icon" aria-hidden="true" data-lucide="badge-check"></i><span><?php echo !empty($adminIsEnglish) ? 'HRM' : 'HRM'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>settings.php" class="mob-bn-item"><i class="lucide-icon" aria-hidden="true" data-lucide="settings"></i><span><?php echo !empty($adminIsEnglish) ? 'Settings' : 'सेटिङ'; ?></span></a>
+            <a href="<?php echo ADMIN_URL; ?>logout.php" class="mob-bn-item"><i class="lucide-icon" aria-hidden="true" data-lucide="log-out"></i><span><?php echo !empty($adminIsEnglish) ? 'Logout' : 'लगआउट'; ?></span></a>
         </nav>
         <script>document.body.classList.add('has-bottomnav');</script>
 
@@ -40,7 +40,7 @@
            class="admin-fab-msg"
            title="<?php echo !empty($adminIsEnglish) ? 'Internal Chat' : 'आन्तरिक च्याट'; ?>"
            aria-label="Internal Chat">
-          <i data-lucide="message-circle"></i>
+          <i class="lucide-icon" aria-hidden="true" data-lucide="message-circle"></i>
         </a>
         <style>
           .admin-fab-msg{
@@ -343,13 +343,13 @@
 
                 body.innerHTML = '';
                 if (!panes.docs.children.length) {
-                    panes.docs.innerHTML = '<div class="arv-empty-tab"><i class="fas fa-folder-open"></i><strong>कागजात छैन</strong><span>यस अनुरोधमा कागजात / attachment भेटिएन।</span></div>';
+                    panes.docs.innerHTML = '<div class="arv-empty-tab"><i class="lucide-icon" aria-hidden="true" data-lucide="folder-open"></i><strong>कागजात छैन</strong><span>यस अनुरोधमा कागजात / attachment भेटिएन।</span></div>';
                 }
                 if (!panes.log.children.length) {
                     panes.log.innerHTML = '<div class="arv-empty-tab"><i class="fas fa-clock-rotate-left"></i><strong>गतिविधि लग छैन</strong><span>Status/comment history उपलब्ध छैन।</span></div>';
                 }
                 var availableTabs = [
-                    ['overview', '<i class="fas fa-id-card me-1"></i> अवलोकन'],
+                    ['overview', '<i class="lucide-icon" aria-hidden="true" data-lucide="id-card"></i> अवलोकन'],
                     ['docs', '<i class="fas fa-paperclip me-1"></i> कागजात'],
                     ['log', '<i class="fas fa-clock-rotate-left me-1"></i> गतिविधि लग']
                 ];

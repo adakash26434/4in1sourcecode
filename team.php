@@ -68,13 +68,13 @@ foreach ($committeeTypes as $_ct) {
                 <i class="fas fa-th-large"></i> <?php echo isEnglish() ? 'All' : 'सबै'; ?>
             </button>
             <button type="button" class="filter-btn" onclick="teamFilter(this, 'board')">
-                <i class="fas fa-building-columns"></i> <?php echo isEnglish() ? 'Board' : 'सञ्चालक समिति'; ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="building-columns"></i> <?php echo isEnglish() ? 'Board' : 'सञ्चालक समिति'; ?>
             </button>
             <button type="button" class="filter-btn" onclick="teamFilter(this, 'management')">
                 <i class="fas fa-user-tie"></i> <?php echo isEnglish() ? 'Management' : 'व्यवस्थापन टोली'; ?>
             </button>
             <button type="button" class="filter-btn" onclick="teamFilter(this, 'staff')">
-                <i class="fas fa-users"></i> <?php echo isEnglish() ? 'Staff' : 'कर्मचारीहरू'; ?>
+                <i class="lucide-icon" aria-hidden="true" data-lucide="users"></i> <?php echo isEnglish() ? 'Staff' : 'कर्मचारीहरू'; ?>
             </button>
             <?php foreach ($committeeFilterButtons as $_cf): ?>
                 <button type="button" class="filter-btn" onclick="teamFilter(this, 'committee-<?php echo $_cf['id']; ?>')">
@@ -111,7 +111,7 @@ foreach ($committeeTypes as $_ct) {
                         <?php if ($informationOfficer['photo']): ?>
                             <img src="<?php echo e($informationOfficer['photo']); ?>" loading="lazy" alt="<?php echo e($informationOfficer['name']); ?>">
                         <?php else: ?>
-                            <div class="officer-placeholder"><i class="fas fa-user"></i></div>
+                            <div class="officer-placeholder"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i></div>
                         <?php endif; ?>
                     </div>
                     <div class="officer-info">
@@ -150,7 +150,7 @@ foreach ($committeeTypes as $_ct) {
                         <?php if ($grievanceOfficer['photo']): ?>
                             <img src="<?php echo e($grievanceOfficer['photo']); ?>" loading="lazy" alt="<?php echo e($grievanceOfficer['name']); ?>">
                         <?php else: ?>
-                            <div class="officer-placeholder"><i class="fas fa-user"></i></div>
+                            <div class="officer-placeholder"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i></div>
                         <?php endif; ?>
                     </div>
                     <div class="officer-info">
@@ -202,7 +202,7 @@ foreach ($committeeTypes as $_ct) {
                         <?php if ($member['photo']): ?>
                             <img src="<?php echo e($member['photo']); ?>" loading="lazy" alt="<?php echo e($member['name']); ?>">
                         <?php else: ?>
-                            <div class="team-placeholder-circular"><i class="fas fa-user"></i></div>
+                            <div class="team-placeholder-circular"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i></div>
                         <?php endif; ?>
                     </div>
                     <div class="team-info-circular">
@@ -247,7 +247,7 @@ foreach ($committeeTypes as $_ct) {
                         <?php if ($member['photo']): ?>
                             <img src="<?php echo e($member['photo']); ?>" loading="lazy" alt="<?php echo e($member['name']); ?>">
                         <?php else: ?>
-                            <div class="team-placeholder-circular"><i class="fas fa-user"></i></div>
+                            <div class="team-placeholder-circular"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i></div>
                         <?php endif; ?>
                     </div>
                     <div class="team-info-circular">
@@ -280,7 +280,7 @@ foreach ($committeeTypes as $_ct) {
                             <?php if ($member['photo']): ?>
                                 <img src="<?php echo e($member['photo']); ?>" loading="lazy" alt="<?php echo e($member['name']); ?>">
                             <?php else: ?>
-                                <div class="team-placeholder-circular"><i class="fas fa-user"></i></div>
+                                <div class="team-placeholder-circular"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i></div>
                             <?php endif; ?>
                         </div>
                         <div class="team-info-circular">
@@ -325,7 +325,7 @@ foreach ($committeeTypes as $_ct) {
                         <?php if ($member['photo']): ?>
                             <img src="<?php echo e($member['photo']); ?>" loading="lazy" alt="<?php echo e($member['name']); ?>">
                         <?php else: ?>
-                            <div class="team-placeholder-circular"><i class="fas fa-user"></i></div>
+                            <div class="team-placeholder-circular"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i></div>
                         <?php endif; ?>
                     </div>
                     <div class="team-info-circular">
@@ -344,7 +344,7 @@ foreach ($committeeTypes as $_ct) {
 <section class="section-padding">
     <div class="container">
         <div class="empty-state text-center py-5">
-            <i class="fas fa-users fa-4x text-muted mb-3"></i>
+            <i class="lucide-icon fa-4x text-muted mb-3" aria-hidden="true" data-lucide="users"></i>
             <h4>टोली जानकारी उपलब्ध छैन</h4>
             <p class="text-muted">हाल टोली सदस्यहरूको जानकारी उपलब्ध छैन।</p>
         </div>

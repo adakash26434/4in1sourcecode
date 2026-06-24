@@ -1,4 +1,3 @@
-<?php
 /**
  * सम्मान तथा पुरस्कार व्यवस्थापन — Awards Management
  * Tab UI: सूची + Add/Edit form (modal popup हटाइएको)
@@ -87,14 +86,13 @@ $awardsLive = $awPart['live'];
 $awardsArch = $awPart['archived'];
 ?>
 
-<?php
-echo adminPageHeader(
+<?php echo adminPageHeader(
     'सम्मान तथा पुरस्कार',
     'fa-trophy',
     'संस्थाले प्राप्त गरेका पुरस्कार र सम्मानहरू।',
     '<span class="badge admin-stat-badge bg-success-subtle text-success border border-success border-opacity-25 me-2"><i class="fas fa-layer-group me-1"></i>जम्मा: ' . count($awards) . '</span>'
-    . '<span class="badge admin-stat-badge bg-primary-subtle text-primary border border-primary border-opacity-25 me-2"><i class="fas fa-check-circle me-1"></i>सक्रिय: ' . count($awardsLive) . '</span>'
-    . '<span class="badge admin-stat-badge bg-secondary-subtle text-secondary border border-secondary border-opacity-25"><i class="fas fa-archive me-1"></i>अभिलेख: ' . count($awardsArch) . '</span>'
+    . '<span class="badge admin-stat-badge bg-primary-subtle text-primary border border-primary border-opacity-25 me-2"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="check-circle"></i>सक्रिय: ' . count($awardsLive) . '</span>'
+    . '<span class="badge admin-stat-badge bg-secondary-subtle text-secondary border border-secondary border-opacity-25"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="archive"></i>अभिलेख: ' . count($awardsArch) . '</span>'
 );
 if ($flash = getFlash()):
 ?>
@@ -126,7 +124,7 @@ if ($flash = getFlash()):
             <!-- खोज बक्स — client-side filter -->
             <div class="admin-search-wrap px-3 py-2 border-bottom bg-light d-flex align-items-center gap-3 svc-search-wrap">
                 <div class="input-group input-group-sm svc-search-group">
-                    <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                    <span class="input-group-text bg-white border-end-0"><i class="lucide-icon text-muted" aria-hidden="true" data-lucide="search"></i></span>
                     <input type="text" class="form-control border-start-0 admin-table-search" placeholder="नाम, विवरण अनुसार खोज्नुहोस्..." autocomplete="off">
                 </div>
                 <small class="text-muted search-count"></small>
@@ -150,12 +148,12 @@ if ($flash = getFlash()):
                         <tbody>
                             <?php if (empty($awards)): ?>
                             <tr><td colspan="6" class="text-center py-5 text-muted">
-                                <i class="fas fa-trophy fa-3x mb-2 d-block opacity-25"></i>
+                                <i class="lucide-icon fa-3x mb-2 d-block opacity-25" aria-hidden="true" data-lucide="trophy"></i>
                                 कुनै पुरस्कार छैन।
                             </td></tr>
                             <?php elseif (empty($awardsLive)): ?>
                             <tr><td colspan="6" class="text-center py-5 text-muted">
-                                <i class="fas fa-check-circle fa-3x mb-2 d-block opacity-25 text-success"></i>
+                                <i class="lucide-icon fa-3x mb-2 d-block opacity-25 text-success" aria-hidden="true" data-lucide="check-circle"></i>
                                 सक्रिय पुरस्कार छैन। अभिलेख हेर्नुहोस्।
                             </td></tr>
                             <?php endif; ?>
@@ -165,7 +163,7 @@ if ($flash = getFlash()):
                                     <?php if (!empty($a['image'])): ?>
                                     <img src="../<?php echo htmlspecialchars($a['image']); ?>" class="news-thumb-img">
                                     <?php else: ?>
-                                    <div class="news-thumb-placeholder"><i class="fas fa-trophy text-success fa-lg"></i></div>
+                                    <div class="news-thumb-placeholder"><i class="lucide-icon text-success fa-lg" aria-hidden="true" data-lucide="trophy"></i></div>
                                     <?php endif; ?>
                                 </td>
                                 <td>
@@ -220,7 +218,7 @@ if ($flash = getFlash()):
                         <tbody>
                             <?php if (empty($awardsArch)): ?>
                             <tr><td colspan="6" class="text-center py-5 text-muted">
-                                <i class="fas fa-folder-open fa-3x mb-2 d-block opacity-25"></i>
+                                <i class="lucide-icon fa-3x mb-2 d-block opacity-25" aria-hidden="true" data-lucide="folder-open"></i>
                                 अभिलेखमा कुनै पुरस्कार छैन।
                             </td></tr>
                             <?php endif; ?>
@@ -230,7 +228,7 @@ if ($flash = getFlash()):
                                     <?php if (!empty($a['image'])): ?>
                                     <img src="../<?php echo htmlspecialchars($a['image']); ?>" class="news-thumb-img">
                                     <?php else: ?>
-                                    <div class="news-thumb-placeholder"><i class="fas fa-trophy text-success fa-lg"></i></div>
+                                    <div class="news-thumb-placeholder"><i class="lucide-icon text-success fa-lg" aria-hidden="true" data-lucide="trophy"></i></div>
                                     <?php endif; ?>
                                 </td>
                                 <td>
@@ -282,7 +280,7 @@ if ($flash = getFlash()):
                     <i class="fas fa-plus-circle me-2"></i>नयाँ पुरस्कार थप्नुहोस्
                 </h5>
                 <button type="button" class="btn btn-light btn-sm" id="btnCancelAw">
-                    <i class="fas fa-arrow-left me-1"></i>सूचीमा फर्कनुहोस्
+                    <i class="lucide-icon me-1" aria-hidden="true" data-lucide="arrow-left"></i>सूचीमा फर्कनुहोस्
                 </button>
             </div>
             <div class="card-body p-4">
@@ -359,10 +357,9 @@ if ($flash = getFlash()):
 
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+(removed PHP open) </script>
 
-    var listBtn = document.getElementById('aw-list-btn');
+/* ── Client-side search (खोज बक्स) ── */
     var formBtn = document.getElementById('aw-form-btn');
 
     function switchToList() { adminSwitchTab(listBtn, formBtn); }
@@ -415,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ? '<img src="../' + d.image + '" class="news-preview-img">'
                 : '';
             document.getElementById('awf_img_note').textContent = d.image ? ' — नयाँ फोटो नचुने भने पुरानै रहन्छ' : '';
-            document.getElementById('awf_submit').innerHTML = '<i class="fas fa-save me-2"></i>अपडेट गर्नुहोस्';
+            document.getElementById('awf_submit').innerHTML = '<i class="lucide-icon me-2" aria-hidden="true" data-lucide="save"></i>अपडेट गर्नुहोस्';
             document.getElementById('awFormTitle').innerHTML = '<i class="fas fa-edit me-2"></i>पुरस्कार सम्पादन';
             document.getElementById('awFormTabLabel').textContent = 'सम्पादन';
             switchToForm();
@@ -424,7 +421,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php 
 
 
 
@@ -457,4 +453,4 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 
-<?php require_once 'includes/admin-footer.php'; ?> ?>
+<?php require_once 'includes/admin-footer.php'; ?>

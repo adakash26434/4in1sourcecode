@@ -163,6 +163,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['restore_backup'])) {
     }
 
     try {
+        // Size guard: avoid very large uploads via web UI. Recommend CLI for large DBs.
+        $maxSize = 50 * 1024 * 1024; // 50 MB
+        if (isset($_FILES['sql_file']['size']) && $_FILES['sql_file']['size'] > $maxSize) {
+            throw new Exception('SQL file धेरै ठूलो छ (50MB भन्दा बढी). CLI बाट restore गर्नुस्।');
+        }
+
         $sql = file_get_contents($_FILES['sql_file']['tmp_name']);
         if (trim($sql) === '') {
             throw new Exception('SQL file खाली छ।');
@@ -170,8 +176,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['restore_backup'])) {
 
         $db = getDB();
         $statements = brSplitSql($sql);
+
+        // Limit total statements processed via web UI to avoid DoS or accidental huge imports.
+        $maxStatements = 10000;
+        if (count($statements) > $maxStatements) {
+            throw new Exception('SQL file मा धेरै statements छन् (' . count($statements) . '). CLI बाट restore गर्नुस्।');
+        }
+
+        // Block obviously dangerous statements that should never be run from web UI.
+        $dangerPattern = '/\b(DROP\s+DATABASE|CREATE\s+USER|GRANT|REVOKE|ALTER\s+DATABASE|CREATE\s+DATABASE|USE\s+DATABASE|SET\s+PASSWORD|FLUSH\s+PRIVILEGES|SOURCE\s+|DELIMITER|CREATE\s+FUNCTION|CREATE\s+PROCEDURE|CREATE\s+EVENT|CREATE\s+TRIGGER)\b/i';
+        $blocked = [];
+        foreach ($statements as $stmt) {
+            if (preg_match($dangerPattern, $stmt)) {
+                $blocked[] = trim(mb_substr($stmt, 0, 300));
+                if (count($blocked) >= 5) break;
+            }
+        }
+        if (!empty($blocked)) {
+            throw new Exception('Restore blocked: SQL file मा disallowed statements भेटियो। उदाहरण: ' . implode(' || ', $blocked));
+        }
+
         $ok = 0;
         $errors = [];
+
+        // Try to run inside a transaction where possible.
+        $inTransaction = false;
+        try {
+            if ($db->beginTransaction()) {
+                $inTransaction = true;
+            }
+        } catch (Throwable $e) {
+            // Some drivers/DDL may implicitly commit; continue without transaction.
+            $inTransaction = false;
+        }
 
         foreach ($statements as $statement) {
             try {
@@ -179,10 +216,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['restore_backup'])) {
                 $ok++;
             } catch (Throwable $e) {
                 $errors[] = $e->getMessage();
-                if (count($errors) >= 5) {
-                    break;
+                // If we started a transaction, rollback to avoid partial apply.
+                if ($inTransaction) {
+                    try { $db->rollBack(); } catch (Throwable $_) {}
                 }
+                break;
             }
+        }
+
+        if ($inTransaction && empty($errors)) {
+            try { $db->commit(); } catch (Throwable $_) {}
         }
 
         if (!empty($errors)) {
@@ -197,8 +240,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['restore_backup'])) {
     redirect('backup-restore.php');
 }
 
-require_once 'includes/admin-header.php';
-require_once 'includes/admin-ui.php';
+require_once __DIR__ . '/includes/admin-header.php';
+require_once __DIR__ . '/includes/admin-ui.php';
 $flash = getFlash();
 ?>
 
@@ -267,4 +310,4 @@ if ($flash) echo adminAlert($flash['type'], $flash['message']);
     </div>
 </div>
 
-<?php require_once 'includes/admin-footer.php'; ?>
+<?php require_once __DIR__ . '/includes/admin-footer.php'; ?>

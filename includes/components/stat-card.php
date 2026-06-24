@@ -52,7 +52,7 @@ $_iconMap = [
     $_href  = $_link ? ' href="' . $_link . '"' : '';
 ?>
     <<?php echo $_tag; ?><?php echo $_href; ?> class="stat-mini text-decoration-none">
-        <div class="sm-icon" style="background:<?php echo $_cm['bg']; ?>;color:<?php echo $_cm['color']; ?>;"><i data-lucide="<?php echo $_icon; ?>"></i></div>
+        <div class="sm-icon" style="background:<?php echo $_cm['bg']; ?>;color:<?php echo $_cm['color']; ?>;"><i class="lucide-icon echo $_icon; ?>" aria-hidden="true" data-lucide="<?php"></i></div>
         <div class="sm-val"><?php echo $_value; ?></div>
         <div class="sm-lbl">
             <?php echo $_label; ?>

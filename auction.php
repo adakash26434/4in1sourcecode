@@ -710,7 +710,7 @@ document.addEventListener('keydown', function(e) {
 
 <!-- Lightbox Overlay -->
 <div id="auc2-lightbox" onclick="this.classList.remove('open')">
-    <button id="auc2-lightbox-close" onclick="document.getElementById('auc2-lightbox').classList.remove('open')">
+    <button id="auc2-lightbox-close" onclick="document.getElementById('auc2-lightbox').classList.remove('open')" aria-label="Close" title="Close">
         <i class="fas fa-times"></i>
     </button>
     <img id="auc2-lightbox-img" src="" alt="Photo">

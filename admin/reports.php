@@ -264,7 +264,7 @@ $_flash = getFlash(); if ($_flash) echo adminAlert($_flash['type'], $_flash['mes
                         </div>
 
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> <?php echo $editReport ? $__t('अपडेट गर्नुहोस्', 'Update') : $__t('थप्नुहोस्', 'Add'); ?>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="save"></i> <?php echo $editReport ? $__t('अपडेट गर्नुहोस्', 'Update') : $__t('थप्नुहोस्', 'Add'); ?>
                         </button>
                         <?php if ($editReport): ?>
                         <a href="reports.php" class="btn btn-secondary"><?php echo $__t('रद्द गर्नुहोस्', 'Cancel'); ?></a>
@@ -341,7 +341,7 @@ $_flash = getFlash(); if ($_flash) echo adminAlert($_flash['type'], $_flash['mes
                                         <div class="btn-group" role="group">
                                             <?php if ($report['file_path']): ?>
                                             <a href="../<?php echo $report['file_path']; ?>" class="btn btn-sm btn-success" target="_blank" title="<?php echo $__t('हेर्नुहोस्','View'); ?>">
-                                                <i class="fas fa-eye"></i>
+                                                <i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i>
                                             </a>
                                             <?php endif; ?>
                                             <a href="?edit=<?php echo $report['id']; ?>" class="btn btn-sm btn-primary" title="<?php echo $__t('सम्पादन','Edit'); ?>">
@@ -363,7 +363,7 @@ $_flash = getFlash(); if ($_flash) echo adminAlert($_flash['type'], $_flash['mes
                                 <tr>
                                     <td colspan="5" class="text-center py-5">
                                         <div class="text-muted">
-                                            <i class="fas fa-inbox fa-3x mb-3 d-block opacity-50"></i>
+                                            <i class="lucide-icon fa-3x mb-3 d-block opacity-50" aria-hidden="true" data-lucide="inbox"></i>
                                             <h6><?php echo $__t('कुनै प्रतिवेदन छैन','No reports found'); ?></h6>
                                             <small><?php echo $__t('पहिले प्रतिवेदन थप्नुहोस्','Add a report first'); ?></small>
                                         </div>

@@ -78,7 +78,7 @@ require_once 'includes/header.php';
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-7 text-center">
-                <div class="ct-success-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="ct-success-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="check-circle"></i></div>
                 <h3 class="mt-3 fw-bold ct-success-title"><?php echo isEnglish() ? 'Message Sent Successfully!' : 'सन्देश सफलतापूर्वक पठाइयो!'; ?></h3>
                 <p class="ct-muted mb-4"><?php echo isEnglish() ? 'Thank you for contacting us. We will respond shortly.' : 'सम्पर्क गर्नुभएकोमा धन्यवाद। हामी छिट्टै जवाफ दिनेछौं।'; ?></p>
                 <a href="contact.php" class="btn ct-btn-success px-4 me-2"><i class="fas fa-envelope me-1"></i><?php echo isEnglish() ? 'Send Another' : 'फेरि पठाउनुहोस्'; ?></a>
@@ -172,7 +172,7 @@ require_once 'includes/header.php';
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm h-100 text-center p-4">
                             <div class="mb-3 ct-icon-lg">
-                                <i class="fas fa-calendar-check"></i>
+                                <i class="lucide-icon" aria-hidden="true" data-lucide="calendar-check"></i>
                             </div>
                             <h5><?php echo isEnglish() ? 'Book Appointment' : 'अपोइन्टमेन्ट बुक'; ?></h5>
                             <p class="ct-muted small"><?php echo isEnglish() ? 'Schedule a meeting with our team.' : 'हाम्रो टोलीसँग भेटको समय तय गर्नुहोस्।'; ?></p>
@@ -239,7 +239,7 @@ require_once 'includes/header.php';
                 <!-- सफलता सन्देश -->
                 <div id="contactSuccess" class="text-center py-4 ct-success-block">
                     <div class="ct-success-bigicon">
-                        <i class="fas fa-check-circle"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="check-circle"></i>
                     </div>
                     <h4 class="mt-3 fw-bold"><?php echo isEnglish() ? 'Message Sent!' : 'सन्देश पठाइयो!'; ?></h4>
                     <p class="ct-muted">
@@ -352,7 +352,7 @@ if ($_mapEmbedUrl === '') {
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="hours-box text-center">
-                    <h3><i class="fas fa-clock"></i> <?php echo isEnglish() ? 'Office Hours' : 'कार्यालय समय'; ?></h3>
+                    <h3><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> <?php echo isEnglish() ? 'Office Hours' : 'कार्यालय समय'; ?></h3>
                     <?php
                     $weekdayHours  = getSetting('working_hours',  'बिहान १०:०० - साँझ ५:००');
                     $saturdayHours = getSetting('saturday_hours', 'बिहान १०:०० - दिउँसो १:००');

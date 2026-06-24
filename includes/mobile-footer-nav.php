@@ -11,12 +11,12 @@
   </a>
 
   <a href="<?php echo SITE_URL; ?>services.php" class="<?php echo (basename($_SERVER['PHP_SELF']) === 'services.php' ? 'active' : ''); ?>" title="Services">
-    <i class="fas fa-briefcase"></i>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="briefcase"></i>
     <span>Services</span>
   </a>
 
   <a href="<?php echo SITE_URL; ?>news.php" class="<?php echo (basename($_SERVER['PHP_SELF']) === 'news.php' ? 'active' : ''); ?>" title="News">
-    <i class="fas fa-newspaper"></i>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i>
     <span>News</span>
   </a>
 

@@ -34,8 +34,8 @@
 </style>
 
 <nav class="admin-bottom-nav">
-  <a href="/admin/" class="admin-nav-item"><i class="fas fa-gauge"></i><span>ड्यासबोर्ड</span></a>
-  <a href="/admin/members/" class="admin-nav-item"><i class="fas fa-users"></i><span>सदस्य</span></a>
+  <a href="/admin/" class="admin-nav-item"><i class="lucide-icon" aria-hidden="true" data-lucide="gauge"></i><span>ड्यासबोर्ड</span></a>
+  <a href="/admin/members/" class="admin-nav-item"><i class="lucide-icon" aria-hidden="true" data-lucide="users"></i><span>सदस्य</span></a>
   <a href="/admin/hrm-employees.php" class="admin-nav-item"><i class="fas fa-id-badge"></i><span>HRM</span></a>
   <a href="/admin/notices/" class="admin-nav-item"><i class="fas fa-bullhorn"></i><span>सूचना</span></a>
   <a href="/admin/settings.php" class="admin-nav-item"><i class="fas fa-cog"></i><span>सेटिङ</span></a>

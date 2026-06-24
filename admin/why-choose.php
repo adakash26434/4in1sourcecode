@@ -176,7 +176,7 @@ if (!empty($flash)) echo adminAlert($flash['type'] === 'success' ? 'success' : '
                                 <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?php echo $f['id']; ?>">
-                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>

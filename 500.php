@@ -31,6 +31,7 @@ if (file_exists(__DIR__ . '/includes/config.php')) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Server error page for Aakash Cooperative website.">
 <meta name="robots" content="noindex, nofollow">
 <title><?php echo htmlspecialchars($_t('सर्भर त्रुटि', 'Server Error'), ENT_QUOTES, 'UTF-8'); ?> — <?php echo htmlspecialchars($siteName, ENT_QUOTES, 'UTF-8'); ?></title>
 <link href="assets/vendor/bootstrap.min.css" rel="stylesheet">

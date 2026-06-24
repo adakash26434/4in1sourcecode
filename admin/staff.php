@@ -183,7 +183,7 @@ $users = filter_out_file_managed_superadmin_rows($users);
                             <input type="hidden" name="action" value="toggle">
                             <input type="hidden" name="id" value="<?= (int)$u['id'] ?>">
                             <button class="btn btn-sm btn-outline-secondary"
-                                    onclick="return confirm('Status बदल्ने?')">
+                                    onclick="return confirm('Status बदल्ने?')" aria-label="Toggle status" title="Toggle status">
                                 <i class="fas fa-power-off"></i>
                             </button>
                         </form>
@@ -197,7 +197,7 @@ $users = filter_out_file_managed_superadmin_rows($users);
                                 <?= csrfField() ?>
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?= (int)$u['id'] ?>">
-                                <button class="btn btn-sm btn-outline-danger">
+                                <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>

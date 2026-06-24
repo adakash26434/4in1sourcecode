@@ -226,12 +226,19 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    padding: 6px !important;
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+    overflow: hidden !important;
 }
 
 .auth-card .card-header .card-logo-wrap img {
-    max-width: 100% !important;
-    max-height: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: contain !important;
+    display: block !important;
 }
 
 .auth-card .card-header .card-logo-icon {

@@ -120,7 +120,7 @@ if (!function_exists('service_anchor_id')) {
                             <button class="btn btn-sm btn-outline-primary mt-2 service-more-btn" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#service-products-<?php echo (int)$service['id']; ?>"
                                     aria-expanded="false" aria-controls="service-products-<?php echo (int)$service['id']; ?>">
-                                <?php echo isEnglish() ? 'More Products' : 'थप उत्पादहरू'; ?> <i class="fas fa-chevron-down ms-1"></i>
+                                <?php echo isEnglish() ? 'More Products' : 'थप उत्पादहरू'; ?> <i class="lucide-icon ms-1" aria-hidden="true" data-lucide="chevron-down"></i>
                             </button>
                             <div class="collapse mt-3" id="service-products-<?php echo (int)$service['id']; ?>">
                                 <ul class="service-features mb-0">
@@ -183,7 +183,7 @@ if (!function_exists('service_anchor_id')) {
                 <div class="col-lg-4 col-md-6 mb-4" id="fixed-deposit">
                     <div class="service-detail-card">
                         <div class="service-icon-lg">
-                            <i class="fas fa-lock"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="lock"></i>
                         </div>
                         <h4>मुद्दती निक्षेप</h4>
                         <p>उच्च ब्याज दरमा तपाईंको पैसालाई मुद्दती निक्षेपमा राख्नुहोस्।</p>
@@ -229,7 +229,7 @@ if (!function_exists('service_anchor_id')) {
                 <div class="col-lg-4 col-md-6 mb-4" id="insurance">
                     <div class="service-detail-card">
                         <div class="service-icon-lg">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="shield-alt"></i>
                         </div>
                         <h4>बीमा सेवा</h4>
                         <p>तपाईंको बचतको लागि बीमा कभरेज प्राप्त गर्नुहोस्।</p>

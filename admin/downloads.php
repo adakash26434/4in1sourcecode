@@ -80,8 +80,8 @@ $flash = getFlash();
     'fa-file-arrow-down',
     'Forms, PDFs, र अन्य डाउनलोड सामग्रीहरू।',
     '<span class="badge admin-stat-badge bg-success-subtle text-success border border-success border-opacity-25 me-2"><i class="fas fa-layer-group me-1"></i>जम्मा: ' . count($downloads) . ' फाइल</span>'
-    . '<span class="badge admin-stat-badge bg-primary-subtle text-primary border border-primary border-opacity-25 me-2"><i class="fas fa-check-circle me-1"></i>सक्रिय: ' . count($downloadsLive) . '</span>'
-    . '<span class="badge admin-stat-badge bg-secondary-subtle text-secondary border border-secondary border-opacity-25"><i class="fas fa-archive me-1"></i>अभिलेख: ' . count($downloadsArch) . '</span>'
+    . '<span class="badge admin-stat-badge bg-primary-subtle text-primary border border-primary border-opacity-25 me-2"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="check-circle"></i>सक्रिय: ' . count($downloadsLive) . '</span>'
+    . '<span class="badge admin-stat-badge bg-secondary-subtle text-secondary border border-secondary border-opacity-25"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="archive"></i>अभिलेख: ' . count($downloadsArch) . '</span>'
 );
 ?>
 <?php echo adminHelpTip('यो पृष्ठबाट डाउनलोड गर्न मिल्ने फाइलहरू (forms, reports, etc.) थप्न र हटाउन सकिन्छ।', ['PDF/Word file थप्न: "+" बटन थिच्नुहोस्।', 'File size: 5MB भन्दा कम राख्नुहोस्।', 'Category छनोट: सही category मा राख्नुहोस् ताकि visitors सजिलै भेट्टाउन सकून्।']); ?>
@@ -111,7 +111,7 @@ $flash = getFlash();
             <!-- खोज बक्स — client-side filter -->
             <div class="admin-search-wrap px-3 py-2 border-bottom bg-light d-flex align-items-center gap-3" style="flex-wrap:wrap">
                 <div class="input-group input-group-sm" style="max-width:300px">
-                    <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                    <span class="input-group-text bg-white border-end-0"><i class="lucide-icon text-muted" aria-hidden="true" data-lucide="search"></i></span>
                     <input type="text" class="form-control border-start-0 admin-table-search" placeholder="नाम, विवरण अनुसार खोज्नुहोस्..." autocomplete="off">
                 </div>
                 <small class="text-muted search-count"></small>
@@ -147,7 +147,7 @@ $flash = getFlash();
                             </td></tr>
                             <?php elseif (empty($downloadsLive)): ?>
                             <tr><td colspan="6" class="text-center py-5 text-muted">
-                                <i class="fas fa-check-circle fa-3x mb-2 d-block opacity-25 text-success"></i>
+                                <i class="lucide-icon fa-3x mb-2 d-block opacity-25 text-success" aria-hidden="true" data-lucide="check-circle"></i>
                                 सक्रिय फाइल छैन। अभिलेख हेर्नुहोस्।
                             </td></tr>
                             <?php endif; ?>
@@ -212,7 +212,7 @@ $flash = getFlash();
                         <tbody>
                             <?php if (empty($downloadsArch)): ?>
                             <tr><td colspan="6" class="text-center py-5 text-muted">
-                                <i class="fas fa-folder-open fa-3x mb-2 d-block opacity-25"></i>
+                                <i class="lucide-icon fa-3x mb-2 d-block opacity-25" aria-hidden="true" data-lucide="folder-open"></i>
                                 अभिलेखमा कुनै फाइल छैन।
                             </td></tr>
                             <?php endif; ?>
@@ -275,7 +275,7 @@ $flash = getFlash();
                     <i class="fas fa-plus-circle me-2"></i>नयाँ फाइल थप्नुहोस्
                 </h5>
                 <button type="button" class="btn btn-light btn-sm" id="btnCancelDl">
-                    <i class="fas fa-arrow-left me-1"></i>सूचीमा फर्कनुहोस्
+                    <i class="lucide-icon me-1" aria-hidden="true" data-lucide="arrow-left"></i>सूचीमा फर्कनुहोस्
                 </button>
             </div>
             <div class="card-body p-4">
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
             for (var i=0; i<sel.options.length; i++) {
                 if (sel.options[i].value === d.category) { sel.selectedIndex = i; break; }
             }
-            document.getElementById('dlf_submit').innerHTML = '<i class="fas fa-save me-2"></i>अपडेट गर्नुहोस्';
+            document.getElementById('dlf_submit').innerHTML = '<i class="lucide-icon me-2" aria-hidden="true" data-lucide="save"></i>अपडेट गर्नुहोस्';
             document.getElementById('dlFormTitle').innerHTML = '<i class="fas fa-edit me-2"></i>डाउनलोड सम्पादन';
             document.getElementById('dlFormTabLabel').textContent = 'सम्पादन';
             switchToForm();

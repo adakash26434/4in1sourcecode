@@ -465,7 +465,7 @@ $servicesArch = $svcPart['archived'];
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="product_delete">
                                         <input type="hidden" name="product_id" value="<?php echo (int)$sp['id']; ?>">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

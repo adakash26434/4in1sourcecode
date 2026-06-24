@@ -236,7 +236,7 @@ foreach ($rows as $_r) {
             <td>
               <a class="btn btn-sm btn-outline-primary" href="programs.php?edit=<?php echo (int)$r['id']; ?>"><i class="fas fa-edit"></i></a>
               <form method="POST" class="d-inline"><?php echo csrfField(); ?><input type="hidden" name="action" value="toggle"><input type="hidden" name="id" value="<?php echo (int)$r['id']; ?>"><button type="submit" class="btn btn-sm btn-outline-warning" title="सक्रिय/निष्क्रिय"><i class="fas fa-power-off"></i></button></form>
-              <form method="POST" class="d-inline" onsubmit="return confirm('हटाउने?');"><?php echo csrfField(); ?><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="<?php echo (int)$r['id']; ?>"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+              <form method="POST" class="d-inline" onsubmit="return confirm('हटाउने?');"><?php echo csrfField(); ?><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="<?php echo (int)$r['id']; ?>"><button type="submit" class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button></form>
             </td>
           </tr>
           <?php
@@ -308,14 +308,14 @@ foreach ($rows as $_r) {
           <label class="form-label small text-muted mb-0">Member Portal URL (मुख्य)</label>
           <div class="input-group">
             <input type="text" class="form-control font-monospace small" id="programQrModalUrlInput" readonly>
-            <button class="btn btn-outline-primary" type="button" id="programQrModalCopyBtn"><i data-lucide="copy"></i></button>
+            <button class="btn btn-outline-primary" type="button" id="programQrModalCopyBtn" aria-label="Copy" title="Copy"><i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i></button>
           </div>
         </div>
         <details class="text-start small">
           <summary class="text-muted" style="cursor:pointer;">पुरानो / पब्लिक लिंक (लगिन बिना म्यानुअल कार्ड)</summary>
           <div class="input-group mt-1">
             <input type="text" class="form-control font-monospace small" id="programQrModalLegacyInput" readonly>
-            <button class="btn btn-outline-secondary" type="button" id="programQrModalLegacyCopyBtn"><i data-lucide="copy"></i></button>
+            <button class="btn btn-outline-secondary" type="button" id="programQrModalLegacyCopyBtn" aria-label="Copy" title="Copy"><i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i></button>
           </div>
         </details>
       </div>

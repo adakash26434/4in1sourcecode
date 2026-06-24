@@ -1,13 +1,8 @@
-<?php
-/**
- * वर्षको सदस्य Spotlight व्यवस्थापन — Member of the Year Management
- * Tab UI: सूची + Add/Edit form (modal popup हटाइएको)
- * Database: member_of_year (UNIQUE key on spotlight_year)
- */
-define('IS_ADMIN_PAGE', true);
-require_once '../includes/config.php';
-requireAdminLogin();
+    }
+}
+</script>
 
+/* ── Client-side search (खोज बक्स) ── */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !verifyCSRFToken()) {
     setFlash('error', 'सुरक्षा जाँच असफल।');
     redirect($_SERVER['HTTP_REFERER'] ?? ADMIN_URL . 'dashboard.php');
@@ -238,7 +233,7 @@ $flash = getFlash();
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $r['id']; ?>">
-                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -311,7 +306,7 @@ $flash = getFlash();
                                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $r['id']; ?>">
-                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -493,7 +488,6 @@ function previewPhotoMot(input) {
 }
 </script>
 
-<?php 
 
 
 
@@ -526,4 +520,4 @@ function previewPhotoMot(input) {
 })();
 
 
-<?php require_once 'includes/admin-footer.php'; ?> ?>
+<?php require_once 'includes/admin-footer.php'; ?>

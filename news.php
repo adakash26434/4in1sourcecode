@@ -56,7 +56,7 @@ try {
                         <img src="<?php echo $item['image']; ?>" loading="lazy"  alt="<?php echo getLangField($item, 'title'); ?>">
                         <?php else: ?>
                         <div class="news-placeholder">
-                            <i class="fas fa-newspaper"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i>
                         </div>
                         <?php endif; ?>
                         <div class="news-date">
@@ -97,7 +97,7 @@ try {
                 <?php if ($page < $totalPages): ?>
                 <li class="page-item">
                     <a class="page-link" href="?page=<?php echo $page + 1; ?>">
-                        <i class="fas fa-chevron-right"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-right"></i>
                     </a>
                 </li>
                 <?php endif; ?>
@@ -112,7 +112,7 @@ try {
                 <div class="news-card text-center">
                     <div class="news-image">
                         <div class="news-placeholder">
-                            <i class="fas fa-newspaper"></i>
+                            <i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i>
                         </div>
                     </div>
                     <div class="news-content py-4">

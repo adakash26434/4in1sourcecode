@@ -323,7 +323,7 @@ require __DIR__ . '/includes/chrome.php';
                     <input type="text"  name="ra_q"      value="<?php echo htmlspecialchars($raQ); ?>"
                            placeholder="<?php echo $_t('सेवा वा Tracking ID खोज्नुहोस्...', 'Search service or tracking ID...'); ?>"
                            class="midx-search-input">
-                    <button type="submit" class="midx-search-btn"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="midx-search-btn" aria-label="Search" title="Search"><i class="fas fa-search"></i></button>
                     <?php if ($raQ !== '' || $raStatus !== 'all'): ?>
                     <a href="<?php echo $siteUrl; ?>member/" class="midx-reset-btn"><?php echo $_t('रिसेट','Reset'); ?></a>
                     <?php endif; ?>

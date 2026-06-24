@@ -150,7 +150,7 @@ $j = fn($v) => json_encode($v, JSON_UNESCAPED_UNICODE);
     <div class="col-lg-8">
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-          <h6 class="mb-0 fw-bold"><i class="fas fa-chart-line text-success me-2"></i>सदस्य वृद्धि (पछिल्ला १२ महिना)</h6>
+          <h6 class="mb-0 fw-bold"><i class="lucide-icon text-success me-2" aria-hidden="true" data-lucide="chart-line"></i>सदस्य वृद्धि (पछिल्ला १२ महिना)</h6>
           <span class="badge bg-success-subtle text-success">Cumulative + Monthly</span>
         </div>
         <div class="card-body">
@@ -175,7 +175,7 @@ $j = fn($v) => json_encode($v, JSON_UNESCAPED_UNICODE);
     <div class="col-md-7">
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-white py-3">
-          <h6 class="mb-0 fw-bold"><i class="fas fa-chart-bar text-info me-2"></i>मासिक आवेदनहरू (पछिल्ला ६ महिना)</h6>
+          <h6 class="mb-0 fw-bold"><i class="lucide-icon text-info me-2" aria-hidden="true" data-lucide="chart-bar"></i>मासिक आवेदनहरू (पछिल्ला ६ महिना)</h6>
         </div>
         <div class="card-body">
           <canvas id="chartMonthly" height="120"></canvas>
@@ -213,7 +213,7 @@ $j = fn($v) => json_encode($v, JSON_UNESCAPED_UNICODE);
     <div class="col-md-7">
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-white py-3">
-          <h6 class="mb-0 fw-bold"><i class="fas fa-calendar-check text-success me-2"></i>कार्यक्रम उपस्थिति (Top 8)</h6>
+          <h6 class="mb-0 fw-bold"><i class="lucide-icon text-success me-2" aria-hidden="true" data-lucide="calendar-check"></i>कार्यक्रम उपस्थिति (Top 8)</h6>
         </div>
         <div class="card-body">
           <?php if (empty($progAttend)): ?>
@@ -245,7 +245,7 @@ $j = fn($v) => json_encode($v, JSON_UNESCAPED_UNICODE);
     <div class="col-md-4">
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-white py-3">
-          <h6 class="mb-0 fw-bold"><i class="fas fa-users text-primary me-2"></i>सदस्य अनुमोदन अवस्था</h6>
+          <h6 class="mb-0 fw-bold"><i class="lucide-icon text-primary me-2" aria-hidden="true" data-lucide="users"></i>सदस्य अनुमोदन अवस्था</h6>
         </div>
         <div class="card-body">
           <canvas id="chartMemStatus" height="200"></canvas>

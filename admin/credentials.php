@@ -190,7 +190,7 @@ $rows = $db->query(
                     </code>
                     <button class="btn btn-sm btn-outline-secondary" title="Username copy"
                             onclick="copyText(<?= (int)$r['id'] ?>, 'user', '<?= e($r['username']) ?>')">
-                        <i data-lucide="copy"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i>
                     </button>
                 </div>
 
@@ -203,7 +203,7 @@ $rows = $db->query(
                     </button>
                     <button class="btn btn-sm btn-outline-secondary" title="Password copy"
                             onclick="copyPw(<?= (int)$r['id'] ?>)">
-                        <i data-lucide="copy"></i>
+                        <i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i>
                     </button>
                 </div>
 
@@ -223,7 +223,7 @@ $rows = $db->query(
                         <?= csrfField() ?>
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
-                        <button type="submit" class="btn btn-sm btn-link cred-icon-btn danger">
+                        <button type="submit" class="btn btn-sm btn-link cred-icon-btn danger" aria-label="Delete" title="Delete">
                             <i class="fas fa-trash"></i>
                         </button>
                     </form>

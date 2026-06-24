@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Offline status page for Aakash Cooperative website.">
 <meta name="theme-color" content="#1a5f2a">
 <title>अफलाइन — सहकारी</title>
 <style>

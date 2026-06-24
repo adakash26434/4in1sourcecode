@@ -216,14 +216,14 @@ if ($viewApt):
 <div class="card shadow-sm mb-4 arv-legacy-detail">
     <div class="card-header gradient-card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">
-            <i class="fas fa-calendar-check me-2"></i>भेटघाट विवरण
+            <i class="lucide-icon me-2" aria-hidden="true" data-lucide="calendar-check"></i>भेटघाट विवरण
             <code class="apt-track-chip">
                 APT-<?php echo str_pad($viewApt['id'], 6, '0', STR_PAD_LEFT); ?>
             </code>
             <span class="badge bg-<?php echo $sc; ?> ms-1"><?php echo $sl; ?></span>
         </h5>
         <a href="appointments.php" class="btn btn-outline-light btn-sm">
-            <i class="fas fa-arrow-left me-1"></i>फिर्ता
+            <i class="lucide-icon me-1" aria-hidden="true" data-lucide="arrow-left"></i>फिर्ता
         </a>
     </div>
 
@@ -234,7 +234,7 @@ if ($viewApt):
             <div class="col-lg-7">
 
                 <div class="adm-info-group">
-                    <div class="adm-info-group-header"><i class="fas fa-user"></i>आवेदकको जानकारी</div>
+                    <div class="adm-info-group-header"><i class="lucide-icon" aria-hidden="true" data-lucide="user"></i>आवेदकको जानकारी</div>
                     <table class="table adm-detail-table">
                         <tr><th>नाम</th>
                             <td><strong><?php echo htmlspecialchars($viewApt['name'] ?? '—'); ?></strong></td></tr>
@@ -370,10 +370,10 @@ if ($viewApt):
 
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary px-4">
-                                    <i class="fas fa-save me-1"></i>अपडेट गर्नुहोस्
+                                    <i class="lucide-icon me-1" aria-hidden="true" data-lucide="save"></i>अपडेट गर्नुहोस्
                                 </button>
                                 <a href="appointments.php" class="btn btn-outline-secondary">
-                                    <i class="fas fa-arrow-left me-1"></i>सूचीमा
+                                    <i class="lucide-icon me-1" aria-hidden="true" data-lucide="arrow-left"></i>सूचीमा
                                 </a>
                             </div>
                         </form>
@@ -398,7 +398,7 @@ if ($viewApt):
                         <div class="fs-6 fw-bold"><?php echo $aptDate ? formatNepaliDate($aptDate) : '—'; ?></div>
                         <div class="small text-muted mb-1">भेटघाट मिति</div>
                         <div class="small">
-                            <i class="fas fa-clock me-1 text-muted"></i><?php echo htmlspecialchars($viewApt['preferred_time'] ?? '—'); ?>
+                            <i class="lucide-icon me-1 text-muted" aria-hidden="true" data-lucide="clock"></i><?php echo htmlspecialchars($viewApt['preferred_time'] ?? '—'); ?>
                             <?php if ($viewApt['branch']): ?>
                             &nbsp;|&nbsp;<i class="fas fa-building me-1 text-muted"></i><?php echo htmlspecialchars($viewApt['branch']); ?>
                             <?php endif; ?>
@@ -416,12 +416,12 @@ if ($viewApt):
 <!-- ── Stat Mini Row ── -->
 <div class="stat-mini-row no-print">
     <a href="appointments.php" class="stat-mini <?php echo $status_filter===''?'active-filter':''; ?>">
-        <div class="sm-icon ic-total"><i class="fas fa-calendar-check"></i></div>
+        <div class="sm-icon ic-total"><i class="lucide-icon" aria-hidden="true" data-lucide="calendar-check"></i></div>
         <div class="sm-val"><?php echo $total; ?></div>
         <div class="sm-lbl">जम्मा</div>
     </a>
     <a href="?status=pending" class="stat-mini <?php echo $status_filter==='pending'?'active-filter':''; ?>">
-        <div class="sm-icon ic-pending"><i class="fas fa-clock"></i></div>
+        <div class="sm-icon ic-pending"><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i></div>
         <div class="sm-val"><?php echo $counts['pending']; ?></div>
         <div class="sm-lbl">पेन्डिङ</div>
     </a>
@@ -458,14 +458,14 @@ if ($viewApt):
         <div class="col-md-7 col-12">
             <label>खोज्नुहोस्</label>
             <div class="input-group input-group-sm">
-                <span class="input-group-text bg-white"><i class="fas fa-search text-muted"></i></span>
+                <span class="input-group-text bg-white"><i class="lucide-icon text-muted" aria-hidden="true" data-lucide="search"></i></span>
                 <input type="text" name="search" class="form-control" value="<?php echo htmlspecialchars($search); ?>"
                        placeholder="नाम, फोन, Tracking ID, शाखा, उद्देश्य...">
                 <?php if ($search): ?><a href="?status=<?php echo urlencode($status_filter); ?>" class="btn btn-outline-secondary btn-sm"><i class="fas fa-times"></i></a><?php endif; ?>
             </div>
         </div>
         <div class="col-md-2 col-6">
-            <button type="submit" class="btn btn-primary btn-sm w-100"><i class="fas fa-search me-1"></i>खोज</button>
+            <button type="submit" class="btn btn-primary btn-sm w-100"><i class="lucide-icon me-1" aria-hidden="true" data-lucide="search"></i>खोज</button>
         </div>
     </form>
     <script>document.getElementById('apt_qf_status').addEventListener('change',function(){this.closest('form').submit();});</script>
@@ -474,7 +474,7 @@ if ($viewApt):
 <!-- ── Table ── -->
 <div class="card border-0 shadow-sm app-rounded-card">
     <div class="tbl-header-bar no-print">
-        <h6><i class="fas fa-calendar-check me-2 text-primary"></i>भेटघाट सूची</h6>
+        <h6><i class="lucide-icon me-2 text-primary" aria-hidden="true" data-lucide="calendar-check"></i>भेटघाट सूची</h6>
         <span class="result-count-badge"><?php echo $total; ?> भेटघाट</span>
     </div>
     <div class="table-responsive admin-table-card">
@@ -492,7 +492,7 @@ if ($viewApt):
             </thead>
             <tbody>
             <?php if (empty($appointments)): ?>
-            <tr class="no-results-row"><td colspan="7"><i class="fas fa-inbox fa-2x d-block mb-2"></i>कुनै भेटघाट फेला परेन।</td></tr>
+            <tr class="no-results-row"><td colspan="7"><i class="lucide-icon fa-2x d-block mb-2" aria-hidden="true" data-lucide="inbox"></i>कुनै भेटघाट फेला परेन।</td></tr>
             <?php else: foreach ($appointments as $apt):
                 $sc = $statusClass[$apt['status']] ?? 'secondary';
                 $sl = $statusLabel[$apt['status']] ?? $apt['status'];
@@ -518,7 +518,7 @@ if ($viewApt):
                 </td>
                 <td class="no-print">
                     <div class="adm-action-icons">
-                        <a href="appointments.php?view=<?php echo $apt['id']; ?>" class="adm-icon-btn adm-icon-btn--view" title="विवरण" aria-label="View"><i class="fas fa-eye"></i></a>
+                        <a href="appointments.php?view=<?php echo $apt['id']; ?>" class="adm-icon-btn adm-icon-btn--view" title="विवरण" aria-label="View"><i class="lucide-icon" aria-hidden="true" data-lucide="eye"></i></a>
                         <?php if ($apt['status'] === 'pending'): ?>
                         <form method="POST" class="d-inline">
                             <?php echo csrfField(); ?>

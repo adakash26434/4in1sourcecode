@@ -31,6 +31,21 @@
 // Initialize Application Bootstrap
 // ───────────────────────────────────────────────────────────────────────────────
 
+if (!function_exists('log_error')) {
+    function log_error($message, $level = 'ERROR') {
+        $logDir = BASEDIR . '/logs';
+        if (!is_dir($logDir)) {
+            @mkdir($logDir, 0755, true);
+        }
+
+        $logFile = $logDir . '/error.log';
+        $timestamp = date('Y-m-d H:i:s');
+        $logEntry = "[{$timestamp}] [{$level}] {$message}\n";
+
+        @error_log($logEntry, 3, $logFile);
+    }
+}
+
 /**
  * bootstrapApplication($context)
  *
@@ -197,21 +212,6 @@ function bootstrapApplication($context = 'public') {
     // ─────────────────────────────────────────────────────────
     // STEP 9: ERROR LOGGING
     // ─────────────────────────────────────────────────────────
-
-    if (!function_exists('log_error')) {
-        function log_error($message, $level = 'ERROR') {
-            $logDir = BASEDIR . '/logs';
-            if (!is_dir($logDir)) {
-                @mkdir($logDir, 0755, true);
-            }
-
-            $logFile = $logDir . '/error.log';
-            $timestamp = date('Y-m-d H:i:s');
-            $logEntry = "[{$timestamp}] [{$level}] {$message}\n";
-
-            @error_log($logEntry, 3, $logFile);
-        }
-    }
 
     // ─────────────────────────────────────────────────────────
     // STEP 10: CONTEXT-SPECIFIC BOOTSTRAP

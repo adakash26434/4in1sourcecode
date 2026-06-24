@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="text-muted small mb-2"><?php echo isEnglish() ? 'Your Tracking ID — save this!' : 'तपाईंको Tracking ID — सुरक्षित राख्नुहोस्!'; ?></div>
                         <div class="d-flex align-items-center gap-2 mb-2">
                             <div class="form-tracking-id" id="grvTrkId"><?php echo e($trackingId); ?></div>
-                            <button type="button" onclick="copyTrk('grvTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i data-lucide="copy"></i></button>
+                            <button type="button" onclick="copyTrk('grvTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2" title="Copy" style="font-size:11px;line-height:1.8;"><i class="lucide-icon" aria-hidden="true" data-lucide="copy"></i></button>
                         </div>
                         <div class="form-tracking-help"><a href="grievance.php?track=<?php echo urlencode($trackingId); ?>" class="text-success text-decoration-none fw-semibold">यहाँ बाट</a> आफ्नो उजुरीको स्थिति हेर्नुहोस्।</div>
                     </div>
@@ -228,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h5><i class="fas fa-search"></i> <?php echo isEnglish() ? 'Track Your Grievance' : 'आफ्नो गुनासो ट्र्याक गर्नुहोस्'; ?></h5>
                     <form method="GET" class="d-flex gap-2">
                         <input type="text" name="track" class="form-control" placeholder="<?php echo isEnglish() ? 'Enter Tracking ID (e.g. GRV-000001)' : 'ट्र्याकिङ आईडी राख्नुहोस् (जस्तै: GRV-000001)'; ?>" value="<?php echo htmlspecialchars($_GET['track'] ?? ''); ?>">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        <button type="submit" class="btn btn-primary" aria-label="Search" title="Search"><i class="fas fa-search"></i></button>
                     </form>
 
                     <?php if ($trackingResult): ?>

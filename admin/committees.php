@@ -233,7 +233,7 @@ if ($_flash) echo adminAlert($_flash['type'] === 'success' ? 'success' : 'danger
     <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete_type">
                                 <input type="hidden" name="delete_id" value="<?php echo $t['id']; ?>">
-                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete_tenure">
                                 <input type="hidden" name="delete_id" value="<?php echo $tn['id']; ?>">
-                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -592,7 +592,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <?php echo csrfField(); ?>
                                 <input type="hidden" name="action" value="delete_member">
                                 <input type="hidden" name="delete_id" value="<?php echo $m['id']; ?>">
-                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-sm btn-outline-danger" aria-label="Delete" title="Delete"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
