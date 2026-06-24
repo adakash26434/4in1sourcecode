@@ -89,6 +89,20 @@ Recent pushed commits (bootstrap stream):
 - `ae7bee5` — portal fatal/exception handler registration centralized
 - `19fafef` — direct shared runtime policy call in wrappers
 
+### Execution Update (Query Helper Consolidation)
+
+- `core/init.php` मा `core_safe_count()` shared helper थपिएको छ (sqCount उपलब्ध हुँदा reuse, नभए safe fallback)
+- Admin query-heavy modules मा repeated COUNT fallback pattern normalize गरिएको:
+	- `admin/loan-applications.php`
+	- `admin/kyc-applications.php`
+	- `admin/vendor-enlistment.php`
+	- `admin/member-online-portal.php`
+
+Recent pushed commits (query helper stream):
+
+- `bc4c3ce` — core_safe_count helper + loan/kyc count lines centralize
+- `136f2e6` — vendor/member portal stats counts migrate to core_safe_count
+
 ---
 
 ## 2. Priority Model
