@@ -1428,6 +1428,24 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
         body.header-v2 #mainNavV2.nav-open,
         body.header-v2 #mainNavV2.open,
         body.header-v2 #mainNavV2.active { transform: translate3d(0,0,0) !important; }
+
+        /* Hard guard: closed drawer must never leak clickable/visible close button */
+        body.header-v2 #mainNavV2.main-nav:not(.nav-open):not(.open):not(.active) {
+            pointer-events: none !important;
+        }
+        body.header-v2 #mainNavV2.main-nav:not(.nav-open):not(.open):not(.active) .close-menu {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+        body.header-v2 #mainNavV2.nav-open .close-menu,
+        body.header-v2 #mainNavV2.open .close-menu,
+        body.header-v2 #mainNavV2.active .close-menu {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+
         body.header-v2 #pflMobileBackdrop {
             position: fixed !important;
             inset: 0 !important;
