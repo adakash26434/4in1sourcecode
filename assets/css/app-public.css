@@ -23294,3 +23294,28 @@ body.auth-page,
         color: #14532d !important;
     }
 }
+
+/* ════════════════════════════════════════════════════════════
+   v13.1 — Close Button Leak Guard (header-v2 mobile)
+   Prevent stray floating X when drawer is closed.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 991.98px) {
+    body.header-v2 #closeMenuV2 {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    body.header-v2 #mainNavV2.nav-open #closeMenuV2,
+    body.header-v2 #mainNavV2.open #closeMenuV2,
+    body.header-v2 #mainNavV2.active #closeMenuV2 {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    /* Legacy header close button should never appear in header-v2 mode. */
+    body.header-v2 #closeMenu {
+        display: none !important;
+    }
+}
