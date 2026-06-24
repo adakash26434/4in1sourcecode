@@ -258,7 +258,7 @@ set_exception_handler(function (\Throwable $ex) {
     <title><?php echo isset($pageTitle) ? $pageTitle . ' - ' : ''; ?><?php echo $adminT('एडमिन प्यानल', 'Admin Panel'); ?></title>
 
     <!-- Bootstrap CSS (required for admin pages) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap.min.css">
 
     <!-- DataTables CSS (required for admin table pages) -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">

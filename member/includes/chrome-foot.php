@@ -138,7 +138,7 @@ $_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-glo
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="assets/vendor/bootstrap.bundle.min.js" defer></script>
 <script src="<?php echo $_fnUrl; ?>assets/js/v9-mobile-fix.js?v=9.7" defer></script>
 <script>
 (function () {
@@ -204,5 +204,6 @@ $_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-glo
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
 }());
 </script>
+<?php if (function_exists("coopThemeLucideInit")) { coopThemeLucideInit(); } ?>
 </body>
 </html>

@@ -156,7 +156,7 @@ if (!$step) $step = intval($_SESSION['pr_step'] ?? 1);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo htmlspecialchars($_t('पासवर्ड रिसेट', 'Password Reset')); ?> — <?php echo htmlspecialchars($siteName); ?></title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/bootstrap.min.css">
 
 <?php memberHeadAssets(); ?>
 <style>

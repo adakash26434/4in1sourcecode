@@ -293,7 +293,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
     
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- AOS Animation CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">

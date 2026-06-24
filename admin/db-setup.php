@@ -650,7 +650,7 @@ if ($bootstrapMode && !$bootstrapSetupUnlocked) {
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DB Setup — Locked</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light p-4">
 <div class="container dbs-bootstrap-wrap">
@@ -708,7 +708,7 @@ if (defined('BOOTSTRAP_MODE') && BOOTSTRAP_MODE):
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DB Setup — Bootstrap Mode</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap.min.css" rel="stylesheet">
 
 <style>body{background:#f4f6f8;}.bootstrap-banner{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:12px 20px;text-align:center;font-weight:600;}</style>
 </head>

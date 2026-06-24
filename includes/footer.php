@@ -646,7 +646,7 @@ try {
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/bootstrap.bundle.min.js"></script>
 
     <!-- jQuery (required for Nepali Datepicker) -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -1107,5 +1107,6 @@ function copyTrk(id,btn){
         ═══════════════════════════════════════════════════════════ */ ?>
 <?php require_once __DIR__ . '/mobile-footer-nav.php'; ?>
 
+<?php if (function_exists("coopThemeLucideInit")) { coopThemeLucideInit(); } ?>
 </body>
 </html>
