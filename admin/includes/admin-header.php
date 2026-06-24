@@ -335,7 +335,7 @@ set_exception_handler(function (\Throwable $ex) {
                                 <a href="notices.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="megaphone"></i></span><span><?php echo $adminT('सूचनाहरू', 'Notices'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='designations' ? 'active' : ''; ?>">
-                                <a href="designations.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="badge"></i></span><span><?php echo $adminT('पद मास्टर', 'Designation Master'); ?></span></a>
+                                <a href="designations.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="award"></i></span><span><?php echo $adminT('पद मास्टर', 'Designation Master'); ?></span></a>
                             </li>
                             <?php /* निर्वाचन सम्बन्धी menus छुट्टै “निर्वाचन” group मा (पद Master = election-posts) */ ?>
                             <li class="<?php echo $currentPage=='news' ? 'active' : ''; ?>">
@@ -348,7 +348,7 @@ set_exception_handler(function (\Throwable $ex) {
                                 <a href="gallery.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="image-play"></i></span><span><?php echo $adminT('ग्यालरी', 'Gallery'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='services' ? 'active' : ''; ?>">
-                                <a href="services.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="hand-holding-heart"></i></span><span><?php echo $adminT('सेवाहरू', 'Services'); ?></span></a>
+                                <a href="services.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="heart"></i></span><span><?php echo $adminT('सेवाहरू', 'Services'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='interest-rates' ? 'active' : ''; ?>">
                                 <a href="interest-rates.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="percent"></i></span><span><?php echo $adminT('ब्याज दर', 'Interest Rates'); ?></span></a>
@@ -369,7 +369,7 @@ set_exception_handler(function (\Throwable $ex) {
                                 <a href="downloads.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="file-down"></i></span><span><?php echo $adminT('डाउनलोड', 'Downloads'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='faqs' ? 'active' : ''; ?>">
-                                <a href="faqs.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="circle-question"></i></span><span><?php echo $adminT('प्रश्नोत्तर (FAQs)', 'FAQs'); ?></span></a>
+                                <a href="faqs.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="help-circle"></i></span><span><?php echo $adminT('प्रश्नोत्तर (FAQs)', 'FAQs'); ?></span></a>
                             </li>
                             <li class="<?php echo $currentPage=='useful-links' ? 'active' : ''; ?>">
                                 <a href="useful-links.php"><span class="nav-icon-wrap"><i class="lucide-icon" aria-hidden="true" data-lucide="link"></i></span><span><?php echo $adminT('उपयोगी लिंकहरू', 'Useful Links'); ?></span></a>
@@ -421,7 +421,7 @@ set_exception_handler(function (\Throwable $ex) {
                     <!-- ── HRM (मानव संसाधन) ── v11.1 ── -->
                     <li class="nav-group-wrap">
                         <div class="nav-group-header <?php echo $activeGroup=='hrm' ? 'open' : ''; ?>" data-group="hrm">
-                            <span class="nav-group-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="badge"></i></span>
+                            <span class="nav-group-icon"><i class="lucide-icon" aria-hidden="true" data-lucide="award"></i></span>
                             <span class="nav-group-label"><?php echo $adminT('मानव संसाधन (HRM)', 'HRM'); ?></span>
                             <i class="lucide-icon nav-arrow" aria-hidden="true" data-lucide="chevron-right"></i>
                         </div>

@@ -45,7 +45,15 @@ $_iconMap = [
     $_link  = htmlspecialchars($_card['link']  ?? '', ENT_QUOTES, 'UTF-8');
     $_label = htmlspecialchars($_card['label'] ?? '', ENT_QUOTES, 'UTF-8');
     $_value = htmlspecialchars((string)($_card['value'] ?? '0'), ENT_QUOTES, 'UTF-8');
-    $_icon  = htmlspecialchars(str_replace('fa-', '', $_card['icon']  ?? 'bar-chart-3'), ENT_QUOTES, 'UTF-8');
+    $_iconRaw = trim((string)($_card['icon'] ?? 'bar-chart-3'));
+    if (function_exists('fa_to_lucide') && preg_match('/(^fa-|\bfa[bsr]?\s)/i', $_iconRaw)) {
+        if (preg_match('/fa-[a-z0-9-]+/i', $_iconRaw, $m)) {
+            $_iconRaw = $m[0];
+        }
+        $_iconRaw = (string)fa_to_lucide($_iconRaw);
+    }
+    $_iconRaw = preg_replace('/^fa-/', '', $_iconRaw) ?: 'bar-chart-3';
+    $_icon  = htmlspecialchars($_iconRaw, ENT_QUOTES, 'UTF-8');
     $_badge = !empty($_card['badge']) ? htmlspecialchars($_card['badge'], ENT_QUOTES, 'UTF-8') : '';
     $_trend = !empty($_card['trend']) ? htmlspecialchars($_card['trend'], ENT_QUOTES, 'UTF-8') : '';
     $_tag   = $_link ? 'a' : 'div';

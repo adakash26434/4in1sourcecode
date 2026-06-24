@@ -1024,6 +1024,7 @@ if (!function_exists('fa_to_lucide_map')) {
             'fa-user-plus'        => 'user-plus',
             'fa-user-minus'       => 'user-minus',
             'fa-user-edit'        => 'user-edit',
+            'fa-id-card-clip'     => 'id-card',
             'fa-clipboard'        => 'clipboard',
             'fa-clipboard-check'  => 'clipboard-check',
             'fa-clipboard-list'   => 'clipboard-list',
@@ -1134,6 +1135,7 @@ if (!function_exists('fa_to_lucide_map')) {
             'fa-warning'          => 'alert-triangle',
             'fa-shield'          => 'shield',
             'fa-shield-alt'       => 'shield-check',
+            'fa-shield-halved'    => 'shield',
             'fa-flag'            => 'flag',
             'fa-flag-checkered'  => 'flag',
             'fa-tag'             => 'tag',
@@ -1141,6 +1143,9 @@ if (!function_exists('fa_to_lucide_map')) {
             'fa-star'            => 'star',
             'fa-star-half'       => 'star-half',
             'fa-heart'           => 'heart',
+            'fa-heart-broken'    => 'heart-crack',
+            'fa-hand-holding-heart' => 'heart',
+            'fa-badge'           => 'award',
             'fa-bookmark'        => 'bookmark',
             // Tech & Web
             'fa-globe'           => 'globe',
@@ -1550,7 +1555,8 @@ if (!function_exists('fa_to_lucide')) {
         $clean = trim($faClass);
         // Handle 'fa-gauge-high' or 'fas fa-gauge-high' or 'far fa-gauge-high'
         $name = preg_replace('/^(fa[bsr]?\s+|fa-)/i', '', $clean) ?: $clean;
-        return $map[$name] ?? $map[$clean] ?? $clean;
+        $fallback = preg_replace('/^fa-/', '', $name) ?: $name;
+        return $map[$name] ?? $map[$clean] ?? $fallback;
     }
 }
 

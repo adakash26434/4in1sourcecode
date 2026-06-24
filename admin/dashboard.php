@@ -192,7 +192,7 @@ try {
     <?php if ($sadasyaBadge > 0): ?><span class="badge-pill"><?= $sadasyaBadge ?></span><?php endif; ?>
   </button>
   <button type="button" class="ds-tab" data-tab="welfare" role="tab">
-    <i class="lucide-icon" aria-hidden="true" data-lucide="hand-holding-heart"></i> <?php echo $__t('कल्याण दाबी', 'Welfare Claims'); ?>
+    <i class="lucide-icon" aria-hidden="true" data-lucide="heart"></i> <?php echo $__t('कल्याण दाबी', 'Welfare Claims'); ?>
     <?php if ($welfareBadge > 0): ?><span class="badge-pill"><?= $welfareBadge ?></span><?php endif; ?>
   </button>
   <button type="button" class="ds-tab" data-tab="programs" role="tab">
@@ -372,7 +372,7 @@ try {
 <div class="ds-pane" id="pane-welfare">
   <div class="ds-section ds-no-top-gap">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-      <h2 class="dash-section-title"><i class="lucide-icon dash-heart-icon" aria-hidden="true" data-lucide="hand-holding-heart"></i> <?php echo $__t('कल्याण दाबी व्यवस्थापन', 'Welfare Claims Management'); ?></h2>
+      <h2 class="dash-section-title"><i class="lucide-icon dash-heart-icon" aria-hidden="true" data-lucide="heart"></i> <?php echo $__t('कल्याण दाबी व्यवस्थापन', 'Welfare Claims Management'); ?></h2>
       <a href="welfare-claims.php" class="btn btn-sm dash-btn-outline-primary"><i class="fas fa-arrow-up-right-from-square"></i> <?php echo $__t('सबै दाबी', 'All Claims'); ?></a>
     </div>
     <?php
