@@ -2890,13 +2890,6 @@ body.auth-portal-page:not(.verify-auth-page) .auth-lang-toggle { left: 20px; }
 .section-spacing { margin-bottom: 2rem; }
 
 /* Code / ID chips */
-.coop-code {
-    font-family: 'Courier New', ui-monospace, monospace;
-    background: var(--bg-soft, #f5faf6);
-    padding: 4px 10px; border-radius: 6px;
-    font-size: .85rem; color: var(--text-primary, #1a2e1f);
-    letter-spacing: .5px;
-}
 .coop-id-badge {
     font-family: 'Courier New', monospace;
     font-size: .85rem; letter-spacing: 2px;
