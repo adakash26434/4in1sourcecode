@@ -1370,11 +1370,6 @@ main {
   body.has-member-footer {
     padding-bottom: 0;
   }
-
-  /* Burger menu not visible on desktop */
-  .hp-burger {
-    display: none !important;
-  }
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -1868,15 +1863,6 @@ h1, h2, h3, h4, h5, h6 {
 /* ─────────────────────────────────────────────────────────────────
    11. FADE-IN ANIMATION
    ───────────────────────────────────────────────────────────────── */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 @keyframes slideInFromLeft {
   from {
@@ -3970,7 +3956,6 @@ textarea.form-control { min-height: 100px; resize: vertical; }
 /* Checkbox / Radio */
 .form-check { padding-left: 1.85em !important; min-height: 1.6rem !important; margin-bottom: 0.35rem !important; }
 .form-check .form-check-input { margin-left: -1.85em !important; margin-top: 0.2em !important; flex-shrink: 0; }
-.form-check-label { cursor: pointer; line-height: 1.45; padding-left: 4px; }
 .form-check-inline { display: inline-flex !important; align-items: center !important; margin-right: 1.1rem !important; padding-left: 1.85em !important; }
 .form-switch { padding-left: 2.8em !important; }
 .form-switch .form-check-input { margin-left: -2.8em !important; width: 2.2em !important; height: 1.15em !important; }
@@ -4172,12 +4157,6 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     pointer-events: none;
 }
-.page-banner::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(to right, transparent 0%, #c8860a 15%, #f5c518 40%, #ffd700 50%, #f5c518 60%, #c8860a 85%, transparent 100%);
-}
-.page-banner .container { position: relative; z-index: 1; }
 .page-banner h1 {
     color: #fff;
     font-size: clamp(1.25rem, 3vw, 1.75rem);
@@ -4185,9 +4164,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     text-shadow: 0 1px 6px rgba(0,0,0,0.2);
 }
 .page-banner p { color: rgba(255,255,255,0.8); margin-bottom: 0; }
-.page-banner .breadcrumb { margin-bottom: 0; background: transparent; padding: 0; justify-content: center; }
 .page-banner .breadcrumb-item a { color: rgba(255,255,255,0.8); }
-.page-banner .breadcrumb-item a:hover { color: #fff; }
 .page-banner .breadcrumb-item.active { color: rgba(255,255,255,0.95); }
 .page-banner .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,0.45); }
 
@@ -4972,7 +4949,6 @@ h1,h2,h3,h4,h5,h6,.card-title {
 
 @media (max-width: 768px) {
     .table-responsive-stack              { width: 100%; border-collapse: separate; border-spacing: 0; }
-    .table-responsive-stack thead        { display: none; }
     .table-responsive-stack tbody,
     .table-responsive-stack tr           { display: block; }
     .table-responsive-stack tr           {
