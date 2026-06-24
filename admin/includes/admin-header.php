@@ -269,10 +269,9 @@ set_exception_handler(function (\Throwable $ex) {
     <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('admin'); } ?>
 
     <!-- PWA manifest + Apple tags -->
-    <link rel="manifest" href="<?php echo defined('SITE_URL') ? SITE_URL : '../'; ?>manifest.php">
-    <meta name="theme-color" content="#1a5f2a">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+            if ($db && tableExists($db, 'contact_messages')) {
+                $unreadMessages = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM contact_messages WHERE is_read = 0", '[admin-header messages]') : 0;
+            }
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="<?php echo htmlspecialchars($pwaShortName, ENT_QUOTES, 'UTF-8'); ?>">
     <link rel="apple-touch-icon" href="<?php echo defined('SITE_URL') ? SITE_URL : '../'; ?>assets/images/icon-192x192.png">

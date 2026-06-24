@@ -410,13 +410,11 @@ try {
     $stmt2->execute(array_merge($params2, [$limit, $offset])); $applications = $stmt2->fetchAll();
 } catch (Exception $e) { $applications = []; $total = 0; $totalPages = 0; }
 
-try {
-    $pendingCount  = $db->query("SELECT COUNT(*) FROM kyc_applications WHERE status='pending'")->fetchColumn();
-    $approvedCount = $db->query("SELECT COUNT(*) FROM kyc_applications WHERE status='approved'")->fetchColumn();
-    $rejectedCount = $db->query("SELECT COUNT(*) FROM kyc_applications WHERE status='rejected'")->fetchColumn();
-    $incompleteCount = $db->query("SELECT COUNT(*) FROM kyc_applications WHERE status='incomplete'")->fetchColumn();
-    $partialCount = $db->query("SELECT COUNT(*) FROM kyc_applications WHERE status='partial'")->fetchColumn();
-} catch (Exception $e) { $pendingCount=$approvedCount=$rejectedCount=$incompleteCount=$partialCount=0; }
+$pendingCount    = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM kyc_applications WHERE status='pending'", '[kyc-applications pending]') : 0;
+$approvedCount   = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM kyc_applications WHERE status='approved'", '[kyc-applications approved]') : 0;
+$rejectedCount   = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM kyc_applications WHERE status='rejected'", '[kyc-applications rejected]') : 0;
+$incompleteCount = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM kyc_applications WHERE status='incomplete'", '[kyc-applications incomplete]') : 0;
+$partialCount    = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM kyc_applications WHERE status='partial'", '[kyc-applications partial]') : 0;
 
 /* ─── Single view ─── */
 $viewApp = null;

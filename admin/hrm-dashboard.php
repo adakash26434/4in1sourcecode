@@ -30,11 +30,11 @@ if (!$hasHrmTables) {
 $total = $active = $probation = $onLeave = $exited = 0;
 $expiringContracts = $expiringDocs = $recentJoiners = $byDept = [];
 try {
-    $total       = (int)$db->query("SELECT COUNT(*) FROM hrm_employees")->fetchColumn();
-    $active      = (int)$db->query("SELECT COUNT(*) FROM hrm_employees WHERE status='active'")->fetchColumn();
-    $probation   = (int)$db->query("SELECT COUNT(*) FROM hrm_employees WHERE status='probation'")->fetchColumn();
-    $onLeave     = (int)$db->query("SELECT COUNT(*) FROM hrm_employees WHERE status='on_leave'")->fetchColumn();
-    $exited      = (int)$db->query("SELECT COUNT(*) FROM hrm_employees WHERE status IN ('resigned','terminated','retired')")->fetchColumn();
+  $total       = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM hrm_employees", '[hrm-dashboard total]') : 0;
+  $active      = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM hrm_employees WHERE status='active'", '[hrm-dashboard active]') : 0;
+  $probation   = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM hrm_employees WHERE status='probation'", '[hrm-dashboard probation]') : 0;
+  $onLeave     = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM hrm_employees WHERE status='on_leave'", '[hrm-dashboard on-leave]') : 0;
+  $exited      = function_exists('sqCount') ? sqCount($db, "SELECT COUNT(*) FROM hrm_employees WHERE status IN ('resigned','terminated','retired')", '[hrm-dashboard exited]') : 0;
 
     $expiringContracts = $db->query(
         "SELECT c.*, e.full_name_np, e.employee_code
