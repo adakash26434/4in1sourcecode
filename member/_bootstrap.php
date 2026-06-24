@@ -69,9 +69,5 @@ register_shutdown_function(function () {
 
 /* Uncaught exception handler */
 set_exception_handler(function ($e) {
-    error_log('[member-panel-exception] ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
-    if (headers_sent()) return;
-    @http_response_code(500);
-    /* Trigger shutdown handler बाट uniform error page देखाउन */
-    trigger_error($e->getMessage(), E_USER_ERROR);
+    core_forward_exception_to_shutdown($e, 'member-panel-exception');
 });

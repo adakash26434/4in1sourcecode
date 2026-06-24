@@ -101,6 +101,17 @@ if (!function_exists('core_require_if_exists')) {
     }
 }
 
+if (!function_exists('core_forward_exception_to_shutdown')) {
+    function core_forward_exception_to_shutdown(Throwable $e, string $logPrefix): void {
+        error_log('[' . $logPrefix . '] ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
+        if (headers_sent()) {
+            return;
+        }
+        @http_response_code(500);
+        trigger_error($e->getMessage(), E_USER_ERROR);
+    }
+}
+
 // ─── Root path detect — init.php कहाँ छ त्यसबाट ───
 if (!defined('CORE_PATH')) {
     define('CORE_PATH', __DIR__);
