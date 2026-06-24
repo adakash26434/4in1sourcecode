@@ -2881,7 +2881,6 @@ body.auth-portal-page:not(.verify-auth-page) .auth-lang-toggle { left: 20px; }
 .coop-text-secondary { color: var(--text-secondary, #4a5a4f); }
 .coop-text-muted     { color: var(--text-muted, #6b7280); }
 .coop-text-danger    { color: var(--color-danger, #dc3545); }
-.coop-text-sm        { font-size: .85rem; }
 .coop-text-xs        { font-size: .75rem; }
 .coop-font-bold      { font-weight: 700; }
 .coop-font-medium    { font-weight: 500; }
