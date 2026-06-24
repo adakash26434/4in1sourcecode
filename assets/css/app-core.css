@@ -2106,7 +2106,6 @@ h6 { font-size: .88rem;                         font-weight: 600; }
 /* — Badges (soft pill style) — */
 .badge {
     font-family: inherit;
-    border-radius: 999px;
     padding: 4px 10px;
 }
 .badge.bg-primary, .badge.bg-success {
