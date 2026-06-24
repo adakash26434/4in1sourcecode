@@ -34,6 +34,7 @@
     toggle.parentNode.replaceChild(freshToggle, toggle);
     toggle = freshToggle;
     toggle.dataset.v96Bound = '1';
+    var toggleIcon = toggle.querySelector('i');
 
     var closeBtn = document.getElementById(closeId);
     if (closeBtn && closeBtn.parentNode) {
@@ -46,6 +47,17 @@
       .filter(Boolean);
     var savedScrollY = 0;
 
+    function syncToggleVisualState() {
+      var isOpen = nav.classList.contains('nav-open') || nav.classList.contains('open') || nav.classList.contains('active');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.classList.toggle('is-open', isOpen);
+      if (toggleIcon) {
+        toggleIcon.classList.toggle('fa-xmark', isOpen);
+        toggleIcon.classList.toggle('fa-bars', !isOpen);
+      }
+      nav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    }
+
     function openNav() {
       savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
       nav.classList.add('nav-open', 'open', 'active');
@@ -54,8 +66,7 @@
       document.documentElement.classList.add('mobile-nav-open');
       document.body.style.top = '-' + savedScrollY + 'px';
       document.body.style.overflow = 'hidden';
-      toggle.setAttribute('aria-expanded', 'true');
-      nav.setAttribute('aria-hidden', 'false');
+      syncToggleVisualState();
       setTimeout(function () {
         var first = nav.querySelector('#' + closeId + ', a, button');
         if (first && typeof first.focus === 'function') first.focus({ preventScroll: true });
@@ -68,8 +79,6 @@
       document.documentElement.classList.remove('mobile-nav-open');
       document.body.style.top = '';
       document.body.style.overflow = '';
-      toggle.setAttribute('aria-expanded', 'false');
-      nav.setAttribute('aria-hidden', 'true');
       nav.querySelectorAll('.has-dropdown.open, .has-sub.open').forEach(function (el) {
         el.classList.remove('open');
       });
@@ -77,6 +86,7 @@
         btn.setAttribute('aria-expanded', 'false');
       });
       if (savedScrollY) window.scrollTo(0, savedScrollY);
+      syncToggleVisualState();
     }
 
     toggle.addEventListener('click', function (e) {
@@ -141,7 +151,17 @@
 
     window.addEventListener('resize', function () {
       if (window.innerWidth >= 992) closeNav();
+      else syncToggleVisualState();
     });
+
+    window.addEventListener('pageshow', syncToggleVisualState);
+    syncToggleVisualState();
+
+    /* Allow other modules (e.g. login dropdown) to close the public drawer safely */
+    if (toggleId === 'mobileMenuToggle2' && navId === 'mainNavV2') {
+      window.__pflMobileMenuOpen = openNav;
+      window.__pflMobileMenuClose = closeNav;
+    }
   }
 
   /* ── Admin sidebar drawer ── */
