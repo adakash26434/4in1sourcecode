@@ -11,11 +11,11 @@
  */
 
 :root {
-     /* 🎨 Brand (admin-overridable via _color-vars.php) */
-     /* AkashDigital-style --primary alias (mirrors --primary-color) */
-     --primary:          #1a5f2a;
-     --primary-color:     var(--primary);  /* backward compat */
-     --primary-dark:      #144a21;
+    /* 🎨 Brand (admin-overridable via _color-vars.php) */
+    /* AkashDigital-style --primary alias (mirrors --primary-color) */
+    --primary:          #1a5f2a;
+    --primary-color:     var(--primary);  /* backward compat */
+    --primary-dark:      #144a21;
     --primary-light:     #2e8b4a;
     --primary-glow:      #4caf6a;
     --secondary:         #c0392b;
@@ -622,7 +622,6 @@ p {
 
 .table {
     --bs-table-border-color: var(--border-light);
-    color: var(--text-primary);
 }
 
 .table thead {
