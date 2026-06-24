@@ -2827,24 +2827,6 @@ body.auth-portal-page:not(.verify-auth-page) .auth-lang-toggle { left: 20px; }
 /* ════════════════════════════════════════════════════════════════
    §15  UTILITY CLASSES (.coop-*)
    ════════════════════════════════════════════════════════════════ */
-/* Display & flex */
-.coop-flex          { display: flex; }
-.coop-flex-col      { display: flex; flex-direction: column; }
-.coop-flex-wrap     { display: flex; flex-wrap: wrap; }
-.coop-grid          { display: grid; }
-.coop-inline        { display: inline-flex; align-items: center; }
-.coop-items-center  { align-items: center; }
-.coop-justify-between { justify-content: space-between; }
-.coop-justify-center  { justify-content: center; }
-
-/* Gap */
-.coop-gap-xs { gap: 4px; } .coop-gap-sm { gap: 8px; }
-.coop-gap-md { gap: 16px; } .coop-gap-lg { gap: 24px; }
-
-/* Margin */
-.coop-mt-sm { margin-top: 8px; }  .coop-mt-md { margin-top: 16px; }  .coop-mt-lg { margin-top: 24px; }
-.coop-mb-sm { margin-bottom: 8px; }.coop-mb-md { margin-bottom: 16px; }.coop-mb-lg { margin-bottom: 24px; }
-
 /* Text */
 .text-primary-dark   { color: var(--primary-dark, #144a21); }
 .text-nepali         { font-family: var(--font-nepali, 'Noto Sans Devanagari', 'Mukta', sans-serif); }
@@ -3705,10 +3687,6 @@ textarea.form-control:focus {
 /* ════════════════════════════════════════════════════════════
    2. BASE RESET & BODY
    ════════════════════════════════════════════════════════════ */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
 html {
     font-size: 16px;
     scroll-behavior: smooth;
