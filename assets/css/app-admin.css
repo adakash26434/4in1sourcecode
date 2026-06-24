@@ -147,7 +147,7 @@ body.admin-shell {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: var(--space-3);
   margin-bottom: var(--space-5);
-    color: #2c3e50;
+}
 .admin-stat-card {
   background: var(--surface-elevated);
   border: 1px solid var(--border);
@@ -157,14 +157,6 @@ body.admin-shell {
     width: 100%;
   align-items: center;
   gap: var(--space-3);
-.pfl-login-menu li a .pfl-lm-text {
-    color: inherit !important;
-    min-width: 0 !important;
-}
-.pfl-login-menu li a .pfl-lm-text strong,
-.pfl-login-menu li a .pfl-lm-text small {
-    color: inherit !important;
-}
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .admin-stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }

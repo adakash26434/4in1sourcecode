@@ -290,14 +290,6 @@
     width: 100%;
 }
 .mem-topbar-avatar-fallback--show {
-  .pfl-login-menu li a .pfl-lm-text {
-    color: inherit !important;
-    min-width: 0 !important;
-  }
-  .pfl-login-menu li a .pfl-lm-text strong,
-  .pfl-login-menu li a .pfl-lm-text small {
-    color: inherit !important;
-  }
     display: flex;
 }
 .mem-topbar-avatar-stack .mem-topbar-avatar-fallback {
