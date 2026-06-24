@@ -191,7 +191,7 @@ try {
 <!-- Member portal styles -->
 <link rel="stylesheet" href="../assets/css/app-member.css?v=<?= filemtime(__DIR__."/../../assets/css/app-member.css") ?>">
 <!-- Font Awesome (still needed for existing member page icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('member'); } ?>
 <style>
 /* ── Member Bell Dropdown (unified) ── */
