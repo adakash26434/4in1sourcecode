@@ -891,7 +891,7 @@ function copyTrk(id,btn){
     navigator.clipboard.writeText(el.innerText.trim()).then(function(){
         btn.innerHTML='<i class="fas fa-check"></i>';
         btn.classList.add('btn-success');btn.classList.remove('btn-outline-success');
-        setTimeout(function(){btn.innerHTML='<i class="fas fa-copy"></i>';btn.classList.remove('btn-success');btn.classList.add('btn-outline-success');},1800);
+        setTimeout(function(){btn.innerHTML='<i data-lucide="copy"></i>';btn.classList.remove('btn-success');btn.classList.add('btn-outline-success');},1800);
     }).catch(function(){
         var r=document.createRange();r.selectNode(el);window.getSelection().removeAllRanges();window.getSelection().addRange(r);
     });

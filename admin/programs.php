@@ -308,14 +308,14 @@ foreach ($rows as $_r) {
           <label class="form-label small text-muted mb-0">Member Portal URL (मुख्य)</label>
           <div class="input-group">
             <input type="text" class="form-control font-monospace small" id="programQrModalUrlInput" readonly>
-            <button class="btn btn-outline-primary" type="button" id="programQrModalCopyBtn"><i class="fas fa-copy"></i></button>
+            <button class="btn btn-outline-primary" type="button" id="programQrModalCopyBtn"><i data-lucide="copy"></i></button>
           </div>
         </div>
         <details class="text-start small">
           <summary class="text-muted" style="cursor:pointer;">पुरानो / पब्लिक लिंक (लगिन बिना म्यानुअल कार्ड)</summary>
           <div class="input-group mt-1">
             <input type="text" class="form-control font-monospace small" id="programQrModalLegacyInput" readonly>
-            <button class="btn btn-outline-secondary" type="button" id="programQrModalLegacyCopyBtn"><i class="fas fa-copy"></i></button>
+            <button class="btn btn-outline-secondary" type="button" id="programQrModalLegacyCopyBtn"><i data-lucide="copy"></i></button>
           </div>
         </details>
       </div>
