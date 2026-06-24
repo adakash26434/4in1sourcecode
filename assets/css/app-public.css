@@ -22840,3 +22840,37 @@ body.auth-page,
         min-height: 36px;
     }
 }
+
+/* ════════════════════════════════════════════════════════════
+   v12.2 — Public Contrast Guard (dark/gradient blocks)
+   Ensures readable text on green gradient sections.
+   ════════════════════════════════════════════════════════════ */
+
+.cr-hero,
+.cr-hero .cr-hero-text h2,
+.cr-hero .cr-stat-num {
+    color: var(--text-on-primary, #ffffff) !important;
+}
+
+.cr-hero .cr-hero-text p,
+.cr-hero .cr-stat-lbl {
+    color: color-mix(in srgb, var(--text-on-primary, #ffffff) 78%, transparent) !important;
+}
+
+.contact-info-box,
+.contact-info-box h4,
+.contact-info-box > p,
+.contact-info-box .contact-details h6,
+.contact-info-box .contact-details p,
+.contact-info-box .contact-details p a,
+.contact-info-box .contact-social h6,
+.contact-info-box .contact-social a,
+.contact-info-box .ct-link-dark {
+    color: var(--text-on-primary, #ffffff) !important;
+    -webkit-text-fill-color: var(--text-on-primary, #ffffff) !important;
+}
+
+.contact-info-box .contact-details p a:hover,
+.contact-info-box .ct-link-dark:hover {
+    color: color-mix(in srgb, var(--text-on-primary, #ffffff) 84%, var(--secondary-color, #ffc107)) !important;
+}

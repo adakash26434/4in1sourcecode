@@ -62,6 +62,29 @@ $__textOn = function (string $hex) use ($__rgba): string {
     return ($contrastBlack > $contrastWhite) ? '#111827' : '#ffffff';
 };
 
+/* ─── Best text color for 2-stop gradients ─── */
+$__textOnGradient = function (string $hexA, string $hexB): string {
+    $contrastAgainst = function (string $fg, string $bgHex): float {
+        $hex = ltrim($bgHex, '#');
+        if (strlen($hex) !== 6) {
+            return $fg === '#ffffff' ? 21.0 : 1.0;
+        }
+        $toLinear = fn($c) => ($c <= 0.03928) ? ($c / 12.92) : pow(($c + 0.055) / 1.055, 2.4);
+        $r = $toLinear(hexdec(substr($hex, 0, 2)) / 255);
+        $g = $toLinear(hexdec(substr($hex, 2, 2)) / 255);
+        $b = $toLinear(hexdec(substr($hex, 4, 2)) / 255);
+        $lum = 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+        if ($fg === '#ffffff') {
+            return 1.05 / ($lum + 0.05);
+        }
+        return ($lum + 0.05) / 0.05;
+    };
+
+    $whiteWorst = min($contrastAgainst('#ffffff', $hexA), $contrastAgainst('#ffffff', $hexB));
+    $blackWorst = min($contrastAgainst('#111827', $hexA), $contrastAgainst('#111827', $hexB));
+    return ($blackWorst > $whiteWorst) ? '#111827' : '#ffffff';
+};
+
 /* ─── RGB components ─── */
 $__rgb = function (string $hex): string {
     $hex = ltrim($hex, '#');
@@ -88,10 +111,10 @@ $_hDark   = $__shift($_h, 30);
 $_fDark   = $__shift($_f, 24);
 
 /* Foreground text colors */
-$_onP = $__textOn($_p);
-$_onS = $__textOn($_s);
-$_onH = $__textOn($_h);
-$_onF = $__textOn($_f);
+$_onP = $__textOnGradient($_p, $_pDark);
+$_onS = $__textOnGradient($_s, $_sDark);
+$_onH = $__textOnGradient($_h, $_hDark);
+$_onF = $__textOnGradient($_f, $_fDark);
 
 /* RGB for rgba() usage */
 $_pRgb = $__rgb($_p);
