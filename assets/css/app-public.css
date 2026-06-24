@@ -23570,3 +23570,84 @@ body.auth-page,
         display: none !important;
     }
 }
+
+/* v13.7 — Mobile menu professional harmonization (main + submenu) */
+@media (max-width: 991.98px) {
+    body.header-v2 #mainNavV2 .nav-menu {
+        gap: 10px !important;
+        padding: 10px 8px 14px !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li > a {
+        min-height: 62px !important;
+        background: #f8fbf9 !important;
+        border: 1px solid #d9e6de !important;
+        border-radius: 16px !important;
+        box-shadow: 0 1px 0 rgba(255,255,255,.8) inset !important;
+        color: #1f2937 !important;
+        font-size: .95rem !important;
+        font-weight: 700 !important;
+        letter-spacing: .005em !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li.active > a,
+    body.header-v2 #mainNavV2 .nav-menu > li.open > a {
+        background: #edf6f0 !important;
+        border-color: #cfe3d8 !important;
+        color: #166534 !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li > a .mnav-main-icon {
+        width: 17px !important;
+        min-width: 17px !important;
+        height: 17px !important;
+        flex: 0 0 17px !important;
+        margin-right: 8px !important;
+        border-radius: 6px !important;
+        background: #e5f1ea !important;
+        color: #1f8b46 !important;
+        font-size: .68rem !important;
+    }
+
+    body.header-v2 #mainNavV2 .dropdown,
+    body.header-v2 #mainNavV2 .sub-menu {
+        margin: 8px 2px 2px !important;
+        padding: 6px !important;
+        border: 1px solid #dce8e1 !important;
+        border-radius: 14px !important;
+        background: #f3f7f4 !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.72) !important;
+    }
+
+    body.header-v2 #mainNavV2 .dropdown li a,
+    body.header-v2 #mainNavV2 .sub-menu li a {
+        min-height: 42px !important;
+        border-radius: 10px !important;
+        padding: 9px 10px 9px 11px !important;
+        font-size: .86rem !important;
+        font-weight: 640 !important;
+        color: #1f2937 !important;
+        background: transparent !important;
+    }
+
+    body.header-v2 #mainNavV2 .dropdown li a:hover,
+    body.header-v2 #mainNavV2 .dropdown li a:active,
+    body.header-v2 #mainNavV2 .sub-menu li a:hover,
+    body.header-v2 #mainNavV2 .sub-menu li a:active {
+        background: #e8f1eb !important;
+        color: #14532d !important;
+    }
+
+    body.header-v2 #mainNavV2 .dropdown li a i,
+    body.header-v2 #mainNavV2 .dropdown li a .lucide-icon,
+    body.header-v2 #mainNavV2 .sub-menu li a i,
+    body.header-v2 #mainNavV2 .sub-menu li a .lucide-icon {
+        width: 21px !important;
+        min-width: 21px !important;
+        height: 21px !important;
+        border-radius: 7px !important;
+        font-size: .74rem !important;
+        background: #e7f2eb !important;
+        color: #1f8b46 !important;
+    }
+}
