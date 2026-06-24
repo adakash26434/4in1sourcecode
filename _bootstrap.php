@@ -49,12 +49,12 @@ if (!defined('BASEDIR')) {
     define('BASEDIR', __DIR__);
 }
 
-if (!defined('INCLUDES_DIR')) {
-    define('INCLUDES_DIR', BASEDIR . '/includes');
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', BASEDIR . '/');
 }
 
-if (!defined('CONFIG_DIR')) {
-    define('CONFIG_DIR', BASEDIR . '/config');
+if (!defined('INCLUDES_DIR')) {
+    define('INCLUDES_DIR', BASEDIR . '/includes');
 }
 
 if (!defined('ADMIN_DIR')) {
@@ -108,8 +108,7 @@ if (!defined('CORE_DIR')) {
 // Load it before any legacy core helper files to avoid duplicate function fatals
 // (sanitize(), clean_text(), redirect(), formatDate(), etc.).
 $configFiles = [
-    BASEDIR . '/includes/config.php',
-    BASEDIR . '/config/config.php',
+    INCLUDES_DIR . '/config.php',
 ];
 
 foreach ($configFiles as $configFile) {
