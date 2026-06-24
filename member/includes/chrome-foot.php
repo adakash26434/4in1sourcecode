@@ -36,26 +36,26 @@ $_fnHasId = true;
 $_fnPrimary = [
     [
         'href'   => $_fnUrl . 'member/',
-        'icon'   => 'fa-house',
+        'icon'   => 'home',
         'label'  => $_footT('गृह', 'Home'),
         'active' => 'dashboard',
     ],
     [
         'href'   => $_fnUrl . 'member/tracker.php',
-        'icon'   => 'fa-magnifying-glass-chart',
+        'icon'   => 'bar-chart-2',
         'label'  => $_footT('ट्र्याकर', 'Tracker'),
         'active' => 'tracker',
     ],
     [
         'href'   => $_fnUrl . 'member/notifications.php',
-        'icon'   => 'fa-bell',
+        'icon'   => 'bell',
         'label'  => $_footT('सूचना', 'Alerts'),
         'active' => 'notifications',
         'badge'  => $_fnUnread,
     ],
     [
         'href'   => $_fnUrl . 'member/profile.php',
-        'icon'   => 'fa-user-circle',
+        'icon'   => 'circle-user',
         'label'  => $_footT('प्रोफाइल', 'Profile'),
         'active' => 'profile',
     ],
@@ -66,27 +66,27 @@ $_fnSecondary = [];
 if ($_fnHasId) {
     $_fnSecondary[] = [
         'href'   => $_fnUrl . 'member/id-card.php',
-        'icon'   => 'fa-id-card',
+        'icon'   => 'id-card',
         'label'  => $_footT('परिचयपत्र', 'ID Card'),
         'active' => 'idcard',
     ];
 }
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/welfare.php',         'icon'=>'fa-heart-pulse',       'label'=>$_footT('कल्याण दाबी','Welfare'),      'active'=>'welfare'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/welfare.php',         'icon'=>'heart-pulse',       'label'=>$_footT('कल्याण दाबी','Welfare'),      'active'=>'welfare'];
 if ($_fnElection === 'voting') {
-    $_fnSecondary[] = ['href'=>$_fnUrl.'member/election-vote.php','icon'=>'fa-check-to-slot',    'label'=>$_footT('मतदान','Vote'),               'active'=>'election'];
+    $_fnSecondary[] = ['href'=>$_fnUrl.'member/election-vote.php','icon'=>'square-check-big',    'label'=>$_footT('मतदान','Vote'),               'active'=>'election'];
 } elseif ($_fnElection === 'candidates') {
-    $_fnSecondary[] = ['href'=>$_fnUrl.'member/election-vote.php','icon'=>'fa-users',             'label'=>$_footT('उम्मेदवार','Candidates'),      'active'=>'election'];
+    $_fnSecondary[] = ['href'=>$_fnUrl.'member/election-vote.php','icon'=>'users',             'label'=>$_footT('उम्मेदवार','Candidates'),      'active'=>'election'];
 }
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/scan.php',           'icon'=>'fa-qrcode',            'label'=>$_footT('QR स्क्यान','QR Scan'),        'active'=>'scan'];
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/attend.php',         'icon'=>'fa-calendar-check',    'label'=>$_footT('उपस्थिति','Attendance'),       'active'=>'attend'];
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/service-request.php','icon'=>'fa-concierge-bell',    'label'=>$_footT('सेवा अनुरोध','Service Req.'),  'active'=>'service'];
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/appointment.php',    'icon'=>'fa-calendar-plus',     'label'=>$_footT('भेटघाट','Appointment'),        'active'=>'apply-appointment'];
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/loan-apply.php',     'icon'=>'fa-hand-holding-dollar','label'=>$_footT('ऋण आवेदन','Loan Apply'),      'active'=>'apply-loan'];
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/account-apply.php',  'icon'=>'fa-landmark',          'label'=>$_footT('खाता खोल्ने','Open Account'),  'active'=>'apply-account'];
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/digital-service.php','icon'=>'fa-laptop',            'label'=>$_footT('डिजिटल सेवा','Digital Svc'),  'active'=>'apply-digital'];
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/grievance.php',      'icon'=>'fa-comment-dots',      'label'=>$_footT('गुनासो','Grievance'),          'active'=>'apply-grievance'];
-$_fnSecondary[] = ['href'=>$_fnUrl.'member/certificate.php',    'icon'=>'fa-certificate',       'label'=>$_footT('प्रमाणपत्र','Certificates'),  'active'=>'certificate'];
-$_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-globe',             'label'=>$_footT('मुख्य साइट','Main Site'),      'active'=>'__mainsite',      'target'=>'_blank'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/scan.php',           'icon'=>'qr-code',            'label'=>$_footT('QR स्क्यान','QR Scan'),        'active'=>'scan'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/attend.php',         'icon'=>'calendar-check',    'label'=>$_footT('उपस्थिति','Attendance'),       'active'=>'attend'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/service-request.php','icon'=>'bell-ring',    'label'=>$_footT('सेवा अनुरोध','Service Req.'),  'active'=>'service'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/appointment.php',    'icon'=>'calendar-plus',     'label'=>$_footT('भेटघाट','Appointment'),        'active'=>'apply-appointment'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/loan-apply.php',     'icon'=>'hand-coins','label'=>$_footT('ऋण आवेदन','Loan Apply'),      'active'=>'apply-loan'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/account-apply.php',  'icon'=>'landmark',          'label'=>$_footT('खाता खोल्ने','Open Account'),  'active'=>'apply-account'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/digital-service.php','icon'=>'laptop',            'label'=>$_footT('डिजिटल सेवा','Digital Svc'),  'active'=>'apply-digital'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/grievance.php',      'icon'=>'message-circle-more',      'label'=>$_footT('गुनासो','Grievance'),          'active'=>'apply-grievance'];
+$_fnSecondary[] = ['href'=>$_fnUrl.'member/certificate.php',    'icon'=>'award',       'label'=>$_footT('प्रमाणपत्र','Certificates'),  'active'=>'certificate'];
+$_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'globe',             'label'=>$_footT('मुख्य साइट','Main Site'),      'active'=>'__mainsite',      'target'=>'_blank'];
 ?>
 </div><!-- /.mem-container -->
 
@@ -97,7 +97,7 @@ $_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-glo
     <a href="<?php echo htmlspecialchars($_fnItem['href']); ?>"
        class="mp-bottom-nav__item<?php echo ($_fnActive === $_fnItem['active']) ? ' active' : ''; ?>"
        aria-label="<?php echo htmlspecialchars($_fnItem['label']); ?>">
-        <i data-lucide="<?php echo str_replace('fa-', '', $_fnItem['icon']); ?>"></i>
+        <i data-lucide="<?php echo htmlspecialchars($_fnItem['icon'], ENT_QUOTES, 'UTF-8'); ?>"></i>
         <span><?php echo htmlspecialchars($_fnItem['label']); ?></span>
         <?php if (!empty($_fnItem['badge']) && $_fnItem['badge'] > 0): ?>
         <span class="mp-bn-badge"><?php echo (int)$_fnItem['badge'] > 9 ? '9+' : (int)$_fnItem['badge']; ?></span>
@@ -131,7 +131,7 @@ $_fnSecondary[] = ['href'=>$_fnUrl,                              'icon'=>'fa-glo
            class="mp-more-item<?php echo $_fnIsActive ? ' active' : ''; ?>"
            <?php if (!empty($_fnSec['target'])): ?>target="<?php echo htmlspecialchars($_fnSec['target']); ?>" rel="noopener"<?php endif; ?>
            aria-label="<?php echo htmlspecialchars($_fnSec['label']); ?>">
-            <span class="mp-mi-icon"><i data-lucide="<?php echo htmlspecialchars(str_replace('fa-', '', $_fnSec['icon'])); ?>"></i></span>
+            <span class="mp-mi-icon"><i data-lucide="<?php echo htmlspecialchars($_fnSec['icon'], ENT_QUOTES, 'UTF-8'); ?>"></i></span>
             <span><?php echo htmlspecialchars($_fnSec['label']); ?></span>
         </a>
         <?php endforeach; ?>
