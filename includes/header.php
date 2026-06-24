@@ -701,7 +701,8 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
 <script src="<?= SITE_URL ?>assets/js/pwa-register.js" defer></script>
 <script src="<?= SITE_URL ?>assets/js/pull-to-refresh.js?v=1.0" defer></script>
 </head>
-<body class="header-v2<?php echo !empty($__embed_frame) ? ' embed-in-member-portal' : ''; ?>">
+<?php $useHeaderV2 = true; ?>
+<body class="<?php echo $useHeaderV2 ? 'header-v2' : ''; ?><?php echo !empty($__embed_frame) ? ' embed-in-member-portal' : ''; ?>">
     <?php if (empty($__embed_frame)): ?>
     <!-- Page Loader -->
     <div class="page-loader" id="pageLoader">
@@ -1147,6 +1148,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
     })();
     </script>
 
+    <?php if (!$useHeaderV2): ?>
     <!-- Top Bar (OLD — hidden when header-v2 active) -->
     <div class="top-bar">
         <div class="container">
@@ -1365,6 +1367,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             </div>
         </div>
     </header>
+    <?php endif; ?>
 
     <!-- PFL Mobile Nav Backdrop -->
     <div class="mobile-nav-backdrop" id="pflMobileBackdrop" aria-hidden="true" data-testid="public-mobile-menu-backdrop"></div>
