@@ -2293,12 +2293,8 @@ body:not([class*="admin-page-"]) .nav-tabs .nav-link.active {
 
 
 /* ════════════════════════════════════════════════════════════════
-   §6  TABLES
-   ════════════════════════════════════════════════════════════════ */
-.table {
-    font-size: .88rem;
-    color: var(--text-primary, #1a2e1f);
-}
+    §6  TABLES
+    ════════════════════════════════════════════════════════════════ */
 .table thead th {
     padding: .7rem .9rem;
     white-space: nowrap;
