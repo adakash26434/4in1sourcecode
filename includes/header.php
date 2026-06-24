@@ -627,27 +627,34 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
 
             /* Dropdown sub-items */
             .main-nav .dropdown li > a {
-                padding: 10px 16px 10px 36px !important;
-                font-size: 0.90rem !important;
-                border-bottom: 1px solid #e6eee8 !important;
+                min-height: 42px !important;
+                padding: 9px 10px 9px 11px !important;
+                font-size: 0.86rem !important;
+                border: 1px solid #e2ece6 !important;
+                border-radius: 10px !important;
+                background: #ffffff !important;
                 display: flex !important;
                 align-items: center !important;
-                gap: 7px !important;
+                gap: 9px !important;
                 color: #1f2937 !important;
-                font-weight: 620 !important;
+                font-weight: 640 !important;
             }
-            .main-nav .dropdown li:last-child > a { border-bottom: none !important; }
+            .main-nav .dropdown li + li > a { margin-top: 6px !important; }
+            .main-nav .dropdown li:last-child > a { border-bottom: 1px solid #e2ece6 !important; }
 
             /* Active item highlight */
             .main-nav .nav-menu > li.active > a {
                 background: rgba(255,255,255,.14) !important;
                 color: #fff !important;
             }
-            /* Dropdown container indent */
+            /* Dropdown container panel */
             .main-nav .dropdown {
-                background: rgba(0,0,0,.15) !important;
-                margin: 0 !important;
-                border-left: 3px solid rgba(255,255,255,.2) !important;
+                background: #f2f7f4 !important;
+                margin: 8px 2px 2px !important;
+                padding: 7px !important;
+                border: 1px solid #d9e7df !important;
+                border-radius: 14px !important;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,.75) !important;
             }
 
             /* ── dd-chevron-btn: disabled; parent row handles submenu toggle ── */

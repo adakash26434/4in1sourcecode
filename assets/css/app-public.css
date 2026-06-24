@@ -22581,6 +22581,198 @@ body.auth-page,
     }
 }
 
+/* v14.1 — Ultimate mobile menu override (absolute tail) */
+@media (max-width: 991.98px) {
+    html body.header-v2 #mainNavV2 .nav-menu > li > a {
+        min-height: 60px !important;
+        background: #f8fbf9 !important;
+        border: 1px solid #d8e6de !important;
+        border-radius: 15px !important;
+        color: #1f2937 !important;
+        font-weight: 700 !important;
+    }
+
+    html body.header-v2 #mainNavV2 .nav-menu > li.active > a,
+    html body.header-v2 #mainNavV2 .nav-menu > li.open > a {
+        background: #edf6f0 !important;
+        border-color: #c8dece !important;
+        color: #14532d !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown,
+    html body.header-v2 #mainNavV2 .sub-menu {
+        margin: 8px 2px 2px !important;
+        padding: 7px !important;
+        border: 1px solid #d9e7df !important;
+        border-radius: 14px !important;
+        background: #f2f7f4 !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.75) !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown li a,
+    html body.header-v2 #mainNavV2 .sub-menu li a {
+        min-height: 42px !important;
+        border-radius: 10px !important;
+        border: 1px solid #e2ece6 !important;
+        background: #ffffff !important;
+        color: #1f2937 !important;
+        font-size: .86rem !important;
+        font-weight: 640 !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown li + li,
+    html body.header-v2 #mainNavV2 .sub-menu li + li {
+        margin-top: 6px !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown li a i,
+    html body.header-v2 #mainNavV2 .dropdown li a .lucide-icon,
+    html body.header-v2 #mainNavV2 .sub-menu li a i,
+    html body.header-v2 #mainNavV2 .sub-menu li a .lucide-icon {
+        width: 20px !important;
+        min-width: 20px !important;
+        height: 20px !important;
+        border-radius: 7px !important;
+        background: #e5f1ea !important;
+        color: #1f8b46 !important;
+        font-size: .72rem !important;
+    }
+}
+
+/* v14.0 — Authoritative mobile menu design system (last-wins) */
+@media (max-width: 991.98px) {
+    html body.header-v2 #mainNavV2.main-nav {
+        --mnav-card-bg: #f8fbf9;
+        --mnav-card-border: #d8e6de;
+        --mnav-card-active-bg: #edf6f0;
+        --mnav-card-active-border: #c8dece;
+        --mnav-text: #1f2937;
+        --mnav-text-strong: #14532d;
+        --mnav-sub-panel: #f2f7f4;
+        --mnav-sub-item: #ffffff;
+        --mnav-sub-item-hover: #ecf4ef;
+        --mnav-icon-bg: #e5f1ea;
+        --mnav-icon-color: #1f8b46;
+    }
+
+    html body.header-v2 #mainNavV2 .nav-menu {
+        gap: 10px !important;
+        padding: 10px 8px 14px !important;
+    }
+
+    html body.header-v2 #mainNavV2 .nav-menu > li > a {
+        min-height: 60px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        padding: 12px 44px 12px 14px !important;
+        text-align: left !important;
+        white-space: nowrap !important;
+        position: relative !important;
+        background: var(--mnav-card-bg) !important;
+        border: 1px solid var(--mnav-card-border) !important;
+        border-radius: 15px !important;
+        color: var(--mnav-text) !important;
+        font-size: .95rem !important;
+        font-weight: 700 !important;
+        box-shadow: 0 1px 0 rgba(255,255,255,.86) inset !important;
+    }
+
+    html body.header-v2 #mainNavV2 .nav-menu > li > a .mnav-main-label {
+        display: block !important;
+        margin: 0 !important;
+        min-width: 0 !important;
+        text-align: left !important;
+        color: inherit !important;
+    }
+
+    html body.header-v2 #mainNavV2 .nav-menu > li.active > a,
+    html body.header-v2 #mainNavV2 .nav-menu > li.open > a {
+        background: var(--mnav-card-active-bg) !important;
+        border-color: var(--mnav-card-active-border) !important;
+        color: var(--mnav-text-strong) !important;
+    }
+
+    html body.header-v2 #mainNavV2 .nav-menu > li > a .mnav-main-icon {
+        width: 17px !important;
+        min-width: 17px !important;
+        height: 17px !important;
+        flex: 0 0 17px !important;
+        margin-right: 8px !important;
+        border-radius: 6px !important;
+        background: var(--mnav-icon-bg) !important;
+        color: var(--mnav-icon-color) !important;
+        font-size: .68rem !important;
+    }
+
+    html body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a > i[data-lucide="chevron-down"],
+    html body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a > i[data-lucide="chevron-down"],
+    html body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a > .fa-chevron-down,
+    html body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a > .fa-chevron-down,
+    html body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a > .lucide-chevron-down,
+    html body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a > .lucide-chevron-down {
+        position: absolute !important;
+        right: 14px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin: 0 !important;
+        color: #375f48 !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown,
+    html body.header-v2 #mainNavV2 .sub-menu {
+        margin: 8px 2px 2px !important;
+        padding: 7px !important;
+        background: var(--mnav-sub-panel) !important;
+        border: 1px solid #d9e7df !important;
+        border-radius: 14px !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.75) !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown li a,
+    html body.header-v2 #mainNavV2 .sub-menu li a {
+        min-height: 42px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 9px !important;
+        padding: 9px 10px 9px 11px !important;
+        border-radius: 10px !important;
+        border: 1px solid #e2ece6 !important;
+        background: var(--mnav-sub-item) !important;
+        color: var(--mnav-text) !important;
+        font-size: .86rem !important;
+        font-weight: 640 !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown li + li,
+    html body.header-v2 #mainNavV2 .sub-menu li + li {
+        margin-top: 6px !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown li a:hover,
+    html body.header-v2 #mainNavV2 .dropdown li a:active,
+    html body.header-v2 #mainNavV2 .sub-menu li a:hover,
+    html body.header-v2 #mainNavV2 .sub-menu li a:active {
+        background: var(--mnav-sub-item-hover) !important;
+        color: var(--mnav-text-strong) !important;
+        border-color: #d5e5db !important;
+    }
+
+    html body.header-v2 #mainNavV2 .dropdown li a i,
+    html body.header-v2 #mainNavV2 .dropdown li a .lucide-icon,
+    html body.header-v2 #mainNavV2 .sub-menu li a i,
+    html body.header-v2 #mainNavV2 .sub-menu li a .lucide-icon {
+        width: 20px !important;
+        min-width: 20px !important;
+        height: 20px !important;
+        border-radius: 7px !important;
+        background: var(--mnav-icon-bg) !important;
+        color: var(--mnav-icon-color) !important;
+        font-size: .72rem !important;
+    }
+}
+
 /* ════════════════════════════════════════════════════════════
    v13 — Public Mobile Drawer Final Stable Override
    Prevents blurred drawer, background clicks, and accidental home navigation.
