@@ -1526,6 +1526,9 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             function openNav(){
                 savedY = window.scrollY || document.documentElement.scrollTop || 0;
                 nav.classList.add('nav-open','open','active');
+                nav.style.setProperty('transform', 'translate3d(0,0,0)', 'important');
+                nav.style.setProperty('visibility', 'visible', 'important');
+                nav.style.setProperty('pointer-events', 'auto', 'important');
                 if (backdrop) backdrop.classList.add('active');
                 document.body.classList.add('mobile-nav-open');
                 document.documentElement.classList.add('mobile-nav-open');
@@ -1542,6 +1545,9 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             }
             function closeNav(){
                 nav.classList.remove('nav-open','open','active');
+                nav.style.removeProperty('transform');
+                nav.style.removeProperty('visibility');
+                nav.style.removeProperty('pointer-events');
                 if (backdrop) backdrop.classList.remove('active');
                 document.body.classList.remove('mobile-nav-open');
                 document.documentElement.classList.remove('mobile-nav-open');

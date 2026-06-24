@@ -67,6 +67,9 @@
     function openNav() {
       savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
       nav.classList.add('nav-open', 'open', 'active');
+      nav.style.setProperty('transform', 'translate3d(0,0,0)', 'important');
+      nav.style.setProperty('visibility', 'visible', 'important');
+      nav.style.setProperty('pointer-events', 'auto', 'important');
       overlays.forEach(function (el) { el.classList.add('active'); });
       document.body.classList.add('mobile-nav-open');
       document.documentElement.classList.add('mobile-nav-open');
@@ -80,6 +83,9 @@
     }
     function closeNav() {
       nav.classList.remove('nav-open', 'open', 'active');
+      nav.style.removeProperty('transform');
+      nav.style.removeProperty('visibility');
+      nav.style.removeProperty('pointer-events');
       overlays.forEach(function (el) { el.classList.remove('active'); });
       document.body.classList.remove('mobile-nav-open');
       document.documentElement.classList.remove('mobile-nav-open');
@@ -161,6 +167,8 @@
     });
 
     window.addEventListener('pageshow', syncToggleVisualState);
+    // On fresh paint, force a deterministic closed state to avoid stale class/icon artifacts.
+    closeNav();
     syncToggleVisualState();
 
     /* Allow other modules (e.g. login dropdown) to close the public drawer safely */
