@@ -1014,10 +1014,10 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 </button>
                 <ul class="nav-menu">
                     <li class="<?php echo $currentPage == 'index' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>index.php"><?php echo $L['home']; ?></a>
+                        <a href="<?php echo SITE_URL; ?>index.php"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="landmark"></i><?php echo $L['home']; ?></a>
                     </li>
                     <li class="has-dropdown <?php echo $currentPage == 'about' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>about.php"><?php echo $L['about']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
+                        <a href="<?php echo SITE_URL; ?>about.php"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="info"></i><?php echo $L['about']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <li><a href="<?php echo SITE_URL; ?>about.php"><i class="fas fa-info-circle"></i> <?php echo isEnglish() ? 'About Us' : 'हाम्रो बारेमा'; ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>about.php#history"><i class="lucide-icon" aria-hidden="true" data-lucide="clock"></i> <?php echo isEnglish() ? 'History' : 'हाम्रो इतिहास'; ?></a></li>
@@ -1029,7 +1029,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         </ul>
                     </li>
                     <li class="has-dropdown <?php echo $currentPage == 'services' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>services.php"><?php echo $L['services']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
+                        <a href="<?php echo SITE_URL; ?>services.php"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="briefcase"></i><?php echo $L['services']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <?php if (!empty($navServiceLinks)): ?>
                                 <?php foreach ($navServiceLinks as $_svc): ?>
@@ -1043,10 +1043,10 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         </ul>
                     </li>
                     <li class="<?php echo $currentPage == 'interest-rates' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>interest-rates.php"><?php echo $L['interest_rates']; ?></a>
+                        <a href="<?php echo SITE_URL; ?>interest-rates.php"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="chart-line"></i><?php echo $L['interest_rates']; ?></a>
                     </li>
                     <li class="has-dropdown <?php echo in_array($currentPage, ['notices', 'cooperative-programs', 'election-information']) ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>notices.php"><?php echo $L['notices']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
+                        <a href="<?php echo SITE_URL; ?>notices.php"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="bell"></i><?php echo $L['notices']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <li><a href="<?php echo SITE_URL; ?>notices.php"><i class="fas fa-bullhorn"></i> <?php echo isEnglish() ? 'Latest Notices' : 'नवीनतम सूचना'; ?><?php if ($hasRecentNotice): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>cooperative-programs.php"><i class="lucide-icon" aria-hidden="true" data-lucide="calendar-check"></i> <?php echo isEnglish() ? 'Cooperative Programs' : 'सहकारी कार्यक्रम'; ?><?php if ($hasRecentProgram): ?><span class="nav-new-badge"><?php echo isEnglish() ? 'New' : 'नयाँ'; ?></span><?php endif; ?><?php if ($activeProgramCount > 0): ?><span class="nav-new-badge"><?php echo (int)$activeProgramCount; ?></span><?php endif; ?></a></li>
@@ -1056,10 +1056,10 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         </ul>
                     </li>
                     <li class="<?php echo $currentPage == 'gallery' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>gallery.php"><?php echo $L['gallery']; ?></a>
+                        <a href="<?php echo SITE_URL; ?>gallery.php"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="image"></i><?php echo $L['gallery']; ?></a>
                     </li>
                     <li class="has-dropdown <?php echo in_array($currentPage, ['team', 'committees']) ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>team.php"><?php echo $L['team']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
+                        <a href="<?php echo SITE_URL; ?>team.php"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="users"></i><?php echo $L['team']; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <li><a href="<?php echo SITE_URL; ?>team.php"><i class="fas fa-id-card-clip"></i> <?php echo isEnglish() ? 'Contact Officers' : 'सम्पर्क अधिकारी'; ?></a></li>
                             <?php /* Admin बाट 'मेनुमा देखाउनुहोस्' check गरिएका committees मात्र */ ?>
@@ -1072,7 +1072,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         </ul>
                     </li>
                     <li class="has-dropdown">
-                        <a href="javascript:void(0);"><?php echo isEnglish() ? 'More' : 'थप'; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
+                        <a href="javascript:void(0);"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="newspaper"></i><?php echo isEnglish() ? 'More' : 'थप'; ?> <i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i></a>
                         <ul class="dropdown">
                             <li><a href="<?php echo SITE_URL; ?>news.php"><i class="lucide-icon" aria-hidden="true" data-lucide="newspaper"></i> <?php echo isEnglish() ? 'News & Activities' : 'समाचार'; ?></a></li>
                             <li><a href="<?php echo SITE_URL; ?>career.php"><i class="lucide-icon" aria-hidden="true" data-lucide="briefcase"></i> <?php echo isEnglish() ? 'Career' : 'बिज्ञापन'; ?><?php echo nav_submenu_count_badge_html($navMenuBadges['career_open']); ?></a></li>
@@ -1086,7 +1086,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                         </ul>
                     </li>
                     <li class="<?php echo $currentPage == 'contact' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>contact.php"><?php echo $L['contact']; ?></a>
+                        <a href="<?php echo SITE_URL; ?>contact.php"><i class="lucide-icon mnav-main-icon" aria-hidden="true" data-lucide="phone"></i><?php echo $L['contact']; ?></a>
                     </li>
                 </ul>
             </nav>

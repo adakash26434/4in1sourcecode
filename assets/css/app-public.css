@@ -23505,4 +23505,25 @@ body.auth-page,
         visibility: hidden !important;
         pointer-events: none !important;
     }
+
+    body.header-v2 #mainNavV2 .nav-menu > li > a .mnav-main-icon {
+        width: 23px !important;
+        min-width: 23px !important;
+        height: 23px !important;
+        margin-right: 10px !important;
+        border-radius: 7px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #e9f4ed !important;
+        color: #1f8b46 !important;
+        font-size: .8rem !important;
+        flex: 0 0 23px !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li.has-dropdown > a::before,
+    body.header-v2 #mainNavV2 .nav-menu > li.has-sub > a::before {
+        content: none !important;
+        display: none !important;
+    }
 }
