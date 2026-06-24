@@ -11,14 +11,15 @@
 if (!function_exists('coopAlert')) {
     /**
      * Universal alert box — public/member/admin तीनै ठाउँमा एउटै style।
+     * Uses Lucide icons (SVG inline) — no external dependency needed.
      */
     function coopAlert(string $type, string $message, bool $dismissible = true): string {
         $map = [
-            'success' => ['bg' => 'var(--color-success)',  'icon' => 'fa-check-circle'],
-            'error'   => ['bg' => 'var(--color-danger)',   'icon' => 'fa-exclamation-circle'],
-            'danger'  => ['bg' => 'var(--color-danger)',   'icon' => 'fa-exclamation-circle'],
-            'warning' => ['bg' => 'var(--color-warning)',  'icon' => 'fa-exclamation-triangle'],
-            'info'    => ['bg' => 'var(--color-info)',     'icon' => 'fa-info-circle'],
+            'success' => ['bg' => 'var(--color-success)',  'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>'],
+            'error'   => ['bg' => 'var(--color-danger)',   'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>'],
+            'danger'  => ['bg' => 'var(--color-danger)',   'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>'],
+            'warning' => ['bg' => 'var(--color-warning)',  'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'],
+            'info'    => ['bg' => 'var(--color-info)',     'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'],
         ];
         $m   = $map[$type] ?? $map['info'];
         $msg = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
@@ -27,7 +28,7 @@ if (!function_exists('coopAlert')) {
             : '';
         return <<<HTML
 <div class="coop-alert" style="background:{$m['bg']};color:var(--text-on-primary,white);padding:12px 16px;border-radius:var(--radius-md,10px);display:flex;align-items:center;gap:10px;margin:12px 0;box-shadow:var(--shadow-sm,0 1px 4px rgba(var(--primary-rgb,26,95,42),.12));font-family:var(--font-primary);">
-    <i class="fas {$m['icon']}"></i>
+    <span class="coop-alert-icon" style="display:flex;align-items:center;justify-content:center;">{$m['icon']}</span>
     <span style="flex:1;">{$msg}</span>
     {$btn}
 </div>

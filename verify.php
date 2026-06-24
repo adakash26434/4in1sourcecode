@@ -247,7 +247,7 @@ if ($result && !empty($result['ok'])) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('verify', ['skip_fonts' => true]); } ?>
 <style>
 /* ── verify.php layout overrides ── */

@@ -648,7 +648,7 @@ function htmlEsc(s) {
                               <div class="input-group input-group-sm">
                                   <input type="text" class="form-control" id="fp-copy-field" value="MEMBER-<?php echo str_pad(rand(1000,9999),6,'0',STR_PAD_LEFT); ?>" readonly>
                                   <button class="btn btn-outline-secondary" type="button" id="fp-copy-btn" title="Copy">
-                                      <i class="fas fa-copy"></i>
+                                      <i data-lucide="copy"></i>
                                   </button>
                               </div>
                           </div>

@@ -190,7 +190,7 @@ $rows = $db->query(
                     </code>
                     <button class="btn btn-sm btn-outline-secondary" title="Username copy"
                             onclick="copyText(<?= (int)$r['id'] ?>, 'user', '<?= e($r['username']) ?>')">
-                        <i class="far fa-copy"></i>
+                        <i data-lucide="copy"></i>
                     </button>
                 </div>
 
@@ -203,7 +203,7 @@ $rows = $db->query(
                     </button>
                     <button class="btn btn-sm btn-outline-secondary" title="Password copy"
                             onclick="copyPw(<?= (int)$r['id'] ?>)">
-                        <i class="far fa-copy"></i>
+                        <i data-lucide="copy"></i>
                     </button>
                 </div>
 

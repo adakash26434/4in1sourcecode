@@ -176,7 +176,7 @@ require_once 'includes/header.php';
                 <div class="text-muted small mb-2"><?php echo isEnglish() ? 'Your Tracking ID — save this!' : 'तपाईंको Tracking ID — सुरक्षित राख्नुहोस्!'; ?></div>
                 <div class="d-flex align-items-center gap-2 mb-2">
                     <div class="fw-bold fs-5 text-success font-monospace" id="jobTrkId"><?php echo e($successTrackingId ?? ''); ?></div>
-                    <button type="button" onclick="copyTrk('jobTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2 cd-copy-btn" title="Copy"><i class="fas fa-copy"></i></button>
+                    <button type="button" onclick="copyTrk('jobTrkId',this)" class="btn btn-sm btn-outline-success py-0 px-2 cd-copy-btn" title="Copy"><i data-lucide="copy"></i></button>
                 </div>
                 <div class="small text-muted"><a href="application-tracker.php" class="text-success text-decoration-none fw-semibold">यहाँ बाट</a> Application Tracker मा स्थिति हेर्नुहोस्।</div>
             </div>

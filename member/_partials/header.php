@@ -52,7 +52,7 @@ $memInitial = mb_substr($memName, 0, 1);
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title><?= htmlspecialchars($page_title) ?> · <?= htmlspecialchars($siteName) ?></title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <?php if (function_exists('coopThemeHeadAssets')) { coopThemeHeadAssets('shell'); } ?>
 <style>
   * { box-sizing: border-box; }

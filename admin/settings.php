@@ -613,7 +613,7 @@ if (!in_array($panel, ['general', 'branding'], true)) {
             <!-- Footer -->
             <div class="card mb-4 stg-section-card stg-filter-card" data-stg-panel="general" data-stg-group="leadership" data-stg-order="2">
                 <div class="card-header stg-section-header">
-                    <h5 class="stg-section-title"><i class="fas fa-copyright"></i> <?php echo $__t('फुटर', 'Footer'); ?></h5>
+                    <h5 class="stg-section-title"><i data-lucide="copyright"></i> <?php echo $__t('फुटर', 'Footer'); ?></h5>
                 </div>
                 <div class="card-body">
                     <?php if (!$canEditFooterDev): ?>
