@@ -86,6 +86,8 @@ Recent pushed commits (bootstrap stream):
 - `68f5735` — exception forwarding shared
 - `f29540d` — portal fatal-page renderer centralized
 - `e073fdc` — debug-detail escaping fix post-consolidation
+- `ae7bee5` — portal fatal/exception handler registration centralized
+- `19fafef` — direct shared runtime policy call in wrappers
 
 ---
 
