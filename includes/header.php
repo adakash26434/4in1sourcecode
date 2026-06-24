@@ -10,6 +10,12 @@ if (function_exists('site_license_public_guard')) {
 
 /* Member portal apply-frame iframe: हल्का UI, लोडर/नेभ नछोपोस् */
 $__embed_frame = isset($_GET['embed']) && (string)$_GET['embed'] === '1';
+$__ui_test_mode = isset($_GET['ui_test']) && (string)$_GET['ui_test'] === '1';
+if ($__ui_test_mode && !headers_sent()) {
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+}
 
 // Get site settings
 $siteName = getSetting('site_name', 'आकाश सहकारी');

@@ -998,6 +998,25 @@ if ($__uiTestMode):
         if (!res.length) res.push('target elements not found');
         return res.join(', ');
     }
+    function inspectVisibleCloseElements(){
+        var items = Array.prototype.slice.call(document.querySelectorAll('#closeMenuV2, #closeMenu, .close-menu, #mainNavV2 i.fa-times, i.fa-xmark'));
+        var lines = [];
+        items.forEach(function(el){
+            var st = window.getComputedStyle(el);
+            var r = el.getBoundingClientRect();
+            var visible = st.display !== 'none' && st.visibility !== 'hidden' && parseFloat(st.opacity || '1') > 0.01 && r.width > 1 && r.height > 1;
+            if (!visible) return;
+            var id = el.id ? ('#' + el.id) : '(no-id)';
+            lines.push(
+                (el.tagName.toLowerCase()) + id +
+                ' cls=' + (el.className || '(none)') +
+                ' pos=' + st.position +
+                ' z=' + st.zIndex +
+                ' rect=' + Math.round(r.left) + ',' + Math.round(r.top) + ',' + Math.round(r.width) + 'x' + Math.round(r.height)
+            );
+        });
+        return lines.length ? lines.join(' | ') : 'no visible close/x elements found';
+    }
     function forceReset(){
         if (typeof window.__pflMobileMenuClose === 'function') window.__pflMobileMenuClose();
         var toggle = byId('mobileMenuToggle2');
@@ -1043,6 +1062,7 @@ if ($__uiTestMode):
             '<button id="uiChkSizes" style="padding:7px;border-radius:8px;border:1px solid #334155;background:#111827;color:#e5e7eb;">Check Sizes</button>' +
             '<button id="uiOpenMenu" style="padding:7px;border-radius:8px;border:1px solid #334155;background:#0b5;color:#f8fffb;">Open Menu</button>' +
             '<button id="uiReset" style="padding:7px;border-radius:8px;border:1px solid #334155;background:#7f1d1d;color:#fee2e2;">Force Reset</button>' +
+            '<button id="uiInspectX" style="grid-column:1/3;padding:7px;border-radius:8px;border:1px solid #334155;background:#1f2937;color:#d1d5db;">Inspect Visible X</button>' +
             '</div>' +
             '<pre id="uiTestOut" style="margin:0;padding:8px;max-height:170px;overflow:auto;background:#020617;border-top:1px solid #334155;white-space:pre-wrap;"></pre>';
         document.body.appendChild(panel);
@@ -1051,7 +1071,8 @@ if ($__uiTestMode):
         byId('uiChkSizes').addEventListener('click', function(){ log(checkSizes()); });
         byId('uiOpenMenu').addEventListener('click', function(){ if (typeof window.__pflMobileMenuOpen === 'function') window.__pflMobileMenuOpen(); var s = menuState(); log('open-> ' + s.msg); });
         byId('uiReset').addEventListener('click', forceReset);
-        setTimeout(function(){ var s = menuState(); log((s.ok ? 'OK ' : 'WARN ') + s.msg); log(checkSizes()); }, 350);
+        byId('uiInspectX').addEventListener('click', function(){ log(inspectVisibleCloseElements()); });
+        setTimeout(function(){ var s = menuState(); log((s.ok ? 'OK ' : 'WARN ') + s.msg); log(checkSizes()); log(inspectVisibleCloseElements()); }, 350);
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildPanel);
     else buildPanel();

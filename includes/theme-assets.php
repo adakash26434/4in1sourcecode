@@ -5,6 +5,16 @@
  */
 if (!function_exists('coopThemeCssUrl')) {
 
+    function coopThemeIsUiTestMode(): bool
+    {
+        static $cache = null;
+        if ($cache !== null) {
+            return $cache;
+        }
+        $cache = isset($_GET['ui_test']) && (string)$_GET['ui_test'] === '1';
+        return $cache;
+    }
+
     function coopThemeCssUrl(string $rel): string
     {
         $base = defined('SITE_URL') ? SITE_URL : '/';
@@ -22,6 +32,10 @@ if (!function_exists('coopThemeCssUrl')) {
     {
         $v = $ver ?? coopThemeCssVer($rel);
         $href = coopThemeCssUrl($rel) . '?v=' . rawurlencode($v);
+        if (coopThemeIsUiTestMode()) {
+            // While testing on live URLs, force fresh CSS fetches per request.
+            $href .= '&t=' . rawurlencode((string)time());
+        }
         echo '<link rel="stylesheet" href="' . htmlspecialchars($href, ENT_QUOTES, 'UTF-8') . '">' . "\n";
     }
 
