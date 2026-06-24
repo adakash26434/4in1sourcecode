@@ -7183,58 +7183,6 @@ textarea.form-control {
     color: #d1d5db;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────
-   17. DASHBOARD STAT CARDS — Eye-catching with shimmer effect
-   ───────────────────────────────────────────────────────────────────────── */
-.stat-card {
-    border-radius: var(--radius-xl) !important;
-    padding: 20px !important;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(255,255,255,0.15) !important;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12) !important;
-    transition: transform var(--transition-mid), box-shadow var(--transition-mid) !important;
-}
-
-.stat-card:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 12px 36px rgba(0,0,0,0.18) !important;
-}
-
-/* Shimmer overlay */
-.stat-card::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -30%;
-    width: 100px;
-    height: 200%;
-    background: rgba(255,255,255,0.08);
-    transform: rotate(25deg);
-    pointer-events: none;
-}
-
-.stat-icon {
-    width: 52px !important;
-    height: 52px !important;
-    border-radius: var(--radius-lg) !important;
-    background: rgba(255,255,255,0.2) !important;
-    font-size: 22px !important;
-    backdrop-filter: blur(4px);
-}
-
-.stat-info h3 {
-    font-size: 2rem !important;
-    font-weight: 800 !important;
-    letter-spacing: -0.02em;
-}
-
-.stat-info p {
-    font-size: 0.82rem !important;
-    opacity: 0.88 !important;
-    font-weight: 500;
-}
-
 /* Mini stat cards on dashboard */
 .db-mini-card {
     border-radius: var(--radius-lg) !important;
