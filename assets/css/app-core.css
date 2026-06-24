@@ -2895,7 +2895,6 @@ body.auth-portal-page:not(.verify-auth-page) .auth-lang-toggle { left: 20px; }
 
 /* Borders */
 .coop-rounded    { border-radius: var(--radius-md, 10px); }
-.coop-rounded-lg { border-radius: var(--radius-lg, 16px); }
 .coop-bordered   { border: 1px solid var(--border-color, #e5e7eb); }
 .coop-w-full     { width: 100%; }
 
