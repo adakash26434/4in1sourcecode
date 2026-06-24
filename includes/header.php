@@ -406,11 +406,12 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 border-bottom-color: rgba(255,255,255,.10) !important;
             }
             .main-nav .dropdown li > a {
-                color: rgba(255,255,255,.80) !important;
+                color: #1f2937 !important;
+                background: transparent !important;
             }
             .main-nav .dropdown li > a:hover {
-                background: rgba(255,255,255,.10) !important;
-                color: #fff !important;
+                background: #eef6f1 !important;
+                color: #14532d !important;
             }
             .main-nav .close-menu {
                 background: rgba(255,255,255,.15) !important;
@@ -584,7 +585,7 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
 
             /* Nav items — bigger touch targets, cleaner look */
             .main-nav .nav-menu > li > a {
-                padding: 13px 52px 13px 20px !important;
+                padding: 13px 16px 13px 20px !important;
                 font-size: 0.97rem !important;
                 font-weight: 500 !important;
                 line-height: 1.4 !important;
@@ -601,10 +602,12 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             .main-nav .dropdown li > a {
                 padding: 10px 16px 10px 36px !important;
                 font-size: 0.90rem !important;
-                border-bottom: 1px solid rgba(255,255,255,.04) !important;
+                border-bottom: 1px solid #e6eee8 !important;
                 display: flex !important;
                 align-items: center !important;
                 gap: 7px !important;
+                color: #1f2937 !important;
+                font-weight: 620 !important;
             }
             .main-nav .dropdown li:last-child > a { border-bottom: none !important; }
 
@@ -620,36 +623,21 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                 border-left: 3px solid rgba(255,255,255,.2) !important;
             }
 
-            /* ── dd-chevron-btn: visible on dark drawer ── */
+            /* ── dd-chevron-btn: disabled; parent row handles submenu toggle ── */
             .main-nav .dd-chevron-btn {
-                background: rgba(255,255,255,.16) !important;
-                color: rgba(255,255,255,.95) !important;
-                border: 1px solid rgba(255,255,255,.18) !important;
-                width: 36px !important;
-                height: 36px !important;
-                border-radius: 8px !important;
-                font-size: 0.8rem !important;
-                right: 12px !important;
-                top: 8px !important;
-                transform: none !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                position: absolute !important;
-                z-index: 5 !important;
-                cursor: pointer !important;
-                transition: background .15s, transform .15s !important;
-                flex-shrink: 0 !important;
+                display: none !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
             }
             .main-nav .dd-chevron-btn:hover,
             .main-nav .dd-chevron-btn:active {
-                background: rgba(255,255,255,.28) !important;
+                background: transparent !important;
             }
             .main-nav .has-dropdown.open > .dd-chevron-btn .fa-chevron-down,
             .main-nav .has-sub.open > .dd-chevron-btn .fa-chevron-down {
                 transform: rotate(180deg) !important;
             }
-            .main-nav .has-dropdown > a { padding-right: 56px !important; }
+            .main-nav .has-dropdown > a { padding-right: 16px !important; }
 
             /* Ensure li is relative for absolute chevron button */
             .main-nav .has-dropdown,
@@ -1510,20 +1498,28 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
                     toggleIcon.classList.toggle('fa-bars', !isOpen);
                 }
             }
+            function cleanupDdButtons() {
+                nav.querySelectorAll(':scope .dd-chevron-btn').forEach(function(btn){ btn.remove(); });
+            }
             nav.querySelectorAll('.has-dropdown, .has-sub').forEach(function(li){
                 var link = li.querySelector(':scope > a');
-                if (!link || li.querySelector(':scope > .dd-chevron-btn')) return;
+                if (!link) return;
+                // Remove side chevron buttons (they caused large controls and toggle conflicts).
+                var existingBtns = li.querySelectorAll(':scope > .dd-chevron-btn');
+                existingBtns.forEach(function(btn){ btn.remove(); });
                 var inlineChevron = link.querySelector('.fa-chevron-down');
-                if (inlineChevron) inlineChevron.style.display = 'none';
-                var btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'dd-chevron-btn';
-                btn.setAttribute('aria-label', 'Toggle submenu');
-                btn.setAttribute('aria-expanded', 'false');
-                btn.innerHTML = '<i class="lucide-icon" aria-hidden="true" data-lucide="chevron-down"></i>';
-                li.insertBefore(btn, link.nextSibling);
+                if (inlineChevron) {
+                    inlineChevron.style.display = 'inline-flex';
+                    inlineChevron.style.marginLeft = 'auto';
+                    inlineChevron.style.fontSize = '.82rem';
+                    inlineChevron.style.opacity = '.9';
+                }
             });
+            cleanupDdButtons();
+            setTimeout(cleanupDdButtons, 80);
+            setTimeout(cleanupDdButtons, 220);
             function openNav(){
+                cleanupDdButtons();
                 savedY = window.scrollY || document.documentElement.scrollTop || 0;
                 nav.classList.add('nav-open','open','active');
                 nav.style.setProperty('transform', 'translate3d(0,0,0)', 'important');
@@ -1573,14 +1569,11 @@ $__hrefLangEn = $__seoCanon . $__hrefLangSep . 'lang=en';
             if (backdrop) backdrop.addEventListener('click', function(e){ e.preventDefault(); closeNav(); }, true);
             nav.addEventListener('click', function(e){
                 if (window.innerWidth >= 992) return;
-                var btn = e.target.closest('.dd-chevron-btn');
                 var parentLink = e.target.closest('.has-dropdown > a, .has-sub > a');
-                var li = btn ? btn.closest('.has-dropdown,.has-sub') : (parentLink ? parentLink.parentElement : null);
+                var li = parentLink ? parentLink.parentElement : null;
                 if (!li || !nav.contains(li)) return;
                 e.preventDefault(); e.stopPropagation();
                 li.classList.toggle('open');
-                var directBtn = li.querySelector(':scope > .dd-chevron-btn');
-                if (directBtn) directBtn.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
             }, true);
             document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
             window.addEventListener('pageshow', syncToggleVisualState);

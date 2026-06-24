@@ -22582,6 +22582,13 @@ body.auth-page,
         width: 100% !important;
     }
 
+    /* Keep drawer vertically scrollable while body is locked. */
+    html.mobile-nav-open,
+    body.header-v2.mobile-nav-open,
+    body.mobile-nav-open {
+        touch-action: auto !important;
+    }
+
     body.header-v2 #pflMobileBackdrop,
     body.header-v2 .mobile-nav-backdrop {
         position: fixed !important;
@@ -22636,6 +22643,8 @@ body.auth-page,
         will-change: transform !important;
         contain: layout paint !important;
         pointer-events: auto !important;
+        touch-action: pan-y !important;
+        overscroll-behavior: contain !important;
     }
 
     body.header-v2 #mainNavV2.nav-open,
@@ -23367,5 +23376,133 @@ body.auth-page,
         background: #fff !important;
         color: #14532d !important;
         border-color: rgba(255,255,255,.75) !important;
+    }
+}
+
+/* ════════════════════════════════════════════════════════════
+   v13.3 — Mobile Drawer Density + Readability
+   Smaller Lucide icons, tighter spacing, clearer submenu text.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 991.98px) {
+    body.header-v2 #mainNavV2.main-nav {
+        --mnav-row-min-h: 52px !important;
+        --mnav-sub-row-min-h: 44px !important;
+        --mnav-row-font: .95rem !important;
+        --mnav-sub-font: .88rem !important;
+        --mnav-icon-size: 26px !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu {
+        gap: 6px !important;
+        padding: 8px 8px 12px !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li > a {
+        min-height: var(--mnav-row-min-h) !important;
+        padding: 11px 48px 11px 12px !important;
+        font-size: var(--mnav-row-font) !important;
+        font-weight: 700 !important;
+    }
+
+    body.header-v2 #mainNavV2 .dd-chevron-btn {
+        width: 34px !important;
+        min-width: 34px !important;
+        height: 34px !important;
+        min-height: 34px !important;
+        padding: 0 !important;
+        top: 6px !important;
+        right: 6px !important;
+    }
+
+    body.header-v2 #mainNavV2 .dropdown,
+    body.header-v2 #mainNavV2 .sub-menu {
+        background: #f7fbf8 !important;
+        border-top: 1px solid #e2ece5 !important;
+        padding: 4px 0 !important;
+    }
+
+    body.header-v2 #mainNavV2 .dropdown li a,
+    body.header-v2 #mainNavV2 .sub-menu li a {
+        min-height: var(--mnav-sub-row-min-h) !important;
+        padding: 9px 12px 9px 12px !important;
+        font-size: var(--mnav-sub-font) !important;
+        font-weight: 650 !important;
+        color: #1f2937 !important;
+        gap: 10px !important;
+        line-height: 1.28 !important;
+    }
+
+    body.header-v2 #mainNavV2 .dropdown li a i,
+    body.header-v2 #mainNavV2 .dropdown li a .lucide-icon,
+    body.header-v2 #mainNavV2 .sub-menu li a i,
+    body.header-v2 #mainNavV2 .sub-menu li a .lucide-icon {
+        width: var(--mnav-icon-size) !important;
+        min-width: var(--mnav-icon-size) !important;
+        height: var(--mnav-icon-size) !important;
+        flex: 0 0 var(--mnav-icon-size) !important;
+        border-radius: 8px !important;
+        font-size: .86rem !important;
+    }
+}
+
+/* ════════════════════════════════════════════════════════════
+   v13.4 — Submenu Contrast + Chevron Simplify
+   Remove large side chevron buttons and keep submenu text readable.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 991.98px) {
+    body.header-v2 #mainNavV2 .dd-chevron-btn {
+        display: none !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li > a .fa-chevron-down {
+        display: inline-flex !important;
+        margin-left: auto !important;
+        font-size: .78rem !important;
+        opacity: .78 !important;
+        color: #2f4f3b !important;
+    }
+
+    body.header-v2 #mainNavV2 .dropdown,
+    body.header-v2 #mainNavV2 .sub-menu {
+        background: #f6faf7 !important;
+        border: 1px solid #e3ece6 !important;
+        border-radius: 10px !important;
+        margin: 6px 0 4px !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu .dropdown li a,
+    body.header-v2 #mainNavV2 .nav-menu .sub-menu li a,
+    body.header-v2 #mainNavV2 .dropdown li a,
+    body.header-v2 #mainNavV2 .sub-menu li a {
+        color: #1f2937 !important;
+        font-size: .86rem !important;
+        font-weight: 640 !important;
+        line-height: 1.26 !important;
+        padding: 8px 10px 8px 12px !important;
+        background: transparent !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu .dropdown li a i,
+    body.header-v2 #mainNavV2 .nav-menu .dropdown li a .lucide-icon,
+    body.header-v2 #mainNavV2 .nav-menu .sub-menu li a i,
+    body.header-v2 #mainNavV2 .nav-menu .sub-menu li a .lucide-icon,
+    body.header-v2 #mainNavV2 .dropdown li a i,
+    body.header-v2 #mainNavV2 .dropdown li a .lucide-icon,
+    body.header-v2 #mainNavV2 .sub-menu li a i,
+    body.header-v2 #mainNavV2 .sub-menu li a .lucide-icon {
+        width: 23px !important;
+        min-width: 23px !important;
+        height: 23px !important;
+        font-size: .8rem !important;
+        border-radius: 7px !important;
+        background: #e9f4ed !important;
+        color: #1f8b46 !important;
+    }
+
+    body.header-v2 #mainNavV2 .nav-menu > li > .dd-chevron-btn,
+    body.header-v2 #mainNavV2 .dd-chevron-btn {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
     }
 }

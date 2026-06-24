@@ -47,6 +47,34 @@
       .filter(Boolean);
     var savedScrollY = 0;
 
+    function cleanupSubmenuUI() {
+      nav.querySelectorAll('.has-dropdown, .has-sub').forEach(function (li) {
+        li.querySelectorAll(':scope > .dd-chevron-btn').forEach(function (btn) { btn.remove(); });
+        var link = li.querySelector(':scope > a');
+        if (!link) return;
+        var inlineChevron = link.querySelector('.fa-chevron-down');
+        if (inlineChevron) {
+          inlineChevron.style.display = 'inline-flex';
+          inlineChevron.style.marginLeft = 'auto';
+          inlineChevron.style.fontSize = '.78rem';
+          inlineChevron.style.opacity = '.85';
+        }
+      });
+      nav.querySelectorAll('.dropdown li > a, .sub-menu li > a').forEach(function (a) {
+        a.style.color = '#1f2937';
+        a.style.fontSize = '.86rem';
+        a.style.fontWeight = '640';
+        a.style.lineHeight = '1.26';
+      });
+      nav.querySelectorAll('.dropdown li > a i, .sub-menu li > a i, .dropdown li > a .lucide-icon, .sub-menu li > a .lucide-icon').forEach(function (icon) {
+        icon.style.width = '23px';
+        icon.style.minWidth = '23px';
+        icon.style.height = '23px';
+        icon.style.fontSize = '.8rem';
+        icon.style.borderRadius = '7px';
+      });
+    }
+
     function syncToggleVisualState() {
       var isOpen = nav.classList.contains('nav-open') || nav.classList.contains('open') || nav.classList.contains('active');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -65,6 +93,7 @@
     }
 
     function openNav() {
+      cleanupSubmenuUI();
       savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
       nav.classList.add('nav-open', 'open', 'active');
       nav.style.setProperty('transform', 'translate3d(0,0,0)', 'important');
@@ -97,6 +126,7 @@
       nav.querySelectorAll('.dd-chevron-btn[aria-expanded="true"]').forEach(function (btn) {
         btn.setAttribute('aria-expanded', 'false');
       });
+      cleanupSubmenuUI();
       if (savedScrollY) window.scrollTo(0, savedScrollY);
       syncToggleVisualState();
     }
@@ -127,23 +157,9 @@
     });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
 
-    /* Dedicated delegated chevron handler — robust on iOS/Safari overlays */
-    nav.addEventListener('click', function (e) {
-      if (window.innerWidth >= 992) return;
-      var chev = e.target.closest('.dd-chevron-btn');
-      if (!chev || !nav.contains(chev)) return;
-      e.preventDefault();
-      e.stopPropagation();
-      var li = chev.closest('.has-dropdown, .has-sub');
-      if (!li) return;
-      li.classList.toggle('open');
-      chev.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
-    }, true);
-
     /* ── Single delegated click handler on the nav ── */
     nav.addEventListener('click', function (e) {
       if (window.innerWidth >= 992) return;
-      if (e.target.closest('.dd-chevron-btn')) return;
       var link = e.target.closest('a');
       if (!link || !nav.contains(link)) return;
       var li      = link.parentElement;
@@ -168,6 +184,9 @@
 
     window.addEventListener('pageshow', syncToggleVisualState);
     // On fresh paint, force a deterministic closed state to avoid stale class/icon artifacts.
+    cleanupSubmenuUI();
+    setTimeout(cleanupSubmenuUI, 80);
+    setTimeout(cleanupSubmenuUI, 220);
     closeNav();
     syncToggleVisualState();
 
@@ -242,35 +261,18 @@
   }
 
 
-  /* ── Inject per-item chevron toggle so parent <a> can navigate freely ── */
+  /* ── Keep parent-row-only submenu toggles; remove any side chevron buttons ── */
   function addDropdownChevrons() {
     document.querySelectorAll('.main-nav .has-dropdown, .main-nav .has-sub').forEach(function (li) {
       var link = li.querySelector(':scope > a');
       if (!link) return;
-      var href = (link.getAttribute('href') || '').trim();
-      var isToggleOnly = !href || href === '#' || href.indexOf('javascript:') === 0;
-      if (isToggleOnly) return; /* already toggle-only, no extra button needed */
-      if (li.querySelector('.dd-chevron-btn')) return; /* already added */
-      /* Remove the inline chevron icon from the link text */
+      li.querySelectorAll(':scope > .dd-chevron-btn').forEach(function (btn) { btn.remove(); });
       var inlineChevron = link.querySelector('.fa-chevron-down');
-      /* Create a dedicated chevron button */
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'dd-chevron-btn';
-      btn.setAttribute('aria-label', 'Toggle submenu');
-      btn.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
-      var label = (link.textContent || 'submenu').trim().toLowerCase().replace(/[^a-z0-9\u0900-\u097f]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48) || 'submenu';
-      btn.setAttribute('data-testid', 'public-mobile-submenu-toggle-' + label);
-      btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-        li.classList.toggle('open');
-        btn.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
-      });
-      if (inlineChevron) inlineChevron.style.display = 'none';
-      li.insertBefore(btn, link.nextSibling);
+      if (inlineChevron) {
+        inlineChevron.style.display = 'inline-flex';
+        inlineChevron.style.marginLeft = 'auto';
+        inlineChevron.style.fontSize = '.78rem';
+      }
     });
   }
 
