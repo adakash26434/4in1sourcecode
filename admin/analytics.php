@@ -36,7 +36,7 @@ for ($i = 11; $i >= 0; $i--) {
 /* Cumulative for area chart */
 $cumData = []; $cum = 0;
 try {
-    $total0 = (int)$db->query("SELECT COUNT(*) FROM members WHERE created_at < DATE_SUB(NOW(), INTERVAL 12 MONTH)")->fetchColumn();
+  $total0 = core_safe_count($db, "SELECT COUNT(*) FROM members WHERE created_at < DATE_SUB(NOW(), INTERVAL 12 MONTH)", '[analytics base-members]');
     $cum = $total0;
 } catch (Throwable $e) {}
 foreach ($growthData as $v) { $cum += $v; $cumData[] = $cum; }
@@ -54,7 +54,7 @@ $statDefs = [
     'attend'    => "SELECT COUNT(DISTINCT member_id) FROM member_program_attendance",
 ];
 foreach ($statDefs as $k => $q) {
-    try { $stats[$k] = (int)$db->query($q)->fetchColumn(); } catch (Throwable $e) { $stats[$k] = 0; }
+  $stats[$k] = core_safe_count($db, $q, '[analytics stat ' . $k . ']');
 }
 
 /* 3. Applications by type (pie) */
@@ -65,8 +65,8 @@ $appTypes = [
     'भेटघाट'       => $stats['appoints'],
     'कल्याण'       => $stats['welfare'],
 ];
-try { $appTypes['गुनासो'] = (int)$db->query("SELECT COUNT(*) FROM grievances")->fetchColumn(); } catch (Throwable $e) {}
-try { $appTypes['जागिर']  = (int)$db->query("SELECT COUNT(*) FROM job_applications")->fetchColumn(); } catch (Throwable $e) {}
+$appTypes['गुनासो'] = core_safe_count($db, "SELECT COUNT(*) FROM grievances", '[analytics app grievance]');
+$appTypes['जागिर']  = core_safe_count($db, "SELECT COUNT(*) FROM job_applications", '[analytics app jobs]');
 
 /* 4. KYC funnel */
 $kycStatus = [];

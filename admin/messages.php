@@ -172,8 +172,8 @@ if ($action === 'view' && isset($_GET['id'])) {
         $stmt->execute($w['params']);
         $messages = $stmt->fetchAll();
 
-        $totalCount  = (int)$db->query("SELECT COUNT(*) FROM contact_messages")->fetchColumn();
-        $unreadCount = (int)$db->query("SELECT COUNT(*) FROM contact_messages WHERE is_read=0")->fetchColumn();
+        $totalCount  = core_safe_count($db, "SELECT COUNT(*) FROM contact_messages", '[messages total]');
+        $unreadCount = core_safe_count($db, "SELECT COUNT(*) FROM contact_messages WHERE is_read=0", '[messages unread]');
         $readCount   = $totalCount - $unreadCount;
     } catch (Exception $e) {}
 
