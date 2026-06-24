@@ -16919,6 +16919,51 @@ html.pwa-installed  .mem-pwa-btn { display: none !important; }
 }
 
 /* =====================================================
+   v10.7.7 — Institutional Profile Form Contrast + Date Fix
+   - Keep hero heading/icon readable on gradient header
+   - Prevent datepicker popup clipping inside compact form cards
+   ===================================================== */
+
+.admin-form-page.ip-admin-form-page .card .card-header.ip-admin-form-hero,
+.admin-form-page.ip-admin-form-page .card .card-header.ip-admin-form-hero * {
+    color: #ffffff !important;
+}
+
+.admin-form-page.ip-admin-form-page .card .card-header.ip-admin-form-hero p {
+    color: rgba(255, 255, 255, 0.86) !important;
+}
+
+.admin-form-page.ip-admin-form-page .card .card-header.ip-admin-form-hero .ip-admin-kicker {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
+.admin-form-page.ip-admin-form-page .ip-admin-form-card,
+.admin-form-page.ip-admin-form-page .ip-admin-form-card .card-body,
+.admin-form-page.ip-admin-form-page .admin-section-card,
+.admin-form-page.ip-admin-form-page .admin-section-card .card-body,
+.admin-form-page.ip-admin-form-page .admin-section-card .card-header {
+    overflow: visible !important;
+}
+
+.admin-form-page.ip-admin-form-page .nepali-datepicker-wrapper,
+.admin-form-page.ip-admin-form-page .nepali-datepicker,
+.admin-form-page.ip-admin-form-page .ndp-container,
+.admin-form-page.ip-admin-form-page .nepali-datepicker-calendar,
+.admin-form-page.ip-admin-form-page .ndp-calendar {
+    z-index: 100300 !important;
+}
+
+.admin-form-page.ip-admin-form-page .admin-section-card > .card-header h6,
+.admin-form-page.ip-admin-form-page .admin-section-card > .card-header h6 i,
+.admin-form-page.ip-admin-form-page .admin-section-card > .card-header .lucide-icon,
+.admin-form-page.ip-admin-form-page .admin-section-card > .card-header svg {
+    color: #14532d !important;
+    stroke: #14532d !important;
+}
+
+/* =====================================================
    v10.7.3 — Active/Compact Header Safety Overrides
    - Keep active dashboard tab text/icon readable
    - Prevent chopped user text in compact header
