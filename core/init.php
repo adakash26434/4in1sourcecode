@@ -86,10 +86,18 @@ if (!function_exists('core_apply_runtime_error_policy')) {
 
 if (!function_exists('core_require_member_auth')) {
     function core_require_member_auth(): void {
-        $memberAuthPath = ROOT_PATH . 'includes/member-auth.php';
-        if (file_exists($memberAuthPath)) {
-            require_once $memberAuthPath;
+        core_require_if_exists('includes/member-auth.php');
+    }
+}
+
+if (!function_exists('core_require_if_exists')) {
+    function core_require_if_exists(string $relativePath): bool {
+        $path = ROOT_PATH . ltrim($relativePath, '/');
+        if (!file_exists($path)) {
+            return false;
         }
+        require_once $path;
+        return true;
     }
 }
 
@@ -132,44 +140,32 @@ require_once CORE_PATH . '/helpers.php';
 // ═══════════════════════════════════════════════════════════════
 // STEP 4: BS/AD Date Converter
 // ═══════════════════════════════════════════════════════════════
-if (file_exists(ROOT_PATH . 'includes/nepali-bs-convert.php')) {
-    require_once ROOT_PATH . 'includes/nepali-bs-convert.php';
-}
+core_require_if_exists('includes/nepali-bs-convert.php');
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 5: Audit + Soft-delete helpers
 // ═══════════════════════════════════════════════════════════════
-if (file_exists(ROOT_PATH . 'includes/audit.php')) {
-    require_once ROOT_PATH . 'includes/audit.php';
-}
+core_require_if_exists('includes/audit.php');
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 6: Notification Templates
 // ═══════════════════════════════════════════════════════════════
-if (file_exists(ROOT_PATH . 'includes/notification-templates.php')) {
-    require_once ROOT_PATH . 'includes/notification-templates.php';
-}
+core_require_if_exists('includes/notification-templates.php');
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 7: Role-Based Access Control
 // ═══════════════════════════════════════════════════════════════
-if (file_exists(ROOT_PATH . 'includes/auth-roles.php')) {
-    require_once ROOT_PATH . 'includes/auth-roles.php';
-}
+core_require_if_exists('includes/auth-roles.php');
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 8: Cross-Panel Uniform UI helpers
 // ═══════════════════════════════════════════════════════════════
-if (file_exists(ROOT_PATH . 'includes/panel-uniform.php')) {
-    require_once ROOT_PATH . 'includes/panel-uniform.php';
-}
+core_require_if_exists('includes/panel-uniform.php');
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 9: Safe Query Helpers
 // ═══════════════════════════════════════════════════════════════
-if (file_exists(ROOT_PATH . 'includes/safe-query.php')) {
-    require_once ROOT_PATH . 'includes/safe-query.php';
-}
+core_require_if_exists('includes/safe-query.php');
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 10: Portal-Specific Bootstrap
@@ -181,17 +177,11 @@ switch (PORTAL) {
         if (!defined('IS_ADMIN_PAGE')) define('IS_ADMIN_PAGE', true);
 
         // Admin-specific tables ensure
-        if (file_exists(ROOT_PATH . 'admin/includes/ensure-admin-tables.php')) {
-            require_once ROOT_PATH . 'admin/includes/ensure-admin-tables.php';
-        }
+        core_require_if_exists('admin/includes/ensure-admin-tables.php');
         // Admin UI helpers
-        if (file_exists(ROOT_PATH . 'admin/includes/admin-ui.php')) {
-            require_once ROOT_PATH . 'admin/includes/admin-ui.php';
-        }
+        core_require_if_exists('admin/includes/admin-ui.php');
         // Notifications (email/SMS)
-        if (file_exists(ROOT_PATH . 'includes/notifications.php')) {
-            require_once ROOT_PATH . 'includes/notifications.php';
-        }
+        core_require_if_exists('includes/notifications.php');
 
         // DB not configured redirect (login र db-setup बाहेक)
         if (defined('DB_NAME') && DB_NAME === '') {
