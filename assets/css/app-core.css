@@ -2877,8 +2877,6 @@ body.auth-portal-page:not(.verify-auth-page) .auth-lang-toggle { left: 20px; }
 .coop-mb-sm { margin-bottom: 8px; }.coop-mb-md { margin-bottom: 16px; }.coop-mb-lg { margin-bottom: 24px; }
 
 /* Text */
-.coop-text-secondary { color: var(--text-secondary, #4a5a4f); }
-.coop-text-muted     { color: var(--text-muted, #6b7280); }
 .text-primary-dark   { color: var(--primary-dark, #144a21); }
 .text-nepali         { font-family: var(--font-nepali, 'Noto Sans Devanagari', 'Mukta', sans-serif); }
 
